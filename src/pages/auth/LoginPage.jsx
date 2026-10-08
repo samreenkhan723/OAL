@@ -162,59 +162,11 @@ export const LoginPage = () => {
           <div className="absolute inset-0 bg-radial-at-t from-blue-600/20 via-transparent to-transparent" />
         </div>
 
-<<<<<<< HEAD
-      {/* Brand Header */}
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-2">
-        <Link to="/" className="inline-flex items-center gap-2.5 group">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0B1730] to-[#172B4D] flex items-center justify-center text-white shadow-md shadow-blue-900/15 group-hover:scale-105 transition-transform">
-            <ShieldCheck className="w-6 h-6 text-[#D5B66A]" />
-          </div>
-          <span className="font-heading font-extrabold text-2xl tracking-tight text-[#0B1730]">
-            OAL <span className="text-blue-600">NETWORK</span>
-          </span>
-        </Link>
-        <h1 className="text-2xl font-heading font-extrabold text-slate-900">
-          Sign In to Your Account
-        </h1>
-        <p className="text-xs text-slate-500">
-          Secure access to your commercial lending and underwriting portal.
-        </p>
-      </div>
-
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md space-y-4">
-        {/* Main Card */}
-        <div className="bg-white py-8 px-6 shadow-xl rounded-2xl border border-slate-200/90 sm:px-8 space-y-6">
-          
-          {/* Selected Program Announcement Banner */}
-          {programSlug && (
-            <div className="p-3.5 rounded-xl bg-blue-50 border border-blue-200 flex items-start gap-2.5 text-xs text-blue-900">
-              <ShieldCheck className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <strong className="font-bold block text-blue-950">
-                  Applying for {programTitle || programSlug}
-                </strong>
-                <span className="text-blue-800">
-                  Sign in below to proceed directly into the 6-step application wizard with this loan program pre-selected.
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* Notice when redirected from protected destination (e.g. Apply for a Loan) */}
-          {fromLocation && !programSlug && (
-            <div className="p-3.5 rounded-xl bg-blue-50 border border-blue-200 flex items-start gap-2.5 text-xs text-blue-900">
-              <Info className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <strong className="font-semibold block">Authentication Required</strong>
-                <span>{location.state?.message || 'Please sign in to proceed directly to your commercial loan application.'}</span>
-              </div>
-=======
         {/* Top Header / Logo */}
         <div className="relative z-10">
           <Link to="/" className="inline-flex items-center gap-2.5 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0B1730] to-[#172B4D] border border-[#D5B66A]/40 flex items-center justify-center text-white shadow-lg">
               <ShieldCheck className="w-5 h-5 text-[#D5B66A]" />
->>>>>>> 2c6eb1dd9ca511dfde769c9f05262ff81e2d7359
             </div>
             <div>
               <span className="font-heading font-extrabold text-xl tracking-tight text-white block">
@@ -286,17 +238,6 @@ export const LoginPage = () => {
         </div>
       </div>
 
-<<<<<<< HEAD
-          {/* Registration link */}
-          <div className="text-center text-xs text-slate-500 pt-2 border-t border-slate-100">
-            Don't have an account yet?{' '}
-            <Link
-              to="/auth/register"
-              state={{ from: fromLocation, program: programSlug, programTitle }}
-              className="font-bold text-blue-600 hover:text-blue-700 hover:underline"
-            >
-              Create an Account
-=======
       {/* RIGHT COLUMN: The Sign In Form (Balanced 50%) */}
       <div className="w-full md:w-1/2 flex flex-col justify-between p-6 sm:p-8 lg:p-10 relative overflow-y-auto">
         {/* Top bar with Back button */}
@@ -319,7 +260,6 @@ export const LoginPage = () => {
               <span className="font-heading font-extrabold text-sm text-[#0B1730]">
                 OAL <span className="text-blue-600">NETWORK</span>
               </span>
->>>>>>> 2c6eb1dd9ca511dfde769c9f05262ff81e2d7359
             </Link>
           </div>
         </div>
@@ -358,14 +298,29 @@ export const LoginPage = () => {
                 Secure access to your commercial lending and underwriting portal.
               </p>
             </div>
-          
+
+            {/* Selected Program Announcement Banner */}
+            {programSlug && (
+              <div className="p-3.5 rounded-xl bg-blue-50 border border-blue-200 flex items-start gap-2.5 text-xs text-blue-900">
+                <ShieldCheck className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <strong className="font-semibold block text-blue-950">
+                    Applying for {programTitle || programSlug}
+                  </strong>
+                  <span className="text-blue-800">
+                    Sign in below to proceed directly into the 6-step application wizard with this loan program pre-selected.
+                  </span>
+                </div>
+              </div>
+            )}
+
             {/* Notice when redirected from protected destination (e.g. Apply for a Loan) */}
-            {fromLocation && (
+            {fromLocation && !programSlug && (
               <div className="p-3.5 rounded-xl bg-blue-50 border border-blue-200 flex items-start gap-2.5 text-xs text-blue-900">
                 <Info className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <strong className="font-semibold block">Authentication Required</strong>
-                  <span>Please sign in to proceed directly to your commercial loan application.</span>
+                  <span>{location.state?.message || 'Please sign in to proceed directly to your commercial loan application.'}</span>
                 </div>
               </div>
             )}
@@ -505,7 +460,7 @@ export const LoginPage = () => {
               Don't have an account yet?{' '}
               <Link
                 to="/auth/register"
-                state={{ from: fromLocation }}
+                state={{ from: fromLocation, program: programSlug, programTitle }}
                 className="font-bold text-blue-600 hover:text-blue-700 hover:underline"
               >
                 Create an Account

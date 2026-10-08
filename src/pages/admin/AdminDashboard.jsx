@@ -134,7 +134,7 @@ export const AdminDashboard = () => {
 
                     <h4 className="text-xs font-bold text-slate-900">{app.businessName}</h4>
                     <div className="text-[11px] text-slate-500">
-                      {app.programName} • ${app.amount.toLocaleString()} • Borrower: {app.borrowerName}
+                      {app.programName} • ${Number(app.amount || 0).toLocaleString()} • Borrower: {app.borrowerName}
                     </div>
                   </div>
 

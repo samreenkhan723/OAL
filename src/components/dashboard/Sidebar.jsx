@@ -35,7 +35,8 @@ import {
   ChevronDown,
   ChevronRight,
   LogOut,
-  ExternalLink
+  ExternalLink,
+  X
 } from 'lucide-react';
 
 export const Sidebar = ({ isOpen, setIsOpen }) => {
