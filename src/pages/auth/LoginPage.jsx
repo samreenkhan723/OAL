@@ -264,29 +264,6 @@ export const LoginPage = () => {
           </div>
         </div>
 
-        {/* Mobile Header Banner with Image (Visible on mobile screens < md) */}
-        <div className="md:hidden w-full max-w-md mx-auto mb-4 rounded-2xl overflow-hidden relative shadow-md">
-          <div className="relative h-36 w-full">
-            <img
-              src="/login_hero.jpg"
-              alt="OAL Global Debt Exchange"
-              className="w-full h-full object-cover filter brightness-95"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1730] via-[#0B1730]/75 to-transparent" />
-            <div className="absolute bottom-3 left-4 right-4 text-white">
-              <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/20 text-[#D5B66A]">
-                Commercial Lending Exchange
-              </span>
-              <h3 className="text-sm font-heading font-extrabold text-white mt-1">
-                Institutional Capital Network
-              </h3>
-              <p className="text-[10px] text-slate-300">
-                Sign in to your underwriting and loan portal
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Center Form Card */}
         <div className="w-full max-w-md mx-auto my-auto">
           <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xl p-6 sm:p-7 space-y-5">
