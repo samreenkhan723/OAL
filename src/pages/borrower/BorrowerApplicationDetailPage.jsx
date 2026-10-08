@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import {
@@ -28,6 +29,12 @@ export const BorrowerApplicationDetailPage = () => {
   
   const isTrackerRoute = location.pathname.endsWith('/tracker');
   const [activeTab, setActiveTab] = useState(isTrackerRoute ? 'tracker' : 'overview');
+
+  useEffect(() => {
+    if (location.pathname.endsWith('/tracker')) {
+      setActiveTab('tracker');
+    }
+  }, [location.pathname]);
 
   const app = applications.find(a => a.id === id) || applications[0];
   const appOffers = offers.filter(o => o.applicationId === app?.id);
