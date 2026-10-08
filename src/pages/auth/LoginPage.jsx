@@ -37,18 +37,11 @@ export const LoginPage = () => {
 
   const demoAccounts = [
     {
-      role: 'Borrower',
-      name: 'Marcus Vance',
-      email: 'marcus@blueharborseafood.com',
-      description: 'Commercial loan applicant',
-      badgeClass: 'bg-blue-50 text-blue-700 border-blue-200'
-    },
-    {
-      role: 'Lender',
-      name: 'Apex Horizon Capital LLC',
-      email: 'underwriting@apexhorizoncap.com',
-      description: 'Institutional capital partner',
-      badgeClass: 'bg-purple-50 text-purple-700 border-purple-200'
+      role: 'Admin',
+      name: 'Victoria Sterling',
+      email: 'v.sterling@oalnetwork.com',
+      description: 'Compliance & super operations',
+      badgeClass: 'bg-rose-50 text-rose-700 border-rose-200'
     },
     {
       role: 'OAL Rep',
@@ -58,18 +51,25 @@ export const LoginPage = () => {
       badgeClass: 'bg-amber-50 text-amber-700 border-amber-200'
     },
     {
-      role: 'Admin',
-      name: 'Victoria Sterling',
-      email: 'v.sterling@oalnetwork.com',
-      description: 'Compliance & super operations',
-      badgeClass: 'bg-rose-50 text-rose-700 border-rose-200'
-    },
-    {
       role: 'Support',
       name: 'Alex Chen',
       email: 'support@oalnetwork.com',
       description: 'Help Desk ticket specialist',
       badgeClass: 'bg-teal-50 text-teal-700 border-teal-200'
+    },
+    {
+      role: 'Lender',
+      name: 'Apex Horizon Capital LLC',
+      email: 'underwriting@apexhorizoncap.com',
+      description: 'Institutional capital partner',
+      badgeClass: 'bg-purple-50 text-purple-700 border-purple-200'
+    },
+    {
+      role: 'Borrower',
+      name: 'Marcus Vance',
+      email: 'marcus@blueharborseafood.com',
+      description: 'Commercial loan applicant',
+      badgeClass: 'bg-blue-50 text-blue-700 border-blue-200'
     }
   ];
 
