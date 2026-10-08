@@ -10,11 +10,41 @@ import {
   INITIAL_AUDIT_LOGS,
   INITIAL_NETWORK_ACTIVITY
 } from '../data/initialData';
+import {
+  MOCK_USERS,
+  authenticateMockUser,
+  findMockUserByEmail
+} from '../data/mockUsers';
 
 const AppContext = createContext();
 
+const GUEST_USER = {
+  id: 'guest',
+  name: 'Guest User',
+  email: '',
+  role: 'borrower',
+  company: '',
+  avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'
+};
+
 export const AppProvider = ({ children }) => {
-  // Active Role and Authentication state
+  // Authentication state (Mock frontend session via React state + localStorage)
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('oal_is_authenticated') === 'true';
+  });
+
+  const [activeUser, setActiveUser] = useState(() => {
+    const isAuth = localStorage.getItem('oal_is_authenticated') === 'true';
+    if (!isAuth) return null;
+    const saved = localStorage.getItem('oal_current_user');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { /* ignore */ }
+    }
+    const savedRole = localStorage.getItem('oal_active_role') || 'borrower';
+    return MOCK_USERS.find(u => u.role === savedRole) || MOCK_USERS[0];
+  });
+
+  // Active Role
   const [currentRole, setCurrentRole] = useState(() => {
     return localStorage.getItem('oal_active_role') || 'borrower';
   });
@@ -101,14 +131,48 @@ export const AppProvider = ({ children }) => {
     setToasts(prev => prev.filter(t => t.id !== id));
   };
 
-  // Switch Active User / Role
-  const switchRole = (role) => {
-    setCurrentRole(role);
-    const roleUser = INITIAL_USERS[role];
-    addToast('Role Switched', `Now acting as ${roleUser?.name || role} (${role.toUpperCase()})`, 'info');
+  // Login with mock credentials (FR-01 Frontend-only Mock Auth)
+  const login = (email, password) => {
+    const res = authenticateMockUser(email, password);
+    if (res.success) {
+      setIsAuthenticated(true);
+      setActiveUser(res.user);
+      setCurrentRole(res.user.role);
+      localStorage.setItem('oal_is_authenticated', 'true');
+      localStorage.setItem('oal_current_user', JSON.stringify(res.user));
+      localStorage.setItem('oal_active_role', res.user.role);
+      addToast('Welcome Back', `Signed in as ${res.user.name} (${res.user.role.toUpperCase()})`, 'success');
+      return { success: true, user: res.user };
+    }
+    addToast('Sign In Failed', res.error, 'error');
+    return { success: false, error: res.error };
   };
 
-  const currentUser = INITIAL_USERS[currentRole] || INITIAL_USERS.borrower;
+  // Logout - Clears mock session & state
+  const logout = () => {
+    setIsAuthenticated(false);
+    setActiveUser(null);
+    setCurrentRole('borrower');
+    localStorage.removeItem('oal_is_authenticated');
+    localStorage.removeItem('oal_current_user');
+    localStorage.removeItem('oal_active_role');
+    addToast('Signed Out', 'You have been signed out of your session.', 'info');
+  };
+
+  // Switch Active User / Role (Internal prototype helper)
+  const switchRole = (role) => {
+    const matched = MOCK_USERS.find(u => u.role === role) || MOCK_USERS[0];
+    setIsAuthenticated(true);
+    setActiveUser(matched);
+    setCurrentRole(matched.role);
+    localStorage.setItem('oal_is_authenticated', 'true');
+    localStorage.setItem('oal_current_user', JSON.stringify(matched));
+    localStorage.setItem('oal_active_role', matched.role);
+    addToast('Role Switched', `Active profile: ${matched.name} (${matched.role.toUpperCase()})`, 'info');
+  };
+
+  // Active user object with safe guest fallback to prevent runtime crashes
+  const currentUser = activeUser || (isAuthenticated ? (MOCK_USERS.find(u => u.role === currentRole) || MOCK_USERS[0]) : GUEST_USER);
 
   // 1. Create New Loan Application
   const createApplication = (formData) => {
@@ -560,8 +624,11 @@ export const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider value={{
+      isAuthenticated,
       currentRole,
       currentUser,
+      login,
+      logout,
       switchRole,
       applications,
       offers,

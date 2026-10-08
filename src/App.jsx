@@ -2,9 +2,10 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 
-// Layouts
+// Layouts & Route Protection
 import { PublicLayout } from './layouts/PublicLayout';
 import { DashboardLayout } from './layouts/DashboardLayout';
+import { ProtectedRoute } from './components/common/ProtectedRoute';
 
 // Public Pages
 import { HomePage } from './pages/public/HomePage';
@@ -114,8 +115,15 @@ export function App() {
           <Route path="/auth/verify" element={<VerifyContactPage />} />
           <Route path="/auth/mfa" element={<MfaPage />} />
 
-          {/* Borrower Workspace Routes */}
-          <Route path="/borrower" element={<DashboardLayout />}>
+          {/* Borrower Workspace Routes (Protected) */}
+          <Route
+            path="/borrower"
+            element={
+              <ProtectedRoute allowedRoles={['borrower']}>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate to="/borrower/dashboard" replace />} />
             <Route path="dashboard" element={<BorrowerDashboard />} />
             <Route path="applications" element={<BorrowerApplicationsPage />} />
@@ -132,8 +140,15 @@ export function App() {
             <Route path="settings" element={<BorrowerSettingsPage />} />
           </Route>
 
-          {/* Lender Workspace Routes */}
-          <Route path="/lender" element={<DashboardLayout />}>
+          {/* Lender Workspace Routes (Protected) */}
+          <Route
+            path="/lender"
+            element={
+              <ProtectedRoute allowedRoles={['lender']}>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate to="/lender/dashboard" replace />} />
             <Route path="dashboard" element={<LenderDashboard />} />
             <Route path="network" element={<LenderNetworkPanel />} />
@@ -154,8 +169,15 @@ export function App() {
             <Route path="settings" element={<LenderSettingsPage />} />
           </Route>
 
-          {/* Representative Workspace Routes */}
-          <Route path="/rep" element={<DashboardLayout />}>
+          {/* Representative Workspace Routes (Protected) */}
+          <Route
+            path="/rep"
+            element={
+              <ProtectedRoute allowedRoles={['rep']}>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate to="/rep/dashboard" replace />} />
             <Route path="dashboard" element={<RepDashboard />} />
             <Route path="leads" element={<RepLeadsPage />} />
@@ -172,8 +194,15 @@ export function App() {
             <Route path="settings" element={<RepSettingsPage />} />
           </Route>
 
-          {/* Admin Workspace Routes */}
-          <Route path="/admin" element={<DashboardLayout />}>
+          {/* Admin Workspace Routes (Protected) */}
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="network" element={<AdminNetworkPanel />} />
@@ -199,8 +228,15 @@ export function App() {
             <Route path="super-admin" element={<AdminSuperAdminPage />} />
           </Route>
 
-          {/* Help Desk Support Routes */}
-          <Route path="/support" element={<DashboardLayout />}>
+          {/* Help Desk Support Routes (Protected) */}
+          <Route
+            path="/support"
+            element={
+              <ProtectedRoute allowedRoles={['support', 'admin', 'rep']}>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate to="/support/tickets" replace />} />
             <Route path="tickets" element={<HelpDeskTicketsPage />} />
             <Route path="tickets/:id" element={<HelpDeskTicketDetailPage />} />

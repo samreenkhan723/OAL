@@ -9,20 +9,26 @@ import {
   HelpCircle,
   ShieldCheck,
   ChevronDown,
-  RotateCcw,
   ExternalLink,
   Lock,
   User,
+  LogOut,
   X
 } from 'lucide-react';
 import { StatusBadge } from '../common/StatusBadge';
 
 export const Topbar = ({ setIsOpen }) => {
-  const { currentRole, currentUser, applications, offers, switchRole, resetDemoData } = useApp();
+  const { currentRole, currentUser, applications, offers, logout } = useApp();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    logout();
+    setShowUserMenu(false);
+    navigate('/', { replace: true });
+  };
 
   // Active notifications derived from realistic state
   const notifications = [
@@ -225,27 +231,16 @@ export const Topbar = ({ setIsOpen }) => {
                   Help Desk & FAQ
                 </Link>
 
-                <button
-                  onClick={() => {
-                    resetDemoData();
-                    setShowUserMenu(false);
-                  }}
-                  className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-amber-700 hover:bg-amber-50 rounded-xl"
-                >
-                  <RotateCcw className="w-4 h-4 text-amber-600" />
-                  Reset Prototype Data
-                </button>
               </div>
 
               <div className="pt-2 border-t border-slate-100">
-                <Link
-                  to="/auth/login"
-                  onClick={() => setShowUserMenu(false)}
-                  className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 rounded-xl"
+                <button
+                  onClick={handleSignOut}
+                  className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-rose-600 hover:bg-rose-50 rounded-xl transition-colors text-left"
                 >
-                  <Lock className="w-4 h-4" />
-                  Sign Out / Change Account
-                </Link>
+                  <LogOut className="w-4 h-4 text-rose-600" />
+                  <span>Sign Out</span>
+                </button>
               </div>
             </div>
           )}

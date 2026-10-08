@@ -6,7 +6,7 @@ import { ShieldCheck, ChevronDown, Menu, X, ArrowRight, User } from 'lucide-reac
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const { currentRole, currentUser } = useApp();
+  const { isAuthenticated, currentRole, currentUser, logout } = useApp();
 
   const navLinks = [
     { label: 'Home', path: '/' },
@@ -68,32 +68,68 @@ export const Navbar = () => {
 
           {/* Action CTAs */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              to={getDashboardRoute()}
-              className="inline-flex items-center gap-2 px-3.5 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors border border-slate-200"
-            >
-              <User className="w-4 h-4 text-slate-500" />
-              <span>Go to {currentRole.charAt(0).toUpperCase() + currentRole.slice(1)} Portal</span>
-            </Link>
+            {!isAuthenticated ? (
+              <>
+                <Link
+                  to="/auth/login"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-xl transition-colors border border-slate-200"
+                >
+                  <span>Sign In</span>
+                </Link>
 
-            <Link
-              to="/borrower/applications/new"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-md shadow-blue-600/20 transition-all hover:shadow-lg hover:shadow-blue-600/30"
-            >
-              <span>Apply for a Loan</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+                <Link
+                  to="/borrower/applications/new"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-md shadow-blue-600/20 transition-all hover:shadow-lg hover:shadow-blue-600/30"
+                >
+                  <span>Apply for a Loan</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to={getDashboardRoute()}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-slate-800 hover:text-blue-600 hover:bg-slate-50 rounded-xl transition-colors border border-slate-200"
+                >
+                  <User className="w-4 h-4 text-blue-600" />
+                  <span>Dashboard</span>
+                </Link>
+
+                <Link
+                  to="/borrower/applications/new"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors shadow-xs"
+                >
+                  <span>New Loan</span>
+                </Link>
+
+                <button
+                  onClick={logout}
+                  className="px-3 py-2 text-xs font-semibold text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-colors"
+                >
+                  Sign Out
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
           <div className="lg:hidden flex items-center gap-2">
-            <Link
-              to={getDashboardRoute()}
-              className="p-2 text-slate-600 hover:text-blue-600 rounded-lg"
-              title="Dashboard"
-            >
-              <User className="w-5 h-5" />
-            </Link>
+            {isAuthenticated ? (
+              <Link
+                to={getDashboardRoute()}
+                className="p-2 text-slate-600 hover:text-blue-600 rounded-lg"
+                title="Dashboard"
+              >
+                <User className="w-5 h-5 text-blue-600" />
+              </Link>
+            ) : (
+              <Link
+                to="/auth/login"
+                className="px-3 py-1.5 text-xs font-semibold text-blue-600 border border-blue-200 rounded-lg"
+              >
+                Sign In
+              </Link>
+            )}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100"
@@ -119,20 +155,43 @@ export const Navbar = () => {
             </Link>
           ))}
           <div className="pt-4 border-t border-slate-100 flex flex-col gap-2">
-            <Link
-              to={getDashboardRoute()}
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2.5 rounded-lg border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-            >
-              Go to {currentRole.toUpperCase()} Portal
-            </Link>
-            <Link
-              to="/borrower/applications/new"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2.5 rounded-lg bg-blue-600 text-white text-sm font-semibold shadow-md shadow-blue-600/20"
-            >
-              Apply for a Loan
-            </Link>
+            {!isAuthenticated ? (
+              <>
+                <Link
+                  to="/auth/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-center py-2.5 rounded-lg border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/borrower/applications/new"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-center py-2.5 rounded-lg bg-blue-600 text-white text-sm font-semibold shadow-md shadow-blue-600/20"
+                >
+                  Apply for a Loan
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to={getDashboardRoute()}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-center py-2.5 rounded-lg bg-blue-600 text-white text-sm font-semibold shadow-md"
+                >
+                  Open Dashboard
+                </Link>
+                <button
+                  onClick={() => {
+                    logout();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full text-center py-2 rounded-lg text-xs font-semibold text-rose-600 hover:bg-rose-50"
+                >
+                  Sign Out
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}

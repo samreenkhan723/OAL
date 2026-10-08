@@ -2,7 +2,6 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Navbar } from '../components/common/Navbar';
 import { Footer } from '../components/common/Footer';
-import { RoleDemoSwitcher } from '../components/common/RoleDemoSwitcher';
 import { NotificationToast } from '../components/common/NotificationToast';
 
 export const PublicLayout = () => {
@@ -16,9 +15,8 @@ export const PublicLayout = () => {
 
       <Footer />
 
-      {/* Global Notifications & Demo Role Switcher */}
+      {/* Global Notifications Toast */}
       <NotificationToast />
-      <RoleDemoSwitcher />
     </div>
   );
 };

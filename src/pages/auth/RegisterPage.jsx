@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { ShieldCheck, User, Mail, Phone, Lock, Building } from 'lucide-react';
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { switchRole, addToast } = useApp();
+
+  const fromLocation = location.state?.from;
 
   const [form, setForm] = useState({
     role: 'borrower',
@@ -21,7 +23,7 @@ export const RegisterPage = () => {
     e.preventDefault();
     switchRole(form.role);
     addToast('Account Created', 'Please verify your email and phone to complete onboarding.', 'success');
-    navigate('/auth/verify');
+    navigate('/auth/verify', { state: { from: fromLocation } });
   };
 
   return (

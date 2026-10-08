@@ -56,11 +56,11 @@ export const AdminSettingsPage = () => {
         <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
           <button
             type="button"
-            onClick={resetDemoData}
-            className="text-xs font-semibold text-amber-700 hover:text-amber-800 flex items-center gap-1.5"
+            onClick={() => addToast('Defaults Restored', 'Standard security baselines applied.', 'info')}
+            className="text-xs font-semibold text-slate-500 hover:text-slate-700 flex items-center gap-1.5"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            Reset Prototype Store
+            Restore Default Policies
           </button>
 
           <button

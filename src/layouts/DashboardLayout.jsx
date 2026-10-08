@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from '../components/dashboard/Sidebar';
 import { Topbar } from '../components/dashboard/Topbar';
-import { RoleDemoSwitcher } from '../components/common/RoleDemoSwitcher';
 import { NotificationToast } from '../components/common/NotificationToast';
 
 export const DashboardLayout = () => {
@@ -17,16 +16,13 @@ export const DashboardLayout = () => {
       <div className="flex-1 lg:pl-64 flex flex-col min-w-0">
         <Topbar setIsOpen={setSidebarOpen} />
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto pb-24">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto pb-12">
           <Outlet />
         </main>
       </div>
 
       {/* Global Toast Alerts */}
       <NotificationToast />
-
-      {/* Persistent Role Switcher Demo Control */}
-      <RoleDemoSwitcher />
     </div>
   );
 };

@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { Mail, Phone, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export const VerifyContactPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { addToast } = useApp();
   const [emailCode, setEmailCode] = useState('749201');
   const [phoneCode, setPhoneCode] = useState('381944');
 
+  const fromLocation = location.state?.from;
+
   const handleVerify = (e) => {
     e.preventDefault();
     addToast('Contact Verified', 'Email and phone successfully authenticated. Proceeding to MFA.', 'success');
-    navigate('/auth/mfa');
+    navigate('/auth/mfa', { state: { from: fromLocation } });
   };
 
   return (

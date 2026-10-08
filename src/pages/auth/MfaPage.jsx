@@ -1,20 +1,36 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { ShieldCheck, Lock, ArrowRight } from 'lucide-react';
 
 export const MfaPage = () => {
   const navigate = useNavigate();
-  const { currentRole, addToast } = useApp();
+  const location = useLocation();
+  const { currentRole, switchRole, addToast } = useApp();
   const [mfaCode, setMfaCode] = useState('829104');
+
+  const fromLocation = location.state?.from;
 
   const handleMfaSubmit = (e) => {
     e.preventDefault();
+    switchRole(currentRole || 'borrower');
     addToast('Authentication Complete', 'MFA verified. Welcome to your OAL Network dashboard.', 'success');
-    if (currentRole === 'lender') navigate('/lender/dashboard');
-    else if (currentRole === 'rep') navigate('/rep/dashboard');
-    else if (currentRole === 'admin') navigate('/admin/dashboard');
-    else navigate('/borrower/dashboard');
+    
+    if (currentRole === 'borrower') {
+      if (fromLocation && fromLocation.pathname.startsWith('/borrower')) {
+        navigate(fromLocation.pathname + (fromLocation.search || ''), { replace: true });
+      } else {
+        navigate('/borrower/dashboard', { replace: true });
+      }
+    } else if (currentRole === 'lender') {
+      navigate('/lender/dashboard', { replace: true });
+    } else if (currentRole === 'rep') {
+      navigate('/rep/dashboard', { replace: true });
+    } else if (currentRole === 'admin') {
+      navigate('/admin/dashboard', { replace: true });
+    } else {
+      navigate('/borrower/dashboard', { replace: true });
+    }
   };
 
   return (

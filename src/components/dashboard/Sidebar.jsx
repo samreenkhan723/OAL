@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import {
   LayoutDashboard,
@@ -39,8 +39,9 @@ import {
 } from 'lucide-react';
 
 export const Sidebar = ({ isOpen, setIsOpen }) => {
-  const { currentRole, currentUser, applications, offers, tickets } = useApp();
+  const { currentRole, currentUser, applications, offers, tickets, logout } = useApp();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Dynamic counts for notification badges
   const activeAppsCount = applications.filter(a => a.status !== 'FUNDED' && a.status !== 'DECLINED').length;
@@ -338,6 +339,16 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
             >
               <ExternalLink className="w-4 h-4" />
             </Link>
+            <button
+              onClick={() => {
+                logout();
+                navigate('/', { replace: true });
+              }}
+              title="Sign Out"
+              className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors"
+            >
+              <LogOut className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </aside>
