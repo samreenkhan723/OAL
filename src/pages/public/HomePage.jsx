@@ -53,7 +53,7 @@ export const HomePage = () => {
               {/* Action Buttons */}
               <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                 <Link
-                  to="/borrower/applications/new"
+                  to="/apply"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-xl shadow-blue-600/30 transition-all hover:scale-[1.02]"
                 >
                   <span>Apply for a Loan</span>
@@ -177,7 +177,7 @@ export const HomePage = () => {
           {LOAN_PROGRAMS.map((prog) => (
             <Link
               key={prog.id}
-              to={`/borrower/applications/new?program=${prog.id}`}
+              to={`/apply?program=${prog.id}`}
               className="group bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs hover:shadow-xl hover:border-blue-400/80 transition-all flex flex-col justify-between"
             >
               <div>

@@ -9,6 +9,7 @@ import { ProtectedRoute } from './components/common/ProtectedRoute';
 
 // Public Pages
 import { HomePage } from './pages/public/HomePage';
+import { PublicApplyPage } from './pages/public/PublicApplyPage';
 import { LoanProgramsPage } from './pages/public/LoanProgramsPage';
 import { LoanProgramDetailPage } from './pages/public/LoanProgramDetailPage';
 import { HowItWorksPage } from './pages/public/HowItWorksPage';
@@ -101,6 +102,7 @@ export function App() {
           {/* Public Marketing Routes */}
           <Route element={<PublicLayout />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/apply" element={<PublicApplyPage />} />
             <Route path="/loan-programs" element={<LoanProgramsPage />} />
             <Route path="/loan-programs/:slug" element={<LoanProgramDetailPage />} />
             <Route path="/how-it-works" element={<HowItWorksPage />} />

@@ -144,7 +144,7 @@ const PROGRAM_DEFAULTS = {
 };
 
 export const ApplicationWizard = () => {
-  const { createApplication, addToast, currentUser } = useApp();
+  const { createApplication, addToast, currentUser, isAuthenticated } = useApp();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const programParam = searchParams.get('program');
@@ -305,7 +305,11 @@ export const ApplicationWizard = () => {
     const newApp = createApplication(formData);
     localStorage.removeItem('oal_draft_application');
     addToast('Application Submitted!', `Application ${newApp.id} submitted for underwriting review.`, 'success');
-    navigate(`/borrower/applications/${newApp.id}/tracker`);
+    if (isAuthenticated) {
+      navigate(`/borrower/applications/${newApp.id}/tracker`);
+    } else {
+      navigate('/auth/login', { state: { message: `Application ${newApp.id} submitted successfully! Please sign in to track progress.` } });
+    }
   };
 
   const stepTitles = [

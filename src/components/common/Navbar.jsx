@@ -79,7 +79,7 @@ export const Navbar = () => {
                 </Link>
 
                 <Link
-                  to="/borrower/applications/new"
+                  to="/apply"
                   className="shrink-0 whitespace-nowrap inline-flex items-center gap-2 px-4.5 xl:px-5 py-2.5 rounded-xl text-xs xl:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-md shadow-blue-600/20 transition-all hover:shadow-lg hover:shadow-blue-600/30 hover:-translate-y-0.5"
                 >
                   <span>Apply for a Loan</span>
