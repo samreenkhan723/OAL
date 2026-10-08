@@ -9,7 +9,10 @@ import {
   AlertCircle,
   CheckCircle2,
   X,
-  Info
+  Info,
+  ChevronDown,
+  KeyRound,
+  Check
 } from 'lucide-react';
 
 export const LoginPage = () => {
@@ -28,6 +31,55 @@ export const LoginPage = () => {
   const [showForgotModal, setShowForgotModal] = useState(false);
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotSubmitted, setForgotSubmitted] = useState(false);
+
+  // Collapsible demo accounts section
+  const [showDemoAccounts, setShowDemoAccounts] = useState(false);
+  const [selectedDemoEmail, setSelectedDemoEmail] = useState('');
+
+  const demoAccounts = [
+    {
+      role: 'Borrower',
+      name: 'Marcus Vance',
+      email: 'marcus@blueharborseafood.com',
+      description: 'Commercial loan applicant',
+      badgeClass: 'bg-blue-50 text-blue-700 border-blue-200'
+    },
+    {
+      role: 'Lender',
+      name: 'Apex Horizon Capital LLC',
+      email: 'underwriting@apexhorizoncap.com',
+      description: 'Institutional capital partner',
+      badgeClass: 'bg-purple-50 text-purple-700 border-purple-200'
+    },
+    {
+      role: 'OAL Rep',
+      name: 'Elena Rostova',
+      email: 'elena.rostova@oalnetwork.com',
+      description: 'Fiduciary placement agent',
+      badgeClass: 'bg-amber-50 text-amber-700 border-amber-200'
+    },
+    {
+      role: 'Admin',
+      name: 'Victoria Sterling',
+      email: 'v.sterling@oalnetwork.com',
+      description: 'Compliance & super operations',
+      badgeClass: 'bg-rose-50 text-rose-700 border-rose-200'
+    },
+    {
+      role: 'Support',
+      name: 'Alex Chen',
+      email: 'support@oalnetwork.com',
+      description: 'Help Desk ticket specialist',
+      badgeClass: 'bg-teal-50 text-teal-700 border-teal-200'
+    }
+  ];
+
+  const handleSelectDemoAccount = (acc) => {
+    setEmail(acc.email);
+    setPassword('Password123!');
+    setSelectedDemoEmail(acc.email);
+    setError('');
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,9 +100,7 @@ export const LoginPage = () => {
       if (result.success) {
         const userRole = result.user?.role;
 
-        // Requirement 6 & 7:
-        // After successful login as Borrower: redirect to loan application wizard if user clicked Apply for a Loan, otherwise open Borrower Dashboard.
-        // Lender, OAL Rep, and Admin mock logins redirect to their respective dashboards based on assigned role.
+        // Redirect logic preserving intended destination
         if (userRole === 'borrower') {
           if (fromLocation && fromLocation.pathname.startsWith('/borrower')) {
             navigate(fromLocation.pathname + (fromLocation.search || ''), { replace: true });
@@ -101,7 +151,8 @@ export const LoginPage = () => {
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md space-y-4">
+        {/* Main Card */}
         <div className="bg-white py-8 px-6 shadow-xl rounded-2xl border border-slate-200/90 sm:px-8 space-y-6">
           
           {/* Notice when redirected from protected destination (e.g. Apply for a Loan) */}
@@ -135,7 +186,10 @@ export const LoginPage = () => {
                   type="email"
                   placeholder="name@company.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setSelectedDemoEmail('');
+                  }}
                   className="w-full pl-10 pr-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all placeholder:text-slate-400"
                   required
                   autoFocus
@@ -213,8 +267,98 @@ export const LoginPage = () => {
           </div>
         </div>
 
+        {/* Collapsible Demo Access — Test Accounts Section */}
+        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
+          <button
+            type="button"
+            onClick={() => setShowDemoAccounts(!showDemoAccounts)}
+            className="w-full px-5 py-3.5 flex items-center justify-between bg-slate-50/70 hover:bg-slate-100/80 transition-colors text-left"
+          >
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-200/60">
+                <KeyRound className="w-3.5 h-3.5" />
+              </div>
+              <div>
+                <span className="text-xs font-bold text-slate-900 block">
+                  Demo Access — Test Accounts
+                </span>
+                <span className="text-[10px] text-slate-500">
+                  Autofill credentials to test role-specific workflows
+                </span>
+              </div>
+            </div>
+
+            <ChevronDown
+              className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
+                showDemoAccounts ? 'rotate-180 text-blue-600' : ''
+              }`}
+            />
+          </button>
+
+          {showDemoAccounts && (
+            <div className="p-4 bg-white border-t border-slate-100 space-y-2.5">
+              <p className="text-[11px] text-slate-500 leading-relaxed">
+                Click <strong>"Use Demo Account"</strong> to populate the form above. Then click <strong>"Sign In"</strong> to proceed through the mock authentication flow.
+              </p>
+
+              <div className="space-y-2 pt-1">
+                {demoAccounts.map((acc) => {
+                  const isSelected = selectedDemoEmail === acc.email;
+                  return (
+                    <div
+                      key={acc.email}
+                      className={`p-3 rounded-xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 ${
+                        isSelected
+                          ? 'border-blue-500 bg-blue-50/40 ring-1 ring-blue-500/30'
+                          : 'border-slate-200 hover:border-slate-300 bg-slate-50/30 hover:bg-white'
+                      }`}
+                    >
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border ${acc.badgeClass}`}>
+                            {acc.role}
+                          </span>
+                          <span className="text-xs font-bold text-slate-900 truncate">
+                            {acc.name}
+                          </span>
+                        </div>
+                        <div className="text-[11px] font-mono text-slate-500 mt-0.5 truncate">
+                          {acc.email}
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => handleSelectDemoAccount(acc)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shrink-0 ${
+                          isSelected
+                            ? 'bg-blue-600 text-white shadow-xs'
+                            : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
+                        }`}
+                      >
+                        {isSelected ? (
+                          <>
+                            <Check className="w-3.5 h-3.5 text-white" />
+                            <span>Autofilled</span>
+                          </>
+                        ) : (
+                          <span>Use Demo Account</span>
+                        )}
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="text-[10px] text-slate-400 text-center pt-1">
+                Password for all demo accounts: <code className="font-mono font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">Password123!</code>
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* Security badge footer */}
-        <div className="mt-6 text-center text-[11px] text-slate-400 flex items-center justify-center gap-2">
+        <div className="text-center text-[11px] text-slate-400 flex items-center justify-center gap-2 pt-2">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
           <span>256-Bit TLS Encryption • SOC2 Security Standards</span>
         </div>
