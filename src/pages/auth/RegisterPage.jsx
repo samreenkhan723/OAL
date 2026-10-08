@@ -40,9 +40,9 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
       {/* LEFT COLUMN: Visual Brand Showcase with High-End Imagery */}
-      <div className="relative hidden lg:flex lg:w-1/2 xl:w-5/12 bg-[#0B1730] flex-col justify-between p-10 xl:p-14 text-white overflow-hidden">
+      <div className="relative hidden md:flex md:w-5/12 lg:w-1/2 xl:w-5/12 bg-[#0B1730] flex-col justify-between p-8 lg:p-10 xl:p-14 text-white overflow-hidden shrink-0">
         {/* Background Image with Cinematic Overlay */}
         <div className="absolute inset-0 z-0">
           <img
@@ -145,7 +145,7 @@ export const RegisterPage = () => {
           </Link>
 
           {/* Mobile Logo (Visible on mobile only) */}
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <Link to="/" className="inline-flex items-center gap-2">
               <div className="w-7 h-7 rounded-lg bg-[#0B1730] flex items-center justify-center text-white">
                 <ShieldCheck className="w-4 h-4 text-[#D5B66A]" />
@@ -154,6 +154,29 @@ export const RegisterPage = () => {
                 OAL <span className="text-blue-600">NETWORK</span>
               </span>
             </Link>
+          </div>
+        </div>
+
+        {/* Mobile Header Banner with Image (Visible on mobile screens < md) */}
+        <div className="md:hidden w-full max-w-xl mx-auto mb-4 rounded-2xl overflow-hidden relative shadow-md">
+          <div className="relative h-36 w-full">
+            <img
+              src="/signup_hero.jpg"
+              alt="OAL Commercial Lending Exchange"
+              className="w-full h-full object-cover filter brightness-95"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1730] via-[#0B1730]/75 to-transparent" />
+            <div className="absolute bottom-3 left-4 right-4 text-white">
+              <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/20 text-[#D5B66A]">
+                Commercial Lending Exchange
+              </span>
+              <h3 className="text-sm font-heading font-extrabold text-white mt-1">
+                Institutional Capital Network
+              </h3>
+              <p className="text-[10px] text-slate-300">
+                180-Point Investment IQ &bull; Servicing All 50 States
+              </p>
+            </div>
           </div>
         </div>
 
