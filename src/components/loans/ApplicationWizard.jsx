@@ -149,7 +149,8 @@ export const ApplicationWizard = () => {
 
     const newApp = createApplication(formData);
     localStorage.removeItem('oal_draft_application');
-    navigate(`/borrower/applications`);
+    addToast('Application Submitted!', `Application ${newApp.id} submitted for underwriting review.`, 'success');
+    navigate(`/borrower/applications/${newApp.id}/tracker`);
   };
 
   const stepTitles = [
@@ -184,7 +185,7 @@ export const ApplicationWizard = () => {
           <button
             type="button"
             onClick={handleSaveDraft}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors self-start sm:self-auto"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors self-start sm:self-auto cursor-pointer"
           >
             <Save className="w-3.5 h-3.5 text-[#D5B66A]" />
             Save Draft
@@ -198,22 +199,28 @@ export const ApplicationWizard = () => {
             const isCurrent = step.num === currentStep;
 
             return (
-              <div key={step.num} className="text-center group cursor-pointer" onClick={() => step.num < currentStep && setCurrentStep(step.num)}>
+              <button
+                key={step.num}
+                type="button"
+                onClick={() => setCurrentStep(step.num)}
+                title={`Jump to Step ${step.num}: ${step.label}`}
+                className="text-center group cursor-pointer focus:outline-none"
+              >
                 <div
                   className={`h-1.5 rounded-full transition-all mb-2 ${
                     isCompleted
-                      ? 'bg-blue-400'
+                      ? 'bg-blue-400 group-hover:bg-blue-300'
                       : isCurrent
-                      ? 'bg-[#D5B66A]'
-                      : 'bg-white/20'
+                      ? 'bg-[#D5B66A] shadow-xs ring-1 ring-[#D5B66A]/50'
+                      : 'bg-white/20 group-hover:bg-white/40'
                   }`}
                 />
-                <span className={`text-[10px] hidden sm:block font-medium truncate ${
-                  isCurrent ? 'text-white font-bold' : isCompleted ? 'text-slate-300' : 'text-slate-400'
+                <span className={`text-[10px] hidden sm:block font-medium truncate transition-colors ${
+                  isCurrent ? 'text-white font-bold' : isCompleted ? 'text-slate-300 group-hover:text-white' : 'text-slate-400 group-hover:text-slate-200'
                 }`}>
                   {step.label}
                 </span>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -661,35 +668,51 @@ export const ApplicationWizard = () => {
       </div>
 
       {/* Wizard Footer Nav Actions */}
-      <div className="p-6 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+      <div className="p-6 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
         {currentStep > 1 ? (
           <button
             type="button"
             onClick={prevStep}
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-white transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-white transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back
+            Back to Step {currentStep - 1}
           </button>
         ) : (
-          <div />
+          <button
+            type="button"
+            onClick={() => navigate('/borrower/applications')}
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-500 hover:text-slate-800 hover:bg-white transition-colors cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Cancel Application
+          </button>
         )}
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+          <button
+            type="button"
+            onClick={handleSaveDraft}
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-white transition-colors cursor-pointer"
+          >
+            <Save className="w-3.5 h-3.5 text-[#D5B66A]" />
+            Save Draft
+          </button>
+
           {currentStep < 6 ? (
             <button
               type="button"
               onClick={nextStep}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-md shadow-blue-600/20 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-md shadow-blue-600/20 transition-all cursor-pointer"
             >
-              <span>Continue</span>
+              <span>Continue to Step {currentStep + 1}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
             <button
               type="button"
               onClick={handleSubmit}
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 shadow-lg shadow-emerald-600/25 transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 shadow-lg shadow-emerald-600/25 transition-all cursor-pointer"
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>Submit Loan Application</span>

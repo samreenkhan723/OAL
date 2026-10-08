@@ -44,6 +44,8 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
   const navigate = useNavigate();
 
   // Dynamic counts for notification badges
+  const userApps = applications.filter(a => a.borrowerId === currentUser?.id);
+  const activeAppId = userApps[0]?.id || applications[0]?.id || 'APP-2026-1082';
   const activeAppsCount = applications.filter(a => a.status !== 'FUNDED' && a.status !== 'DECLINED').length;
   const pendingOffersCount = offers.filter(o => o.status === 'PENDING_BORROWER_REVIEW').length;
   const openTicketsCount = tickets.filter(t => t.status === 'OPEN').length;
@@ -208,14 +210,14 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
             title: 'Overview',
             items: [
               { label: 'Dashboard', path: '/borrower/dashboard', icon: LayoutDashboard },
-              { label: 'Loan Tracker', path: '/borrower/applications/APP-2026-1082/tracker', icon: GitBranch, badge: 'Active' },
+              { label: 'Loan Tracker', path: `/borrower/applications/${activeAppId}/tracker`, icon: GitBranch, badge: 'Active' },
             ]
           },
           {
             title: 'My Financing',
             items: [
-              { label: 'My Applications', path: '/borrower/applications', icon: FileText, badge: `${applications.filter(a => a.borrowerId === currentUser.id).length || 1}` },
-              { label: 'New Loan Request', path: '/borrower/applications/new', icon: FilePlus, highlight: true },
+              { label: 'My Applications', path: '/borrower/applications', icon: FileText, badge: `${userApps.length || 1}` },
+              { label: 'New Loan Request', path: '/borrower/applications/new', icon: FilePlus },
               { label: 'Documents & KYC', path: '/borrower/documents', icon: FolderOpen },
               { label: 'Investment IQ', path: '/borrower/investment-iq', icon: Award, badge: '154/180' },
               { label: 'Lender Offers', path: '/borrower/offers', icon: DollarSign, badge: `${pendingOffersCount}` },
@@ -241,6 +243,51 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
   };
 
   const sections = getNavSections();
+
+  const checkIsActive = (item) => {
+    const current = location.pathname;
+    const target = item.path;
+
+    // Exact match is always active
+    if (current === target) return true;
+
+    // Loan tracker active check (matches any /tracker path for Loan Tracker item)
+    if (item.label === 'Loan Tracker' || target.endsWith('/tracker')) {
+      return current.includes('/tracker');
+    }
+
+    // New Loan Request active check (only exact /borrower/applications/new)
+    if (target === '/borrower/applications/new') {
+      return current === '/borrower/applications/new';
+    }
+
+    // My Applications active check
+    if (target === '/borrower/applications') {
+      // Active if exactly /borrower/applications OR viewing an application detail (but not /new and not /tracker)
+      if (current === '/borrower/applications') return true;
+      if (current.startsWith('/borrower/applications/') && !current.includes('/new') && !current.includes('/tracker')) {
+        return true;
+      }
+      return false;
+    }
+
+    // Admin applications active check
+    if (target === '/admin/applications') {
+      return current === '/admin/applications' || (current.startsWith('/admin/applications/') && !current.includes('/new'));
+    }
+
+    // Lead detail active check
+    if (target === '/lender/leads' && current.startsWith('/lender/leads/')) {
+      return true;
+    }
+
+    // Rep lead detail active check
+    if (target === '/rep/leads' && current.startsWith('/rep/leads/')) {
+      return true;
+    }
+
+    return false;
+  };
 
   return (
     <>
@@ -285,23 +332,18 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
               </div>
               {section.items.map((item) => {
                 const Icon = item.icon;
-                const isActive = location.pathname === item.path || location.pathname.startsWith(`${item.path}/`);
+                const active = checkIsActive(item);
 
                 return (
-                  <NavLink
-                    key={item.path}
+                  <Link
+                    key={item.path + item.label}
                     to={item.path}
                     onClick={() => setIsOpen(false)}
-                    className={({ isActive: exactActive }) => {
-                      const active = exactActive || (item.path !== '/' && location.pathname === item.path);
-                      return `group flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all ${
-                        active
-                          ? 'bg-blue-600 text-white font-semibold shadow-md shadow-blue-600/30'
-                          : item.highlight
-                          ? 'bg-blue-500/15 text-blue-300 hover:bg-blue-500/25 border border-blue-500/30'
-                          : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
-                      }`;
-                    }}
+                    className={`group flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all ${
+                      active
+                        ? 'bg-blue-600 text-white font-semibold shadow-md shadow-blue-600/30'
+                        : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+                    }`}
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <Icon className="w-4 h-4 flex-shrink-0 group-hover:scale-110 transition-transform" />
@@ -309,11 +351,17 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
                     </div>
 
                     {item.badge && (
-                      <span className="ml-2 px-1.5 py-0.5 text-[10px] font-semibold rounded-md bg-slate-800 text-slate-300 border border-slate-700/60 group-hover:border-slate-600">
+                      <span
+                        className={`ml-2 px-1.5 py-0.5 text-[10px] font-semibold rounded-md border ${
+                          active
+                            ? 'bg-blue-700 text-white border-blue-500/50'
+                            : 'bg-slate-800 text-slate-300 border-slate-700/60 group-hover:border-slate-600'
+                        }`}
+                      >
                         {item.badge}
                       </span>
                     )}
-                  </NavLink>
+                  </Link>
                 );
               })}
             </div>
