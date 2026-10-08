@@ -14,7 +14,7 @@ export const AdminScoringPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
             AI Scoring Engine Oversight (180-Point Model)
           </h1>
@@ -28,7 +28,7 @@ export const AdminScoringPage = () => {
       {/* Engine Status Banner */}
       <div className="bg-gradient-to-r from-[#0B1730] to-[#172B4D] rounded-2xl p-6 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
         <div>
-          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 uppercase">
+          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 uppercase">
             Active Algorithmic Version
           </span>
           <h2 className="text-xl font-bold font-heading text-white mt-1">
@@ -39,7 +39,7 @@ export const AdminScoringPage = () => {
           </p>
         </div>
 
-        <div className="text-right">
+        <div className="text-left sm:text-right">
           <div className="text-3xl font-extrabold text-[#D5B66A] font-heading">180 PTS</div>
           <span className="text-xs text-slate-300">Max Composite Score</span>
         </div>
@@ -54,7 +54,7 @@ export const AdminScoringPage = () => {
         {pillars.map((p, idx) => (
           <div key={idx} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h4 className="text-sm font-bold text-slate-900">{p.name}</h4>
                 <span className="text-xs font-extrabold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
                   Max {p.max} Points ({p.share})

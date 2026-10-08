@@ -29,7 +29,7 @@ export const AdminLeadDistributionPage = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
               Marketplace Lead Distribution Engine
             </h1>
@@ -43,7 +43,7 @@ export const AdminLeadDistributionPage = () => {
         <button
           onClick={handleRunSimulation}
           disabled={isRunningSim}
-          className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/20 flex items-center gap-2 self-start sm:self-auto cursor-pointer"
+          className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/20 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
         >
           {isRunningSim ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
           <span>{isRunningSim ? 'Simulating Matches...' : 'Run Simulation Test'}</span>
@@ -76,22 +76,22 @@ export const AdminLeadDistributionPage = () => {
         <div className="pt-4 border-t border-slate-100">
           <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-3">Live Matching Thresholds</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-            <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200">
               <div>
                 <span className="font-bold text-slate-900 block">Minimum Investment IQ for Marketplace</span>
                 <span className="text-[11px] text-slate-500">Applicants below this score undergo KYC remediation</span>
               </div>
-              <span className="font-mono font-bold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-lg">
+              <span className="font-mono font-bold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-lg self-start sm:self-auto">
                 {rules.minIQForMarketplace} / 180
               </span>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200">
               <div>
                 <span className="font-bold text-slate-900 block">Maximum Lenders per Deal Slot</span>
                 <span className="text-[11px] text-slate-500">Non-negotiable PRD Rule FR-08 cap</span>
               </div>
-              <span className="font-mono font-bold text-purple-700 bg-purple-100 px-2.5 py-1 rounded-lg">
+              <span className="font-mono font-bold text-purple-700 bg-purple-100 px-2.5 py-1 rounded-lg self-start sm:self-auto">
                 {rules.concurrencyCap} Slots
               </span>
             </div>

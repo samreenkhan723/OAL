@@ -46,7 +46,7 @@ export const AdminLendersPage = () => {
           {lenders.map((l) => (
             <div key={l.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
               <div className="space-y-1">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-sm font-bold text-slate-900">{l.name}</h3>
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                     l.status === 'ACCREDITED' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'
@@ -62,7 +62,7 @@ export const AdminLendersPage = () => {
 
               <button
                 onClick={() => setSelectedLender(l)}
-                className="px-4 py-2 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors self-end sm:self-center"
+                className="px-4 py-2 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors w-full sm:w-auto text-center"
               >
                 Review Accreditation
               </button>
@@ -109,20 +109,20 @@ export const AdminLendersPage = () => {
               </div>
             </div>
 
-            <div className="pt-3 flex items-center justify-between gap-3">
-              <button
-                type="button"
-                onClick={() => handleToggleAccreditation(selectedLender.id)}
-                className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors"
-              >
-                {selectedLender.status === 'ACCREDITED' ? 'Mark Provisional' : 'Confirm Accredited'}
-              </button>
+            <div className="pt-3 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-2">
               <button
                 type="button"
                 onClick={() => setSelectedLender(null)}
-                className="px-4 py-2 rounded-xl border border-slate-200 font-semibold text-slate-600 hover:bg-slate-50 text-xs"
+                className="px-4 py-2 rounded-xl border border-slate-200 font-semibold text-slate-600 hover:bg-slate-50 text-xs w-full sm:w-auto"
               >
                 Close Audit
+              </button>
+              <button
+                type="button"
+                onClick={() => handleToggleAccreditation(selectedLender.id)}
+                className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors w-full sm:w-auto"
+              >
+                {selectedLender.status === 'ACCREDITED' ? 'Mark Provisional' : 'Confirm Accredited'}
               </button>
             </div>
           </div>

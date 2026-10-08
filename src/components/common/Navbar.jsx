@@ -29,20 +29,20 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
-      <div className="w-full px-4 sm:px-8 lg:px-12">
-        <div className="flex items-center justify-between h-20">
+      <div className="w-full px-3.5 sm:px-8 lg:px-12">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Logo */}
-          <Link to="/" className="shrink-0 flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0B1730] to-[#172B4D] flex items-center justify-center text-white shadow-md shadow-blue-900/10 group-hover:scale-105 transition-transform">
-              <ShieldCheck className="w-6 h-6 text-[#D5B66A]" />
+          <Link to="/" className="shrink-0 flex items-center gap-2 sm:gap-3 group">
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#0B1730] to-[#172B4D] flex items-center justify-center text-white shadow-md shadow-blue-900/10 group-hover:scale-105 transition-transform shrink-0">
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#D5B66A]" />
             </div>
             <div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-heading font-extrabold text-xl tracking-tight text-[#0B1730]">OAL</span>
-                <span className="font-heading font-semibold text-xl tracking-tight text-blue-600">NETWORK</span>
+              <div className="flex items-center gap-1 sm:gap-1.5">
+                <span className="font-heading font-extrabold text-lg sm:text-xl tracking-tight text-[#0B1730]">OAL</span>
+                <span className="font-heading font-semibold text-lg sm:text-xl tracking-tight text-blue-600">NETWORK</span>
               </div>
-              <p className="text-[10px] font-medium tracking-wider text-slate-500 uppercase">Commercial Lending Exchange</p>
+              <p className="hidden sm:block text-[10px] font-medium tracking-wider text-slate-500 uppercase">Commercial Lending Exchange</p>
             </div>
           </Link>
 
@@ -114,19 +114,19 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2 shrink-0">
             {!isAuthenticated ? (
               <Link
                 to="/auth/login"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-800 bg-white border border-slate-300 rounded-lg hover:bg-slate-50"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-800 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 shadow-2xs whitespace-nowrap"
               >
-                <LogIn className="w-3.5 h-3.5 text-blue-600" />
+                <LogIn className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                 <span>Sign In</span>
               </Link>
             ) : (
               <Link
                 to={getDashboardRoute()}
-                className="p-2 text-slate-600 hover:text-blue-600 rounded-lg"
+                className="p-1.5 text-slate-600 hover:text-blue-600 rounded-lg"
                 title="Dashboard"
               >
                 <User className="w-5 h-5 text-blue-600" />
@@ -134,7 +134,7 @@ export const Navbar = () => {
             )}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer"
+              className="p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

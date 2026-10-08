@@ -452,6 +452,33 @@ export const AppProvider = ({ children }) => {
     addToast('Offer Accepted!', `Congratulations! Offer ${offerId} has been accepted. Your OAL Rep is initiating processing.`, 'success');
   };
 
+  // 4b. Update / Edit Offer (For Rep & Underwriters)
+  const updateOffer = (offerId, updatedFields) => {
+    setOffers(prev => prev.map(o => {
+      if (o.id === offerId) {
+        return {
+          ...o,
+          ...updatedFields,
+          updatedAt: new Date().toISOString()
+        };
+      }
+      return o;
+    }));
+
+    const log = {
+      id: `AUD-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      actor: `${currentUser?.name || 'Representative'} (${currentRole})`,
+      action: 'OFFER_UPDATED',
+      target: offerId,
+      details: `Updated offer parameters (Principal: $${updatedFields.amount || 'N/A'}, Rate: ${updatedFields.interestRate || 'N/A'}%).`,
+      severity: 'INFO'
+    };
+    setAuditLogs(prev => [log, ...prev]);
+
+    addToast('Offer Terms Updated', `Successfully updated terms for offer ${offerId}.`, 'success');
+  };
+
   // 5. Progress Application Status (For Admin / Lifecycle testing)
   const advanceApplicationStatus = (appId, nextStatus) => {
     setApplications(prev => prev.map(a => {
@@ -664,6 +691,7 @@ export const AppProvider = ({ children }) => {
       createApplication,
       claimWorkingDeal,
       submitOffer,
+      updateOffer,
       acceptOffer,
       advanceApplicationStatus,
       uploadDocument,

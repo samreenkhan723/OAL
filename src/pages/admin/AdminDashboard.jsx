@@ -123,8 +123,8 @@ export const AdminDashboard = () => {
             <div className="divide-y divide-slate-100">
               {applications.slice(0, 5).map((app) => (
                 <div key={app.id} className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-slate-50/50 transition-colors">
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
+                  <div className="space-y-1.5 min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
                       <span className="text-xs font-mono font-bold text-slate-400">{app.id}</span>
                       <StatusBadge status={app.status} />
                       <span className="text-[10px] font-bold bg-[#0B1730] text-[#D5B66A] px-2 py-0.5 rounded">
@@ -133,14 +133,18 @@ export const AdminDashboard = () => {
                     </div>
 
                     <h4 className="text-xs font-bold text-slate-900">{app.businessName}</h4>
-                    <div className="text-[11px] text-slate-500">
-                      {app.programName} • ${Number(app.amount || 0).toLocaleString()} • Borrower: {app.borrowerName}
+                    <div className="text-[11px] text-slate-500 flex flex-wrap items-center gap-1.5">
+                      <span>{app.programName}</span>
+                      <span>•</span>
+                      <span>${Number(app.amount || 0).toLocaleString()}</span>
+                      <span>•</span>
+                      <span>Borrower: <strong className="text-slate-700">{app.borrowerName}</strong></span>
                     </div>
                   </div>
 
                   <Link
                     to={`/admin/applications`}
-                    className="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors self-end sm:self-center"
+                    className="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors self-start sm:self-center shrink-0"
                   >
                     Examine File
                   </Link>
@@ -165,13 +169,13 @@ export const AdminDashboard = () => {
 
             <div className="space-y-3">
               {auditLogs.slice(0, 4).map((log) => (
-                <div key={log.id} className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs space-y-1">
-                  <div className="flex items-center justify-between">
+                <div key={log.id} className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs space-y-1.5">
+                  <div className="flex flex-wrap items-center justify-between gap-1">
                     <span className="font-bold text-slate-900 text-[11px]">{log.action}</span>
-                    <span className="text-[10px] text-slate-400">{new Date(log.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    <span className="text-[10px] text-slate-400 font-sans">{new Date(log.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                   </div>
-                  <div className="text-[11px] text-blue-600 font-semibold">{log.actor} &rarr; {log.target}</div>
-                  <p className="text-[10px] text-slate-500 leading-tight">{log.details}</p>
+                  <div className="text-[11px] text-blue-600 font-semibold break-words">{log.actor} &rarr; {log.target}</div>
+                  <p className="text-[11px] text-slate-600 leading-relaxed break-words">{log.details}</p>
                 </div>
               ))}
             </div>

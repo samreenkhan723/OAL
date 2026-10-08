@@ -16,7 +16,7 @@ export const AdminSuperAdminPage = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
           Super Admin Root Permissions Matrix
         </h1>
@@ -36,7 +36,7 @@ export const AdminSuperAdminPage = () => {
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-xs text-left">
+          <table className="w-full min-w-[640px] text-xs text-left">
             <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
               <tr>
                 <th className="p-3.5">Platform Action / Resource</th>

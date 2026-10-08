@@ -26,7 +26,7 @@ export const WorkingDealSlots = ({ application, onClaimSuccess }) => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
               <Briefcase className="w-4 h-4 text-purple-600" />
               Working Deal Underwriting Slots
@@ -40,7 +40,7 @@ export const WorkingDealSlots = ({ application, onClaimSuccess }) => {
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 self-start sm:self-auto">
           <span className={`px-3 py-1 rounded-full text-xs font-bold border ${
             isFull
               ? 'bg-rose-50 text-rose-700 border-rose-200'
@@ -135,7 +135,7 @@ export const WorkingDealSlots = ({ application, onClaimSuccess }) => {
             <button
               onClick={handleClaim}
               disabled={isFull}
-              className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm ${
+              className={`w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer text-center ${
                 isFull
                   ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
                   : 'bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white shadow-purple-600/20'

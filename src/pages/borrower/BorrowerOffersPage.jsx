@@ -22,7 +22,7 @@ export const BorrowerOffersPage = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
               Lender Offers & Financing Proposals
             </h1>
@@ -36,8 +36,8 @@ export const BorrowerOffersPage = () => {
         </div>
 
         {hasAccepted && (
-          <div className="flex items-center gap-2 px-3.5 py-2 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-semibold self-start sm:self-auto">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+          <div className="flex items-center gap-2 px-3.5 py-2 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-semibold w-full sm:w-auto">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
             <span>Binding Offer Accepted — Processing In Progress</span>
           </div>
         )}

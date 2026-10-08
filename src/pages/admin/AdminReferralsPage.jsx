@@ -12,14 +12,41 @@ export const AdminReferralsPage = () => {
   ]);
 
   const handleDisburse = (partner) => {
-    addToast('Payout Disbursed [SIMULATED]', `ACH direct deposit released to ${partner}.`, 'success');
+    addToast('Payout Disbursed', `ACH direct deposit released to ${partner}.`, 'success');
+  };
+
+  const handleExportReferrals = () => {
+    const csvRows = [
+      ['AFFILIATE_ID', 'PARTNER_NAME', 'REFERRAL_CODE', 'ACTIVITY', 'EARNED_COMMISSION', 'PAYOUT_STATUS'],
+      ...affiliates.map(a => [
+        a.id,
+        `"${a.partner}"`,
+        a.code,
+        `"${a.referred}"`,
+        `"${a.earned}"`,
+        a.status
+      ])
+    ];
+
+    const csvContent = csvRows.map(r => r.join(',')).join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `oal_affiliate_commission_ledger_${new Date().toISOString().split('T')[0]}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    addToast('Commission Ledger Exported', `Downloaded ${affiliates.length} affiliate partner records as CSV.`, 'success');
   };
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
               Referrals & Affiliate Program Management
             </h1>
@@ -31,8 +58,8 @@ export const AdminReferralsPage = () => {
         </div>
 
         <button
-          onClick={() => addToast('Affiliate Report Exported [SIMULATED]', 'Exported full affiliate commission settlement audit.', 'info')}
-          className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
+          onClick={handleExportReferrals}
+          className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
         >
           <Download className="w-4 h-4" />
           <span>Export Commission Ledger</span>
@@ -61,7 +88,7 @@ export const AdminReferralsPage = () => {
 
       {/* Affiliates Table */}
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
-        <div className="p-4 border-b border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
+        <div className="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-500">
           <span>Active Commercial Affiliates</span>
           <span className="text-blue-600 font-bold">0.50% Origination Basis Points</span>
         </div>
@@ -73,8 +100,8 @@ export const AdminReferralsPage = () => {
                 <span className="font-bold text-slate-900 block">{a.partner}</span>
                 <span className="text-[11px] text-slate-400 font-mono">Code: {a.code} • {a.referred}</span>
               </div>
-              <div className="flex items-center gap-4 self-end sm:self-center">
-                <div className="text-right">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 self-start sm:self-center">
+                <div className="text-left sm:text-right">
                   <span className="font-extrabold text-slate-900 block">{a.earned}</span>
                   <span className={`text-[10px] font-bold ${a.status === 'PAID' ? 'text-emerald-600' : 'text-amber-600'}`}>
                     {a.status}

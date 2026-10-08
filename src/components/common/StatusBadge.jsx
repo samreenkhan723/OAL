@@ -47,9 +47,9 @@ export const StatusBadge = ({ status, className = '' }) => {
 
   return (
     <span
-      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${config.bg} ${config.text} ${config.border} ${className}`}
+      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border whitespace-nowrap shrink-0 ${config.bg} ${config.text} ${config.border} ${className}`}
     >
-      <span className="w-1.5 h-1.5 mr-1.5 rounded-full bg-current opacity-70"></span>
+      <span className="w-1.5 h-1.5 mr-1.5 rounded-full bg-current opacity-70 shrink-0"></span>
       {config.label}
     </span>
   );

@@ -83,7 +83,7 @@ export const KnowledgeBasePage = () => {
             <div className="pt-2 flex justify-end">
               <button
                 onClick={() => setSelectedArticle(null)}
-                className="px-5 py-2 bg-blue-600 text-white text-xs font-bold rounded-xl"
+                className="w-full sm:w-auto px-5 py-2 bg-blue-600 text-white text-xs font-bold rounded-xl text-center"
               >
                 Done Reading
               </button>

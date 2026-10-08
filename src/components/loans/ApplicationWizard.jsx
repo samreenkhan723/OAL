@@ -193,7 +193,7 @@ export const ApplicationWizard = () => {
       <div className="p-6 bg-gradient-to-r from-[#0B1730] to-[#172B4D] text-white">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 uppercase tracking-wider">
                 Application Intake
               </span>
@@ -212,7 +212,7 @@ export const ApplicationWizard = () => {
           <button
             type="button"
             onClick={handleSaveDraft}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors self-start sm:self-auto cursor-pointer"
+            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors self-start sm:self-auto w-full sm:w-auto cursor-pointer"
           >
             <Save className="w-3.5 h-3.5 text-[#D5B66A]" />
             Save Draft
@@ -257,13 +257,13 @@ export const ApplicationWizard = () => {
       <div className="p-6 sm:p-8">
         {/* Active Loan Program Banner */}
         <div className="mb-6 p-4 rounded-xl bg-blue-50/90 border border-blue-200/90 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 min-w-0">
             <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-sm">
               <ShieldCheck className="w-5 h-5 text-white" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-bold text-slate-900">{formData.programName}</span>
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-sm font-bold text-slate-900 break-words">{formData.programName}</span>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200">
                   Target Program
                 </span>

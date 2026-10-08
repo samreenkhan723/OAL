@@ -10,7 +10,7 @@ export const AdminOffersPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
             Master Offers & Term Sheets Oversight
           </h1>
@@ -22,7 +22,7 @@ export const AdminOffersPage = () => {
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
-        <div className="p-4 border-b border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
+        <div className="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-500">
           <span>{offers.length} Platform Offers Monitored</span>
           <span className="text-emerald-700 font-bold">1 Formally Accepted</span>
         </div>
@@ -33,7 +33,7 @@ export const AdminOffersPage = () => {
             return (
               <div key={offer.id} className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
                 <div className="space-y-1 flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="text-xs font-mono font-bold text-slate-400">{offer.id}</span>
                     <StatusBadge status={offer.status} />
                     <span className="text-xs text-slate-400">Target Application: {offer.applicationId}</span>
@@ -62,7 +62,7 @@ export const AdminOffersPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 self-end md:self-center">
+                <div className="flex items-center gap-2 self-start md:self-center">
                   <span className="text-[11px] text-slate-400 font-mono">
                     Expires: {new Date(offer.expiresAt).toLocaleDateString()}
                   </span>

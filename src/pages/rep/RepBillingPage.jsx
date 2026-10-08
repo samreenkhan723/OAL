@@ -6,7 +6,7 @@ export const RepBillingPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
             Representative Billing & Commission Ledger
           </h1>

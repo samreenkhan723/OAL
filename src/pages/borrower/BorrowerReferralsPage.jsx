@@ -26,7 +26,7 @@ export const BorrowerReferralsPage = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
               Referrals & Partner Affiliates
             </h1>
@@ -78,7 +78,7 @@ export const BorrowerReferralsPage = () => {
           />
           <button
             onClick={handleCopy}
-            className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md transition-all flex items-center justify-center gap-1.5"
+            className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
           >
             {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'Copied!' : 'Copy Link'}</span>
@@ -94,12 +94,12 @@ export const BorrowerReferralsPage = () => {
 
         <div className="divide-y divide-slate-100">
           {referrals.map((r, i) => (
-            <div key={i} className="p-4 flex items-center justify-between gap-4 text-xs">
-              <div>
-                <span className="font-bold text-slate-900 block">{r.name}</span>
-                <span className="text-[11px] text-slate-400">{r.program} • Referred {r.date}</span>
+            <div key={i} className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 text-xs">
+              <div className="min-w-0">
+                <span className="font-bold text-slate-900 block break-words">{r.name}</span>
+                <span className="text-[11px] text-slate-400 break-words">{r.program} • Referred {r.date}</span>
               </div>
-              <div className="text-right">
+              <div className="text-left sm:text-right shrink-0">
                 <span className="font-extrabold text-slate-900 block">{r.bonus}</span>
                 <span className="text-[10px] text-emerald-600 font-bold">{r.status}</span>
               </div>

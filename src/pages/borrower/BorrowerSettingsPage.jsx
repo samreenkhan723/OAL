@@ -88,15 +88,15 @@ export const BorrowerSettingsPage = () => {
             Security & Multi-Factor Authentication
           </h3>
 
-          <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-            <div>
-              <div className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                <span>Multi-Factor Authentication (MFA)</span>
+          <div className="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-1.5 text-xs font-bold text-slate-900">
+                <span className="break-words">Multi-Factor Authentication (MFA)</span>
                 <span className="text-[10px] text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full font-bold">
                   Active
                 </span>
               </div>
-              <div className="text-[11px] text-slate-500 mt-0.5">
+              <div className="text-[11px] text-slate-500 mt-0.5 break-words">
                 Protects financial balance statements and sensitive loan disclosures.
               </div>
             </div>
@@ -105,7 +105,7 @@ export const BorrowerSettingsPage = () => {
               type="checkbox"
               checked={profile.mfaEnabled}
               onChange={(e) => setProfile({ ...profile, mfaEnabled: e.target.checked })}
-              className="w-4 h-4 text-blue-600 rounded"
+              className="w-4 h-4 text-blue-600 rounded shrink-0 cursor-pointer"
             />
           </div>
         </div>
@@ -118,33 +118,33 @@ export const BorrowerSettingsPage = () => {
           </h3>
 
           <div className="space-y-3">
-            <label className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer">
-              <span className="text-xs text-slate-700">Receive email alerts when a lender issues a formal offer</span>
+            <label className="flex items-center justify-between gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer">
+              <span className="text-xs text-slate-700 min-w-0 break-words">Receive email alerts when a lender issues a formal offer</span>
               <input
                 type="checkbox"
                 checked={profile.emailAlerts}
                 onChange={(e) => setProfile({ ...profile, emailAlerts: e.target.checked })}
-                className="w-4 h-4 text-blue-600 rounded"
+                className="w-4 h-4 text-blue-600 rounded shrink-0 cursor-pointer"
               />
             </label>
 
-            <label className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer">
-              <span className="text-xs text-slate-700">Receive SMS notifications for urgent representative questions</span>
+            <label className="flex items-center justify-between gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer">
+              <span className="text-xs text-slate-700 min-w-0 break-words">Receive SMS notifications for urgent representative questions</span>
               <input
                 type="checkbox"
                 checked={profile.smsAlerts}
                 onChange={(e) => setProfile({ ...profile, smsAlerts: e.target.checked })}
-                className="w-4 h-4 text-blue-600 rounded"
+                className="w-4 h-4 text-blue-600 rounded shrink-0 cursor-pointer"
               />
             </label>
           </div>
         </div>
 
-        <div className="flex items-center justify-between pt-2">
+        <div className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-3 pt-2">
           <button
             type="button"
             onClick={() => addToast('Changes Discarded', 'Profile settings restored.', 'info')}
-            className="text-xs font-semibold text-slate-500 hover:text-slate-700 flex items-center gap-1.5"
+            className="text-xs font-semibold text-slate-500 hover:text-slate-700 flex items-center justify-center gap-1.5 w-full sm:w-auto py-2 sm:py-0 cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             Discard Unsaved Changes
@@ -152,7 +152,7 @@ export const BorrowerSettingsPage = () => {
 
           <button
             type="submit"
-            className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all cursor-pointer text-center"
           >
             Save Settings
           </button>

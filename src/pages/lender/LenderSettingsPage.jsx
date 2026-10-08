@@ -89,7 +89,7 @@ export const LenderSettingsPage = () => {
         <div className="flex justify-end">
           <button
             type="submit"
-            className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all text-center"
           >
             Save Underwriting Settings
           </button>

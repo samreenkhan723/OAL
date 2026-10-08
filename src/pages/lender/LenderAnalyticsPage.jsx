@@ -50,7 +50,7 @@ export const LenderAnalyticsPage = () => {
             { prog: 'Commercial Franchise Expansion', percent: 10, volume: '$420k', color: 'bg-amber-600' },
           ].map((item, idx) => (
             <div key={idx} className="space-y-1">
-              <div className="flex justify-between text-xs font-semibold text-slate-700">
+              <div className="flex flex-wrap justify-between gap-1 text-xs font-semibold text-slate-700">
                 <span>{item.prog}</span>
                 <span>{item.volume} ({item.percent}%)</span>
               </div>

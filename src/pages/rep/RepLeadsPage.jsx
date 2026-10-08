@@ -22,7 +22,7 @@ export const RepLeadsPage = () => {
         {applications.map((lead) => (
           <div key={lead.id} className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
             <div className="space-y-1">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="text-xs font-mono font-bold text-slate-400">{lead.id}</span>
                 <StatusBadge status={lead.status} />
                 <span className="text-[11px] font-extrabold text-[#D5B66A] bg-[#0B1730] px-2 py-0.5 rounded">
@@ -35,7 +35,7 @@ export const RepLeadsPage = () => {
               </p>
             </div>
 
-            <div className="flex items-center gap-3 self-end md:self-center">
+            <div className="flex flex-wrap items-center gap-2 w-full md:w-auto justify-end">
               <Link
                 to="/rep/messages"
                 className="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors"

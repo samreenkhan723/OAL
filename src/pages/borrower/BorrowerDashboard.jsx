@@ -31,7 +31,7 @@ export const BorrowerDashboard = () => {
       {/* Welcome Banner */}
       <div className="bg-gradient-to-r from-[#0B1730] to-[#172B4D] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 uppercase tracking-wider">
               Commercial Borrower Workspace
             </span>
@@ -51,10 +51,10 @@ export const BorrowerDashboard = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
           <Link
             to="/borrower/offers"
-            className="px-5 py-2.5 rounded-xl text-xs font-bold bg-[#D5B66A] hover:bg-[#c4a457] text-slate-950 shadow-md transition-all flex items-center gap-1.5"
+            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-[#D5B66A] hover:bg-[#c4a457] text-slate-950 shadow-md transition-all flex items-center gap-1.5"
           >
             <DollarSign className="w-4 h-4" />
             <span>Review Offers ({pendingOffers.length})</span>
@@ -62,7 +62,7 @@ export const BorrowerDashboard = () => {
 
           <Link
             to="/borrower/applications/new"
-            className="px-5 py-2.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/30 transition-all flex items-center gap-1.5"
+            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/30 transition-all flex items-center gap-1.5"
           >
             <Plus className="w-4 h-4" />
             <span>New Loan Request</span>
@@ -167,7 +167,7 @@ export const BorrowerDashboard = () => {
               {activeApp?.loanPurpose}
             </div>
 
-            <div className="grid grid-cols-3 gap-3 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
               <Link
                 to="/borrower/offers"
                 className="p-3 rounded-xl bg-blue-50/70 hover:bg-blue-100/70 border border-blue-200 text-center transition-colors"

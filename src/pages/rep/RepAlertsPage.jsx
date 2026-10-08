@@ -22,7 +22,7 @@ export const RepAlertsPage = () => {
         ].map((alt, idx) => (
           <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-1">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#D5B66A]" />
                 <h3 className="text-xs font-bold text-slate-900">{alt.title}</h3>
                 <span className="text-[10px] text-slate-400">• {alt.time}</span>
@@ -33,7 +33,7 @@ export const RepAlertsPage = () => {
 
             <Link
               to="/rep/messages"
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all self-end md:self-auto"
+              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all w-full md:w-auto text-center"
             >
               Action Alert
             </Link>

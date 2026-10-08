@@ -18,7 +18,7 @@ import {
 import { StatusBadge } from '../../components/common/StatusBadge';
 
 export const BorrowerDocumentsPage = () => {
-  const { documents, uploadDocument, currentUser } = useApp();
+  const { documents, uploadDocument, currentUser, addToast } = useApp();
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [selectedDocToReplace, setSelectedDocToReplace] = useState(null);
   const [previewDoc, setPreviewDoc] = useState(null);
@@ -26,6 +26,38 @@ export const BorrowerDocumentsPage = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef(null);
+
+  const handleDownloadFile = (doc) => {
+    if (!doc) return;
+    const fileContent = `=====================================================
+OAL NETWORK SECURE REPOSITORY - VERIFIED DOCUMENT
+=====================================================
+Document ID      : ${doc.id}
+Document Title   : ${doc.title}
+File Name        : ${doc.fileName}
+Category         : ${doc.category}
+Application ID   : ${doc.applicationId || 'APP-2026-1082'}
+Calculated Size  : ${doc.fileSize || 'N/A'}
+Status           : ${doc.status}
+Verification     : AES-256 Protected & Compliance Audited
+Reviewer         : ${doc.reviewedBy || 'Compliance Officer'}
+Export Timestamp : ${new Date().toLocaleString()}
+=====================================================
+CONFIDENTIAL - OAL FINANCIAL NETWORK REPOSITORY
+`;
+    const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = doc.fileName || `${doc.id}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    if (addToast) {
+      addToast('Download Started', `Downloaded ${doc.fileName}`, 'success');
+    }
+  };
 
   const [uploadForm, setUploadForm] = useState({
     title: '',
@@ -133,7 +165,7 @@ export const BorrowerDocumentsPage = () => {
             setUploadForm({ title: '', category: 'Licensing & Compliance', fileName: 'commercial_document.pdf', fileSize: '2.4 MB' });
             setShowUploadModal(true);
           }}
-          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-600/20 transition-all self-start sm:self-auto cursor-pointer"
+          className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-600/20 transition-all self-start sm:self-auto w-full sm:w-auto cursor-pointer"
         >
           <Upload className="w-4 h-4" />
           <span>Upload New Document</span>
@@ -150,7 +182,7 @@ export const BorrowerDocumentsPage = () => {
 
       {/* Documents List Table */}
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
-        <div className="p-5 border-b border-slate-100 flex items-center justify-between">
+        <div className="p-5 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2">
           <h3 className="text-sm font-bold text-slate-900">
             Uploaded Underwriting Checklist ({documents.length} Files)
           </h3>
@@ -169,8 +201,8 @@ export const BorrowerDocumentsPage = () => {
                     <FileText className="w-5 h-5" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-slate-900 truncate">{doc.title}</span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-xs font-bold text-slate-900 break-words">{doc.title}</span>
                       <StatusBadge status={doc.status} />
                     </div>
 
@@ -194,11 +226,11 @@ export const BorrowerDocumentsPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 self-end md:self-center">
+                <div className="flex flex-wrap items-center gap-2 self-start md:self-center w-full md:w-auto">
                   {isRejected && (
                     <button
                       onClick={() => openReplaceModal(doc)}
-                      className="px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold shadow-xs transition-colors flex items-center gap-1 cursor-pointer"
+                      className="px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold shadow-xs transition-colors flex items-center justify-center gap-1 cursor-pointer w-full sm:w-auto"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>Replace Document</span>
@@ -207,7 +239,7 @@ export const BorrowerDocumentsPage = () => {
 
                   <button
                     onClick={() => setPreviewDoc(doc)}
-                    className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-blue-600 text-xs font-medium transition-colors flex items-center gap-1.5 cursor-pointer"
+                    className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-blue-600 text-xs font-medium transition-colors flex items-center justify-center gap-1.5 cursor-pointer w-full sm:w-auto"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     <span>View File</span>
@@ -324,7 +356,7 @@ export const BorrowerDocumentsPage = () => {
                 )}
               </div>
 
-              <div className="pt-2 flex items-center justify-end gap-3">
+              <div className="pt-2 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2 sm:gap-3">
                 <button
                   type="button"
                   onClick={() => {
@@ -332,14 +364,14 @@ export const BorrowerDocumentsPage = () => {
                     setSelectedDocToReplace(null);
                     setSelectedFile(null);
                   }}
-                  className="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer"
+                  className="w-full sm:w-auto text-center px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isUploading}
-                  className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                  className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                 >
                   {isUploading ? (
                     <>
@@ -360,73 +392,110 @@ export const BorrowerDocumentsPage = () => {
       )}
 
       {/* Document Preview Modal */}
-      {previewDoc && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <div className="flex items-center gap-2">
-                <FileText className="w-5 h-5 text-blue-600" />
-                <h3 className="text-base font-bold text-slate-900">{previewDoc.title}</h3>
-              </div>
-              <button onClick={() => setPreviewDoc(null)} className="text-slate-400 hover:text-slate-600 cursor-pointer">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="space-y-4 pt-4">
-              <div className="flex items-center justify-between">
-                <StatusBadge status={previewDoc.status} />
-                <span className="text-[11px] text-slate-400">
-                  Uploaded on {new Date(previewDoc.uploadedAt).toLocaleString()}
-                </span>
+      {previewDoc && (() => {
+        const isNeedsReplacement = previewDoc.status === 'NEEDS_REPLACEMENT' || previewDoc.status === 'REJECTED';
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-xs p-4">
+            <div className="bg-white rounded-2xl max-w-lg w-full p-4 sm:p-6 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+              <div className="flex items-start justify-between pb-3 border-b border-slate-100 gap-3">
+                <div className="flex items-center gap-2 min-w-0">
+                  <FileText className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+                  <h3 className="text-base font-bold text-slate-900 break-words leading-snug">{previewDoc.title}</h3>
+                </div>
+                <button onClick={() => setPreviewDoc(null)} className="text-slate-400 hover:text-slate-600 cursor-pointer p-1 shrink-0">
+                  <X className="w-5 h-5" />
+                </button>
               </div>
 
-              {/* Simulated PDF Document Viewer */}
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-3">
-                <div className="flex items-center justify-between border-b border-slate-200 pb-2">
-                  <div className="text-xs font-bold text-slate-700">OAL Encrypted Document Viewer</div>
-                  <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded-full">
-                    AES-256 Protected
+              <div className="space-y-4 pt-4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {isNeedsReplacement ? (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const doc = previewDoc;
+                          setPreviewDoc(null);
+                          openReplaceModal(doc);
+                        }}
+                        title="Click to replace this document"
+                        className="inline-flex items-center gap-1.5 cursor-pointer group hover:opacity-90 transition-all text-left"
+                      >
+                        <StatusBadge status={previewDoc.status} />
+                        <span className="text-[10px] font-semibold text-orange-700 bg-orange-100/80 hover:bg-orange-200 border border-orange-300 px-2 py-0.5 rounded-full transition-colors flex items-center gap-1 shrink-0">
+                          <RotateCcw className="w-2.5 h-2.5" />
+                          Replace Now
+                        </span>
+                      </button>
+                    ) : (
+                      <StatusBadge status={previewDoc.status} />
+                    )}
+                  </div>
+                  <span className="text-[11px] text-slate-400 sm:text-right shrink-0">
+                    Uploaded on {new Date(previewDoc.uploadedAt).toLocaleString()}
                   </span>
                 </div>
-                <div className="space-y-1 text-xs text-slate-600">
-                  <div><strong>File Name:</strong> {previewDoc.fileName}</div>
-                  <div><strong>File Size:</strong> {previewDoc.fileSize}</div>
-                  <div><strong>Category:</strong> {previewDoc.category}</div>
-                  {previewDoc.reviewedBy && (
-                    <div><strong>Review Officer:</strong> {previewDoc.reviewedBy}</div>
-                  )}
-                </div>
-                <div className="p-3 bg-white rounded-lg border border-slate-200 text-center py-6 text-slate-400 text-xs">
-                  <FileText className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-                  Preview rendered securely. Document verified for commercial credit evaluation.
-                </div>
-              </div>
 
-              <div className="flex items-center justify-end gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setPreviewDoc(null)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer"
-                >
-                  Close
-                </button>
-                <a
-                  href={`#download-${previewDoc.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert(`Simulated download of ${previewDoc.fileName}`);
-                  }}
-                  className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 shadow-md shadow-blue-600/20 flex items-center gap-1.5 cursor-pointer"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Download File</span>
-                </a>
+                {/* Simulated PDF Document Viewer */}
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 space-y-3">
+                  <div className="flex items-center justify-between border-b border-slate-200 pb-2 gap-2">
+                    <div className="text-xs font-bold text-slate-700">OAL Encrypted Document Viewer</div>
+                    <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded-full shrink-0">
+                      AES-256 Protected
+                    </span>
+                  </div>
+                  <div className="space-y-1.5 text-xs text-slate-600 break-words">
+                    <div className="break-all"><strong>File Name:</strong> {previewDoc.fileName}</div>
+                    <div><strong>File Size:</strong> {previewDoc.fileSize}</div>
+                    <div className="break-words"><strong>Category:</strong> {previewDoc.category}</div>
+                    {previewDoc.reviewedBy && (
+                      <div className="break-words"><strong>Review Officer:</strong> {previewDoc.reviewedBy}</div>
+                    )}
+                  </div>
+                  <div className="p-3 bg-white rounded-lg border border-slate-200 text-center py-6 text-slate-400 text-xs">
+                    <FileText className="w-8 h-8 text-slate-300 mx-auto mb-2" />
+                    Preview rendered securely. Document verified for commercial credit evaluation.
+                  </div>
+                </div>
+
+                <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setPreviewDoc(null)}
+                    className="w-full sm:w-auto text-center px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer"
+                  >
+                    Close
+                  </button>
+                  <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
+                    {isNeedsReplacement && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const doc = previewDoc;
+                          setPreviewDoc(null);
+                          openReplaceModal(doc);
+                        }}
+                        className="w-full sm:w-auto justify-center px-4 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold shadow-md shadow-orange-600/20 flex items-center gap-1.5 cursor-pointer transition-colors"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        <span>Replace Document</span>
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => handleDownloadFile(previewDoc)}
+                      className="w-full sm:w-auto justify-center px-4 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 shadow-md shadow-blue-600/20 flex items-center gap-1.5 cursor-pointer"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      <span>Download File</span>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
     </div>
   );
 };

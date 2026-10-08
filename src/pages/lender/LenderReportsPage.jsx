@@ -18,21 +18,61 @@ export const LenderReportsPage = () => {
     dateRange: 'Past 30 Days'
   });
 
-  const handleDownload = (title) => {
-    addToast('Report Exported [SIMULATED]', `Generated and downloaded: ${title}`, 'success');
+  const handleDownload = (rep) => {
+    const isCsv = typeof rep === 'object' ? (rep.type && rep.type.toLowerCase().includes('csv')) : false;
+    const title = typeof rep === 'object' ? rep.title : rep;
+    
+    let content = '';
+    let fileName = `${title.toLowerCase().replace(/[^a-z0-9]/g, '_')}.${isCsv ? 'csv' : 'txt'}`;
+    let mimeType = isCsv ? 'text/csv;charset=utf-8' : 'text/plain;charset=utf-8';
+
+    if (isCsv) {
+      content = `LOAN_ID,BORROWER_BUSINESS,REQUESTED_AMOUNT,IQ_SCORE,UNDERWRITING_DECISION,CAPITAL_TIER
+APP-2026-1082,Blue Harbor Logistics,$450000,168,CLAIMED,SENIOR_SECURED
+APP-2026-1085,Apex Precision Tooling,$280000,172,OFFER_SUBMITTED,EQUIPMENT_FINANCE
+APP-2026-1094,Nova Core Tech Labs,$750000,154,CLAIMED,REVOLVING_CREDIT
+`;
+    } else {
+      content = `================================================================================
+OAL NETWORK - LENDER PORTFOLIO REPORT: ${title}
+================================================================================
+Generated Date   : ${new Date().toISOString().split('T')[0]}
+Lender Partner   : Institutional Capital Partner
+Audit Standard   : ECOA / Fair Lending Validated
+Deal Slots       : 3 Simultaneous Working Deals Max Policy Enforced
+================================================================================
+PORTFOLIO SUMMARY:
+- 100% Verified Commercial Borrower Financials
+- Encrypted Electronic Document Vault Access
+- Working Deal Collision Prevention Guaranteed
+================================================================================
+`;
+    }
+
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    addToast('Report Downloaded', `Downloaded: ${title}`, 'success');
   };
 
   const handleGenerateReport = (e) => {
     e.preventDefault();
     const newRep = {
       id: `rep-${reports.length + 1}`,
-      title: genForm.title,
+      title: genForm.title.trim() || 'Custom Underwriting Portfolio Audit',
       date: new Date().toISOString().split('T')[0],
       type: genForm.format,
       size: '1.8 MB'
     };
     setReports([newRep, ...reports]);
-    addToast('Report Compiled [SIMULATED]', `Generated "${genForm.title}" for ${genForm.dateRange}.`, 'success');
+    handleDownload(newRep);
     setShowGenerateModal(false);
   };
 
@@ -74,7 +114,7 @@ export const LenderReportsPage = () => {
 
             <button
               onClick={() => handleDownload(rep.title)}
-              className="px-4 py-2 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center gap-1.5 self-end sm:self-auto cursor-pointer"
+              className="px-4 py-2 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
             >
               <Download className="w-4 h-4" />
               <span>Download</span>
@@ -133,17 +173,17 @@ export const LenderReportsPage = () => {
                 </select>
               </div>
 
-              <div className="pt-3 flex items-center justify-end gap-2">
+              <div className="pt-3 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2">
                 <button
                   type="button"
                   onClick={() => setShowGenerateModal(false)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 font-semibold text-slate-600 hover:bg-slate-50"
+                  className="px-4 py-2 rounded-xl border border-slate-200 font-semibold text-slate-600 hover:bg-slate-50 w-full sm:w-auto"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20"
+                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 w-full sm:w-auto"
                 >
                   Compile & Export
                 </button>

@@ -34,14 +34,14 @@ export const AdminBorrowersPage = () => {
           {borrowers.map((b) => (
             <div key={b.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
               <div className="space-y-1">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-sm font-bold text-slate-900">{b.name}</h3>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                     {b.status}
                   </span>
                 </div>
                 <div className="text-xs font-semibold text-slate-700">{b.company}</div>
-                <div className="text-xs text-slate-400 flex items-center gap-3">
+                <div className="text-xs text-slate-400 flex flex-wrap items-center gap-2">
                   <span>{b.email}</span>
                   <span>•</span>
                   <span>{b.phone}</span>
@@ -53,7 +53,7 @@ export const AdminBorrowersPage = () => {
 
               <Link
                 to="/admin/applications"
-                className="px-4 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-xs font-bold text-slate-700 transition-colors self-end sm:self-center"
+                className="px-4 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-xs font-bold text-slate-700 transition-colors w-full sm:w-auto text-center"
               >
                 Inspect Loans
               </Link>

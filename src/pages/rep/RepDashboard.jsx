@@ -26,7 +26,7 @@ export const RepDashboard = () => {
       {/* Top Banner */}
       <div className="bg-gradient-to-r from-[#0B1730] to-[#172B4D] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">
               Placement Agent Workspace
             </span>
@@ -92,7 +92,7 @@ export const RepDashboard = () => {
       </div>
 
       {/* Mediated Communication Highlight Banner */}
-      <div className="p-5 rounded-2xl bg-amber-50/70 border border-amber-200 text-xs text-amber-950 flex items-start justify-between gap-4">
+      <div className="p-5 rounded-2xl bg-amber-50/70 border border-amber-200 text-xs text-amber-950 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
         <div className="space-y-1">
           <h4 className="font-bold flex items-center gap-1.5 text-amber-900">
             <ShieldCheck className="w-4 h-4 text-amber-600" />
@@ -104,7 +104,7 @@ export const RepDashboard = () => {
         </div>
         <Link
           to="/rep/messages"
-          className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold whitespace-nowrap shadow-xs"
+          className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold whitespace-nowrap shadow-xs self-start sm:self-auto text-center"
         >
           Open Mediation Hub &rarr;
         </Link>
@@ -125,7 +125,7 @@ export const RepDashboard = () => {
           {assignedApps.slice(0, 5).map((app) => (
             <div key={app.id} className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
               <div className="space-y-1 flex-1 min-w-0">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="text-xs font-mono font-bold text-slate-400">{app.id}</span>
                   <StatusBadge status={app.status} />
                   <span className="text-[11px] font-extrabold text-[#D5B66A] bg-[#0B1730] px-2 py-0.5 rounded">
@@ -139,7 +139,7 @@ export const RepDashboard = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 self-end md:self-center">
+              <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
                 <Link
                   to="/rep/messages"
                   className="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors"

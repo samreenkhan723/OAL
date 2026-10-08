@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { DollarSign, CheckCircle2, ShieldCheck, AlertCircle, Clock, Calendar, Check, X, Lock } from 'lucide-react';
+import { DollarSign, CheckCircle2, ShieldCheck, AlertCircle, Clock, Calendar, Check, X, Lock, Eye, Download } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { StatusBadge } from '../common/StatusBadge';
 import { VerifyBadge } from '../common/VerifyBadge';
 
 export const OfferComparison = ({ applicationId, offers = [] }) => {
-  const { currentRole, currentUser, acceptOffer, submitOffer } = useApp();
+  const { currentRole, currentUser, acceptOffer, submitOffer, addToast } = useApp();
   const [selectedOfferForAccept, setSelectedOfferForAccept] = useState(null);
+  const [selectedPortfolioOffer, setSelectedPortfolioOffer] = useState(null);
   const [showNewOfferModal, setShowNewOfferModal] = useState(false);
 
   // New offer form state for Lender
@@ -56,12 +57,52 @@ export const OfferComparison = ({ applicationId, offers = [] }) => {
     setShowNewOfferModal(false);
   };
 
+  const handleDownloadTermSheet = (offer) => {
+    if (!offer) return;
+    const content = `================================================================================
+OAL NETWORK COMMERCIAL TERM SHEET DOSSIER
+================================================================================
+Offer Reference   : ${offer.id}
+Application ID    : ${offer.applicationId}
+Lender Partner    : ${offer.lenderAlias}
+Status            : ${offer.status}
+Issued Date       : ${new Date().toLocaleDateString()}
+================================================================================
+COMMERCIAL FINANCIAL TERMS:
+Principal Amount  : $${offer.amount.toLocaleString()}
+Interest Rate     : ${offer.interestRate}% Fixed APR
+Term Duration     : ${offer.termMonths} Months
+Monthly Payment   : $${offer.monthlyPayment.toLocaleString()} / month
+Origination Fee   : ${offer.originationFeePercent || 2}% ($${Math.round(offer.amount * (offer.originationFeePercent || 2) / 100).toLocaleString()})
+Closing Costs Est : $3,500.00
+Prepayment Policy : ${offer.prepaymentPenalty || 'None after 12 months'}
+================================================================================
+REQUIRED CONDITIONS PRECEDENT:
+${(offer.requiredConditions || ['First-position UCC lien on corporate equipment', 'Quarterly revenue disclosure covenant']).map((c, i) => `${i + 1}. ${c}`).join('\n')}
+================================================================================
+CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
+`;
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `termsheet_${offer.id.toLowerCase()}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    if (addToast) {
+      addToast('Term Sheet Downloaded', `Downloaded official terms for ${offer.id}.`, 'success');
+    }
+  };
+
   return (
     <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
       {/* Header */}
       <div className="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-lg font-heading font-bold text-slate-900 flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-blue-600" />
               Lender Offers & Terms Comparison
@@ -76,10 +117,10 @@ export const OfferComparison = ({ applicationId, offers = [] }) => {
         </div>
 
         {/* Rep Read-Only notice or Lender create button */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
           {currentRole === 'rep' && (
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 text-xs font-semibold">
-              <Lock className="w-3.5 h-3.5 text-amber-600" />
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 text-xs font-semibold w-full sm:w-auto">
+              <Lock className="w-3.5 h-3.5 text-amber-600 shrink-0" />
               <span>READ-ONLY: Representative Mediation View</span>
             </div>
           )}
@@ -87,7 +128,7 @@ export const OfferComparison = ({ applicationId, offers = [] }) => {
           {currentRole === 'lender' && (
             <button
               onClick={() => setShowNewOfferModal(true)}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5"
+              className="w-full sm:w-auto justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <DollarSign className="w-4 h-4" />
               <span>Draft & Submit Offer</span>
@@ -122,7 +163,7 @@ export const OfferComparison = ({ applicationId, offers = [] }) => {
               >
                 {/* Top Banner */}
                 <div className="p-5 border-b border-slate-100/90">
-                  <div className="flex items-center justify-between gap-2 mb-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                     <span className="text-[11px] font-bold text-slate-500 tracking-wider">
                       {offer.id}
                     </span>
@@ -146,24 +187,24 @@ export const OfferComparison = ({ applicationId, offers = [] }) => {
 
                 {/* Term Matrix */}
                 <div className="p-5 space-y-3 flex-1 text-xs text-slate-700">
-                  <div className="flex justify-between py-1 border-b border-slate-100">
+                  <div className="flex flex-wrap items-center justify-between gap-1 py-1 border-b border-slate-100">
                     <span className="text-slate-500">Monthly Payment:</span>
                     <span className="font-bold text-slate-900">${offer.monthlyPayment.toLocaleString()} / mo</span>
                   </div>
 
-                  <div className="flex justify-between py-1 border-b border-slate-100">
+                  <div className="flex flex-wrap items-center justify-between gap-1 py-1 border-b border-slate-100">
                     <span className="text-slate-500">Origination Fee:</span>
                     <span className="font-semibold">{offer.originationFeePercent}% (${Math.round(offer.amount * (offer.originationFeePercent / 100)).toLocaleString()})</span>
                   </div>
 
-                  <div className="flex justify-between py-1 border-b border-slate-100">
+                  <div className="flex flex-wrap items-center justify-between gap-1 py-1 border-b border-slate-100">
                     <span className="text-slate-500">Closing Costs Est.:</span>
                     <span className="font-semibold">${offer.closingCosts?.toLocaleString() || 'N/A'}</span>
                   </div>
 
-                  <div className="flex justify-between py-1 border-b border-slate-100">
+                  <div className="flex flex-wrap items-center justify-between gap-1 py-1 border-b border-slate-100">
                     <span className="text-slate-500">Prepayment Policy:</span>
-                    <span className="font-medium text-slate-800 text-right max-w-[160px] truncate" title={offer.prepaymentPenalty}>
+                    <span className="font-medium text-slate-800 text-left sm:text-right max-w-[160px] truncate" title={offer.prepaymentPenalty}>
                       {offer.prepaymentPenalty}
                     </span>
                   </div>
@@ -200,13 +241,23 @@ export const OfferComparison = ({ applicationId, offers = [] }) => {
                       {hasAcceptedOffer ? 'Another Offer Accepted' : 'Accept This Offer'}
                     </button>
                   ) : currentRole === 'rep' ? (
-                    <div className="w-full py-2 text-center text-xs font-semibold text-slate-500 bg-white border border-slate-200 rounded-xl">
-                      Read-Only Mediation View
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedPortfolioOffer(offer)}
+                      className="w-full py-2.5 text-center text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl transition-all shadow-xs cursor-pointer flex items-center justify-center gap-1.5"
+                    >
+                      <Eye className="w-3.5 h-3.5 text-blue-600" />
+                      <span>Inspect Term Sheet</span>
+                    </button>
                   ) : (
-                    <div className="w-full py-2 text-center text-xs font-semibold text-slate-500 bg-white border border-slate-200 rounded-xl">
-                      Lender Portfolio Offer
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedPortfolioOffer(offer)}
+                      className="w-full py-2.5 text-center text-xs font-bold text-blue-700 bg-white hover:bg-blue-50 border border-blue-200 rounded-xl transition-all shadow-xs cursor-pointer flex items-center justify-center gap-1.5"
+                    >
+                      <Eye className="w-3.5 h-3.5 text-blue-600" />
+                      <span>Lender Portfolio Offer</span>
+                    </button>
                   )}
                 </div>
               </div>
@@ -244,16 +295,16 @@ export const OfferComparison = ({ applicationId, offers = [] }) => {
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col-reverse sm:flex-row items-center gap-2 sm:gap-3">
               <button
                 onClick={() => setSelectedOfferForAccept(null)}
-                className="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                className="w-full sm:flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer text-center"
               >
                 Cancel
               </button>
               <button
                 onClick={handleConfirmAccept}
-                className="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-xs font-bold shadow-md shadow-emerald-600/20"
+                className="w-full sm:flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-xs font-bold shadow-md shadow-emerald-600/20 cursor-pointer text-center"
               >
                 Confirm & Accept Offer
               </button>
@@ -271,7 +322,7 @@ export const OfferComparison = ({ applicationId, offers = [] }) => {
                 <DollarSign className="w-5 h-5 text-blue-600" />
                 Submit Formal Lender Offer
               </h3>
-              <button onClick={() => setShowNewOfferModal(false)} className="text-slate-400 hover:text-slate-600">
+              <button onClick={() => setShowNewOfferModal(false)} className="text-slate-400 hover:text-slate-600 cursor-pointer">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -362,22 +413,118 @@ export const OfferComparison = ({ applicationId, offers = [] }) => {
                 />
               </div>
 
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-end gap-3">
+              <div className="pt-3 border-t border-slate-100 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2 sm:gap-3">
                 <button
                   type="button"
                   onClick={() => setShowNewOfferModal(false)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50"
+                  className="w-full sm:w-auto text-center px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20"
+                  className="w-full sm:w-auto text-center px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 cursor-pointer"
                 >
                   Submit Offer
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Lender Portfolio Offer Details Modal */}
+      {selectedPortfolioOffer && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-xs p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-slate-200 space-y-4 my-auto max-h-[92vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs font-mono font-bold text-slate-400">{selectedPortfolioOffer.id}</span>
+                <StatusBadge status={selectedPortfolioOffer.status} />
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedPortfolioOffer(null)}
+                className="text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div>
+              <h3 className="text-base font-bold text-slate-900">Commercial Term Sheet Overview</h3>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Underwritten by: <strong className="text-slate-800">{selectedPortfolioOffer.lenderAlias}</strong>
+              </p>
+            </div>
+
+            {/* Financial Highlights */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3 rounded-xl bg-blue-50/60 border border-blue-100 text-center">
+              <div>
+                <span className="text-[10px] text-slate-500 block uppercase font-semibold">Principal</span>
+                <span className="text-sm font-extrabold text-slate-900">${selectedPortfolioOffer.amount.toLocaleString()}</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-slate-500 block uppercase font-semibold">Interest Rate</span>
+                <span className="text-sm font-extrabold text-blue-600">{selectedPortfolioOffer.interestRate}%</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-slate-500 block uppercase font-semibold">Duration</span>
+                <span className="text-sm font-extrabold text-slate-900">{selectedPortfolioOffer.termMonths} Mo</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-slate-500 block uppercase font-semibold">Payment</span>
+                <span className="text-sm font-extrabold text-slate-900">${selectedPortfolioOffer.monthlyPayment.toLocaleString()}</span>
+              </div>
+            </div>
+
+            {/* Detailed Parameters */}
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2.5">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                <span className="text-slate-500 shrink-0">Origination Fee:</span>
+                <span className="font-semibold text-slate-900 sm:text-right">
+                  {selectedPortfolioOffer.originationFeePercent || 2}% (${Math.round(selectedPortfolioOffer.amount * (selectedPortfolioOffer.originationFeePercent || 2) / 100).toLocaleString()})
+                </span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                <span className="text-slate-500 shrink-0">Estimated Closing Costs:</span>
+                <span className="font-semibold text-slate-900 sm:text-right">$3,500</span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                <span className="text-slate-500 shrink-0">Prepayment Policy:</span>
+                <span className="font-semibold text-slate-900 break-words sm:text-right">
+                  {selectedPortfolioOffer.prepaymentPenalty || '3% Year 1, 1% Year 2, Non-callable afterwards'}
+                </span>
+              </div>
+              {selectedPortfolioOffer.requiredConditions?.length > 0 && (
+                <div className="pt-2 border-t border-slate-200">
+                  <span className="font-bold block text-slate-700 mb-1">Closing Conditions & Covenants:</span>
+                  <ul className="list-disc list-inside space-y-1 text-slate-600">
+                    {selectedPortfolioOffer.requiredConditions.map((cond, idx) => (
+                      <li key={idx} className="break-words">{cond}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            <div className="pt-2 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setSelectedPortfolioOffer(null)}
+                className="w-full sm:w-auto px-4 py-2 rounded-xl border border-slate-200 font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer text-center text-xs"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                onClick={() => handleDownloadTermSheet(selectedPortfolioOffer)}
+                className="w-full sm:w-auto px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 cursor-pointer text-center text-xs flex items-center justify-center gap-1.5"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download Term Sheet</span>
+              </button>
+            </div>
           </div>
         </div>
       )}

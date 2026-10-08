@@ -43,7 +43,7 @@ export const LenderAlertsPage = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
               AI Lead Alerts
             </h1>
@@ -63,8 +63,8 @@ export const LenderAlertsPage = () => {
             key={alt.id}
             className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs hover:border-blue-400 hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-6"
           >
-            <div className="space-y-2 flex-1">
-              <div className="flex items-center gap-3">
+            <div className="space-y-2 flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                   {alt.matchScore}
                 </span>
@@ -72,8 +72,8 @@ export const LenderAlertsPage = () => {
                 <span className="text-xs text-slate-400">{alt.time}</span>
               </div>
 
-              <h3 className="text-base font-bold text-slate-900">{alt.title}</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">{alt.reason}</p>
+              <h3 className="text-base font-bold text-slate-900 break-words">{alt.title}</h3>
+              <p className="text-xs text-slate-600 leading-relaxed break-words">{alt.reason}</p>
 
               <div className="flex flex-wrap items-center gap-4 text-xs pt-1">
                 <span className="text-slate-500 font-semibold">{alt.amount}</span>
@@ -85,7 +85,7 @@ export const LenderAlertsPage = () => {
 
             <Link
               to={`/lender/leads/${alt.appId}`}
-              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5 self-end md:self-center"
+              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-1.5 self-start md:self-center w-full sm:w-auto"
             >
               <span>Inspect Lead</span>
               <ArrowRight className="w-4 h-4" />

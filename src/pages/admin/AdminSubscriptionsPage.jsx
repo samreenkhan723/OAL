@@ -29,7 +29,7 @@ export const AdminSubscriptionsPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
             Subscription Plans & Lender Tiers
           </h1>
@@ -64,7 +64,7 @@ export const AdminSubscriptionsPage = () => {
 
             <button
               onClick={() => handleOpenConfig(p)}
-              className="w-full py-2.5 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5"
+              className="w-full py-2.5 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
             >
               <Edit className="w-3.5 h-3.5" />
               <span>Configure Tier Limits</span>
@@ -79,7 +79,7 @@ export const AdminSubscriptionsPage = () => {
           <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <h3 className="text-base font-bold text-slate-900">Configure Institutional Tier Limits</h3>
-              <button onClick={() => setSelectedPlan(null)} className="text-slate-400 hover:text-slate-600">
+              <button onClick={() => setSelectedPlan(null)} className="text-slate-400 hover:text-slate-600 cursor-pointer">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -131,17 +131,17 @@ export const AdminSubscriptionsPage = () => {
                 />
               </div>
 
-              <div className="pt-3 flex items-center justify-end gap-2">
+              <div className="pt-3 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2">
                 <button
                   type="button"
                   onClick={() => setSelectedPlan(null)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 font-semibold text-slate-600 hover:bg-slate-50"
+                  className="w-full sm:w-auto px-4 py-2 rounded-xl border border-slate-200 font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer text-center"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20"
+                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 cursor-pointer text-center"
                 >
                   Save Tier Policy
                 </button>

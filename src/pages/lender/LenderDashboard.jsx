@@ -28,7 +28,7 @@ export const LenderDashboard = () => {
       {/* Top Hero Banner */}
       <div className="bg-gradient-to-r from-[#0B1730] to-[#172B4D] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 uppercase tracking-wider">
               Institutional Capital Exchange
             </span>
@@ -44,17 +44,17 @@ export const LenderDashboard = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
           <Link
             to="/lender/leads"
-            className="px-5 py-2.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/30 transition-all flex items-center gap-1.5"
+            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/30 transition-all flex items-center gap-1.5"
           >
             <Users className="w-4 h-4" />
             <span>Browse Marketplace Leads</span>
           </Link>
           <Link
             to="/lender/network"
-            className="px-4 py-2.5 rounded-xl text-xs font-bold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-all flex items-center gap-1.5"
+            className="w-full sm:w-auto justify-center px-4 py-2.5 rounded-xl text-xs font-bold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-all flex items-center gap-1.5"
           >
             <Radio className="w-4 h-4 text-emerald-400" />
             <span>Live Network Feed</span>
@@ -127,7 +127,7 @@ export const LenderDashboard = () => {
         {/* Left 2 Cols: Sanitized Marketplace Table Preview */}
         <div className="lg:col-span-2 space-y-4">
           <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
-            <div className="p-5 border-b border-slate-100 flex items-center justify-between">
+            <div className="p-5 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2">
               <div>
                 <h3 className="text-sm font-bold text-slate-900">
                   Lender Marketplace Leads
@@ -154,7 +154,7 @@ export const LenderDashboard = () => {
                 return (
                   <div key={lead.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
                     <div className="space-y-1.5 flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <span className="text-xs font-mono font-bold text-slate-400">{lead.id}</span>
                         <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                           {lead.programName}
@@ -174,8 +174,8 @@ export const LenderDashboard = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 self-end sm:self-center">
-                      <div className="text-right hidden sm:block">
+                    <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto self-start sm:self-center">
+                      <div className="text-left sm:text-right block">
                         <span className={`text-[11px] font-bold block ${
                           isFull ? 'text-rose-600' : 'text-purple-700'
                         }`}>
@@ -186,7 +186,7 @@ export const LenderDashboard = () => {
 
                       <Link
                         to={`/lender/leads/${lead.id}`}
-                        className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-all"
+                        className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-all text-center"
                       >
                         {userHasClaimed ? 'Active Deal' : 'View File'}
                       </Link>

@@ -76,7 +76,7 @@ export const BorrowerApplicationDetailPage = () => {
       {/* Header Banner */}
       <div className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <div className="flex items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-mono font-bold text-slate-400">{app.id}</span>
             <StatusBadge status={app.status} />
             <span className="text-xs text-slate-400">
@@ -104,10 +104,10 @@ export const BorrowerApplicationDetailPage = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
           <Link
             to="/borrower/offers"
-            className="px-5 py-2.5 rounded-xl bg-[#D5B66A] hover:bg-[#c4a457] text-slate-950 text-xs font-bold shadow-md transition-all flex items-center gap-1.5"
+            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl bg-[#D5B66A] hover:bg-[#c4a457] text-slate-950 text-xs font-bold shadow-md transition-all flex items-center gap-1.5"
           >
             <DollarSign className="w-4 h-4" />
             <span>View Offers ({appOffers.length})</span>
@@ -144,19 +144,19 @@ export const BorrowerApplicationDetailPage = () => {
             <div className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4">
               <h3 className="text-sm font-bold text-slate-900">Commercial Financial Profile</h3>
               <div className="space-y-2.5 text-xs text-slate-700">
-                <div className="flex justify-between py-1 border-b border-slate-100">
+                <div className="flex flex-wrap items-center justify-between gap-1 py-1 border-b border-slate-100">
                   <span className="text-slate-500">Annual Gross Revenue:</span>
                   <span className="font-bold text-slate-900">${app.annualRevenue?.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between py-1 border-b border-slate-100">
+                <div className="flex flex-wrap items-center justify-between gap-1 py-1 border-b border-slate-100">
                   <span className="text-slate-500">Monthly Operating Cash Flow:</span>
                   <span className="font-bold text-slate-900">${app.monthlyCashFlow?.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between py-1 border-b border-slate-100">
+                <div className="flex flex-wrap items-center justify-between gap-1 py-1 border-b border-slate-100">
                   <span className="text-slate-500">Operating History:</span>
                   <span className="font-semibold">{app.yearsInBusiness} Years</span>
                 </div>
-                <div className="flex justify-between py-1 border-b border-slate-100">
+                <div className="flex flex-wrap items-center justify-between gap-1 py-1 border-b border-slate-100">
                   <span className="text-slate-500">FICO Score Stated:</span>
                   <span className="font-bold text-emerald-700">{app.creditScore}</span>
                 </div>
@@ -199,14 +199,14 @@ export const BorrowerApplicationDetailPage = () => {
 
       {activeTab === 'docs' && (
         <div className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
             <div>
               <h3 className="text-sm font-bold text-slate-900">Verified Underwriting Evidence</h3>
               <p className="text-xs text-slate-500">All documents required for compliance approval.</p>
             </div>
             <Link
               to="/borrower/documents"
-              className="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold hover:bg-blue-700"
+              className="w-full sm:w-auto text-center px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold hover:bg-blue-700"
             >
               Upload / Replace File
             </Link>
@@ -214,12 +214,14 @@ export const BorrowerApplicationDetailPage = () => {
 
           <div className="divide-y divide-slate-100">
             {appDocs.map((doc) => (
-              <div key={doc.id} className="py-3 flex items-center justify-between gap-4 text-xs">
-                <div>
-                  <div className="font-bold text-slate-900">{doc.title}</div>
-                  <div className="text-[11px] text-slate-400">{doc.fileName} • {doc.fileSize}</div>
+              <div key={doc.id} className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 text-xs">
+                <div className="min-w-0">
+                  <div className="font-bold text-slate-900 break-words">{doc.title}</div>
+                  <div className="text-[11px] text-slate-400 break-words">{doc.fileName} • {doc.fileSize}</div>
                 </div>
-                <StatusBadge status={doc.status} />
+                <div className="self-start sm:self-auto shrink-0">
+                  <StatusBadge status={doc.status} />
+                </div>
               </div>
             ))}
           </div>

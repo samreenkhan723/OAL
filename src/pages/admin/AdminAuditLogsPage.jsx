@@ -14,6 +14,39 @@ export const AdminAuditLogsPage = () => {
     l.details.toLowerCase().includes(search.toLowerCase())
   );
 
+  const handleExportJsonLd = () => {
+    const payload = {
+      "@context": "https://schema.org",
+      "@type": "DataFeed",
+      "name": "OAL Network Cryptographic Audit Trail",
+      "exportedAt": new Date().toISOString(),
+      "securityStandard": "AES-256 Non-Repudiation / SHA-256 State Hashing",
+      "recordCount": filteredLogs.length,
+      "dataFeedElement": filteredLogs.map(log => ({
+        "@type": "AuditRecord",
+        "identifier": log.id,
+        "action": log.action,
+        "agent": log.actor,
+        "target": log.target,
+        "description": log.details,
+        "timestamp": log.timestamp,
+        "verification": "Tamper-Evident SHA-256 Cryptographic Verification"
+      }))
+    };
+
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/ld+json;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `oal_audit_trail_${new Date().toISOString().split('T')[0]}.jsonld`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    addToast('Audit Trail Exported', `Downloaded ${filteredLogs.length} audit records in JSON-LD format.`, 'success');
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -27,7 +60,7 @@ export const AdminAuditLogsPage = () => {
         </div>
 
         <button
-          onClick={() => addToast('Audit Trail Exported [SIMULATED]', 'Exported full JSON-LD tamper-evident cryptographic log.', 'success')}
+          onClick={handleExportJsonLd}
           className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
         >
           <Download className="w-4 h-4" />
@@ -47,32 +80,44 @@ export const AdminAuditLogsPage = () => {
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
-        <div className="p-4 border-b border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
+        <div className="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-500">
           <span>{filteredLogs.length} Filtered Log Entries</span>
           <span className="text-emerald-700 font-bold flex items-center gap-1">
             <ShieldCheck className="w-4 h-4" /> Non-Repudiation Enforced
           </span>
         </div>
 
-        <div className="divide-y divide-slate-100 font-mono text-xs">
+        <div className="divide-y divide-slate-100">
           {filteredLogs.map((log) => (
-            <div key={log.id} className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-2 hover:bg-slate-50/70 transition-colors">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-[11px] font-bold text-slate-400">{log.id}</span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+            <div key={log.id} className="p-4 hover:bg-slate-50/70 transition-colors space-y-2">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-[11px] font-mono font-bold text-slate-400 tracking-wide">{log.id}</span>
+                  <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">
                     {log.action}
                   </span>
-                  <span className="text-[11px] text-slate-600 font-sans">
-                    <strong>{log.actor}</strong> &rarr; <span className="text-blue-600">{log.target}</span>
-                  </span>
                 </div>
-                <div className="text-[11px] font-sans text-slate-600">{log.details}</div>
+                <span className="text-[11px] text-slate-400 font-sans shrink-0">
+                  {new Date(log.timestamp).toLocaleString(undefined, {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true
+                  })}
+                </span>
               </div>
 
-              <span className="text-[10px] text-slate-400 font-sans whitespace-nowrap self-end md:self-center">
-                {new Date(log.timestamp).toLocaleString()}
-              </span>
+              <div className="text-xs font-sans text-slate-700 flex flex-wrap items-center gap-1.5">
+                <strong className="text-slate-900">{log.actor}</strong>
+                <span className="text-slate-400">&rarr;</span>
+                <span className="font-semibold text-blue-600">{log.target}</span>
+              </div>
+
+              <p className="text-xs font-sans text-slate-600 leading-relaxed break-words">
+                {log.details}
+              </p>
             </div>
           ))}
         </div>

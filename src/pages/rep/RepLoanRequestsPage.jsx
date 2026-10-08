@@ -22,7 +22,7 @@ export const RepLoanRequestsPage = () => {
         {applications.slice(0, 5).map((req) => (
           <div key={req.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="text-xs font-mono font-bold text-slate-400">{req.id}</span>
                 <StatusBadge status={req.status} />
               </div>
@@ -32,7 +32,7 @@ export const RepLoanRequestsPage = () => {
 
             <Link
               to="/rep/messages"
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all self-end sm:self-center"
+              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all w-full sm:w-auto text-center"
             >
               Mediate File
             </Link>

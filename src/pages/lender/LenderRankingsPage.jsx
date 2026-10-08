@@ -26,7 +26,7 @@ export const LenderRankingsPage = () => {
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
-        <div className="p-4 border-b border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
+        <div className="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-500">
           <span>Ranked Across 5 Underwriting Pillars</span>
           <span className="text-[11px] text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
             Engine v2.4-Standard
@@ -44,7 +44,7 @@ export const LenderRankingsPage = () => {
                   </div>
 
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <span className="text-xs font-mono font-bold text-slate-400">{app.id}</span>
                       <StatusBadge status={app.status} />
                     </div>
@@ -59,9 +59,9 @@ export const LenderRankingsPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-6 self-end sm:self-center">
-                  <div className="text-right">
-                    <div className="text-xl font-extrabold text-[#D5B66A] bg-[#0B1730] px-3 py-1 rounded-xl">
+                <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-6 w-full sm:w-auto self-start sm:self-center">
+                  <div className="text-left sm:text-right">
+                    <div className="text-xl font-extrabold text-[#D5B66A] bg-[#0B1730] px-3 py-1 rounded-xl inline-block">
                       {score} <span className="text-xs text-slate-400 font-normal">/ 180</span>
                     </div>
                     <span className="text-[10px] text-slate-400 block mt-0.5">Composite Score</span>
@@ -69,7 +69,7 @@ export const LenderRankingsPage = () => {
 
                   <Link
                     to={`/lender/leads/${app.id}`}
-                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all"
+                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all text-center shrink-0"
                   >
                     Examine
                   </Link>

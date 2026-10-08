@@ -26,7 +26,7 @@ export const BorrowerApplicationsPage = () => {
 
         <Link
           to="/borrower/applications/new"
-          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-600/20 transition-all self-start sm:self-auto"
+          className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-600/20 transition-all self-start sm:self-auto w-full sm:w-auto"
         >
           <Plus className="w-4 h-4" />
           <span>New Commercial Request</span>
@@ -40,8 +40,8 @@ export const BorrowerApplicationsPage = () => {
             key={app.id}
             className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs hover:border-blue-400 hover:shadow-md transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-6"
           >
-            <div className="space-y-2 flex-1">
-              <div className="flex items-center gap-3">
+            <div className="space-y-2 flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <span className="text-xs font-mono font-bold text-slate-400">{app.id}</span>
                 <StatusBadge status={app.status} />
                 <span className="text-xs text-slate-400">
@@ -49,8 +49,8 @@ export const BorrowerApplicationsPage = () => {
                 </span>
               </div>
 
-              <h3 className="text-lg font-bold text-slate-900">{app.businessName}</h3>
-              <p className="text-xs text-slate-500">{app.programName} • {app.loanPurpose}</p>
+              <h3 className="text-lg font-bold text-slate-900 break-words">{app.businessName}</h3>
+              <p className="text-xs text-slate-500 break-words">{app.programName} • {app.loanPurpose}</p>
 
               <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600 pt-2">
                 <div>
@@ -71,17 +71,17 @@ export const BorrowerApplicationsPage = () => {
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-3 border-t lg:border-t-0 pt-4 lg:pt-0 border-slate-100">
+            <div className="flex flex-wrap items-center gap-3 border-t lg:border-t-0 pt-4 lg:pt-0 border-slate-100 w-full lg:w-auto">
               <Link
                 to={`/borrower/applications/${app.id}/tracker`}
-                className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                className="w-full sm:w-auto text-center px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors"
               >
                 View Tracker
               </Link>
 
               <Link
                 to={`/borrower/applications/${app.id}`}
-                className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5"
+                className="w-full sm:w-auto justify-center px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5"
               >
                 <span>Application Details</span>
                 <ArrowRight className="w-4 h-4" />

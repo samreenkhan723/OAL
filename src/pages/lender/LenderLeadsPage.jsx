@@ -75,7 +75,7 @@ export const LenderLeadsPage = () => {
 
       {/* Leads Table */}
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
-        <div className="p-4 border-b border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
+        <div className="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-500">
           <span>Displaying {filteredLeads.length} Qualified Commercial Applications</span>
           <span className="text-[11px] text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-200">
             Rule FR-08 (Max 3 claims per deal)
@@ -91,7 +91,7 @@ export const LenderLeadsPage = () => {
             return (
               <div key={lead.id} className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
                 <div className="space-y-1 flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="text-xs font-mono font-bold text-slate-400">{lead.id}</span>
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                       {lead.programName}
@@ -125,8 +125,8 @@ export const LenderLeadsPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 self-end md:self-center">
-                  <div className="text-right">
+                <div className="flex items-center justify-between md:justify-end gap-3 md:gap-4 w-full md:w-auto self-start md:self-center">
+                  <div className="text-left md:text-right">
                     <span className={`text-xs font-bold block ${
                       isFull ? 'text-rose-600' : 'text-purple-700'
                     }`}>
@@ -139,7 +139,7 @@ export const LenderLeadsPage = () => {
 
                   <Link
                     to={`/lender/leads/${lead.id}`}
-                    className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5"
+                    className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-1.5 shrink-0"
                   >
                     <span>Underwrite</span>
                     <ArrowRight className="w-4 h-4" />

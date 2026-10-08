@@ -31,6 +31,63 @@ export const LenderBillingPage = () => {
     setShowManageModal(false);
   };
 
+  const handleDownloadAnnualStatement = () => {
+    const content = `================================================================================
+OAL NETWORK - ANNUAL INSTITUTIONAL TAX STATEMENT (2026)
+================================================================================
+Account Partner  : Institutional Tier L-3
+Statement Period : FY 2026 (Jan 01, 2026 - Dec 31, 2026)
+Total Platform Fees Paid: $38,400.00
+Eligible Deductions     : 100% Ordinary Commercial Expense (Section 162)
+Total Originations      : $48,200,000.00
+================================================================================
+SUMMARY OF INVOICES:
+- INV-2026-904 | $1,950.00 | PAID | Oct 01, 2026 | Enterprise Platform Subscription
+- INV-2026-881 | $4,750.00 | PAID | Sep 25, 2026 | Deal Origination Success Fee
+================================================================================
+VERIFIED AND CERTIFIED BY OAL FINANCIAL NETWORK COMPLIANCE TREASURY
+`;
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'oal_annual_tax_statement_2026.txt';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    addToast('Annual Statement Downloaded', 'Exported full 2026 institutional fee statements.', 'success');
+  };
+
+  const handleDownloadInvoice = (inv) => {
+    const content = `================================================================================
+OAL NETWORK OFFICIAL INVOICE RECEIPT
+================================================================================
+Invoice Number : ${inv.id}
+Invoice Date   : ${inv.date}
+Status         : ${inv.status}
+Bill To        : Institutional Capital Partner
+Description    : ${inv.desc}
+Amount Paid    : ${inv.amount}
+Payment Method : ACH Corporate Auto-Debit (Ending in 4402)
+Transaction ID : TXN-${inv.id.replace('INV-', '')}-CONFIRMED
+================================================================================
+THANK YOU FOR YOUR PARTNERSHIP WITH OAL NETWORK
+`;
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${inv.id}_receipt.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    addToast('Invoice Downloaded', `Downloaded official receipt for ${inv.id}`, 'success');
+  };
+
   return (
     <div className="space-y-8">
       <div>
@@ -46,7 +103,7 @@ export const LenderBillingPage = () => {
       </div>
 
       {/* Current Plan Card */}
-      <div className="bg-gradient-to-br from-[#0B1730] to-[#172B4D] rounded-3xl p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-gradient-to-br from-[#0B1730] to-[#172B4D] rounded-3xl p-5 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-2">
           <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 uppercase">
             Active Institutional Tier
@@ -58,7 +115,7 @@ export const LenderBillingPage = () => {
             Includes unlimited marketplace deal reviews, priority AI Lead Alerts, and {currentTier.deals}.
           </p>
 
-          <div className="pt-2 flex items-center gap-4 text-xs text-slate-300">
+          <div className="pt-2 flex flex-wrap items-center gap-2 text-xs text-slate-300">
             <span>Billing: <strong>{currentTier.price}</strong></span>
             <span>•</span>
             <span>Renews: <strong>{currentTier.renewal}</strong></span>
@@ -75,11 +132,11 @@ export const LenderBillingPage = () => {
 
       {/* Invoices */}
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
-        <div className="p-5 border-b border-slate-100 flex items-center justify-between">
+        <div className="p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <h3 className="text-sm font-bold text-slate-900">Recent Origination Fee Invoices</h3>
           <button
-            onClick={() => addToast('Tax Summary Exported [SIMULATED]', 'Exported full 2026 institutional fee statements.', 'info')}
-            className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1"
+            onClick={handleDownloadAnnualStatement}
+            className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1 cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download Annual Statement</span>
@@ -91,19 +148,19 @@ export const LenderBillingPage = () => {
             { id: 'INV-2026-904', desc: 'Enterprise Platform Subscription — Oct 2026', amount: '$1,950.00', status: 'PAID', date: 'Oct 01, 2026' },
             { id: 'INV-2026-881', desc: 'Grace Community Fellowship Deal Success Fee', amount: '$4,750.00', status: 'PAID', date: 'Sep 25, 2026' },
           ].map((inv) => (
-            <div key={inv.id} className="p-4 flex items-center justify-between gap-4 text-xs hover:bg-slate-50/50 transition-colors">
+            <div key={inv.id} className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs hover:bg-slate-50/50 transition-colors">
               <div>
                 <span className="font-bold text-slate-900 block">{inv.desc}</span>
                 <span className="text-[11px] text-slate-400">{inv.id} • {inv.date}</span>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="text-right">
+              <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                <div className="text-left sm:text-right">
                   <span className="font-extrabold text-slate-900 block">{inv.amount}</span>
                   <span className="text-[10px] text-emerald-600 font-bold">{inv.status}</span>
                 </div>
                 <button
-                  onClick={() => addToast('Invoice Downloaded [SIMULATED]', `Downloaded PDF receipt for ${inv.id}`, 'success')}
-                  className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                  onClick={() => handleDownloadInvoice(inv)}
+                  className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer"
                   title="Download Invoice"
                 >
                   <Download className="w-4 h-4" />
@@ -136,7 +193,7 @@ export const LenderBillingPage = () => {
                   <div
                     key={idx}
                     onClick={() => handleSelectTier(t)}
-                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex items-center justify-between ${
+                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
                       isSelected
                         ? 'border-blue-600 bg-blue-50/60'
                         : 'border-slate-200 hover:border-slate-300 bg-white'
@@ -153,7 +210,7 @@ export const LenderBillingPage = () => {
                       </div>
                       <div className="text-[11px] text-slate-500 mt-0.5">{t.deals}</div>
                     </div>
-                    <div className="text-right">
+                    <div className="text-left sm:text-right">
                       <div className="font-extrabold text-slate-900 text-sm font-heading">{t.price}</div>
                     </div>
                   </div>

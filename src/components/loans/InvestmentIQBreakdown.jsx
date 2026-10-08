@@ -76,7 +76,7 @@ export const InvestmentIQBreakdown = ({ investmentIQ, showDetailedExplanations =
       <div className="p-6 bg-gradient-to-br from-[#0B1730] to-[#172B4D] text-white">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#D5B66A] text-slate-950 uppercase tracking-wider">
                 180-Point Assessment
               </span>
@@ -89,7 +89,7 @@ export const InvestmentIQBreakdown = ({ investmentIQ, showDetailedExplanations =
           </div>
 
           {/* Big Score Dial */}
-          <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/15">
+          <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/15 self-start sm:self-auto">
             <div className="text-right">
               <div className="text-3xl font-extrabold text-[#D5B66A] tracking-tight">{total}</div>
               <div className="text-[11px] text-slate-300 font-medium">Out of {max} Max</div>
@@ -122,8 +122,8 @@ export const InvestmentIQBreakdown = ({ investmentIQ, showDetailedExplanations =
             const compPercent = Math.round((comp.score / comp.max) * 100);
             return (
               <div key={comp.key} className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-colors">
-                <div className="flex items-center justify-between mb-1.5">
-                  <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center justify-between gap-1 mb-1.5">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="text-xs font-bold text-slate-900">{comp.label}</span>
                     <span className="text-[10px] text-slate-600 font-medium">(Max {comp.max} pts)</span>
                   </div>

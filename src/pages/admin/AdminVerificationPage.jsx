@@ -19,7 +19,7 @@ export const AdminVerificationPage = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
               KYC & Document Verification Center
             </h1>
@@ -47,7 +47,7 @@ export const AdminVerificationPage = () => {
             return (
               <div key={doc.id} className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
                 <div className="space-y-1 flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="text-xs font-mono font-bold text-slate-400">{doc.id}</span>
                     <StatusBadge status={doc.status} />
                     <span className="text-xs text-slate-400">Target: {doc.applicationId}</span>
@@ -65,11 +65,11 @@ export const AdminVerificationPage = () => {
                   )}
                 </div>
 
-                <div className="flex items-center gap-2 self-end md:self-center">
+                <div className="flex flex-wrap items-center gap-2 w-full md:w-auto justify-end">
                   {!isVerified && (
                     <button
                       onClick={() => handleDecision(doc.id, 'VERIFIED')}
-                      className="px-3.5 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold shadow-xs transition-colors flex items-center gap-1"
+                      className="px-3.5 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold shadow-xs transition-colors flex items-center justify-center gap-1 w-full sm:w-auto"
                     >
                       <Check className="w-4 h-4" />
                       <span>Approve (Verify)</span>
@@ -79,7 +79,7 @@ export const AdminVerificationPage = () => {
                   {doc.status !== 'NEEDS_REPLACEMENT' && (
                     <button
                       onClick={() => handleDecision(doc.id, 'NEEDS_REPLACEMENT')}
-                      className="px-3.5 py-2 rounded-xl border border-rose-300 text-rose-700 hover:bg-rose-50 text-xs font-bold transition-colors flex items-center gap-1"
+                      className="px-3.5 py-2 rounded-xl border border-rose-300 text-rose-700 hover:bg-rose-50 text-xs font-bold transition-colors flex items-center justify-center gap-1 w-full sm:w-auto"
                     >
                       <XCircle className="w-4 h-4" />
                       <span>Request Replace</span>

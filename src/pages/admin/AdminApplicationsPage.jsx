@@ -71,7 +71,7 @@ export const AdminApplicationsPage = () => {
           {filteredApps.map((app) => (
             <div key={app.id} className="p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
               <div className="space-y-1 flex-1 min-w-0">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="text-xs font-mono font-bold text-slate-400">{app.id}</span>
                   <StatusBadge status={app.status} />
                   <span className="text-[11px] font-extrabold text-[#D5B66A] bg-[#0B1730] px-2 py-0.5 rounded">
@@ -93,13 +93,13 @@ export const AdminApplicationsPage = () => {
               </div>
 
               {/* Status Transition Control */}
-              <div className="flex items-center gap-3 self-end lg:self-center">
-                <div className="flex items-center gap-1.5 bg-slate-50 p-1.5 rounded-xl border border-slate-200">
+              <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto justify-end">
+                <div className="flex flex-wrap items-center gap-1.5 bg-slate-50 p-1.5 rounded-xl border border-slate-200 w-full sm:w-auto">
                   <span className="text-[11px] font-bold text-slate-500 pl-1">Transition State:</span>
                   <select
                     value={app.status}
                     onChange={(e) => handleAdvance(app.id, e.target.value)}
-                    className="px-2 py-1 text-xs font-bold bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-900"
+                    className="px-2 py-1 text-xs font-bold bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-900 flex-1 sm:flex-initial"
                   >
                     {ALL_STATUSES.map(st => (
                       <option key={st} value={st}>{st.replace(/_/g, ' ')}</option>

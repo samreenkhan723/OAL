@@ -28,7 +28,7 @@ export const AdminRepPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
             Representative Team Management
           </h1>
@@ -43,14 +43,14 @@ export const AdminRepPage = () => {
         {reps.map((r) => (
           <div key={r.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
             <div className="space-y-1">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h3 className="text-sm font-bold text-slate-900">{r.name}</h3>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                   {r.status}
                 </span>
               </div>
               <div className="text-xs text-blue-600 font-semibold">{r.title}</div>
-              <div className="text-xs text-slate-400">
+              <div className="text-xs text-slate-400 break-all">
                 {r.email} • {r.phone}
               </div>
               <div className="text-xs text-slate-700 pt-1">
@@ -60,7 +60,7 @@ export const AdminRepPage = () => {
 
             <button
               onClick={() => handleOpenRouting(r)}
-              className="px-4 py-2 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors self-end sm:self-center"
+              className="px-4 py-2 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors w-full sm:w-auto text-center"
             >
               Manage Routing
             </button>
@@ -115,17 +115,17 @@ export const AdminRepPage = () => {
                 </select>
               </div>
 
-              <div className="pt-3 flex items-center justify-end gap-2">
+              <div className="pt-3 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2">
                 <button
                   type="button"
                   onClick={() => setSelectedRep(null)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 font-semibold text-slate-600 hover:bg-slate-50"
+                  className="px-4 py-2 rounded-xl border border-slate-200 font-semibold text-slate-600 hover:bg-slate-50 w-full sm:w-auto"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20"
+                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 w-full sm:w-auto"
                 >
                   Save Routing Policy
                 </button>
