@@ -1,0 +1,346 @@
+import React, { useState } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import { useApp } from '../../context/AppContext';
+import {
+  LayoutDashboard,
+  GitBranch,
+  FileText,
+  FilePlus,
+  FolderOpen,
+  Award,
+  DollarSign,
+  MessageSquare,
+  Bell,
+  Share2,
+  Settings,
+  LifeBuoy,
+  Globe,
+  Radio,
+  Sparkles,
+  ListOrdered,
+  Bookmark,
+  Briefcase,
+  TrendingUp,
+  FileSpreadsheet,
+  CreditCard,
+  ShieldCheck,
+  Users,
+  CheckCircle,
+  Cpu,
+  Layers,
+  Megaphone,
+  BookOpen,
+  History,
+  Lock,
+  ChevronDown,
+  ChevronRight,
+  LogOut,
+  ExternalLink
+} from 'lucide-react';
+
+export const Sidebar = ({ isOpen, setIsOpen }) => {
+  const { currentRole, currentUser, applications, offers, tickets } = useApp();
+  const location = useLocation();
+
+  // Dynamic counts for notification badges
+  const activeAppsCount = applications.filter(a => a.status !== 'FUNDED' && a.status !== 'DECLINED').length;
+  const pendingOffersCount = offers.filter(o => o.status === 'PENDING_BORROWER_REVIEW').length;
+  const openTicketsCount = tickets.filter(t => t.status === 'OPEN').length;
+
+  // Sidebar navigation configuration by role
+  const getNavSections = () => {
+    switch (currentRole) {
+      case 'lender':
+        return [
+          {
+            title: 'Overview',
+            items: [
+              { label: 'Dashboard', path: '/lender/dashboard', icon: LayoutDashboard },
+              { label: 'Network Panel', path: '/lender/network', icon: Radio, badge: 'Live' },
+            ]
+          },
+          {
+            title: 'Opportunities',
+            items: [
+              { label: 'Qualified Leads', path: '/lender/leads', icon: Users, badge: `${applications.filter(a => a.status === 'QUALIFIED' || a.status === 'WORKING_DEAL').length}` },
+              { label: 'AI Lead Alerts', path: '/lender/alerts', icon: Sparkles, badge: 'New' },
+              { label: 'Borrower Rankings', path: '/lender/rankings', icon: ListOrdered },
+              { label: 'Loan Requests', path: '/lender/loan-requests', icon: FileText },
+              { label: 'Saved Leads', path: '/lender/saved-leads', icon: Bookmark },
+              { label: 'Working Deals', path: '/lender/working-deals', icon: Briefcase, badge: 'Max 3' },
+            ]
+          },
+          {
+            title: 'Transactions',
+            items: [
+              { label: 'Offer Management', path: '/lender/offers', icon: DollarSign, badge: `${offers.length}` },
+            ]
+          },
+          {
+            title: 'Communication',
+            items: [
+              { label: 'Messages (Rep)', path: '/lender/messages', icon: MessageSquare },
+              { label: 'Notifications', path: '/lender/notifications', icon: Bell },
+            ]
+          },
+          {
+            title: 'Business & Settings',
+            items: [
+              { label: 'Analytics', path: '/lender/analytics', icon: TrendingUp },
+              { label: 'Reports', path: '/lender/reports', icon: FileSpreadsheet },
+              { label: 'Billing & Plans', path: '/lender/billing', icon: CreditCard },
+              { label: 'Settings', path: '/lender/settings', icon: Settings },
+              { label: 'Help Desk', path: '/support/tickets', icon: LifeBuoy },
+            ]
+          }
+        ];
+
+      case 'rep':
+        return [
+          {
+            title: 'Overview',
+            items: [
+              { label: 'Dashboard', path: '/rep/dashboard', icon: LayoutDashboard },
+            ]
+          },
+          {
+            title: 'Pipeline',
+            items: [
+              { label: 'Qualified Leads', path: '/rep/leads', icon: Users, badge: `${applications.length}` },
+              { label: 'AI Lead Alerts', path: '/rep/alerts', icon: Sparkles },
+              { label: 'Loan Requests', path: '/rep/loan-requests', icon: FileText },
+              { label: 'Saved Leads', path: '/rep/saved-leads', icon: Bookmark },
+            ]
+          },
+          {
+            title: 'Coordination',
+            items: [
+              { label: 'Communication Hub', path: '/rep/messages', icon: MessageSquare, badge: 'Active' },
+              { label: 'Offers (Read-Only)', path: '/rep/offers', icon: DollarSign, badge: 'Audit' },
+            ]
+          },
+          {
+            title: 'Business & Support',
+            items: [
+              { label: 'Analytics', path: '/rep/analytics', icon: TrendingUp },
+              { label: 'Reports', path: '/rep/reports', icon: FileSpreadsheet },
+              { label: 'Billing', path: '/rep/billing', icon: CreditCard },
+              { label: 'Settings', path: '/rep/settings', icon: Settings },
+              { label: 'Help Desk', path: '/support/tickets', icon: LifeBuoy },
+            ]
+          }
+        ];
+
+      case 'admin':
+        return [
+          {
+            title: 'Governance',
+            items: [
+              { label: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
+              { label: 'Network Panel', path: '/admin/network', icon: Radio, badge: 'Live Feed' },
+            ]
+          },
+          {
+            title: 'Loan Operations',
+            items: [
+              { label: 'Applications', path: '/admin/applications', icon: FileText, badge: `${applications.length}` },
+              { label: 'Verification Center', path: '/admin/verification', icon: CheckCircle, badge: 'KYC' },
+              { label: 'Document Mgmt', path: '/admin/documents', icon: FolderOpen },
+              { label: 'AI Scoring Engine', path: '/admin/scoring', icon: Cpu, badge: '180 Pt' },
+              { label: 'Lead Distribution', path: '/admin/lead-distribution', icon: Layers },
+              { label: 'Offers Oversight', path: '/admin/offers', icon: DollarSign },
+            ]
+          },
+          {
+            title: 'User Management',
+            items: [
+              { label: 'Borrowers', path: '/admin/borrowers', icon: Users },
+              { label: 'Lenders', path: '/admin/lenders', icon: Briefcase },
+              { label: 'Representatives', path: '/admin/representatives', icon: ShieldCheck },
+            ]
+          },
+          {
+            title: 'Finance & Growth',
+            items: [
+              { label: 'Referrals & Affiliates', path: '/admin/referrals', icon: Share2 },
+              { label: 'Advertisements', path: '/admin/advertisements', icon: Megaphone },
+              { label: 'Payments', path: '/admin/payments', icon: CreditCard },
+              { label: 'Subscription Plans', path: '/admin/subscriptions', icon: FileSpreadsheet },
+              { label: 'CMS Manager', path: '/admin/cms', icon: BookOpen },
+            ]
+          },
+          {
+            title: 'System Operations',
+            items: [
+              { label: 'Support Tickets', path: '/admin/support', icon: LifeBuoy, badge: `${openTicketsCount}` },
+              { label: 'Audit Logs', path: '/admin/audit-logs', icon: History },
+              { label: 'Reports & Analytics', path: '/admin/reports', icon: TrendingUp },
+              { label: 'System Settings', path: '/admin/settings', icon: Settings },
+              { label: 'Super Admin', path: '/admin/super-admin', icon: Lock, badge: 'Root' },
+            ]
+          }
+        ];
+
+      case 'support':
+        return [
+          {
+            title: 'Help Desk Center',
+            items: [
+              { label: 'Ticket Inbox', path: '/support/tickets', icon: LifeBuoy, badge: `${openTicketsCount}` },
+              { label: 'Knowledge Base', path: '/support/knowledge-base', icon: BookOpen },
+              { label: 'Support Analytics', path: '/support/analytics', icon: TrendingUp },
+            ]
+          },
+          {
+            title: 'Quick Cross-Links',
+            items: [
+              { label: 'Borrower View', path: '/borrower/dashboard', icon: Users },
+              { label: 'Admin View', path: '/admin/dashboard', icon: ShieldCheck },
+              { label: 'Public Portal', path: '/', icon: Globe },
+            ]
+          }
+        ];
+
+      default: // Borrower (default)
+        return [
+          {
+            title: 'Overview',
+            items: [
+              { label: 'Dashboard', path: '/borrower/dashboard', icon: LayoutDashboard },
+              { label: 'Loan Tracker', path: '/borrower/applications/APP-2026-1082/tracker', icon: GitBranch, badge: 'Active' },
+            ]
+          },
+          {
+            title: 'My Financing',
+            items: [
+              { label: 'My Applications', path: '/borrower/applications', icon: FileText, badge: `${applications.filter(a => a.borrowerId === currentUser.id).length || 1}` },
+              { label: 'New Loan Request', path: '/borrower/applications/new', icon: FilePlus, highlight: true },
+              { label: 'Documents & KYC', path: '/borrower/documents', icon: FolderOpen },
+              { label: 'Investment IQ', path: '/borrower/investment-iq', icon: Award, badge: '154/180' },
+              { label: 'Lender Offers', path: '/borrower/offers', icon: DollarSign, badge: `${pendingOffersCount}` },
+            ]
+          },
+          {
+            title: 'Communication',
+            items: [
+              { label: 'Messages (OAL Rep)', path: '/borrower/messages', icon: MessageSquare, badge: 'Elena' },
+              { label: 'Notifications', path: '/borrower/notifications', icon: Bell },
+            ]
+          },
+          {
+            title: 'Account',
+            items: [
+              { label: 'Referrals', path: '/borrower/referrals', icon: Share2, badge: '$1,750' },
+              { label: 'Profile & Settings', path: '/borrower/settings', icon: Settings },
+              { label: 'Help Desk / Support', path: '/help', icon: LifeBuoy },
+            ]
+          }
+        ];
+    }
+  };
+
+  const sections = getNavSections();
+
+  return (
+    <>
+      {/* Mobile Backdrop */}
+      {isOpen && (
+        <div
+          onClick={() => setIsOpen(false)}
+          className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-40 lg:hidden"
+        />
+      )}
+
+      {/* Sidebar Container */}
+      <aside
+        className={`fixed top-0 bottom-0 left-0 z-40 w-64 bg-[#0B1730] text-slate-300 flex flex-col transition-transform duration-300 ease-in-out border-r border-slate-800 ${
+          isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        }`}
+      >
+        {/* Brand Header */}
+        <div className="h-20 px-6 flex items-center justify-between border-b border-slate-800/80 bg-[#0B1730]">
+          <Link to="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white shadow-md shadow-blue-900/30">
+              <ShieldCheck className="w-5 h-5 text-[#D5B66A]" />
+            </div>
+            <div>
+              <div className="flex items-center gap-1">
+                <span className="font-heading font-extrabold text-lg tracking-tight text-white">OAL</span>
+                <span className="font-heading font-semibold text-lg tracking-tight text-blue-400">NETWORK</span>
+              </div>
+              <div className="text-[10px] font-semibold tracking-wider text-amber-400 uppercase">
+                {currentRole} WORKSPACE
+              </div>
+            </div>
+          </Link>
+        </div>
+
+        {/* Scrollable Navigation */}
+        <div className="flex-1 overflow-y-auto px-4 py-5 space-y-6">
+          {sections.map((section, idx) => (
+            <div key={idx} className="space-y-1">
+              <div className="px-3 text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2">
+                {section.title}
+              </div>
+              {section.items.map((item) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.path || location.pathname.startsWith(`${item.path}/`);
+
+                return (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className={({ isActive: exactActive }) => {
+                      const active = exactActive || (item.path !== '/' && location.pathname === item.path);
+                      return `group flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all ${
+                        active
+                          ? 'bg-blue-600 text-white font-semibold shadow-md shadow-blue-600/30'
+                          : item.highlight
+                          ? 'bg-blue-500/15 text-blue-300 hover:bg-blue-500/25 border border-blue-500/30'
+                          : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+                      }`;
+                    }}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <Icon className="w-4 h-4 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                      <span className="truncate">{item.label}</span>
+                    </div>
+
+                    {item.badge && (
+                      <span className="ml-2 px-1.5 py-0.5 text-[10px] font-semibold rounded-md bg-slate-800 text-slate-300 border border-slate-700/60 group-hover:border-slate-600">
+                        {item.badge}
+                      </span>
+                    )}
+                  </NavLink>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+
+        {/* User Card & Public Website Link */}
+        <div className="p-4 border-t border-slate-800 bg-[#0B1730]">
+          <div className="flex items-center gap-3 p-2 rounded-xl bg-slate-900/60 border border-slate-800">
+            <img
+              src={currentUser.avatar}
+              alt={currentUser.name}
+              className="w-9 h-9 rounded-full object-cover border border-slate-700"
+            />
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-semibold text-white truncate">{currentUser.name}</div>
+              <div className="text-[10px] text-slate-400 truncate">{currentUser.company || currentUser.email}</div>
+            </div>
+            <Link
+              to="/"
+              title="Visit Public Website"
+              className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+            >
+              <ExternalLink className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </aside>
+    </>
+  );
+};

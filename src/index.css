@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-oal-navy: #0B1730;
+  --color-oal-navy-light: #172B4D;
+  --color-oal-blue: #2563EB;
+  --color-oal-blue-light: #EFF6FF;
+  --color-oal-gold: #D5B66A;
+  --color-oal-gold-light: #FBF6E9;
+  --color-oal-teal: #0D9488;
+  --color-oal-amber: #D97706;
+  --color-oal-red: #DC2626;
+  --color-oal-canvas: #F8FAFC;
+  --color-oal-slate: #0F172A;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Custom scrollbars and styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Glass and elevation effects */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.navy-gradient {
+  background: linear-gradient(135deg, #0B1730 0%, #172B4D 100%);
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #D5B66A 0%, #B89643 100%);
+}
+
+.blue-gradient {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+}
+
+/* Print styling */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
