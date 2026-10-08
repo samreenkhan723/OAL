@@ -27,7 +27,7 @@ export const Topbar = ({ setIsOpen }) => {
   const handleSignOut = () => {
     logout();
     setShowUserMenu(false);
-    navigate('/', { replace: true });
+    navigate('/auth/login', { replace: true });
   };
 
   // Active notifications derived from realistic state
@@ -223,7 +223,7 @@ export const Topbar = ({ setIsOpen }) => {
                 </Link>
 
                 <Link
-                  to="/help"
+                  to="/support/tickets"
                   onClick={() => setShowUserMenu(false)}
                   className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 rounded-xl"
                 >

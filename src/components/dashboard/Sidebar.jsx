@@ -235,7 +235,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
             items: [
               { label: 'Referrals', path: '/borrower/referrals', icon: Share2, badge: '$1,750' },
               { label: 'Profile & Settings', path: '/borrower/settings', icon: Settings },
-              { label: 'Help Desk / Support', path: '/help', icon: LifeBuoy },
+              { label: 'Help Desk / Support', path: '/support/tickets', icon: LifeBuoy },
             ]
           }
         ];
@@ -250,6 +250,11 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
 
     // Exact match is always active
     if (current === target) return true;
+
+    // Help desk / support active check
+    if (target === '/support/tickets' && current.startsWith('/support')) {
+      return true;
+    }
 
     // Loan tracker active check (matches any /tracker path for Loan Tracker item)
     if (item.label === 'Loan Tracker' || target.endsWith('/tracker')) {
@@ -368,32 +373,38 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
           ))}
         </div>
 
-        {/* User Card & Public Website Link */}
+        {/* User Card & Profile Settings / Sign Out */}
         <div className="p-4 border-t border-slate-800 bg-[#0B1730]">
           <div className="flex items-center gap-3 p-2 rounded-xl bg-slate-900/60 border border-slate-800">
-            <img
-              src={currentUser.avatar}
-              alt={currentUser.name}
-              className="w-9 h-9 rounded-full object-cover border border-slate-700"
-            />
-            <div className="min-w-0 flex-1">
-              <div className="text-xs font-semibold text-white truncate">{currentUser.name}</div>
-              <div className="text-[10px] text-slate-400 truncate">{currentUser.company || currentUser.email}</div>
-            </div>
             <Link
-              to="/"
-              title="Visit Public Website"
+              to={`/${currentRole}/settings`}
+              className="flex items-center gap-3 min-w-0 flex-1 hover:opacity-90 transition-opacity"
+              title="View Profile & Settings"
+            >
+              <img
+                src={currentUser.avatar}
+                alt={currentUser.name}
+                className="w-9 h-9 rounded-full object-cover border border-slate-700 flex-shrink-0"
+              />
+              <div className="min-w-0 flex-1">
+                <div className="text-xs font-semibold text-white truncate">{currentUser.name}</div>
+                <div className="text-[10px] text-slate-400 truncate">{currentUser.company || currentUser.email}</div>
+              </div>
+            </Link>
+            <Link
+              to={`/${currentRole}/settings`}
+              title="Profile & Settings"
               className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
             >
-              <ExternalLink className="w-4 h-4" />
+              <Settings className="w-4 h-4" />
             </Link>
             <button
               onClick={() => {
                 logout();
-                navigate('/', { replace: true });
+                navigate('/auth/login', { replace: true });
               }}
               title="Sign Out"
-              className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors"
+              className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
             >
               <LogOut className="w-4 h-4" />
             </button>

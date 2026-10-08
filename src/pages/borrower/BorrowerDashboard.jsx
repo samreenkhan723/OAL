@@ -241,7 +241,7 @@ export const BorrowerDashboard = () => {
               Have questions regarding equipment invoices or prepayment terms?
             </p>
             <Link
-              to="/help"
+              to="/support/tickets"
               className="text-xs font-bold text-blue-600 hover:underline block pt-1"
             >
               Visit Help Desk & Knowledge Base &rarr;

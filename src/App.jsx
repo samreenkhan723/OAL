@@ -232,7 +232,7 @@ export function App() {
           <Route
             path="/support"
             element={
-              <ProtectedRoute allowedRoles={['support', 'admin', 'rep']}>
+              <ProtectedRoute allowedRoles={['support', 'admin', 'rep', 'borrower', 'lender']}>
                 <DashboardLayout />
               </ProtectedRoute>
             }

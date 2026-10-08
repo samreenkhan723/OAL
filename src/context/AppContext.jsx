@@ -481,9 +481,29 @@ export const AppProvider = ({ children }) => {
 
   // 6. Upload / Update Document
   const uploadDocument = (docData) => {
+    if (docData.replaceDocId) {
+      setDocuments(prev => prev.map(d => {
+        if (d.id === docData.replaceDocId) {
+          return {
+            ...d,
+            title: docData.title || d.title,
+            category: docData.category || d.category,
+            fileName: docData.fileName || d.fileName,
+            fileSize: docData.fileSize || d.fileSize,
+            status: 'IN_REVIEW',
+            reviewerNotes: null,
+            uploadedAt: new Date().toISOString()
+          };
+        }
+        return d;
+      }));
+      addToast('Document Replaced', `${docData.title} re-submitted for underwriting review.`, 'success');
+      return;
+    }
+
     const newDoc = {
       id: `DOC-${Date.now()}`,
-      applicationId: docData.applicationId,
+      applicationId: docData.applicationId || 'APP-2026-1082',
       borrowerId: currentUser.id,
       title: docData.title,
       category: docData.category || 'General Documents',
