@@ -71,7 +71,7 @@ export const LoanProgramDetailPage = () => {
 
           <div className="pt-6">
             <Link
-              to={`/borrower/applications/new?program=${program.id}`}
+              to={`/apply?program=${program.id}`}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-bold shadow-lg shadow-blue-600/30 transition-all hover:scale-105"
             >
               <span>Apply for {program.title}</span>

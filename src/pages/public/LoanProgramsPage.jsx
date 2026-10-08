@@ -104,7 +104,7 @@ export const LoanProgramsPage = () => {
               </Link>
 
               <Link
-                to={`/borrower/applications/new?program=${prog.id}`}
+                to={`/apply?program=${prog.id}`}
                 className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-md shadow-blue-600/20 transition-all"
               >
                 Apply Now
