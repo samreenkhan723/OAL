@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
 import { LOAN_PROGRAMS } from '../../data/loanPrograms';
-import { VerifyBadge } from './VerifyBadge';
 
 export const Footer = () => {
   return (
@@ -75,9 +74,8 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/investment-club" className="hover:text-white transition-colors flex items-center gap-1">
-                  <span>Investment Club</span>
-                  <VerifyBadge className="text-[9px] px-1 py-0" />
+                <Link to="/investment-club" className="hover:text-white transition-colors">
+                  Investment Club
                 </Link>
               </li>
               <li>

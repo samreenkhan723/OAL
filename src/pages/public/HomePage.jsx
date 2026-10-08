@@ -17,7 +17,6 @@ import {
   Building2,
   PhoneCall
 } from 'lucide-react';
-import { VerifyBadge } from '../../components/common/VerifyBadge';
 
 export const HomePage = () => {
   return (
@@ -314,7 +313,6 @@ export const HomePage = () => {
               <span className="text-xs font-bold text-amber-900 uppercase tracking-wider">
                 Investment Club Classification
               </span>
-              <VerifyBadge note="Client confirmation pending for overlapping score ranges (59+) and gap (165-174)" />
             </div>
             <h3 className="text-lg font-bold text-slate-900">
               VIP Diamond Club & Money Club Tiers
