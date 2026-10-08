@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { ShieldCheck, User, Mail, Phone, Lock, Building } from 'lucide-react';
+import { ShieldCheck, User, Mail, Phone, Lock, Building, ArrowLeft } from 'lucide-react';
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
@@ -27,7 +27,19 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative">
+      {/* Back to Landing Page Button */}
+      <div className="absolute top-5 left-5 sm:top-8 sm:left-8">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-blue-600 bg-white hover:bg-slate-50 border border-slate-200 shadow-xs hover:shadow-sm transition-all group"
+          title="Back to Landing Page"
+        >
+          <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5 text-slate-500 group-hover:text-blue-600" />
+          <span>Back to</span>
+        </Link>
+      </div>
+
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-2">
         <Link to="/" className="inline-flex items-center gap-2.5">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0B1730] to-[#172B4D] flex items-center justify-center text-white shadow-md">

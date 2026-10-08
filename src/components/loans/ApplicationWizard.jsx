@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { LOAN_PROGRAMS } from '../../data/loanPrograms';
 import {
@@ -20,35 +20,167 @@ import {
 } from 'lucide-react';
 import { VerifyBadge } from '../common/VerifyBadge';
 
+const PROGRAM_DEFAULTS = {
+  restaurant: {
+    businessName: 'Coastal Catch Seafood Grill LLC',
+    dbaName: 'Coastal Catch Bar & Grill',
+    taxId: 'XX-XXX4912',
+    businessAddress: '142 Harbor Point Way, Portland, ME 04101',
+    businessPhone: '+1 (555) 782-3341',
+    businessEmail: 'marcus@coastalcatchgrill.com',
+    applicantTitle: 'Managing Partner & Executive Chef',
+    ownershipPercentage: 85,
+    amount: 450000,
+    loanPurpose: 'Kitchen equipment modernization and expanding waterfront dining deck by 40 seats.',
+    useOfFunds: 'Purchase commercial combi ovens, refrigeration walk-in, and expand covered patio capacity.',
+    collateralType: 'Commercial Kitchen Equipment & Fixtures',
+    collateralValue: 240000,
+  },
+  'food-truck': {
+    businessName: 'Urban Smoke & Taco Wheels LLC',
+    dbaName: 'Smokey Taco Mobile Kitchen',
+    taxId: 'XX-XXX6821',
+    businessAddress: '780 Food Truck Plaza, Austin, TX 78701',
+    businessPhone: '+1 (555) 432-8819',
+    businessEmail: 'contact@urbansmoketruck.com',
+    applicantTitle: 'Owner & Head Operator',
+    ownershipPercentage: 100,
+    amount: 175000,
+    loanPurpose: 'Custom food truck purchase, commercial ventilation hoods, and onboard generator system.',
+    useOfFunds: 'Commercial chassis outfitting, fire suppression, prep equipment, and initial commissary inventory.',
+    collateralType: 'Custom Step-Van Mobile Food Vehicle & Appliances',
+    collateralValue: 160000,
+  },
+  franchise: {
+    businessName: 'Apex Fitness Holdings LLC',
+    dbaName: 'Anytime Fitness Northside',
+    taxId: 'XX-XXX9144',
+    businessAddress: '420 Metro Blvd Suite 100, Denver, CO 80202',
+    businessPhone: '+1 (555) 891-2244',
+    businessEmail: 'admin@apexfitnessholdings.com',
+    applicantTitle: 'Franchise Principal',
+    ownershipPercentage: 75,
+    amount: 850000,
+    loanPurpose: 'Franchise territory license fees and full commercial turn-key store buildout.',
+    useOfFunds: 'Initial franchise fee, interior buildout, corporate approved cardio strength gear, and signage.',
+    collateralType: 'Franchise Equipment Package, Leasehold Improvements & FF&E',
+    collateralValue: 550000,
+  },
+  dental: {
+    businessName: 'Apex Family Dentistry PC',
+    dbaName: 'Apex Modern Dental Clinic',
+    taxId: 'XX-XXX3382',
+    businessAddress: '310 Medical Center Dr Suite 400, Chicago, IL 60611',
+    businessPhone: '+1 (555) 671-9921',
+    businessEmail: 'dr.chen@apexfamilydental.com',
+    applicantTitle: 'Lead Practitioner & Partner',
+    ownershipPercentage: 90,
+    amount: 950000,
+    loanPurpose: '3D CBCT digital imaging upgrade and adding two high-capacity operatory suites.',
+    useOfFunds: 'Planmeca 3D CBCT scanner, ergonomic operatory chairs, sterilization center, and cabinetry.',
+    collateralType: 'Digital Dental CBCT Imaging Suite & Operatory Suites',
+    collateralValue: 650000,
+  },
+  'freight-trucking': {
+    businessName: 'TransContinental Logistics LLC',
+    dbaName: 'TC Freight Express',
+    taxId: 'XX-XXX5519',
+    businessAddress: '900 Logistics Way, Dallas, TX 75201',
+    businessPhone: '+1 (555) 841-3310',
+    businessEmail: 'dispatch@tcfeightexpress.com',
+    applicantTitle: 'Fleet Director',
+    ownershipPercentage: 80,
+    amount: 650000,
+    loanPurpose: 'Purchase three Freightliner Cascadia commercial semi-trucks and 53ft reefer trailers.',
+    useOfFunds: 'Down payment on Class 8 tractors, Utility refrigerated trailers, and fuel expense reserves.',
+    collateralType: 'Class 8 Commercial Tractors & Utility Reefer Trailers',
+    collateralValue: 520000,
+  },
+  hospitality: {
+    businessName: 'Cascadia Hospitality Holdings LLC',
+    dbaName: 'Blue Harbor Boutique Inn',
+    taxId: 'XX-XXX7721',
+    businessAddress: '55 Ocean Promenade, Newport, RI 02840',
+    businessPhone: '+1 (555) 912-4400',
+    businessEmail: 'operations@cascadiahospitality.com',
+    applicantTitle: 'Managing Partner',
+    ownershipPercentage: 65,
+    amount: 2800000,
+    loanPurpose: 'Property PIP renovation and upgrading 32 boutique guest suites with luxury amenities.',
+    useOfFunds: 'Architectural PIP upgrades, smart HVAC replacement, pool terrace remodel, and room FF&E.',
+    collateralType: 'Commercial Hospitality Real Estate Deed of Trust & FF&E',
+    collateralValue: 3500000,
+  },
+  church: {
+    businessName: 'Grace Community Fellowship Inc',
+    dbaName: 'Grace Community Sanctuary',
+    taxId: 'XX-XXX1190',
+    businessAddress: '1200 Hope Valley Rd, Atlanta, GA 30303',
+    businessPhone: '+1 (555) 723-5590',
+    businessEmail: 'trustees@gracecommunity.org',
+    applicantTitle: 'Board President & Trustee',
+    ownershipPercentage: 100,
+    amount: 1200000,
+    loanPurpose: 'Sanctuary expansion by 300 seats and modern digital AV sound broadcast system.',
+    useOfFunds: 'Auditorium structural expansion, LED wall display, sound mixing console, and ADA access ramps.',
+    collateralType: 'House of Worship Real Estate & Facilities Campus',
+    collateralValue: 2800000,
+  },
+  'fix-and-flip': {
+    businessName: 'Pinnacle Capital Realty Partners LLC',
+    dbaName: 'Pinnacle Home Renovations',
+    taxId: 'XX-XXX8832',
+    businessAddress: '240 Real Estate Blvd Suite 3, Phoenix, AZ 85004',
+    businessPhone: '+1 (555) 345-9821',
+    businessEmail: 'investments@pinnaclerealtypartners.com',
+    applicantTitle: 'Managing Member',
+    ownershipPercentage: 100,
+    amount: 750000,
+    loanPurpose: 'Acquisition and complete interior rehab of distressed 6-unit multifamily property.',
+    useOfFunds: 'Property purchase settlement, electrical plumbing rewiring, luxury finishes, and contingency.',
+    collateralType: 'First Lien Mortgage on Subject Investment Real Property',
+    collateralValue: 1100000,
+  }
+};
+
 export const ApplicationWizard = () => {
   const { createApplication, addToast, currentUser } = useApp();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const programParam = searchParams.get('program');
 
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState(() => {
+    const matched = programParam
+      ? LOAN_PROGRAMS.find(p => p.id === programParam || p.slug === programParam)
+      : null;
+    const initialKey = matched?.id || 'restaurant';
+    const initialProg = matched || LOAN_PROGRAMS[0];
+    const defaults = PROGRAM_DEFAULTS[initialKey] || PROGRAM_DEFAULTS['restaurant'];
+
     const saved = localStorage.getItem('oal_draft_application');
-    if (saved) {
+    if (saved && !programParam) {
       try { return JSON.parse(saved); } catch (e) {}
     }
     return {
       // Step 1: Business & Borrower Identity
-      businessName: 'Coastal Catch Seafood Grill LLC',
-      dbaName: 'Coastal Catch Bar & Grill',
-      taxId: 'XX-XXX4912',
-      businessAddress: '142 Harbor Point Way, Portland, ME 04101',
-      businessPhone: '+1 (555) 782-3341',
-      businessEmail: 'marcus@coastalcatchgrill.com',
+      businessName: defaults.businessName,
+      dbaName: defaults.dbaName,
+      taxId: defaults.taxId,
+      businessAddress: defaults.businessAddress,
+      businessPhone: defaults.businessPhone,
+      businessEmail: defaults.businessEmail,
       applicantName: currentUser?.name || 'Marcus Vance',
-      applicantTitle: 'Managing Partner & Executive Chef',
-      ownershipPercentage: 85,
+      applicantTitle: defaults.applicantTitle,
+      ownershipPercentage: defaults.ownershipPercentage,
       applicantPhone: '+1 (555) 392-1084',
 
       // Step 2: Financing Request
-      loanType: 'restaurant',
-      programName: 'Restaurant Financing',
-      amount: 450000,
-      loanPurpose: 'Kitchen equipment modernization and expanding waterfront dining deck by 40 seats.', // <= 20 words
-      useOfFunds: 'Purchase commercial combi ovens, refrigeration walk-in, and expand covered patio capacity.',
+      loanType: initialProg.id,
+      programName: initialProg.title,
+      amount: defaults.amount,
+      loanPurpose: defaults.loanPurpose,
+      useOfFunds: defaults.useOfFunds,
 
       // Step 3: Business Plan & Financials
       annualRevenue: 1650000,
@@ -56,12 +188,12 @@ export const ApplicationWizard = () => {
       creditScore: 720,
       yearsInBusiness: 4.5,
       existingDebt: 45000,
-      businessSummary: 'Full-service fresh seafood dining operation with high customer loyalty, 4.5 years consistent profitability, and strong summer tourism volume.',
+      businessSummary: `Active ${initialProg.title.toLowerCase()} enterprise with consistent operational cash flow and verified trade experience.`,
 
       // Step 4: Collateral
       hasCollateral: true,
-      collateralType: 'Commercial Kitchen Equipment & Fixtures',
-      collateralValue: 240000,
+      collateralType: defaults.collateralType,
+      collateralValue: defaults.collateralValue,
       existingLiens: 20000,
 
       // Step 5: Documents
@@ -86,13 +218,36 @@ export const ApplicationWizard = () => {
   };
 
   const handleProgramSelect = (programId) => {
-    const prog = LOAN_PROGRAMS.find(p => p.id === programId);
+    const prog = LOAN_PROGRAMS.find(p => p.id === programId || p.slug === programId);
+    const defaults = PROGRAM_DEFAULTS[programId] || {};
     setFormData(prev => ({
       ...prev,
-      loanType: programId,
-      programName: prog?.title || 'Commercial Loan'
+      loanType: prog ? prog.id : programId,
+      programName: prog?.title || 'Commercial Loan',
+      amount: defaults.amount || prog?.minAmount || prev.amount,
+      loanPurpose: defaults.loanPurpose || prog?.eligiblePurposes?.[0] || prev.loanPurpose,
+      useOfFunds: defaults.useOfFunds || prev.useOfFunds,
+      collateralType: defaults.collateralType || prev.collateralType,
+      collateralValue: defaults.collateralValue || prev.collateralValue,
+      businessName: defaults.businessName || prev.businessName,
+      dbaName: defaults.dbaName || prev.dbaName,
+      taxId: defaults.taxId || prev.taxId,
+      businessAddress: defaults.businessAddress || prev.businessAddress,
+      businessPhone: defaults.businessPhone || prev.businessPhone,
+      businessEmail: defaults.businessEmail || prev.businessEmail,
+      applicantTitle: defaults.applicantTitle || prev.applicantTitle,
+      ownershipPercentage: defaults.ownershipPercentage ?? prev.ownershipPercentage
     }));
   };
+
+  useEffect(() => {
+    if (programParam) {
+      const prog = LOAN_PROGRAMS.find(p => p.id === programParam || p.slug === programParam);
+      if (prog) {
+        handleProgramSelect(prog.id);
+      }
+    }
+  }, [programParam]);
 
   const handleSaveDraft = () => {
     localStorage.setItem('oal_draft_application', JSON.stringify(formData));
@@ -172,10 +327,12 @@ export const ApplicationWizard = () => {
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 uppercase tracking-wider">
                 Application Intake
               </span>
-              <span className="text-xs text-slate-300">Form Wizard v2.4</span>
+              <span className="text-xs text-slate-300 font-medium">
+                {formData.programName || 'Commercial Loan'}
+              </span>
             </div>
             <h2 className="text-xl font-heading font-bold text-white mt-2">
-              Commercial Loan Application
+              Commercial Loan Application &mdash; {formData.programName}
             </h2>
             <p className="text-xs text-slate-300 mt-0.5">
               Step {currentStep} of 6: {stepTitles[currentStep - 1].label}
@@ -228,6 +385,34 @@ export const ApplicationWizard = () => {
 
       {/* Wizard Body Form */}
       <div className="p-6 sm:p-8">
+        {/* Active Loan Program Banner */}
+        <div className="mb-6 p-4 rounded-xl bg-blue-50/90 border border-blue-200/90 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-sm">
+              <ShieldCheck className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-bold text-slate-900">{formData.programName}</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200">
+                  Target Program
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 mt-0.5">
+                Intake criteria, underwriting parameters, and document requirements are configured for this program.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => setCurrentStep(2)}
+            className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 self-start sm:self-auto shrink-0"
+          >
+            <span>Change Program</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
         {/* STEP 1: BUSINESS & BORROWER IDENTITY */}
         {currentStep === 1 && (
           <div className="space-y-6">
