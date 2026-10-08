@@ -41,8 +41,8 @@ export const RegisterPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
-      {/* LEFT COLUMN: Visual Brand Showcase with High-End Imagery */}
-      <div className="relative hidden md:flex md:w-5/12 lg:w-1/2 xl:w-5/12 bg-[#0B1730] flex-col justify-between p-8 lg:p-10 xl:p-14 text-white overflow-hidden shrink-0">
+      {/* LEFT COLUMN: Visual Brand Showcase with High-End Imagery (Balanced 50%) */}
+      <div className="relative hidden md:flex md:w-1/2 bg-[#0B1730] flex-col justify-between p-8 lg:p-12 xl:p-16 text-white overflow-hidden shrink-0">
         {/* Background Image with Cinematic Overlay */}
         <div className="absolute inset-0 z-0">
           <img
@@ -131,10 +131,10 @@ export const RegisterPage = () => {
         </div>
       </div>
 
-      {/* RIGHT COLUMN: The Sign Up Form */}
-      <div className="flex-1 flex flex-col justify-between p-6 sm:p-10 lg:p-12 xl:p-16 relative overflow-y-auto">
+      {/* RIGHT COLUMN: The Sign Up Form (Balanced 50%) */}
+      <div className="w-full md:w-1/2 flex flex-col justify-between p-6 sm:p-8 lg:p-10 relative overflow-y-auto">
         {/* Top bar with Back button */}
-        <div className="flex items-center justify-between w-full max-w-xl mx-auto mb-6">
+        <div className="flex items-center justify-between w-full max-w-md mx-auto mb-4">
           <Link
             to="/"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-blue-600 bg-white hover:bg-slate-50 border border-slate-200 shadow-2xs hover:shadow-xs transition-all group"
@@ -158,7 +158,7 @@ export const RegisterPage = () => {
         </div>
 
         {/* Mobile Header Banner with Image (Visible on mobile screens < md) */}
-        <div className="md:hidden w-full max-w-xl mx-auto mb-4 rounded-2xl overflow-hidden relative shadow-md">
+        <div className="md:hidden w-full max-w-md mx-auto mb-4 rounded-2xl overflow-hidden relative shadow-md">
           <div className="relative h-36 w-full">
             <img
               src="/signup_hero.jpg"
@@ -181,25 +181,25 @@ export const RegisterPage = () => {
         </div>
 
         {/* Center Form Card */}
-        <div className="w-full max-w-xl mx-auto my-auto">
-          <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xl p-6 sm:p-8 space-y-6">
+        <div className="w-full max-w-md mx-auto my-auto">
+          <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xl p-6 sm:p-7 space-y-5">
             <div>
-              <h2 className="text-2xl font-heading font-extrabold text-slate-900">
+              <h2 className="text-xl sm:text-2xl font-heading font-extrabold text-slate-900">
                 Create an Account
               </h2>
-              <p className="text-xs text-slate-500 mt-1">
+              <p className="text-xs text-slate-500 mt-0.5">
                 Select your account type to access the commercial debt exchange.
               </p>
             </div>
 
             {/* Role selector tabs */}
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-2">Select Account Role</label>
-              <div className="grid grid-cols-2 gap-3">
+              <label className="block text-xs font-bold text-slate-700 mb-1.5">Select Account Role</label>
+              <div className="grid grid-cols-2 gap-2.5">
                 <button
                   type="button"
                   onClick={() => setForm({ ...form, role: 'borrower' })}
-                  className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                  className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                     form.role === 'borrower'
                       ? 'border-blue-600 bg-blue-50/80 ring-2 ring-blue-500/20'
                       : 'border-slate-200 hover:border-slate-300 bg-white'
@@ -212,7 +212,7 @@ export const RegisterPage = () => {
                 <button
                   type="button"
                   onClick={() => setForm({ ...form, role: 'lender' })}
-                  className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                  className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                     form.role === 'lender'
                       ? 'border-purple-600 bg-purple-50/80 ring-2 ring-purple-500/20'
                       : 'border-slate-200 hover:border-slate-300 bg-white'
@@ -222,8 +222,8 @@ export const RegisterPage = () => {
                   <div className="text-[10px] text-slate-500 mt-0.5">Discover deals & issue offers</div>
                 </button>
               </div>
-              <p className="text-[10px] text-slate-400 mt-1.5">
-                *Admins and OAL Representatives are provisioned via enterprise invitation.
+              <p className="text-[10px] text-slate-400 mt-1">
+                *Admins & Reps are provisioned via enterprise invitation.
               </p>
             </div>
 
@@ -335,7 +335,7 @@ export const RegisterPage = () => {
         </div>
 
         {/* Footer info */}
-        <div className="w-full max-w-xl mx-auto mt-6 text-center text-[11px] text-slate-400">
+        <div className="w-full max-w-md mx-auto mt-6 text-center text-[11px] text-slate-400">
           256-Bit TLS Encryption &bull; SOC2 Certified Infrastructure &bull; OAL Network
         </div>
       </div>
