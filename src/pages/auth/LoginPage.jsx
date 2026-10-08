@@ -194,15 +194,16 @@ export const LoginPage = () => {
               <span className="text-[10px] text-slate-500 font-mono">Password: Password123!</span>
             </div>
 
-            <div className="grid grid-cols-5 gap-1.5">
-              {demoAccounts.map((acc) => {
+            <div className="grid grid-cols-6 gap-1.5">
+              {demoAccounts.map((acc, idx) => {
                 const isSelected = selectedDemoEmail === acc.email;
+                const colSpanClass = idx < 3 ? 'col-span-2' : 'col-span-3';
                 return (
                   <button
                     key={acc.role}
                     type="button"
                     onClick={() => handleSelectDemoAccount(acc)}
-                    className={`py-1.5 px-1 rounded-lg text-[11px] font-bold text-center transition-all border ${
+                    className={`${colSpanClass} py-2 px-2.5 rounded-lg text-xs font-semibold text-center transition-all border cursor-pointer ${
                       isSelected
                         ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
                         : 'bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-700 border-slate-200 shadow-2xs'

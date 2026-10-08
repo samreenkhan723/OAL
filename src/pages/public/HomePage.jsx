@@ -177,7 +177,7 @@ export const HomePage = () => {
           {LOAN_PROGRAMS.map((prog) => (
             <Link
               key={prog.id}
-              to={`/loan-programs/${prog.slug}`}
+              to={`/borrower/applications/new?program=${prog.id}`}
               className="group bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs hover:shadow-xl hover:border-blue-400/80 transition-all flex flex-col justify-between"
             >
               <div>
