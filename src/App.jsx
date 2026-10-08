@@ -32,6 +32,7 @@ import { BorrowerOffersPage } from './pages/borrower/BorrowerOffersPage';
 import { BorrowerMessagesPage } from './pages/borrower/BorrowerMessagesPage';
 import { BorrowerReferralsPage } from './pages/borrower/BorrowerReferralsPage';
 import { BorrowerSettingsPage } from './pages/borrower/BorrowerSettingsPage';
+import { NotificationsPage } from './pages/common/NotificationsPage';
 
 // Lender Pages
 import { LenderDashboard } from './pages/lender/LenderDashboard';
@@ -126,7 +127,7 @@ export function App() {
             <Route path="investment-iq" element={<BorrowerInvestmentIQPage />} />
             <Route path="offers" element={<BorrowerOffersPage />} />
             <Route path="messages" element={<BorrowerMessagesPage />} />
-            <Route path="notifications" element={<BorrowerDashboard />} />
+            <Route path="notifications" element={<NotificationsPage />} />
             <Route path="referrals" element={<BorrowerReferralsPage />} />
             <Route path="settings" element={<BorrowerSettingsPage />} />
           </Route>
@@ -145,7 +146,7 @@ export function App() {
             <Route path="working-deals" element={<LenderWorkingDealsPage />} />
             <Route path="offers" element={<LenderOfferManagementPage />} />
             <Route path="messages" element={<LenderMessagesPage />} />
-            <Route path="notifications" element={<LenderDashboard />} />
+            <Route path="notifications" element={<NotificationsPage />} />
             <Route path="analytics" element={<LenderAnalyticsPage />} />
             <Route path="reports" element={<LenderReportsPage />} />
             <Route path="billing" element={<LenderBillingPage />} />
@@ -163,6 +164,7 @@ export function App() {
             <Route path="saved-leads" element={<RepSavedLeadsPage />} />
             <Route path="messages" element={<RepCommunicationPage />} />
             <Route path="offers" element={<RepOffersPage />} />
+            <Route path="notifications" element={<NotificationsPage />} />
             <Route path="analytics" element={<RepAnalyticsPage />} />
             <Route path="reports" element={<RepReportsPage />} />
             <Route path="billing" element={<RepBillingPage />} />
@@ -191,6 +193,7 @@ export function App() {
             <Route path="cms" element={<AdminCmsPage />} />
             <Route path="reports" element={<AdminReportsPage />} />
             <Route path="support" element={<HelpDeskTicketsPage />} />
+            <Route path="notifications" element={<NotificationsPage />} />
             <Route path="audit-logs" element={<AdminAuditLogsPage />} />
             <Route path="settings" element={<AdminSettingsPage />} />
             <Route path="super-admin" element={<AdminSuperAdminPage />} />

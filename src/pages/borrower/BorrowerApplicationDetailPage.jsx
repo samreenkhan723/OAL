@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import {
   FileText,
@@ -24,8 +23,11 @@ import { OfferComparison } from '../../components/loans/OfferComparison';
 
 export const BorrowerApplicationDetailPage = () => {
   const { id } = useParams();
+  const location = useLocation();
   const { applications, offers, documents } = useApp();
-  const [activeTab, setActiveTab] = useState('overview');
+  
+  const isTrackerRoute = location.pathname.endsWith('/tracker');
+  const [activeTab, setActiveTab] = useState(isTrackerRoute ? 'tracker' : 'overview');
 
   const app = applications.find(a => a.id === id) || applications[0];
   const appOffers = offers.filter(o => o.applicationId === app?.id);
