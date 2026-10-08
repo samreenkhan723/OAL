@@ -193,14 +193,6 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
               { label: 'Knowledge Base', path: '/support/knowledge-base', icon: BookOpen },
               { label: 'Support Analytics', path: '/support/analytics', icon: TrendingUp },
             ]
-          },
-          {
-            title: 'Quick Cross-Links',
-            items: [
-              { label: 'Borrower View', path: '/borrower/dashboard', icon: Users },
-              { label: 'Admin View', path: '/admin/dashboard', icon: ShieldCheck },
-              { label: 'Public Portal', path: '/', icon: Globe },
-            ]
           }
         ];
 
