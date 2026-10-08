@@ -132,7 +132,7 @@ export const Topbar = ({ setIsOpen }) => {
           </button>
 
           {showNotifications && (
-            <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-2xl shadow-xl border border-slate-200 p-4 z-50">
+            <div className="absolute right-0 mt-2 w-[calc(100vw-2rem)] sm:w-96 max-w-sm bg-white rounded-2xl shadow-xl border border-slate-200 p-4 z-50">
               <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div className="flex items-center gap-2">
                   <h4 className="text-sm font-bold text-slate-900">Notifications</h4>
@@ -190,7 +190,7 @@ export const Topbar = ({ setIsOpen }) => {
           </button>
 
           {showUserMenu && (
-            <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-200 p-2 z-50">
+            <div className="absolute right-0 mt-2 w-64 max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-xl border border-slate-200 p-2 z-50">
               <div className="p-3 border-b border-slate-100">
                 <div className="text-xs font-bold text-slate-900">{currentUser.name}</div>
                 <div className="text-[11px] text-slate-500 truncate">{currentUser.email}</div>

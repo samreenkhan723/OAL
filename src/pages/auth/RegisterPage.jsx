@@ -1,5 +1,7 @@
+import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
+import { LOAN_PROGRAMS } from '../../data/loanPrograms';
 import { ShieldCheck, User, Mail, Phone, Lock, Building, ArrowLeft } from 'lucide-react';
 
 export const RegisterPage = () => {
@@ -8,6 +10,11 @@ export const RegisterPage = () => {
   const { switchRole, addToast } = useApp();
 
   const fromLocation = location.state?.from;
+  const searchParams = new URLSearchParams(location.search);
+  const programSlug = location.state?.program || searchParams.get('program');
+  const programTitle =
+    location.state?.programTitle ||
+    LOAN_PROGRAMS.find((p) => p.id === programSlug || p.slug === programSlug)?.title;
 
   const [form, setForm] = useState({
     role: 'borrower',
@@ -23,7 +30,18 @@ export const RegisterPage = () => {
     e.preventDefault();
     switchRole(form.role);
     addToast('Account Created', 'Please verify your email and phone to complete onboarding.', 'success');
-    navigate('/auth/verify', { state: { from: fromLocation } });
+
+    const targetDestination =
+      fromLocation ||
+      (programSlug ? { pathname: '/borrower/applications/new', search: `?program=${programSlug}` } : null);
+
+    navigate('/auth/verify', {
+      state: {
+        from: targetDestination,
+        program: programSlug,
+        programTitle
+      }
+    });
   };
 
   return (
@@ -59,7 +77,21 @@ export const RegisterPage = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-lg px-4">
         <div className="bg-white py-8 px-6 shadow-xl rounded-2xl border border-slate-200/90 sm:px-8 space-y-5">
-          
+          {/* Selected Program Announcement Banner */}
+          {programSlug && (
+            <div className="p-3.5 rounded-xl bg-blue-50 border border-blue-200 flex items-start gap-2.5 text-xs text-blue-900">
+              <ShieldCheck className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <strong className="font-bold block text-blue-950">
+                  Applying for {programTitle || programSlug}
+                </strong>
+                <span className="text-blue-800">
+                  Complete registration and mock verification below to open your 6-step application wizard with this loan program pre-selected.
+                </span>
+              </div>
+            </div>
+          )}
+
           {/* Role selector tabs */}
           <div>
             <label className="block text-xs font-bold text-slate-700 mb-2">Select Account Role</label>
@@ -183,7 +215,11 @@ export const RegisterPage = () => {
 
           <div className="text-center text-xs text-slate-500 pt-2">
             Already registered?{' '}
-            <Link to="/auth/login" className="font-bold text-blue-600 hover:underline">
+            <Link
+              to="/auth/login"
+              state={{ from: fromLocation, program: programSlug, programTitle }}
+              className="font-bold text-blue-600 hover:underline"
+            >
               Sign In
             </Link>
           </div>

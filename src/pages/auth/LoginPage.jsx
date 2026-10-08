@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
+import { LOAN_PROGRAMS } from '../../data/loanPrograms';
 import {
   ShieldCheck,
   Lock,
@@ -22,6 +23,11 @@ export const LoginPage = () => {
 
   // Destination intended before redirect
   const fromLocation = location.state?.from;
+  const searchParams = new URLSearchParams(location.search);
+  const programSlug = location.state?.program || searchParams.get('program');
+  const programTitle =
+    location.state?.programTitle ||
+    LOAN_PROGRAMS.find((p) => p.id === programSlug || p.slug === programSlug)?.title;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -100,11 +106,21 @@ export const LoginPage = () => {
 
         // Redirect logic preserving intended destination
         if (userRole === 'borrower') {
-          if (fromLocation && fromLocation.pathname.startsWith('/borrower')) {
-            navigate(fromLocation.pathname + (fromLocation.search || ''), { replace: true });
-          } else {
-            navigate('/borrower/dashboard', { replace: true });
+          let dest = '/borrower/dashboard';
+
+          if (typeof fromLocation === 'string' && fromLocation.startsWith('/borrower')) {
+            dest = fromLocation;
+          } else if (fromLocation?.pathname && fromLocation.pathname.startsWith('/borrower')) {
+            dest = fromLocation.pathname + (fromLocation.search || '');
+          } else if (programSlug) {
+            dest = `/borrower/applications/new?program=${programSlug}`;
           }
+
+          if (programSlug && !dest.includes('program=')) {
+            dest += (dest.includes('?') ? '&' : '?') + `program=${programSlug}`;
+          }
+
+          navigate(dest, { replace: true });
         } else if (userRole === 'lender') {
           navigate('/lender/dashboard', { replace: true });
         } else if (userRole === 'rep') {
@@ -165,13 +181,28 @@ export const LoginPage = () => {
         {/* Main Card */}
         <div className="bg-white py-8 px-6 shadow-xl rounded-2xl border border-slate-200/90 sm:px-8 space-y-6">
           
+          {/* Selected Program Announcement Banner */}
+          {programSlug && (
+            <div className="p-3.5 rounded-xl bg-blue-50 border border-blue-200 flex items-start gap-2.5 text-xs text-blue-900">
+              <ShieldCheck className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <strong className="font-bold block text-blue-950">
+                  Applying for {programTitle || programSlug}
+                </strong>
+                <span className="text-blue-800">
+                  Sign in below to proceed directly into the 6-step application wizard with this loan program pre-selected.
+                </span>
+              </div>
+            </div>
+          )}
+
           {/* Notice when redirected from protected destination (e.g. Apply for a Loan) */}
-          {fromLocation && (
+          {fromLocation && !programSlug && (
             <div className="p-3.5 rounded-xl bg-blue-50 border border-blue-200 flex items-start gap-2.5 text-xs text-blue-900">
               <Info className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
                 <strong className="font-semibold block">Authentication Required</strong>
-                <span>Please sign in to proceed directly to your commercial loan application.</span>
+                <span>{location.state?.message || 'Please sign in to proceed directly to your commercial loan application.'}</span>
               </div>
             </div>
           )}
@@ -311,7 +342,7 @@ export const LoginPage = () => {
             Don't have an account yet?{' '}
             <Link
               to="/auth/register"
-              state={{ from: fromLocation }}
+              state={{ from: fromLocation, program: programSlug, programTitle }}
               className="font-bold text-blue-600 hover:text-blue-700 hover:underline"
             >
               Create an Account
@@ -329,7 +360,7 @@ export const LoginPage = () => {
       {/* Forgot Password Modal */}
       {showForgotModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-md w-full p-6 space-y-4">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-md w-full p-6 space-y-4 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">

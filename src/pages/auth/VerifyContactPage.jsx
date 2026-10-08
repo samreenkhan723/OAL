@@ -11,11 +11,13 @@ export const VerifyContactPage = () => {
   const [phoneCode, setPhoneCode] = useState('381944');
 
   const fromLocation = location.state?.from;
+  const program = location.state?.program;
+  const programTitle = location.state?.programTitle;
 
   const handleVerify = (e) => {
     e.preventDefault();
     addToast('Contact Verified', 'Email and phone successfully authenticated. Proceeding to MFA.', 'success');
-    navigate('/auth/mfa', { state: { from: fromLocation } });
+    navigate('/auth/mfa', { state: { from: fromLocation, program, programTitle } });
   };
 
   return (

@@ -65,7 +65,7 @@ export const MediatedChat = ({ applicationId = 'APP-2026-1082' }) => {
   return (
     <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden flex flex-col h-[520px]">
       {/* Header */}
-      <div className="p-4 bg-gradient-to-r from-[#0B1730] to-[#172B4D] text-white flex items-center justify-between">
+      <div className="p-4 bg-gradient-to-r from-[#0B1730] to-[#172B4D] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white">
             <MessageSquare className="w-5 h-5" />

@@ -20,129 +20,6 @@ import {
 } from 'lucide-react';
 import { VerifyBadge } from '../common/VerifyBadge';
 
-const PROGRAM_DEFAULTS = {
-  restaurant: {
-    businessName: 'Coastal Catch Seafood Grill LLC',
-    dbaName: 'Coastal Catch Bar & Grill',
-    taxId: 'XX-XXX4912',
-    businessAddress: '142 Harbor Point Way, Portland, ME 04101',
-    businessPhone: '+1 (555) 782-3341',
-    businessEmail: 'marcus@coastalcatchgrill.com',
-    applicantTitle: 'Managing Partner & Executive Chef',
-    ownershipPercentage: 85,
-    amount: 450000,
-    loanPurpose: 'Kitchen equipment modernization and expanding waterfront dining deck by 40 seats.',
-    useOfFunds: 'Purchase commercial combi ovens, refrigeration walk-in, and expand covered patio capacity.',
-    collateralType: 'Commercial Kitchen Equipment & Fixtures',
-    collateralValue: 240000,
-  },
-  'food-truck': {
-    businessName: 'Urban Smoke & Taco Wheels LLC',
-    dbaName: 'Smokey Taco Mobile Kitchen',
-    taxId: 'XX-XXX6821',
-    businessAddress: '780 Food Truck Plaza, Austin, TX 78701',
-    businessPhone: '+1 (555) 432-8819',
-    businessEmail: 'contact@urbansmoketruck.com',
-    applicantTitle: 'Owner & Head Operator',
-    ownershipPercentage: 100,
-    amount: 175000,
-    loanPurpose: 'Custom food truck purchase, commercial ventilation hoods, and onboard generator system.',
-    useOfFunds: 'Commercial chassis outfitting, fire suppression, prep equipment, and initial commissary inventory.',
-    collateralType: 'Custom Step-Van Mobile Food Vehicle & Appliances',
-    collateralValue: 160000,
-  },
-  franchise: {
-    businessName: 'Apex Fitness Holdings LLC',
-    dbaName: 'Anytime Fitness Northside',
-    taxId: 'XX-XXX9144',
-    businessAddress: '420 Metro Blvd Suite 100, Denver, CO 80202',
-    businessPhone: '+1 (555) 891-2244',
-    businessEmail: 'admin@apexfitnessholdings.com',
-    applicantTitle: 'Franchise Principal',
-    ownershipPercentage: 75,
-    amount: 850000,
-    loanPurpose: 'Franchise territory license fees and full commercial turn-key store buildout.',
-    useOfFunds: 'Initial franchise fee, interior buildout, corporate approved cardio strength gear, and signage.',
-    collateralType: 'Franchise Equipment Package, Leasehold Improvements & FF&E',
-    collateralValue: 550000,
-  },
-  dental: {
-    businessName: 'Apex Family Dentistry PC',
-    dbaName: 'Apex Modern Dental Clinic',
-    taxId: 'XX-XXX3382',
-    businessAddress: '310 Medical Center Dr Suite 400, Chicago, IL 60611',
-    businessPhone: '+1 (555) 671-9921',
-    businessEmail: 'dr.chen@apexfamilydental.com',
-    applicantTitle: 'Lead Practitioner & Partner',
-    ownershipPercentage: 90,
-    amount: 950000,
-    loanPurpose: '3D CBCT digital imaging upgrade and adding two high-capacity operatory suites.',
-    useOfFunds: 'Planmeca 3D CBCT scanner, ergonomic operatory chairs, sterilization center, and cabinetry.',
-    collateralType: 'Digital Dental CBCT Imaging Suite & Operatory Suites',
-    collateralValue: 650000,
-  },
-  'freight-trucking': {
-    businessName: 'TransContinental Logistics LLC',
-    dbaName: 'TC Freight Express',
-    taxId: 'XX-XXX5519',
-    businessAddress: '900 Logistics Way, Dallas, TX 75201',
-    businessPhone: '+1 (555) 841-3310',
-    businessEmail: 'dispatch@tcfeightexpress.com',
-    applicantTitle: 'Fleet Director',
-    ownershipPercentage: 80,
-    amount: 650000,
-    loanPurpose: 'Purchase three Freightliner Cascadia commercial semi-trucks and 53ft reefer trailers.',
-    useOfFunds: 'Down payment on Class 8 tractors, Utility refrigerated trailers, and fuel expense reserves.',
-    collateralType: 'Class 8 Commercial Tractors & Utility Reefer Trailers',
-    collateralValue: 520000,
-  },
-  hospitality: {
-    businessName: 'Cascadia Hospitality Holdings LLC',
-    dbaName: 'Blue Harbor Boutique Inn',
-    taxId: 'XX-XXX7721',
-    businessAddress: '55 Ocean Promenade, Newport, RI 02840',
-    businessPhone: '+1 (555) 912-4400',
-    businessEmail: 'operations@cascadiahospitality.com',
-    applicantTitle: 'Managing Partner',
-    ownershipPercentage: 65,
-    amount: 2800000,
-    loanPurpose: 'Property PIP renovation and upgrading 32 boutique guest suites with luxury amenities.',
-    useOfFunds: 'Architectural PIP upgrades, smart HVAC replacement, pool terrace remodel, and room FF&E.',
-    collateralType: 'Commercial Hospitality Real Estate Deed of Trust & FF&E',
-    collateralValue: 3500000,
-  },
-  church: {
-    businessName: 'Grace Community Fellowship Inc',
-    dbaName: 'Grace Community Sanctuary',
-    taxId: 'XX-XXX1190',
-    businessAddress: '1200 Hope Valley Rd, Atlanta, GA 30303',
-    businessPhone: '+1 (555) 723-5590',
-    businessEmail: 'trustees@gracecommunity.org',
-    applicantTitle: 'Board President & Trustee',
-    ownershipPercentage: 100,
-    amount: 1200000,
-    loanPurpose: 'Sanctuary expansion by 300 seats and modern digital AV sound broadcast system.',
-    useOfFunds: 'Auditorium structural expansion, LED wall display, sound mixing console, and ADA access ramps.',
-    collateralType: 'House of Worship Real Estate & Facilities Campus',
-    collateralValue: 2800000,
-  },
-  'fix-and-flip': {
-    businessName: 'Pinnacle Capital Realty Partners LLC',
-    dbaName: 'Pinnacle Home Renovations',
-    taxId: 'XX-XXX8832',
-    businessAddress: '240 Real Estate Blvd Suite 3, Phoenix, AZ 85004',
-    businessPhone: '+1 (555) 345-9821',
-    businessEmail: 'investments@pinnaclerealtypartners.com',
-    applicantTitle: 'Managing Member',
-    ownershipPercentage: 100,
-    amount: 750000,
-    loanPurpose: 'Acquisition and complete interior rehab of distressed 6-unit multifamily property.',
-    useOfFunds: 'Property purchase settlement, electrical plumbing rewiring, luxury finishes, and contingency.',
-    collateralType: 'First Lien Mortgage on Subject Investment Real Property',
-    collateralValue: 1100000,
-  }
-};
-
 export const ApplicationWizard = () => {
   const { createApplication, addToast, currentUser, isAuthenticated } = useApp();
   const navigate = useNavigate();
@@ -154,57 +31,56 @@ export const ApplicationWizard = () => {
     const matched = programParam
       ? LOAN_PROGRAMS.find(p => p.id === programParam || p.slug === programParam)
       : null;
-    const initialKey = matched?.id || 'restaurant';
     const initialProg = matched || LOAN_PROGRAMS[0];
-    const defaults = PROGRAM_DEFAULTS[initialKey] || PROGRAM_DEFAULTS['restaurant'];
 
     const saved = localStorage.getItem('oal_draft_application');
     if (saved && !programParam) {
       try { return JSON.parse(saved); } catch (e) {}
     }
-    return {
-      // Step 1: Business & Borrower Identity
-      businessName: defaults.businessName,
-      dbaName: defaults.dbaName,
-      taxId: defaults.taxId,
-      businessAddress: defaults.businessAddress,
-      businessPhone: defaults.businessPhone,
-      businessEmail: defaults.businessEmail,
-      applicantName: currentUser?.name || 'Marcus Vance',
-      applicantTitle: defaults.applicantTitle,
-      ownershipPercentage: defaults.ownershipPercentage,
-      applicantPhone: '+1 (555) 392-1084',
 
-      // Step 2: Financing Request
+    return {
+      // Step 1: Business & Borrower Identity (Clean authenticated borrower state without unrelated mock data)
+      businessName: currentUser?.company || '',
+      dbaName: '',
+      taxId: '',
+      businessAddress: '',
+      businessPhone: '',
+      businessEmail: currentUser?.email || '',
+      applicantName: currentUser?.name || '',
+      applicantTitle: 'Owner / Managing Principal',
+      ownershipPercentage: 100,
+      applicantPhone: '',
+
+      // Step 2: Financing Request (Derived from selected loan program)
       loanType: initialProg.id,
       programName: initialProg.title,
-      amount: defaults.amount,
-      loanPurpose: defaults.loanPurpose,
-      useOfFunds: defaults.useOfFunds,
+      amount: initialProg.minAmount || 150000,
+      loanPurpose: initialProg.eligiblePurposes?.[0] || 'Commercial operations and equipment acquisition.',
+      useOfFunds: '',
 
       // Step 3: Business Plan & Financials
-      annualRevenue: 1650000,
-      monthlyCashFlow: 35000,
-      creditScore: 720,
-      yearsInBusiness: 4.5,
-      existingDebt: 45000,
-      businessSummary: `Active ${initialProg.title.toLowerCase()} enterprise with consistent operational cash flow and verified trade experience.`,
+      annualRevenue: 750000,
+      monthlyCashFlow: 22000,
+      creditScore: 710,
+      yearsInBusiness: 3,
+      existingDebt: 0,
+      businessSummary: `Commercial enterprise applying for ${initialProg.title}.`,
 
       // Step 4: Collateral
-      hasCollateral: true,
-      collateralType: defaults.collateralType,
-      collateralValue: defaults.collateralValue,
-      existingLiens: 20000,
+      hasCollateral: false,
+      collateralType: '',
+      collateralValue: 0,
+      existingLiens: 0,
 
       // Step 5: Documents
-      uploadedBankStatements: true,
-      uploadedTaxReturns: true,
-      uploadedLease: true,
+      uploadedBankStatements: false,
+      uploadedTaxReturns: false,
+      uploadedLease: false,
 
       // Step 6: Review & Consent
-      agreeToCreditCheck: true,
-      certifyTruthful: true,
-      agreeToTerms: true
+      agreeToCreditCheck: false,
+      certifyTruthful: false,
+      agreeToTerms: false
     };
   });
 
@@ -217,26 +93,16 @@ export const ApplicationWizard = () => {
     }
   };
 
+  // Automatically select chosen loan program without touching borrower or business information
   const handleProgramSelect = (programId) => {
     const prog = LOAN_PROGRAMS.find(p => p.id === programId || p.slug === programId);
-    const defaults = PROGRAM_DEFAULTS[programId] || {};
+    if (!prog) return;
     setFormData(prev => ({
       ...prev,
-      loanType: prog ? prog.id : programId,
-      programName: prog?.title || 'Commercial Loan',
-      amount: defaults.amount || prog?.minAmount || prev.amount,
-      loanPurpose: defaults.loanPurpose || prog?.eligiblePurposes?.[0] || prev.loanPurpose,
-      useOfFunds: defaults.useOfFunds || prev.useOfFunds,
-      collateralType: defaults.collateralType || prev.collateralType,
-      collateralValue: defaults.collateralValue || prev.collateralValue,
-      businessName: defaults.businessName || prev.businessName,
-      dbaName: defaults.dbaName || prev.dbaName,
-      taxId: defaults.taxId || prev.taxId,
-      businessAddress: defaults.businessAddress || prev.businessAddress,
-      businessPhone: defaults.businessPhone || prev.businessPhone,
-      businessEmail: defaults.businessEmail || prev.businessEmail,
-      applicantTitle: defaults.applicantTitle || prev.applicantTitle,
-      ownershipPercentage: defaults.ownershipPercentage ?? prev.ownershipPercentage
+      loanType: prog.id,
+      programName: prog.title,
+      amount: prev.amount || prog.minAmount || 150000,
+      loanPurpose: prog.eligiblePurposes?.[0] || prev.loanPurpose
     }));
   };
 
@@ -857,12 +723,12 @@ export const ApplicationWizard = () => {
       </div>
 
       {/* Wizard Footer Nav Actions */}
-      <div className="p-6 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
         {currentStep > 1 ? (
           <button
             type="button"
             onClick={prevStep}
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-white transition-colors cursor-pointer"
+            className="w-full sm:w-auto justify-center inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-white transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Step {currentStep - 1}
@@ -871,18 +737,18 @@ export const ApplicationWizard = () => {
           <button
             type="button"
             onClick={() => navigate('/borrower/applications')}
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-500 hover:text-slate-800 hover:bg-white transition-colors cursor-pointer"
+            className="w-full sm:w-auto justify-center inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-500 hover:text-slate-800 hover:bg-white transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             Cancel Application
           </button>
         )}
 
-        <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 w-full sm:w-auto justify-end">
           <button
             type="button"
             onClick={handleSaveDraft}
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-white transition-colors cursor-pointer"
+            className="w-full sm:w-auto justify-center inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-white transition-colors cursor-pointer"
           >
             <Save className="w-3.5 h-3.5 text-[#D5B66A]" />
             Save Draft
@@ -892,7 +758,7 @@ export const ApplicationWizard = () => {
             <button
               type="button"
               onClick={nextStep}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-md shadow-blue-600/20 transition-all cursor-pointer"
+              className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-md shadow-blue-600/20 transition-all cursor-pointer"
             >
               <span>Continue to Step {currentStep + 1}</span>
               <ArrowRight className="w-4 h-4" />
@@ -901,7 +767,7 @@ export const ApplicationWizard = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 shadow-lg shadow-emerald-600/25 transition-all cursor-pointer"
+              className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-7 py-3 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 shadow-lg shadow-emerald-600/25 transition-all cursor-pointer"
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>Submit Loan Application</span>

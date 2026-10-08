@@ -6,10 +6,10 @@ import { NotificationToast } from '../components/common/NotificationToast';
 
 export const PublicLayout = () => {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col text-[#0F172A]">
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col text-[#0F172A] relative overflow-x-hidden">
       <Navbar />
       
-      <main className="flex-1">
+      <main className="flex-1 min-w-0">
         <Outlet />
       </main>
 

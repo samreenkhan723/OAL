@@ -10,6 +10,7 @@ export const MfaPage = () => {
   const [mfaCode, setMfaCode] = useState('829104');
 
   const fromLocation = location.state?.from;
+  const program = location.state?.program;
 
   const handleMfaSubmit = (e) => {
     e.preventDefault();
@@ -17,11 +18,20 @@ export const MfaPage = () => {
     addToast('Authentication Complete', 'MFA verified. Welcome to your OAL Network dashboard.', 'success');
     
     if (currentRole === 'borrower') {
-      if (fromLocation && fromLocation.pathname.startsWith('/borrower')) {
-        navigate(fromLocation.pathname + (fromLocation.search || ''), { replace: true });
-      } else {
-        navigate('/borrower/dashboard', { replace: true });
+      let dest = '/borrower/dashboard';
+      if (typeof fromLocation === 'string' && fromLocation.startsWith('/borrower')) {
+        dest = fromLocation;
+      } else if (fromLocation?.pathname && fromLocation.pathname.startsWith('/borrower')) {
+        dest = fromLocation.pathname + (fromLocation.search || '');
+      } else if (program) {
+        dest = `/borrower/applications/new?program=${program}`;
       }
+
+      if (program && !dest.includes('program=')) {
+        dest += (dest.includes('?') ? '&' : '?') + `program=${program}`;
+      }
+
+      navigate(dest, { replace: true });
     } else if (currentRole === 'lender') {
       navigate('/lender/dashboard', { replace: true });
     } else if (currentRole === 'rep') {
@@ -67,7 +77,7 @@ export const MfaPage = () => {
               type="submit"
               className="w-full py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-1.5"
             >
-              <span>Verify & Launch Dashboard</span>
+              <span>{program ? 'Verify & Begin Loan Application' : 'Verify & Launch Dashboard'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
