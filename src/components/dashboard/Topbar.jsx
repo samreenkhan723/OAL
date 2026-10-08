@@ -119,14 +119,6 @@ export const Topbar = ({ setIsOpen }) => {
           </Link>
         )}
 
-        {/* Public Website Link */}
-        <Link
-          to="/"
-          className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-50 border border-slate-200 rounded-xl transition-colors"
-        >
-          <span>Public Site</span>
-          <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
-        </Link>
 
         {/* Notifications Dropdown */}
         <div className="relative">
