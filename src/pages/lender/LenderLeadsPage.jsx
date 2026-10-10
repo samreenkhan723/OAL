@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { Search, Filter, Briefcase, Award, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Search, Filter, Briefcase, Award, ShieldCheck, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { LOAN_PROGRAMS } from '../../data/loanPrograms';
 import { StatusBadge } from '../../components/common/StatusBadge';
 
@@ -10,6 +10,8 @@ export const LenderLeadsPage = () => {
   const [search, setSearch] = useState('');
   const [programFilter, setProgramFilter] = useState('ALL');
   const [minIQ, setMinIQ] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   const filteredLeads = applications.filter(app => {
     const matchesSearch = app.id.toLowerCase().includes(search.toLowerCase()) ||
@@ -19,6 +21,24 @@ export const LenderLeadsPage = () => {
     const matchesIQ = !minIQ || (app.investmentIQ?.total || 0) >= Number(minIQ);
     return matchesSearch && matchesProg && matchesIQ;
   });
+
+  const totalPages = Math.ceil(filteredLeads.length / itemsPerPage) || 1;
+  const paginatedLeads = filteredLeads.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleProgramChange = (e) => {
+    setProgramFilter(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleIQChange = (e) => {
+    setMinIQ(e.target.value);
+    setCurrentPage(1);
+  };
 
   return (
     <div className="space-y-6">
@@ -42,7 +62,7 @@ export const LenderLeadsPage = () => {
             type="text"
             placeholder="Search leads by ID or industry..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={handleSearchChange}
             className="w-full pl-10 pr-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
           />
         </div>
@@ -50,7 +70,7 @@ export const LenderLeadsPage = () => {
         <div>
           <select
             value={programFilter}
-            onChange={(e) => setProgramFilter(e.target.value)}
+            onChange={handleProgramChange}
             className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
           >
             <option value="ALL">All Commercial Programs (8)</option>
@@ -63,7 +83,7 @@ export const LenderLeadsPage = () => {
         <div>
           <select
             value={minIQ}
-            onChange={(e) => setMinIQ(e.target.value)}
+            onChange={handleIQChange}
             className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
           >
             <option value={0}>Any Investment IQ Score</option>
@@ -76,14 +96,14 @@ export const LenderLeadsPage = () => {
       {/* Leads Table */}
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-500">
-          <span>Displaying {filteredLeads.length} Qualified Commercial Applications</span>
+          <span>Displaying {paginatedLeads.length} of {filteredLeads.length} Qualified Commercial Applications</span>
           <span className="text-[11px] text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-200">
             Rule FR-08 (Max 3 claims per deal)
           </span>
         </div>
 
         <div className="divide-y divide-slate-100">
-          {filteredLeads.map((lead) => {
+          {paginatedLeads.map((lead) => {
             const claimsCount = lead.workingDeals?.claimedLendersCount || 0;
             const isFull = claimsCount >= 3;
             const userHasClaimed = lead.workingDeals?.claims?.some(c => c.lenderId === currentUser.id);
@@ -150,6 +170,35 @@ export const LenderLeadsPage = () => {
             );
           })}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="p-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs bg-slate-50/50">
+            <span className="text-slate-500">
+              Page <strong className="text-slate-800">{currentPage}</strong> of <strong className="text-slate-800">{totalPages}</strong>
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 transition-colors cursor-pointer"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+                <span>Previous</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 transition-colors cursor-pointer"
+              >
+                <span>Next</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

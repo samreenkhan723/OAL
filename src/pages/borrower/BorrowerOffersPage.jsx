@@ -10,7 +10,7 @@ export const BorrowerOffersPage = () => {
   
   // Borrower's applications
   const myApps = applications.filter(a => a.borrowerId === currentUser.id);
-  const displayApps = myApps.length > 0 ? myApps : applications;
+  const displayApps = myApps.length > 0 ? myApps : applications.slice(0, 1);
 
   const [selectedAppId, setSelectedAppId] = useState(displayApps[0]?.id || 'APP-2026-1082');
 

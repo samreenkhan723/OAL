@@ -19,7 +19,7 @@ export const RepLoanRequestsPage = () => {
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs divide-y divide-slate-100">
-        {applications.slice(0, 5).map((req) => (
+        {applications.slice(0, 3).map((req) => (
           <div key={req.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
             <div>
               <div className="flex flex-wrap items-center gap-2">

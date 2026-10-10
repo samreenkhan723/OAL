@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { History, ShieldCheck, Search, Download } from 'lucide-react';
+import { History, ShieldCheck, Search, Download, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const AdminAuditLogsPage = () => {
   const { auditLogs, addToast } = useApp();
   const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   const filteredLogs = auditLogs.filter(l =>
     l.id.toLowerCase().includes(search.toLowerCase()) ||
@@ -13,6 +15,14 @@ export const AdminAuditLogsPage = () => {
     l.target.toLowerCase().includes(search.toLowerCase()) ||
     l.details.toLowerCase().includes(search.toLowerCase())
   );
+
+  const totalPages = Math.ceil(filteredLogs.length / itemsPerPage) || 1;
+  const paginatedLogs = filteredLogs.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+    setCurrentPage(1);
+  };
 
   const handleExportJsonLd = () => {
     const payload = {
@@ -74,21 +84,21 @@ export const AdminAuditLogsPage = () => {
           type="text"
           placeholder="Filter by actor, action, target, or keywords..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={handleSearchChange}
           className="w-full pl-9 pr-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none bg-white"
         />
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-500">
-          <span>{filteredLogs.length} Filtered Log Entries</span>
+          <span>Displaying {paginatedLogs.length} of {filteredLogs.length} Filtered Log Entries</span>
           <span className="text-emerald-700 font-bold flex items-center gap-1">
             <ShieldCheck className="w-4 h-4" /> Non-Repudiation Enforced
           </span>
         </div>
 
         <div className="divide-y divide-slate-100">
-          {filteredLogs.map((log) => (
+          {paginatedLogs.map((log) => (
             <div key={log.id} className="p-4 hover:bg-slate-50/70 transition-colors space-y-2">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="flex flex-wrap items-center gap-2">
@@ -121,6 +131,35 @@ export const AdminAuditLogsPage = () => {
             </div>
           ))}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="p-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs bg-slate-50/50">
+            <span className="text-slate-500">
+              Page <strong className="text-slate-800">{currentPage}</strong> of <strong className="text-slate-800">{totalPages}</strong>
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 transition-colors cursor-pointer"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+                <span>Previous</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 transition-colors cursor-pointer"
+              >
+                <span>Next</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

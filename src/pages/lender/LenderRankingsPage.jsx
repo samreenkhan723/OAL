@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { ListOrdered, Award, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ListOrdered, Award, ArrowRight, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react';
 import { StatusBadge } from '../../components/common/StatusBadge';
 
 export const LenderRankingsPage = () => {
   const { applications } = useApp();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   // Sort applications by Investment IQ descending
   const sortedApps = [...applications].sort((a, b) => {
@@ -13,6 +15,9 @@ export const LenderRankingsPage = () => {
     const scoreB = b.investmentIQ?.total || 0;
     return scoreB - scoreA;
   });
+
+  const totalPages = Math.ceil(sortedApps.length / itemsPerPage) || 1;
+  const paginatedApps = sortedApps.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <div className="space-y-6">
@@ -27,20 +32,21 @@ export const LenderRankingsPage = () => {
 
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-500">
-          <span>Ranked Across 5 Underwriting Pillars</span>
+          <span>Ranked Across 5 Underwriting Pillars (Showing {paginatedApps.length} of {sortedApps.length})</span>
           <span className="text-[11px] text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
             Engine v2.4-Standard
           </span>
         </div>
 
         <div className="divide-y divide-slate-100">
-          {sortedApps.map((app, idx) => {
+          {paginatedApps.map((app, idx) => {
             const score = app.investmentIQ?.total || 0;
+            const rankIndex = idx + 1 + (currentPage - 1) * itemsPerPage;
             return (
               <div key={app.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
                 <div className="flex items-center gap-4 flex-1 min-w-0">
                   <div className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-slate-700 flex-shrink-0">
-                    #{idx + 1}
+                    #{rankIndex}
                   </div>
 
                   <div className="min-w-0 flex-1">
@@ -80,6 +86,35 @@ export const LenderRankingsPage = () => {
             );
           })}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="p-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs bg-slate-50/50">
+            <span className="text-slate-500">
+              Page <strong className="text-slate-800">{currentPage}</strong> of <strong className="text-slate-800">{totalPages}</strong>
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 transition-colors cursor-pointer"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+                <span>Previous</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 transition-colors cursor-pointer"
+              >
+                <span>Next</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

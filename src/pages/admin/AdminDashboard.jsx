@@ -312,7 +312,7 @@ export const AdminDashboard = () => {
             </div>
 
             <div className="divide-y divide-slate-100">
-              {applications.slice(0, 5).map((app) => (
+              {applications.slice(0, 3).map((app) => (
                 <div key={app.id} className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-slate-50/50 transition-colors">
                   <div className="space-y-1.5 min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
@@ -443,7 +443,7 @@ export const AdminDashboard = () => {
             </div>
 
             <div className="space-y-3">
-              {auditLogs.slice(0, 4).map((log) => (
+              {auditLogs.slice(0, 3).map((log) => (
                 <div key={log.id} className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs space-y-1.5">
                   <div className="flex flex-wrap items-center justify-between gap-1">
                     <span className="font-bold text-slate-900 text-[11px]">{log.action}</span>

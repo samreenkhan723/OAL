@@ -238,7 +238,7 @@ export const RepDashboard = () => {
             </div>
 
             <div className="divide-y divide-slate-100">
-              {assignedApps.slice(0, 4).map((app) => {
+              {assignedApps.slice(0, 3).map((app) => {
                 const claimsCount = app.workingDeals?.claimedLendersCount || 0;
                 const appOfferList = offers.filter(o => o.applicationId === app.id);
 
