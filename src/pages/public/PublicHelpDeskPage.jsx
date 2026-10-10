@@ -412,8 +412,8 @@ export const PublicHelpDeskPage = ({ initialTab = 'kb' }) => {
         </section>
 
         {/* SECTION 7: PRIVACY & SECURITY */}
-        <section id="privacy" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8 max-w-4xl">
-          <div className="space-y-3">
+        <section id="privacy" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
+          <div className="max-w-3xl space-y-3">
             <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Compliance &amp; Governance</span>
             <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
               Privacy, Security &amp; Patriot Act Compliance
@@ -452,8 +452,8 @@ export const PublicHelpDeskPage = ({ initialTab = 'kb' }) => {
         </section>
 
         {/* SECTION 8: TERMS OF SERVICE */}
-        <section id="terms" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8 max-w-4xl">
-          <div className="space-y-2">
+        <section id="terms" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
+          <div className="max-w-3xl space-y-2">
             <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Legal Agreements</span>
             <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
               Terms of Service &amp; Marketplace Conditions
