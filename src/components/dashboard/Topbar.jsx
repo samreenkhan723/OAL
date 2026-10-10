@@ -27,7 +27,7 @@ export const Topbar = ({ setIsOpen }) => {
   const handleSignOut = () => {
     logout();
     setShowUserMenu(false);
-    navigate('/auth/login', { replace: true });
+    navigate('/', { replace: true });
   };
 
   // Active notifications derived from realistic state

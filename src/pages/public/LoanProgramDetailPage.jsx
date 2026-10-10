@@ -28,6 +28,38 @@ export const LoanProgramDetailPage = () => {
 
   const program = LOAN_PROGRAMS.find(p => p.slug === slug || p.id === slug) || LOAN_PROGRAMS[0];
 
+  const getProgramImage = (idOrSlug) => {
+    switch (idOrSlug) {
+      case 'restaurant':
+        return '/images/loan_restaurant.jpg';
+      case 'food-truck':
+        return '/images/loan_food_truck.jpg';
+      case 'franchise':
+        return '/images/loan_franchise.jpg';
+      case 'dental':
+      case 'dental-practice':
+        return '/images/loan_dental.jpg';
+      case 'freight-trucking':
+      case 'trucking':
+        return '/images/loan_trucking.jpg';
+      case 'hospitality':
+      case 'hotel-motel-airbnb':
+      case 'hotel':
+        return '/images/loan_hospitality.jpg';
+      case 'church':
+      case 'church-facility':
+        return '/images/loan_church.jpg';
+      case 'fix-and-flip':
+      case 'fix-flip':
+        return '/images/loan_fix_flip.jpg';
+      case 'money-club':
+      case 'investment-club':
+        return '/images/loan_money_club.jpg';
+      default:
+        return '/images/loan_restaurant.jpg';
+    }
+  };
+
   const handleApplyClick = () => {
     const targetProgram = program.slug || program.id;
     const targetSearch = `?program=${targetProgram}`;
@@ -57,7 +89,7 @@ export const LoanProgramDetailPage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       {/* Back button */}
       <div>
         <Link
@@ -69,55 +101,83 @@ export const LoanProgramDetailPage = () => {
         </Link>
       </div>
 
-      {/* Program Hero Header with Deep Blue / Light Blue styling */}
-      <div className="bg-gradient-to-br from-[#002060] via-[#003882] to-[#0070C0] rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+      {/* Program Hero Header with Deep Blue / Light Blue styling and Industry Photography Image */}
+      <div className="bg-gradient-to-br from-[#002060] via-[#003882] to-[#0070C0] rounded-3xl p-6 sm:p-8 lg:p-10 text-white shadow-xl relative overflow-hidden">
         <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-[#00B0F0]/15 blur-2xl pointer-events-none" />
-        <div className="relative z-10 space-y-4 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white border border-[#00B0F0]/40 text-xs font-bold uppercase tracking-wider">
-            <span className="text-[#00B0F0]">Commercial Program</span>
-            <span>•</span>
-            <span className="text-[#FFD200]">{program.badge}</span>
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          {/* Left Column (Content & Stats) */}
+          <div className="lg:col-span-7 space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white border border-[#00B0F0]/40 text-xs font-bold uppercase tracking-wider">
+              <span className="text-[#00B0F0]">Commercial Program</span>
+              <span>•</span>
+              <span className="text-[#FFD200]">{program.badge}</span>
+            </div>
+
+            <h1 className="text-2xl sm:text-4xl font-heading font-extrabold text-white">
+              {program.title}
+            </h1>
+
+            <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
+              {program.tagline}
+            </p>
+
+            <div className="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs text-slate-200">
+              <div className="bg-white/10 rounded-xl p-3 border border-white/10">
+                <span className="block text-slate-300 text-[10px] uppercase font-semibold">Network Financing Scope</span>
+                <strong className="text-sm font-bold text-white">
+                  {program.fundingScope || '$10,000 to $500M+'}
+                </strong>
+              </div>
+              <div className="bg-white/10 rounded-xl p-3 border border-white/10">
+                <span className="block text-slate-300 text-[10px] uppercase font-semibold">Credit Qualifications</span>
+                <strong className="text-sm font-bold text-[#FFD200]">
+                  {program.creditRequirement || 'GOOD & BAD CREDIT'}
+                </strong>
+              </div>
+              <div className="bg-white/10 rounded-xl p-3 border border-white/10 col-span-2 sm:col-span-1">
+                <span className="block text-slate-300 text-[10px] uppercase font-semibold">Typical Approval Speed</span>
+                <strong className="text-sm font-bold text-[#00B0F0]">
+                  {program.approvalTime || '2-24 Hours'}
+                </strong>
+              </div>
+            </div>
+
+            <div className="pt-4">
+              <button
+                type="button"
+                onClick={handleApplyClick}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] text-xs font-extrabold shadow-lg shadow-amber-400/20 transition-all hover:scale-105 active:scale-95 cursor-pointer border border-amber-300"
+              >
+                <span>Apply for {program.title}</span>
+                <ArrowRight className="w-4 h-4 text-[#002060]" />
+              </button>
+            </div>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl font-heading font-extrabold text-white">
-            {program.title}
-          </h1>
-
-          <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
-            {program.tagline}
-          </p>
-
-          <div className="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs text-slate-200">
-            <div className="bg-white/10 rounded-xl p-3 border border-white/10">
-              <span className="block text-slate-300 text-[10px] uppercase font-semibold">Network Financing Scope</span>
-              <strong className="text-sm font-bold text-white">
-                {program.fundingScope || '$10,000 to $500M+'}
-              </strong>
-            </div>
-            <div className="bg-white/10 rounded-xl p-3 border border-white/10">
-              <span className="block text-slate-300 text-[10px] uppercase font-semibold">Credit Qualifications</span>
-              <strong className="text-sm font-bold text-[#FFD200]">
-                {program.creditRequirement || 'GOOD & BAD CREDIT'}
-              </strong>
-            </div>
-            <div className="bg-white/10 rounded-xl p-3 border border-white/10 col-span-2 sm:col-span-1">
-              <span className="block text-slate-300 text-[10px] uppercase font-semibold">Typical Approval Speed</span>
-              <strong className="text-sm font-bold text-[#00B0F0]">
-                {program.approvalTime || '2-24 Hours'}
-              </strong>
+          {/* Right Column (Industry Photography Card matching Screenshot 3) */}
+          <div className="lg:col-span-5">
+            <div className="relative rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl bg-[#001744]/60 group">
+              <img
+                src={getProgramImage(program.slug || program.id)}
+                alt={program.title}
+                className="w-full h-56 sm:h-64 lg:h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#002060]/90 via-[#002060]/20 to-transparent" />
+              
+              {/* Overlay Badge */}
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-bold text-white bg-white/10 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-white/20">
+                <div className="truncate pr-2">
+                  <span className="block text-[10px] uppercase text-[#00B0F0] font-extrabold tracking-wider">Commercial Category</span>
+                  <span className="text-white text-xs font-bold truncate">{program.subtitle || program.title}</span>
+                </div>
+                <span className="text-[#FFD200] bg-[#FFD200]/20 px-2 py-0.5 rounded-md shrink-0 font-extrabold text-[11px] border border-[#FFD200]/30">
+                  {program.badge}
+                </span>
+              </div>
             </div>
           </div>
 
-          <div className="pt-6">
-            <button
-              type="button"
-              onClick={handleApplyClick}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] text-xs font-extrabold shadow-lg shadow-amber-400/20 transition-all hover:scale-105 cursor-pointer"
-            >
-              <span>Apply for {program.title}</span>
-              <ArrowRight className="w-4 h-4 text-[#002060]" />
-            </button>
-          </div>
         </div>
       </div>
 

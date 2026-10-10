@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import {
@@ -22,10 +22,11 @@ import {
 } from 'lucide-react';
 import { VerifyBadge } from '../../components/common/VerifyBadge';
 
-export const PublicHelpDeskPage = () => {
+export const PublicHelpDeskPage = ({ initialTab = 'kb' }) => {
   const { kbArticles, createTicket } = useApp();
   const [searchParams, setSearchParams] = useSearchParams();
-  const activeTab = searchParams.get('tab') || 'kb';
+  const currentParam = searchParams.get('tab') || initialTab || 'kb';
+  const [activeTab, setActiveTab] = useState(currentParam);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [openFaq, setOpenFaq] = useState(0);
@@ -47,6 +48,29 @@ export const PublicHelpDeskPage = () => {
     { id: 'privacy', label: 'Privacy & Security' },
     { id: 'terms', label: 'Terms of Service' }
   ];
+
+  const scrollToSection = (id) => {
+    setActiveTab(id);
+    setSearchParams({ tab: id }, { replace: true });
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  useEffect(() => {
+    const target = searchParams.get('tab') || initialTab;
+    if (target) {
+      setActiveTab(target);
+      const timer = setTimeout(() => {
+        const el = document.getElementById(target);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams, initialTab]);
 
   const faqs = [
     {
@@ -94,7 +118,7 @@ export const PublicHelpDeskPage = () => {
     },
     {
       term: 'Accredited Investor (SEC Rule 501)',
-      def: 'An individual with net worth > $1M (excluding primary residence), annual income &ge; $200k ($300k joint), or qualifying Series 7, 65, or 82 credentials eligible to participate in private placements.'
+      def: 'An individual with net worth > $1M (excluding primary residence), annual income ≥ $200k ($300k joint), or qualifying Series 7, 65, or 82 credentials eligible to participate in private placements.'
     },
     {
       term: 'ISO (Independent Sales Organization)',
@@ -147,27 +171,11 @@ export const PublicHelpDeskPage = () => {
             Guidance, training, documentation, and compliance standards for commercial applicants, lenders, and OAL representatives.
           </p>
 
-          {/* Tab Navigation Pill Bar */}
-          <div className="pt-6 flex flex-wrap items-center justify-center gap-2">
-            {navTabs.map((t) => (
-              <button
-                key={t.id}
-                onClick={() => setSearchParams({ tab: t.id })}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  activeTab === t.id
-                    ? 'bg-[#FFD200] text-[#002060] shadow-md shadow-amber-400/20 scale-105'
-                    : 'bg-white/10 hover:bg-white/20 text-white border border-white/15'
-                }`}
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      {/* Main Container - All sections rendered on a single page */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
 
         {/* Action Bar (Search + Ticket Button) */}
         <div className="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -191,298 +199,282 @@ export const PublicHelpDeskPage = () => {
           </button>
         </div>
 
-        {/* TAB 1: KNOWLEDGE BASE */}
-        {activeTab === 'kb' && (
-          <div className="space-y-6 animate-in fade-in duration-200">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-heading font-bold text-[#002060] flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-[#0070C0]" />
-                Featured Knowledge Base Articles
-              </h2>
-              <span className="text-xs text-slate-500">{filteredArticles.length} Articles</span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {filteredArticles.map((art) => (
-                <div
-                  key={art.id}
-                  className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs flex flex-col justify-between hover:border-[#0070C0] transition-colors"
-                >
-                  <div className="space-y-2">
-                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-sky-50 text-[#0070C0] uppercase">
-                      {art.category}
-                    </span>
-                    <h3 className="text-base font-bold text-[#002060] leading-snug">
-                      {art.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {art.summary}
-                    </p>
-                  </div>
-
-                  <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-                    <span>{art.readTime}</span>
-                    <span className="text-[#0070C0] font-bold hover:underline cursor-pointer">
-                      Read Guide &rarr;
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+        {/* SECTION 1: KNOWLEDGE BASE */}
+        <section id="kb" className="scroll-mt-28 space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-heading font-bold text-[#002060] flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-[#0070C0]" />
+              Featured Knowledge Base Articles
+            </h2>
+            <span className="text-xs text-slate-500">{filteredArticles.length} Articles</span>
           </div>
-        )}
 
-        {/* TAB 2: ACADEMY */}
-        {activeTab === 'academy' && (
-          <div className="space-y-8 animate-in fade-in duration-200">
-            <div className="max-w-2xl space-y-2">
-              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Educational Modules</span>
-              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-                OAL Commercial Lending Academy
-              </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Structured courses for commercial applicants and capital partners to master balance-sheet optimization, DSCR requirements, and institutional underwriting.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: 'Module 1: Commercial Underwriting Fundamentals',
-                  level: 'Foundational',
-                  duration: '45 mins',
-                  desc: 'Understand how institutional underwriters evaluate bank statements, debt-service coverage, and tax returns.'
-                },
-                {
-                  title: 'Module 2: Maximizing Your 180-Point Investment IQ',
-                  level: 'Intermediate',
-                  duration: '60 mins',
-                  desc: 'Practical strategies to improve credit lines, business plan mission statements, and collateral valuations.'
-                },
-                {
-                  title: 'Module 3: Term Sheet Comparison & Negotiation',
-                  level: 'Advanced',
-                  duration: '35 mins',
-                  desc: 'Learn how to compare APR, origination fees, prepayment penalties, and balloon amortization structures.'
-                }
-              ].map((mod, idx) => (
-                <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 font-bold border border-amber-200 text-[10px]">
-                      {mod.level}
-                    </span>
-                    <span className="text-slate-400 font-mono">{mod.duration}</span>
-                  </div>
-                  <h3 className="text-base font-bold text-[#002060]">{mod.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{mod.desc}</p>
-                  <button className="w-full py-2 bg-sky-50 hover:bg-sky-100 text-[#0070C0] font-bold text-xs rounded-xl transition-colors cursor-pointer">
-                    Start Learning Module &rarr;
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* TAB 3: FAQS */}
-        {activeTab === 'faqs' && (
-          <div className="space-y-6 animate-in fade-in duration-200">
-            <div className="max-w-2xl space-y-2">
-              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Direct Answers</span>
-              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-                Frequently Asked Questions
-              </h2>
-            </div>
-
-            <div className="space-y-3">
-              {faqs.map((faq, idx) => {
-                const isOpen = openFaq === idx;
-                return (
-                  <div key={idx} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
-                    <button
-                      onClick={() => setOpenFaq(isOpen ? -1 : idx)}
-                      className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-slate-900 hover:bg-slate-50 transition-colors cursor-pointer"
-                    >
-                      <span>{faq.q}</span>
-                      {isOpen ? <ChevronUp className="w-4 h-4 text-[#0070C0] shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />}
-                    </button>
-                    {isOpen && (
-                      <div className="px-5 pb-5 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
-                        {faq.a}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* TAB 4: TRAINING */}
-        {activeTab === 'training' && (
-          <div className="space-y-8 animate-in fade-in duration-200">
-            <div className="max-w-2xl space-y-2">
-              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Professional Development</span>
-              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-                OAL Platform Training &amp; Relations
-              </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Specialized training programs for Team Get Money (TGM) graduates and OAL Club members advancing into institutional commercial debt placement.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4">
-                <span className="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-                  Team Get Money (0–58 LINV IQ)
-                </span>
-                <h3 className="text-lg font-bold text-[#002060]">Financial Development for Beginners</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Introductory training covering personal-to-commercial guarantor transitions, business bank statement hygiene, maintaining daily ledger balances, and building trade references.
-                </p>
-              </div>
-
-              <div className="p-8 rounded-3xl bg-gradient-to-br from-[#002060] to-[#0070C0] text-white rounded-3xl shadow-xl space-y-4">
-                <span className="text-xs font-bold text-[#002060] bg-[#FFD200] px-3 py-1 rounded-full">
-                  OAL Club (59+ LINV IQ)
-                </span>
-                <h3 className="text-lg font-bold text-white">Advance Finance Training for TGM Graduates</h3>
-                <p className="text-xs text-slate-200 leading-relaxed">
-                  Master capital structures, syndication mechanics, subordinated mezzanine debt, and institutional commercial mortgage packaging with senior underwriters.
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* TAB 5: DEFINITIONS */}
-        {activeTab === 'definitions' && (
-          <div className="space-y-8 animate-in fade-in duration-200">
-            <div className="max-w-2xl space-y-2">
-              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Commercial Dictionary</span>
-              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-                Key Definitions &amp; Industry Terminology
-              </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Essential terms and regulatory definitions governing the OAL Network commercial lending exchange.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {definitions.map((item, idx) => (
-                <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-2">
-                  <h3 className="text-sm font-bold text-[#002060] pb-1 border-b border-slate-100 flex items-center justify-between">
-                    <span>{item.term}</span>
-                    <span className="text-[10px] text-[#0070C0] font-mono font-normal">OAL-DEF</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {filteredArticles.map((art) => (
+              <div
+                key={art.id}
+                className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs flex flex-col justify-between hover:border-[#0070C0] transition-colors"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-sky-50 text-[#0070C0] uppercase">
+                    {art.category}
+                  </span>
+                  <h3 className="text-base font-bold text-[#002060] leading-snug">
+                    {art.title}
                   </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{item.def}</p>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {art.summary}
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
 
-        {/* TAB 6: RESOURCES */}
-        {activeTab === 'resources' && (
-          <div className="space-y-8 animate-in fade-in duration-200">
-            <div className="max-w-2xl space-y-2">
-              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Downloadable Tools</span>
-              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-                Intake Forms &amp; Underwriting Resources
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                { title: 'Commercial Underwriting Checklist', type: 'PDF Document', size: '240 KB' },
-                { title: 'Schedule of Real Estate Owned (SREO)', type: 'Excel Spreadsheet', size: '510 KB' },
-                { title: 'Debt-Service Coverage (DSCR) Model', type: 'Excel Spreadsheet', size: '380 KB' },
-                { title: 'Equipment Invoicing & Quote Template', type: 'Word Template', size: '180 KB' },
-                { title: 'Business Plan Executive Summary (<= 20 Words)', type: 'PDF Guide', size: '150 KB' },
-                { title: 'Accredited Investor Self-Certification Form', type: 'PDF Document', size: '320 KB' }
-              ].map((res, i) => (
-                <div key={i} className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xs font-bold text-[#002060]">{res.title}</h3>
-                    <span className="text-[10px] text-slate-400">{res.type} • {res.size}</span>
-                  </div>
-                  <span className="text-xs font-bold text-[#0070C0] hover:underline cursor-pointer">
-                    Download
+                <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                  <span>{art.readTime}</span>
+                  <span className="text-[#0070C0] font-bold hover:underline cursor-pointer">
+                    Read Guide &rarr;
                   </span>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* TAB 7: PRIVACY & SECURITY */}
-        {activeTab === 'privacy' && (
-          <div className="space-y-8 animate-in fade-in duration-200 max-w-4xl">
-            <div className="space-y-3">
-              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Compliance &amp; Governance</span>
-              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-                Privacy, Security &amp; Patriot Act Compliance
-              </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                OAL Network implements multi-factor authentication (MFA), end-to-end encryption, and rigorous federal compliance procedures.
-              </p>
-            </div>
-
-            {/* Patriot Act Callout Box from docx */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-amber-50 border-2 border-amber-300 text-amber-950 space-y-3">
-              <div className="flex items-center gap-2.5">
-                <ShieldCheck className="w-6 h-6 text-amber-700" />
-                <h3 className="text-base font-bold text-amber-900">
-                  Very Important Detail: Procedure for Opening a New Account
-                </h3>
               </div>
-              <p className="text-xs leading-relaxed">
-                To aid the government in the fight against terrorism financing and money laundering, federal regulations require that all financial institutions obtain, verify, and record information that identifies each individual who opens an account.
-              </p>
-              <p className="text-xs leading-relaxed font-semibold">
-                What this means for you: When you open an account on OAL Network, we will ask for your full legal name, business address, email, phone number, and tax identification details. Identity confirmation is conducted via secure multi-factor authentication (MFA) prior to loan intake.
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION 2: ACADEMY */}
+        <section id="academy" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
+          <div className="max-w-2xl space-y-2">
+            <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Educational Modules</span>
+            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+              OAL Commercial Lending Academy
+            </h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Structured courses for commercial applicants and capital partners to master balance-sheet optimization, DSCR requirements, and institutional underwriting.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: 'Module 1: Commercial Underwriting Fundamentals',
+                level: 'Foundational',
+                duration: '45 mins',
+                desc: 'Understand how institutional underwriters evaluate bank statements, debt-service coverage, and tax returns.'
+              },
+              {
+                title: 'Module 2: Maximizing Your 180-Point Investment IQ',
+                level: 'Intermediate',
+                duration: '60 mins',
+                desc: 'Practical strategies to improve credit lines, business plan mission statements, and collateral valuations.'
+              },
+              {
+                title: 'Module 3: Term Sheet Comparison & Negotiation',
+                level: 'Advanced',
+                duration: '35 mins',
+                desc: 'Learn how to compare APR, origination fees, prepayment penalties, and balloon amortization structures.'
+              }
+            ].map((mod, idx) => (
+              <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 font-bold border border-amber-200 text-[10px]">
+                    {mod.level}
+                  </span>
+                  <span className="text-slate-400 font-mono">{mod.duration}</span>
+                </div>
+                <h3 className="text-base font-bold text-[#002060]">{mod.title}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">{mod.desc}</p>
+                <button className="w-full py-2 bg-sky-50 hover:bg-sky-100 text-[#0070C0] font-bold text-xs rounded-xl transition-colors cursor-pointer">
+                  Start Learning Module &rarr;
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION 3: FAQS */}
+        <section id="faqs" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-6">
+          <div className="max-w-2xl space-y-2">
+            <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Direct Answers</span>
+            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div key={idx} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? -1 : idx)}
+                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-slate-900 hover:bg-slate-50 transition-colors cursor-pointer"
+                  >
+                    <span>{faq.q}</span>
+                    {isOpen ? <ChevronUp className="w-4 h-4 text-[#0070C0] shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />}
+                  </button>
+                  {isOpen && (
+                    <div className="px-5 pb-5 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* SECTION 4: TRAINING */}
+        <section id="training" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
+          <div className="max-w-2xl space-y-2">
+            <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Professional Development</span>
+            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+              OAL Platform Training &amp; Relations
+            </h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Specialized training programs for Team Get Money (TGM) graduates and OAL Club members advancing into institutional commercial debt placement.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4">
+              <span className="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                Team Get Money (0–58 LINV IQ)
+              </span>
+              <h3 className="text-lg font-bold text-[#002060]">Financial Development for Beginners</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Introductory training covering personal-to-commercial guarantor transitions, business bank statement hygiene, maintaining daily ledger balances, and building trade references.
               </p>
             </div>
 
-            <div className="space-y-4 text-xs text-slate-700 leading-relaxed bg-white p-8 rounded-3xl border border-slate-200">
-              <h4 className="text-sm font-bold text-[#002060]">International Security Standards &amp; Data Shielding</h4>
-              <p>
-                All data transmitted across OAL Network is protected by 256-bit TLS encryption in transit and AES-256 encryption at rest. In accordance with Rule FR-09, sensitive personal identifying information (PII) is masked from initial marketplace feeds. Lenders view anonymized financial criteria, requested volume, and Investment IQ scores, keeping your credit protected from repetitive hard inquiries.
-              </p>
-              <h4 className="text-sm font-bold text-[#002060] pt-2">No Direct Borrower-Lender Contact</h4>
-              <p>
-                To eliminate unsolicited sales outreach and protect borrower peace of mind, all communications are mediated by an assigned OAL Representative until a binding term sheet is accepted.
+            <div className="p-8 rounded-3xl bg-gradient-to-br from-[#002060] to-[#0070C0] text-white rounded-3xl shadow-xl space-y-4">
+              <span className="text-xs font-bold text-[#002060] bg-[#FFD200] px-3 py-1 rounded-full">
+                OAL Club (59+ LINV IQ)
+              </span>
+              <h3 className="text-lg font-bold text-white">Advance Finance Training for TGM Graduates</h3>
+              <p className="text-xs text-slate-200 leading-relaxed">
+                Master capital structures, syndication mechanics, subordinated mezzanine debt, and institutional commercial mortgage packaging with senior underwriters.
               </p>
             </div>
           </div>
-        )}
+        </section>
 
-        {/* TAB 8: TERMS OF SERVICE */}
-        {activeTab === 'terms' && (
-          <div className="space-y-8 animate-in fade-in duration-200 max-w-4xl">
-            <div className="space-y-2">
-              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Legal Agreements</span>
-              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-                Terms of Service &amp; Marketplace Conditions
-              </h2>
-            </div>
-
-            <div className="space-y-4 text-xs text-slate-700 leading-relaxed bg-white p-8 rounded-3xl border border-slate-200">
-              <h4 className="text-sm font-bold text-[#002060]">1. Marketplace Function</h4>
-              <p>
-                OAL Network operates an institutional commercial debt marketplace facilitating connections between business loan applicants, licensed OAL representatives, and accredited institutional lenders. OAL Network is not a direct lender, and score calculations do not constitute binding credit commitments.
-              </p>
-              <h4 className="text-sm font-bold text-[#002060] pt-2">2. Rule FR-08 Concurrency Governance</h4>
-              <p>
-                All participating institutional lenders agree to honor the 3-lender concurrent working deal limitation. Attempting to bypass OAL Representative mediation or contact borrowers outside platform channels constitutes grounds for immediate termination of network access.
-              </p>
-              <h4 className="text-sm font-bold text-[#002060] pt-2">3. Accuracy of Representations</h4>
-              <p>
-                Borrowers represent and warrant that all bank statements, tax returns, and commercial documentation provided during KYC intake are accurate and authentic.
-              </p>
-            </div>
+        {/* SECTION 5: DEFINITIONS */}
+        <section id="definitions" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
+          <div className="max-w-2xl space-y-2">
+            <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Commercial Dictionary</span>
+            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+              Key Definitions &amp; Industry Terminology
+            </h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Essential terms and regulatory definitions governing the OAL Network commercial lending exchange.
+            </p>
           </div>
-        )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {definitions.map((item, idx) => (
+              <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-2">
+                <h3 className="text-sm font-bold text-[#002060] pb-1 border-b border-slate-100 flex items-center justify-between">
+                  <span>{item.term}</span>
+                  <span className="text-[10px] text-[#0070C0] font-mono font-normal">OAL-DEF</span>
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">{item.def}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION 6: RESOURCES */}
+        <section id="resources" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
+          <div className="max-w-2xl space-y-2">
+            <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Downloadable Tools</span>
+            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+              Intake Forms &amp; Underwriting Resources
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { title: 'Commercial Underwriting Checklist', type: 'PDF Document', size: '240 KB' },
+              { title: 'Schedule of Real Estate Owned (SREO)', type: 'Excel Spreadsheet', size: '510 KB' },
+              { title: 'Debt-Service Coverage (DSCR) Model', type: 'Excel Spreadsheet', size: '380 KB' },
+              { title: 'Equipment Invoicing & Quote Template', type: 'Word Template', size: '180 KB' },
+              { title: 'Business Plan Executive Summary (<= 20 Words)', type: 'PDF Guide', size: '150 KB' },
+              { title: 'Accredited Investor Self-Certification Form', type: 'PDF Document', size: '320 KB' }
+            ].map((res, i) => (
+              <div key={i} className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs flex items-center justify-between">
+                <div>
+                  <h3 className="text-xs font-bold text-[#002060]">{res.title}</h3>
+                  <span className="text-[10px] text-slate-400">{res.type} • {res.size}</span>
+                </div>
+                <span className="text-xs font-bold text-[#0070C0] hover:underline cursor-pointer">
+                  Download
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION 7: PRIVACY & SECURITY */}
+        <section id="privacy" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8 max-w-4xl">
+          <div className="space-y-3">
+            <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Compliance &amp; Governance</span>
+            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+              Privacy, Security &amp; Patriot Act Compliance
+            </h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              OAL Network implements multi-factor authentication (MFA), end-to-end encryption, and rigorous federal compliance procedures.
+            </p>
+          </div>
+
+          {/* Patriot Act Callout Box from docx */}
+          <div className="p-6 sm:p-8 rounded-3xl bg-amber-50 border-2 border-amber-300 text-amber-950 space-y-3">
+            <div className="flex items-center gap-2.5">
+              <ShieldCheck className="w-6 h-6 text-amber-700" />
+              <h3 className="text-base font-bold text-amber-900">
+                Very Important Detail: Procedure for Opening a New Account
+              </h3>
+            </div>
+            <p className="text-xs leading-relaxed">
+              To aid the government in the fight against terrorism financing and money laundering, federal regulations require that all financial institutions obtain, verify, and record information that identifies each individual who opens an account.
+            </p>
+            <p className="text-xs leading-relaxed font-semibold">
+              What this means for you: When you open an account on OAL Network, we will ask for your full legal name, business address, email, phone number, and tax identification details. Identity confirmation is conducted via secure multi-factor authentication (MFA) prior to loan intake.
+            </p>
+          </div>
+
+          <div className="space-y-4 text-xs text-slate-700 leading-relaxed bg-white p-8 rounded-3xl border border-slate-200">
+            <h4 className="text-sm font-bold text-[#002060]">International Security Standards &amp; Data Shielding</h4>
+            <p>
+              All data transmitted across OAL Network is protected by 256-bit TLS encryption in transit and AES-256 encryption at rest. In accordance with Rule FR-09, sensitive personal identifying information (PII) is masked from initial marketplace feeds. Lenders view anonymized financial criteria, requested volume, and Investment IQ scores, keeping your credit protected from repetitive hard inquiries.
+            </p>
+            <h4 className="text-sm font-bold text-[#002060] pt-2">No Direct Borrower-Lender Contact</h4>
+            <p>
+              To eliminate unsolicited sales outreach and protect borrower peace of mind, all communications are mediated by an assigned OAL Representative until a binding term sheet is accepted.
+            </p>
+          </div>
+        </section>
+
+        {/* SECTION 8: TERMS OF SERVICE */}
+        <section id="terms" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8 max-w-4xl">
+          <div className="space-y-2">
+            <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Legal Agreements</span>
+            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+              Terms of Service &amp; Marketplace Conditions
+            </h2>
+          </div>
+
+          <div className="space-y-4 text-xs text-slate-700 leading-relaxed bg-white p-8 rounded-3xl border border-slate-200">
+            <h4 className="text-sm font-bold text-[#002060]">1. Marketplace Function</h4>
+            <p>
+              OAL Network operates an institutional commercial debt marketplace facilitating connections between business loan applicants, licensed OAL representatives, and accredited institutional lenders. OAL Network is not a direct lender, and score calculations do not constitute binding credit commitments.
+            </p>
+            <h4 className="text-sm font-bold text-[#002060] pt-2">2. Rule FR-08 Concurrency Governance</h4>
+            <p>
+              All participating institutional lenders agree to honor the 3-lender concurrent working deal limitation. Attempting to bypass OAL Representative mediation or contact borrowers outside platform channels constitutes grounds for immediate termination of network access.
+            </p>
+            <h4 className="text-sm font-bold text-[#002060] pt-2">3. Accuracy of Representations</h4>
+            <p>
+              Borrowers represent and warrant that all bank statements, tax returns, and commercial documentation provided during KYC intake are accurate and authentic.
+            </p>
+          </div>
+        </section>
 
       </div>
 

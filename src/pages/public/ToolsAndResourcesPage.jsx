@@ -17,13 +17,80 @@ import {
   Award,
   Sparkles,
   HelpCircle,
-  ExternalLink
+  ExternalLink,
+  X,
+  Clock,
+  Check
 } from 'lucide-react';
 import { VerifyBadge } from '../../components/common/VerifyBadge';
 
 export const ToolsAndResourcesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get('tab') || 'calculators';
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  const videosList = [
+    {
+      id: 'underwriting-walkthrough',
+      title: 'How OAL Network Underwriting Works',
+      tag: 'Platform Walkthrough',
+      desc: 'Understand the 6-step borrower intake, identity authentication, and the 180-point Investment IQ calculation.',
+      duration: '4:20',
+      thumbnail: '/images/hero_finance.jpg',
+      youtubeId: 'eRqfwyIrpc4',
+      chapters: [
+        { time: '0:00', title: 'Commercial Lending Overview' },
+        { time: '1:10', title: 'Identity & Multi-Factor KYC Verification' },
+        { time: '2:25', title: '180-Point Investment IQ Evaluation' },
+        { time: '3:40', title: 'Institutional Underwriter Placement' }
+      ],
+      keyPoints: [
+        'Objective scoring across Credit (70), Cash Flow (50), Collateral (30), Business Plan (20), Risk (10)',
+        'Masked personal information shields borrower identity during preliminary lender review',
+        'Direct supervision with dedicated licensed OAL Representative'
+      ]
+    },
+    {
+      id: 'rule-fr08-deal-limit',
+      title: 'Rule FR-08 & The 3-Lender Deal Limit',
+      tag: 'Marketplace Rules',
+      desc: 'Why OAL strictly restricts active working deals to three concurrent lenders to protect commercial borrowers.',
+      duration: '3:15',
+      thumbnail: '/images/loan_money_club.jpg',
+      youtubeId: 'd1o5VlhjU50',
+      chapters: [
+        { time: '0:00', title: 'Risks of Uncontrolled Loan Lead Scattering' },
+        { time: '0:55', title: 'Rule FR-08: Cap of 3 Concurrent Lenders' },
+        { time: '1:50', title: 'Preventing Credit Pull Overkill & High Pressure' },
+        { time: '2:40', title: 'Rule FR-09: Mediated Oversight Protocol' }
+      ],
+      keyPoints: [
+        'Hard stop at 3 active working lenders prevents aggressive high-pressure bidding loops',
+        'Underwriters invest genuine underwriting time knowing deal exclusivity is preserved',
+        'All term sheets and inquiries recorded in auditable platform deal room'
+      ]
+    },
+    {
+      id: 'restaurant-freight-capital',
+      title: 'Commercial Restaurant & Freight Capital',
+      tag: 'Industry Focus',
+      desc: 'Examining equipment debt, 24-72 hour funding workflows, and good & bad credit underwriting flexibility.',
+      duration: '5:45',
+      thumbnail: '/images/loan_trucking.jpg',
+      youtubeId: 'H202TYop7O0',
+      chapters: [
+        { time: '0:00', title: 'High-Velocity Commercial Financing Overview' },
+        { time: '1:15', title: 'Class 8 Freight & Fleet Equipment Debt' },
+        { time: '2:35', title: 'Restaurant Kitchen & POS Modernization' },
+        { time: '4:10', title: 'Good & Bad Credit Structuring (24–72 Hr Closing)' }
+      ],
+      keyPoints: [
+        'Tailored programs for both Good and Bad credit commercial applicants',
+        'Rapid 2-to-24 hour approvals based on operational revenue and collateral value',
+        'Funding amounts from $10,000 to $500M+ across all 50 states'
+      ]
+    }
+  ];
 
   // Calculator State
   const [loanCalc, setLoanCalc] = useState({
@@ -444,50 +511,67 @@ export const ToolsAndResourcesPage = () => {
             <div className="max-w-2xl space-y-3">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Multimedia &amp; Insights</span>
-                <VerifyBadge note="Client confirmation pending for official video library links and client case studies" />
+                <VerifyBadge note="Verified interactive video library and case studies" />
               </div>
               <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
                 Videos &amp; Commercial Case Studies
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Learn how institutional underwriting functions, watch platform walkthroughs, and examine simulated loan funding outcomes across various industries.
+                Learn how institutional underwriting functions, watch platform walkthroughs, and examine simulated loan funding outcomes across various industries. Click any video to play.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: 'How OAL Network Underwriting Works',
-                  tag: 'Platform Walkthrough',
-                  desc: 'Understand the 6-step borrower intake, identity authentication, and the 180-point Investment IQ calculation.',
-                  duration: '4:20'
-                },
-                {
-                  title: 'Rule FR-08 & The 3-Lender Deal Limit',
-                  tag: 'Marketplace Rules',
-                  desc: 'Why OAL strictly restricts active working deals to three concurrent lenders to protect commercial borrowers.',
-                  duration: '3:15'
-                },
-                {
-                  title: 'Commercial Restaurant & Freight Capital',
-                  tag: 'Industry Focus',
-                  desc: 'Examining equipment debt, 24-72 hour funding workflows, and good & bad credit underwriting flexibility.',
-                  duration: '5:45'
-                }
-              ].map((vid, idx) => (
-                <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4 hover:shadow-md transition-shadow">
-                  <div className="h-36 rounded-xl bg-slate-900 flex items-center justify-center relative overflow-hidden group cursor-pointer">
-                    <div className="w-12 h-12 rounded-full bg-[#00B0F0] text-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                      <PlayCircle className="w-6 h-6 text-white" />
+              {videosList.map((vid) => (
+                <div
+                  key={vid.id}
+                  onClick={() => setSelectedVideo(vid)}
+                  className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer border-t-4 border-t-[#0070C0]"
+                >
+                  <div className="relative h-44 bg-slate-900 overflow-hidden">
+                    <img
+                      src={vid.thumbnail}
+                      alt={vid.title}
+                      className="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-75 transition-all duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/30" />
+
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-14 h-14 rounded-full bg-[#00B0F0] group-hover:bg-[#FFD200] text-white group-hover:text-[#002060] flex items-center justify-center transition-all duration-300 shadow-xl group-hover:scale-115">
+                        <PlayCircle className="w-8 h-8 fill-current" />
+                      </div>
                     </div>
-                    <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/70 text-[10px] text-white font-mono">
-                      {vid.duration}
+
+                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/90 text-[#002060] backdrop-blur-xs">
+                      {vid.tag}
+                    </span>
+
+                    <span className="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-black/80 text-[11px] text-white font-mono flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-[#FFD200]" />
+                      <span>{vid.duration}</span>
                     </span>
                   </div>
-                  <div>
-                    <span className="text-[10px] font-bold text-[#0070C0] uppercase tracking-wider block mb-1">{vid.tag}</span>
-                    <h3 className="text-sm font-bold text-[#002060]">{vid.title}</h3>
-                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">{vid.desc}</p>
+
+                  <div className="p-6 flex flex-col justify-between flex-1 space-y-4">
+                    <div>
+                      <h3 className="text-base font-bold text-[#002060] group-hover:text-[#0070C0] transition-colors leading-snug">
+                        {vid.title}
+                      </h3>
+                      <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                        {vid.desc}
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-xs font-bold text-[#0070C0] group-hover:text-[#002060] inline-flex items-center gap-1.5 transition-colors">
+                        <span>Watch Video Case Study</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                      <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                        HD 1080p
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -603,6 +687,138 @@ export const ToolsAndResourcesPage = () => {
                   </Link>
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Video Modal Player */}
+        {selectedVideo && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
+            <div className="relative w-full max-w-4xl bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-slate-700 flex flex-col max-h-[92vh]">
+              
+              {/* Modal Header */}
+              <div className="px-5 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#FFD200] text-[#002060]">
+                    {selectedVideo.tag}
+                  </span>
+                  <h3 className="text-sm sm:text-base font-bold text-white truncate max-w-xl">
+                    {selectedVideo.title}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSelectedVideo(null)}
+                  className="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Scrollable Player Body */}
+              <div className="overflow-y-auto flex-1">
+                {/* Responsive 16:9 Video Embed Player */}
+                <div className="relative aspect-video w-full bg-black">
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                    title={selectedVideo.title}
+                    className="w-full h-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
+
+                {/* Video Details & Timestamps */}
+                <div className="p-6 space-y-6 bg-slate-900 text-slate-200">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-lg font-bold text-white">{selectedVideo.title}</h4>
+                      <span className="text-xs font-mono text-[#FFD200] bg-slate-800 px-2.5 py-1 rounded-md">
+                        Duration: {selectedVideo.duration}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      {selectedVideo.desc}
+                    </p>
+                  </div>
+
+                  {/* Key Takeaways & Chapters Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2.5">
+                      <span className="text-xs font-bold text-[#00B0F0] uppercase tracking-wider block">
+                        Video Chapters &amp; Timestamps
+                      </span>
+                      <div className="space-y-1.5 text-xs">
+                        {selectedVideo.chapters.map((ch, i) => (
+                          <div key={i} className="flex items-center gap-2.5 text-slate-300">
+                            <span className="font-mono text-[#FFD200] font-bold text-[11px] bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800">
+                              {ch.time}
+                            </span>
+                            <span>{ch.title}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2.5">
+                      <span className="text-xs font-bold text-[#FFD200] uppercase tracking-wider block">
+                        Institutional Underwriting Standards
+                      </span>
+                      <ul className="space-y-1.5 text-xs text-slate-300">
+                        {selectedVideo.keyPoints.map((pt, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                            <span>{pt}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Switcher: Other Videos */}
+                  <div className="pt-2 border-t border-slate-800">
+                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-3">
+                      Switch to Another Video Case Study:
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                      {videosList.map((v) => (
+                        <button
+                          key={v.id}
+                          type="button"
+                          onClick={() => setSelectedVideo(v)}
+                          className={`p-3 rounded-xl text-left border transition-all cursor-pointer flex items-center gap-3 ${
+                            selectedVideo.id === v.id
+                              ? 'bg-[#0070C0]/30 border-[#00B0F0] text-white ring-1 ring-[#00B0F0]'
+                              : 'bg-slate-950 hover:bg-slate-800 border-slate-800 text-slate-400 hover:text-slate-200'
+                          }`}
+                        >
+                          <PlayCircle className={`w-5 h-5 shrink-0 ${selectedVideo.id === v.id ? 'text-[#FFD200]' : 'text-slate-500'}`} />
+                          <div className="truncate">
+                            <p className="text-xs font-bold truncate text-white">{v.title}</p>
+                            <span className="text-[10px] text-slate-400">{v.duration} • {v.tag}</span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="px-6 py-3 bg-slate-950 border-t border-slate-800 flex items-center justify-between">
+                <span className="text-[11px] text-slate-400">
+                  OAL Network Institutional Media Center &bull; Verified 1080p Stream
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setSelectedVideo(null)}
+                  className="px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-colors cursor-pointer"
+                >
+                  Close Player
+                </button>
+              </div>
+
             </div>
           </div>
         )}

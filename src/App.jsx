@@ -96,22 +96,27 @@ import { HelpDeskTicketsPage } from './pages/support/HelpDeskTicketsPage';
 import { HelpDeskTicketDetailPage } from './pages/support/HelpDeskTicketDetailPage';
 import { KnowledgeBasePage } from './pages/support/KnowledgeBasePage';
 import { SupportAnalyticsPage } from './pages/support/SupportAnalyticsPage';
+import { ScrollToTop } from './components/common/ScrollToTop';
 
 export function App() {
   return (
     <AppProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           {/* Public Marketing Routes */}
           <Route element={<PublicLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/apply" element={<PublicApplyPage />} />
             <Route path="/loan-programs" element={<LoanProgramsPage />} />
+            <Route path="/industries" element={<LoanProgramsPage />} />
             <Route path="/loan-programs/:slug" element={<LoanProgramDetailPage />} />
             <Route path="/how-it-works" element={<HowItWorksPage />} />
             <Route path="/investment-iq" element={<InvestmentIQExplainerPage />} />
             <Route path="/investment-club" element={<InvestmentClubPage />} />
             <Route path="/help" element={<PublicHelpDeskPage />} />
+            <Route path="/faqs" element={<PublicHelpDeskPage initialTab="faqs" />} />
+            <Route path="/faq" element={<PublicHelpDeskPage initialTab="faqs" />} />
             <Route path="/company" element={<CompanyPage />} />
             <Route path="/about" element={<CompanyPage initialTab="about" />} />
             <Route path="/leadership" element={<CompanyPage initialTab="leadership" />} />

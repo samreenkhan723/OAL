@@ -406,7 +406,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
             <button
               onClick={() => {
                 logout();
-                navigate('/auth/login', { replace: true });
+                navigate('/', { replace: true });
               }}
               title="Sign Out"
               className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"

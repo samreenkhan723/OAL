@@ -4,7 +4,7 @@ import { ShieldCheck, Mail, Phone, MapPin, ExternalLink, HeartHandshake, CheckCi
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#001744] text-slate-300 pt-16 pb-12 border-t border-[#00B0F0]/20">
+    <footer className="bg-[#001744] text-slate-300 pt-12 pb-10 border-t border-[#00B0F0]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Brand & Nationwide Summary Bar */}
@@ -48,7 +48,7 @@ export const Footer = () => {
             <h4 className="text-[#FFD200] font-extrabold text-xs uppercase tracking-wider mb-2">
               Help Center
             </h4>
-            <ul className="space-y-2 text-xs text-slate-400">
+            <ul className="space-y-2 text-xs sm:text-[13px] text-slate-300">
               <li><Link to="/help?tab=kb" className="hover:text-[#00B0F0] transition-colors">Knowledge Base</Link></li>
               <li><Link to="/help?tab=academy" className="hover:text-[#00B0F0] transition-colors">Academy</Link></li>
               <li><Link to="/help?tab=faqs" className="hover:text-[#00B0F0] transition-colors">FAQs</Link></li>
@@ -56,10 +56,10 @@ export const Footer = () => {
               <li><Link to="/help?tab=definitions" className="hover:text-[#00B0F0] transition-colors">Definitions</Link></li>
               <li><Link to="/tools?tab=analyzer" className="hover:text-[#00B0F0] transition-colors">Biz Analyzer</Link></li>
               <li><Link to="/help?tab=resources" className="hover:text-[#00B0F0] transition-colors">Resources</Link></li>
-              <li><Link to="/help?tab=privacy" className="hover:text-[#00B0F0] transition-colors">Privacy and Security</Link></li>
-              <li><Link to="/help?tab=terms" className="hover:text-[#00B0F0] transition-colors">Terms of Service</Link></li>
+              <li><Link to="/help?tab=privacy" className="hover:text-[#00B0F0] transition-colors">Privacy and security</Link></li>
+              <li><Link to="/help?tab=terms" className="hover:text-[#00B0F0] transition-colors">Terms</Link></li>
               <li><Link to="/apply" className="text-[#FFD200] font-bold hover:underline">Apply for A Loan</Link></li>
-              <li><Link to="/tools?tab=videos" className="hover:text-[#00B0F0] transition-colors">Case Studies</Link></li>
+              <li><Link to="/tools?tab=videos" className="hover:text-[#00B0F0] transition-colors">Case studies</Link></li>
               <li><Link to="/tools?tab=reviews" className="hover:text-[#00B0F0] transition-colors">Testimonials</Link></li>
             </ul>
           </div>
@@ -69,9 +69,9 @@ export const Footer = () => {
             <h4 className="text-[#00B0F0] font-extrabold text-xs uppercase tracking-wider mb-2">
               Check It Out
             </h4>
-            <ul className="space-y-2 text-xs text-slate-400">
+            <ul className="space-y-2 text-xs sm:text-[13px] text-slate-300">
               <li><Link to="/investment-club" className="hover:text-[#FFD200] transition-colors">The Money Club</Link></li>
-              <li><Link to="/investment-iq" className="hover:text-[#FFD200] transition-colors">Investors IQ (180 Pts)</Link></li>
+              <li><Link to="/investment-iq" className="hover:text-[#FFD200] transition-colors">Investors IQ</Link></li>
               <li><Link to="/tools?tab=calculators" className="hover:text-[#FFD200] transition-colors">Financial Calculators</Link></li>
               <li><Link to="/tools?tab=videos" className="hover:text-[#FFD200] transition-colors">Videos</Link></li>
               <li><Link to="/company?tab=press" className="hover:text-[#FFD200] transition-colors">Press Room</Link></li>
@@ -87,17 +87,18 @@ export const Footer = () => {
           {/* Column 3: Product */}
           <div className="space-y-3">
             <h4 className="text-[#FFD200] font-extrabold text-xs uppercase tracking-wider mb-2">
-              Product &amp; Programs
+              Product
             </h4>
-            <ul className="space-y-2 text-xs text-slate-400">
-              <li><Link to="/loan-programs" className="hover:text-[#00B0F0] transition-colors">Loan Types Overview</Link></li>
+            <ul className="space-y-2 text-xs sm:text-[13px] text-slate-300">
+              <li><Link to="/loan-programs" className="hover:text-[#00B0F0] transition-colors">Loan Types</Link></li>
               <li><Link to="/loan-programs" className="hover:text-[#00B0F0] transition-colors">Loans by Industry</Link></li>
               <li><Link to="/tools" className="hover:text-[#00B0F0] transition-colors">Marketing Genius</Link></li>
+              <li><Link to="/loan-programs" className="hover:text-[#00B0F0] transition-colors">Financing</Link></li>
               <li><Link to="/loan-programs/restaurant" className="hover:text-[#00B0F0] transition-colors">Restaurant Loans</Link></li>
               <li><Link to="/loan-programs/food-truck" className="hover:text-[#00B0F0] transition-colors">Food Trucks Loans</Link></li>
               <li><Link to="/loan-programs/franchise" className="hover:text-[#00B0F0] transition-colors">Buy A Franchise</Link></li>
               <li><Link to="/loan-programs/dental-practice" className="hover:text-[#00B0F0] transition-colors">Dental Practice</Link></li>
-              <li><Link to="/loan-programs/freight-trucking" className="hover:text-[#00B0F0] transition-colors">Truck Loans (Freight)</Link></li>
+              <li><Link to="/loan-programs/freight-trucking" className="hover:text-[#00B0F0] transition-colors">Truck Loans</Link></li>
               <li><Link to="/loan-programs/hotel-motel-airbnb" className="hover:text-[#00B0F0] transition-colors">Hotel / Motel Loans</Link></li>
               <li><Link to="/loan-programs/church-facility" className="hover:text-[#00B0F0] transition-colors">Church Loans</Link></li>
               <li><Link to="/loan-programs/fix-and-flip" className="hover:text-[#00B0F0] transition-colors">Fix and Flip Loans</Link></li>
@@ -107,19 +108,21 @@ export const Footer = () => {
           {/* Column 4: Company */}
           <div className="space-y-3">
             <h4 className="text-[#00B0F0] font-extrabold text-xs uppercase tracking-wider mb-2">
-              Company &amp; Governance
+              Company
             </h4>
-            <ul className="space-y-2 text-xs text-slate-400">
-              <li><Link to="/company?tab=about" className="hover:text-[#FFD200] transition-colors">About Us</Link></li>
+            <ul className="space-y-2 text-xs sm:text-[13px] text-slate-300">
+              <li><Link to="/company?tab=about" className="hover:text-[#FFD200] transition-colors">About</Link></li>
               <li><Link to="/how-it-works" className="hover:text-[#FFD200] transition-colors">How OAL Works</Link></li>
               <li><Link to="/company?tab=values" className="hover:text-[#FFD200] transition-colors">OAL Values</Link></li>
               <li><Link to="/company?tab=leadership" className="hover:text-[#FFD200] transition-colors">Management Team</Link></li>
+              <li><Link to="/tools?tab=partners" className="hover:text-[#FFD200] transition-colors">Affiliates</Link></li>
               <li><Link to="/company?tab=careers" className="hover:text-[#FFD200] transition-colors">Careers</Link></li>
+              <li><Link to="/company?tab=press" className="hover:text-[#FFD200] transition-colors">Blog</Link></li>
+              <li><Link to="/company?tab=investors" className="hover:text-[#FFD200] transition-colors">Investors</Link></li>
               <li><Link to="/company?tab=culture" className="hover:text-[#FFD200] transition-colors">Inclusive Culture</Link></li>
-              <li><Link to="/company?tab=contact" className="hover:text-[#FFD200] transition-colors">Contact Us</Link></li>
-              <li><Link to="/borrower/referrals" className="hover:text-[#FFD200] transition-colors">Referral Program</Link></li>
-              <li><Link to="/iso-program" className="text-[#FFD200] font-bold hover:underline">ISO Program (Partners)</Link></li>
-              <li><Link to="/tools?tab=partners" className="hover:text-[#FFD200] transition-colors">Affiliates &amp; Ecosystem</Link></li>
+              <li><Link to="/company?tab=contact" className="hover:text-[#FFD200] transition-colors">Contact</Link></li>
+              <li><Link to="/borrower/referrals" className="hover:text-[#FFD200] transition-colors">Referral program</Link></li>
+              <li><Link to="/iso-program" className="hover:text-[#FFD200] transition-colors">Partners</Link></li>
             </ul>
           </div>
 
