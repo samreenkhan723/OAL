@@ -59,7 +59,7 @@ export const RegisterPage = () => {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
       {/* LEFT COLUMN: Visual Brand Showcase with High-End Imagery (Balanced 50%) */}
-      <div className="relative hidden md:flex md:w-1/2 bg-[#0B1730] flex-col justify-between p-8 lg:p-12 xl:p-16 text-white overflow-hidden shrink-0">
+      <div className="relative hidden md:flex md:w-1/2 bg-[#002060] flex-col justify-between p-8 lg:p-12 xl:p-16 text-white overflow-hidden shrink-0">
         {/* Background Image with Cinematic Overlay */}
         <div className="absolute inset-0 z-0">
           <img
@@ -68,22 +68,22 @@ export const RegisterPage = () => {
             className="w-full h-full object-cover object-center filter brightness-95"
           />
           {/* Deep Navy/Black Luxury Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B1730] via-[#0B1730]/85 to-[#0B1730]/75" />
-          <div className="absolute inset-0 bg-radial-at-t from-blue-600/20 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#002060] via-[#002060]/90 to-[#002060]/80" />
+          <div className="absolute inset-0 bg-radial-at-t from-[#00B0F0]/25 via-transparent to-transparent" />
         </div>
 
         {/* Top Header / Logo */}
         <div className="relative z-10">
           <Link to="/" className="inline-flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0B1730] to-[#172B4D] border border-[#D5B66A]/40 flex items-center justify-center text-white shadow-lg">
-              <ShieldCheck className="w-5 h-5 text-[#D5B66A]" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#002060] to-[#0070C0] border border-[#FFD200]/50 flex items-center justify-center text-white shadow-lg">
+              <ShieldCheck className="w-5 h-5 text-[#FFD200]" />
             </div>
             <div>
               <span className="font-heading font-extrabold text-xl tracking-tight text-white block">
-                OAL <span className="text-blue-400">NETWORK</span>
+                OPM <span className="text-[#00B0F0]">ASAP</span>
               </span>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#D5B66A] block -mt-1">
-                Commercial Lending Exchange
+              <span className="text-[10px] uppercase font-bold tracking-widest text-[#FFD200] block -mt-1">
+                Commercial Lending NetWORK
               </span>
             </div>
           </Link>
@@ -91,16 +91,16 @@ export const RegisterPage = () => {
 
         {/* Center Content / Value Propositions */}
         <div className="relative z-10 space-y-6 my-auto py-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[#D5B66A] text-xs font-bold tracking-wide backdrop-blur-xs">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Servicing All 50 States &bull; $10k to $500M+</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-[#00B0F0]/30 text-[#FFD200] text-xs font-bold tracking-wide backdrop-blur-xs">
+            <Sparkles className="w-3.5 h-3.5 text-[#00B0F0]" />
+            <span>Servicing All 50 States &bull; $10k to $500M+ &bull; 24-72 Hr Funding</span>
           </div>
 
           <h1 className="text-3xl xl:text-4xl font-heading font-extrabold text-white leading-tight">
             Next-Generation Commercial Lending & Underwriting
           </h1>
 
-          <p className="text-sm text-slate-300 leading-relaxed max-w-md">
+          <p className="text-sm text-slate-200 leading-relaxed max-w-md">
             Join the verified marketplace connecting commercial debt seekers and institutional lenders with transparent scoring and zero uncoordinated bidding.
           </p>
 
@@ -117,18 +117,18 @@ export const RegisterPage = () => {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-400/40 flex items-center justify-center shrink-0 mt-0.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
+              <div className="w-5 h-5 rounded-full bg-[#00B0F0]/20 border border-[#00B0F0]/40 flex items-center justify-center shrink-0 mt-0.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#00B0F0]" />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-white">Max 3 Lenders per Working Deal</h4>
-                <p className="text-[11px] text-slate-300 mt-0.5">Protected files prevent excessive credit pulls and predatory bidding.</p>
+                <h4 className="text-xs font-bold text-white">Rule FR-08: Max 3 Lenders per Deal</h4>
+                <p className="text-[11px] text-slate-300 mt-0.5">Protected files prevent excessive credit pulls and uncoordinated bidding.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
               <div className="w-5 h-5 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center shrink-0 mt-0.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#FFD200]" />
               </div>
               <div>
                 <h4 className="text-xs font-bold text-white">Rapid 24–72 Hour Approvals</h4>
@@ -141,10 +141,10 @@ export const RegisterPage = () => {
         {/* Bottom Trust Card */}
         <div className="relative z-10 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-[#D5B66A]" />
-            <span className="text-[11px] font-semibold text-slate-300">256-Bit TLS Bank-Grade Encryption</span>
+            <ShieldCheck className="w-4 h-4 text-[#FFD200]" />
+            <span className="text-[11px] font-semibold text-slate-300">USA Patriot Act Compliant</span>
           </div>
-          <span className="text-[10px] text-slate-400 uppercase font-mono">SOC2 Standards</span>
+          <span className="text-[10px] text-slate-400 uppercase font-mono">256-Bit TLS</span>
         </div>
       </div>
 

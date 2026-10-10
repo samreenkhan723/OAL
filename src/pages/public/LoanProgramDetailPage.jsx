@@ -18,6 +18,7 @@ import {
   LogIn,
   X
 } from 'lucide-react';
+import { VerifyBadge } from '../../components/common/VerifyBadge';
 
 export const LoanProgramDetailPage = () => {
   const { slug } = useParams();
@@ -61,47 +62,48 @@ export const LoanProgramDetailPage = () => {
       <div>
         <Link
           to="/loan-programs"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-blue-600 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#0070C0] transition-colors"
         >
-          <ChevronLeft className="w-4 h-4" />
-          <span>Back to Loan Programs Catalog</span>
+          <ChevronLeft className="w-4 h-4 text-[#00B0F0]" />
+          <span>Back to Commercial Loan Catalog</span>
         </Link>
       </div>
 
-      {/* Program Hero Header */}
-      <div className="bg-gradient-to-br from-[#0B1730] to-[#172B4D] rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+      {/* Program Hero Header with Deep Blue / Light Blue styling */}
+      <div className="bg-gradient-to-br from-[#002060] via-[#003882] to-[#0070C0] rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+        <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-[#00B0F0]/15 blur-2xl pointer-events-none" />
         <div className="relative z-10 space-y-4 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#D5B66A] text-xs font-bold uppercase tracking-wider">
-            <span>Specialized Commercial Debt</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white border border-[#00B0F0]/40 text-xs font-bold uppercase tracking-wider">
+            <span className="text-[#00B0F0]">Commercial Program</span>
             <span>•</span>
-            <span>{program.badge}</span>
+            <span className="text-[#FFD200]">{program.badge}</span>
           </div>
 
           <h1 className="text-2xl sm:text-4xl font-heading font-extrabold text-white">
             {program.title}
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
             {program.tagline}
           </p>
 
-          <div className="pt-4 flex flex-wrap items-center gap-6 text-xs text-slate-300">
-            <div>
-              <span className="block text-slate-400 text-[10px] uppercase">Financing Volume</span>
+          <div className="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs text-slate-200">
+            <div className="bg-white/10 rounded-xl p-3 border border-white/10">
+              <span className="block text-slate-300 text-[10px] uppercase font-semibold">Network Financing Scope</span>
               <strong className="text-sm font-bold text-white">
-                ${(program.minAmount / 1000).toLocaleString()}k – ${(program.maxAmount / 1000000).toFixed(1)}M
+                {program.fundingScope || '$10,000 to $500M+'}
               </strong>
             </div>
-            <div>
-              <span className="block text-slate-400 text-[10px] uppercase">Indicative Rate</span>
-              <strong className="text-sm font-bold text-[#D5B66A]">
-                {program.typicalRate}
+            <div className="bg-white/10 rounded-xl p-3 border border-white/10">
+              <span className="block text-slate-300 text-[10px] uppercase font-semibold">Credit Qualifications</span>
+              <strong className="text-sm font-bold text-[#FFD200]">
+                {program.creditRequirement || 'GOOD & BAD CREDIT'}
               </strong>
             </div>
-            <div>
-              <span className="block text-slate-400 text-[10px] uppercase">Term Length</span>
-              <strong className="text-sm font-bold text-white">
-                {program.termMonths}
+            <div className="bg-white/10 rounded-xl p-3 border border-white/10 col-span-2 sm:col-span-1">
+              <span className="block text-slate-300 text-[10px] uppercase font-semibold">Typical Approval Speed</span>
+              <strong className="text-sm font-bold text-[#00B0F0]">
+                {program.approvalTime || '2-24 Hours'}
               </strong>
             </div>
           </div>
@@ -110,10 +112,10 @@ export const LoanProgramDetailPage = () => {
             <button
               type="button"
               onClick={handleApplyClick}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-bold shadow-lg shadow-blue-600/30 transition-all hover:scale-105 cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] text-xs font-extrabold shadow-lg shadow-amber-400/20 transition-all hover:scale-105 cursor-pointer"
             >
               <span>Apply for {program.title}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 text-[#002060]" />
             </button>
           </div>
         </div>
@@ -123,18 +125,18 @@ export const LoanProgramDetailPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Left: Eligible Uses */}
         <div className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4">
-          <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+          <h3 className="text-base font-bold text-[#002060] flex items-center gap-2">
             <CheckCircle2 className="w-5 h-5 text-emerald-600" />
             Approved Financing Purposes
           </h3>
           <p className="text-xs text-slate-500 leading-relaxed">
-            Underwriters will verify quotes and invoices aligned with the following capital expenditures:
+            Institutional underwriters in the OAL Network support the following commercial uses of capital:
           </p>
 
           <ul className="space-y-3 pt-2">
             {program.eligiblePurposes.map((purpose, idx) => (
               <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0" />
+                <span className="w-2 h-2 rounded-full bg-[#00B0F0] mt-1.5 shrink-0" />
                 <span>{purpose}</span>
               </li>
             ))}
@@ -143,18 +145,18 @@ export const LoanProgramDetailPage = () => {
 
         {/* Right: Mandatory KYC & Document Checklist */}
         <div className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4">
-          <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <FileText className="w-5 h-5 text-blue-600" />
+          <h3 className="text-base font-bold text-[#002060] flex items-center gap-2">
+            <FileText className="w-5 h-5 text-[#0070C0]" />
             Required Underwriting Documents
           </h3>
           <p className="text-xs text-slate-500 leading-relaxed">
-            Ensure you have these electronic files prepared to complete KYC and qualify for the marketplace:
+            Prepare these documentation files to complete identity verification and submit your deal to the marketplace:
           </p>
 
           <ul className="space-y-3 pt-2">
             {program.requiredDocuments.map((doc, idx) => (
               <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#0070C0] shrink-0 mt-0.5" />
                 <span>{doc}</span>
               </li>
             ))}
@@ -163,37 +165,37 @@ export const LoanProgramDetailPage = () => {
       </div>
 
       {/* Underwriting Architecture Note */}
-      <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-2">
-        <h4 className="font-bold text-slate-900 flex items-center gap-1.5">
-          <Info className="w-4 h-4 text-blue-600" />
-          OAL Underwriting Integrity Standard
+      <div className="p-6 rounded-2xl bg-sky-50/60 border border-[#00B0F0]/30 text-xs text-slate-700 space-y-2">
+        <h4 className="font-bold text-[#002060] flex items-center gap-1.5">
+          <Info className="w-4 h-4 text-[#0070C0]" />
+          OAL Underwriting Rules & Scoring Notice
         </h4>
-        <p className="leading-relaxed">
-          Submitting an application triggers an automated 180-point Investment IQ evaluation. Once KYC identity documents are approved, your sanitized profile becomes visible to eligible lenders. Maximum 3 institutional lenders may concurrently claim working underwriting deals under rule FR-08.
+        <p className="leading-relaxed text-slate-600">
+          Submitting an application initiates an automated 180-point Investment IQ evaluation based on 5 core categories (Credit 70 pts, Cash Flow 50 pts, Collateral 30 pts, Business Plan 20 pts, Risk 10 pts). After contact verification, your profile is anonymized for lenders. Rule FR-08 ensures a maximum of 3 concurrent institutional lenders work on any single deal, with all communications mediated through your dedicated OAL Representative.
         </p>
       </div>
 
       {/* Bottom Apply for This Program CTA Bar */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#0B1730] to-[#172B4D] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#002060] to-[#0070C0] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
         <div>
           <h3 className="text-xl font-heading font-bold text-white">
             Ready to apply for {program.title}?
           </h3>
-          <p className="text-xs text-slate-300 mt-1">
-            Complete the secure 6-step intake to generate your 180-point Investment IQ and connect with verified lenders.
+          <p className="text-xs text-slate-200 mt-1">
+            Complete the secure intake wizard to generate your 180-point Investment IQ score and access institutional lenders.
           </p>
         </div>
         <button
           type="button"
           onClick={handleApplyClick}
-          className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-bold shadow-lg shadow-blue-600/30 transition-all hover:scale-105 cursor-pointer whitespace-nowrap flex items-center justify-center gap-2 shrink-0"
+          className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] text-xs font-extrabold shadow-lg shadow-amber-400/20 transition-all hover:scale-105 cursor-pointer whitespace-nowrap flex items-center justify-center gap-2 shrink-0"
         >
           <span>Apply for This Program</span>
-          <ArrowRight className="w-4 h-4" />
+          <ArrowRight className="w-4 h-4 text-[#002060]" />
         </button>
       </div>
 
-      {/* Auth Entry Modal for Unauthenticated Applicants */}
+      {/* Auth Entry Modal for Unauthenticated Applicants (Preserves client requirement: create account before loan app) */}
       {showAuthModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4">
           <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-lg w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-150">
@@ -207,16 +209,16 @@ export const LoanProgramDetailPage = () => {
             </button>
 
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold border border-blue-200">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#00B0F0]/15 text-[#0070C0] text-[11px] font-bold border border-[#00B0F0]/30">
                 <span>Selected Loan Program</span>
                 <span>•</span>
                 <span>{program.title}</span>
               </div>
-              <h3 className="text-xl font-heading font-extrabold text-[#0B1730]">
+              <h3 className="text-xl font-heading font-extrabold text-[#002060]">
                 Apply for {program.title}
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                To aid in federal compliance and verify identity, all applicants must establish an authenticated account before starting the loan application wizard.
+                As required by federal commercial lending compliance and OAL Network security rules, all borrowers must create an authenticated account before starting the loan application intake wizard.
               </p>
             </div>
 
@@ -234,22 +236,22 @@ export const LoanProgramDetailPage = () => {
                     }
                   });
                 }}
-                className="w-full text-left p-4 rounded-xl border-2 border-blue-600 bg-blue-50/50 hover:bg-blue-50 transition-all flex items-start gap-3.5 group cursor-pointer"
+                className="w-full text-left p-4 rounded-xl border-2 border-[#00B0F0] bg-sky-50/50 hover:bg-sky-50 transition-all flex items-start gap-3.5 group cursor-pointer"
               >
-                <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm shadow-blue-600/30">
+                <div className="w-9 h-9 rounded-xl bg-[#0070C0] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm shadow-[#0070C0]/30">
                   <UserPlus className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-slate-900 group-hover:text-blue-700">
-                      Create Account (New Visitor)
+                    <span className="text-sm font-bold text-[#002060] group-hover:text-[#0070C0]">
+                      Create Account (New Borrower)
                     </span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#002060] bg-[#FFD200] px-2 py-0.5 rounded-full">
                       Step 1
                     </span>
                   </div>
                   <p className="text-xs text-slate-600 mt-1">
-                    Register with your legal name, business email, phone, and secure password to initiate this application.
+                    Register with your legal business name, email, phone, and secure password. You will proceed directly to the {program.title} application after mock verification.
                   </p>
                 </div>
               </button>
@@ -268,17 +270,17 @@ export const LoanProgramDetailPage = () => {
                     }
                   });
                 }}
-                className="w-full text-left p-4 rounded-xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-all flex items-start gap-3.5 group cursor-pointer"
+                className="w-full text-left p-4 rounded-xl border border-slate-200 hover:border-[#00B0F0] bg-white hover:bg-slate-50 transition-all flex items-start gap-3.5 group cursor-pointer"
               >
-                <div className="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 group-hover:bg-blue-100 group-hover:text-blue-700 flex items-center justify-center shrink-0 mt-0.5 transition-colors">
+                <div className="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 group-hover:bg-[#00B0F0]/15 group-hover:text-[#0070C0] flex items-center justify-center shrink-0 mt-0.5 transition-colors">
                   <LogIn className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <span className="text-sm font-bold text-slate-900 group-hover:text-blue-700">
+                  <span className="text-sm font-bold text-slate-900 group-hover:text-[#0070C0]">
                     Sign In (Existing Borrower)
                   </span>
                   <p className="text-xs text-slate-600 mt-1">
-                    Already have an account? Sign in to jump straight into the application wizard with {program.title} selected.
+                    Already have an account? Sign in to jump straight into the application wizard with {program.title} pre-selected.
                   </p>
                 </div>
               </button>

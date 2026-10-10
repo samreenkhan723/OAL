@@ -1,12 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-oal-navy: #0B1730;
-  --color-oal-navy-light: #172B4D;
-  --color-oal-blue: #2563EB;
-  --color-oal-blue-light: #EFF6FF;
-  --color-oal-gold: #D5B66A;
-  --color-oal-gold-light: #FBF6E9;
+  /* Client Brand Palette (from Sitemap Blueprint DOCX) */
+  --color-oal-lightblue: #00B0F0;      /* #00B0F0 — Client primary light blue */
+  --color-oal-brightblue: #0066FF;     /* #0066FF — Client bright blue */
+  --color-oal-mediumblue: #0070C0;     /* #0070C0 — Client medium blue */
+  --color-oal-navy: #002060;           /* #002060 — Client deep blue / navy */
+  --color-oal-navy-dark: #001744;
+  --color-oal-blue-light: #F0F9FF;      /* Very soft light blue wash */
+  --color-oal-blue-tint: #E0F2FE;
+
+  /* Provisional Yellow Brand Accent (Flagged for client hex confirmation) */
+  --color-oal-yellow: #FFD200;         /* High-contrast provisional yellow accent */
+  --color-oal-yellow-hover: #F5C500;
+  --color-oal-yellow-light: #FEF9C3;   /* Soft yellow background */
+  --color-oal-yellow-dark: #854D0E;    /* Accessible dark yellow-amber for text */
+  --color-oal-gold: #FFD200;           /* Backwards compatibility mapped to yellow */
+  --color-oal-gold-light: #FEF9C3;
+
+  /* Neutrals & Functional Colors */
   --color-oal-teal: #0D9488;
   --color-oal-amber: #D97706;
   --color-oal-red: #DC2626;
@@ -34,21 +46,25 @@
 
 /* Glass and elevation effects */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 1px solid rgba(0, 176, 240, 0.2);
 }
 
 .navy-gradient {
-  background: linear-gradient(135deg, #0B1730 0%, #172B4D 100%);
-}
-
-.gold-gradient {
-  background: linear-gradient(135deg, #D5B66A 0%, #B89643 100%);
+  background: linear-gradient(135deg, #002060 0%, #0070C0 100%);
 }
 
 .blue-gradient {
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  background: linear-gradient(135deg, #0070C0 0%, #00B0F0 100%);
+}
+
+.gold-gradient, .yellow-gradient {
+  background: linear-gradient(135deg, #FFD200 0%, #F59E0B 100%);
+}
+
+.oal-hero-gradient {
+  background: linear-gradient(135deg, #001744 0%, #002060 40%, #0070C0 85%, #00B0F0 100%);
 }
 
 /* Print styling */

@@ -1,128 +1,143 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
-import { LOAN_PROGRAMS } from '../../data/loanPrograms';
+import { ShieldCheck, Mail, Phone, MapPin, ExternalLink, HeartHandshake, CheckCircle2 } from 'lucide-react';
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#0B1730] text-slate-300 pt-16 pb-12 border-t border-slate-800">
+    <footer className="bg-[#001744] text-slate-300 pt-16 pb-12 border-t border-[#00B0F0]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+        
+        {/* Top Brand & Nationwide Summary Bar */}
+        <div className="pb-10 mb-10 border-b border-slate-800 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#002060] via-[#0070C0] to-[#00B0F0] flex items-center justify-center text-white shadow-md border border-[#00B0F0]/40">
+              <ShieldCheck className="w-6 h-6 text-[#FFD200]" />
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="font-heading font-extrabold text-2xl tracking-tight text-white">OAL</span>
+                <span className="font-heading font-semibold text-2xl tracking-tight text-[#00B0F0]">NETWORK</span>
+              </div>
+              <p className="text-[10px] font-bold tracking-widest text-[#FFD200] uppercase">
+                OPM ASAP Loans NetWORK • Servicing All 50 States
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-6 text-xs text-slate-300">
+            <div className="flex items-center gap-2">
+              <Phone className="w-4 h-4 text-[#FFD200]" />
+              <span>+1 (800) 592-OAL-NET (6256)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-[#00B0F0]" />
+              <span>underwriting@oalnetwork.com</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-[#FFD200]" />
+              <span>Financial District, New York, NY 10005</span>
+            </div>
+          </div>
+        </div>
+
+        {/* 4 Exact Blueprint Columns from Sitemap DOCX */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
           
-          {/* Brand Info */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white shadow-md">
-                <ShieldCheck className="w-6 h-6 text-[#D5B66A]" />
-              </div>
-              <div>
-                <span className="font-heading font-extrabold text-xl tracking-tight text-white">OAL</span>
-                <span className="font-heading font-semibold text-xl tracking-tight text-blue-400"> NETWORK</span>
-                <p className="text-[10px] tracking-wider text-slate-400 uppercase">Commercial Lending Exchange</p>
-              </div>
-            </div>
-            <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              The premier institutional marketplace connecting verified commercial borrowers, licensed OAL representatives, and accredited lenders through an auditable, mediated application lifecycle.
-            </p>
-            <div className="pt-2 flex flex-col gap-2 text-xs text-slate-400">
-              <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[#D5B66A]" />
-                <span>+1 (800) 592-OAL-NET (6256)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#D5B66A]" />
-                <span>underwriting@oalnetwork.com</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#D5B66A]" />
-                <span>Financial District, New York, NY 10005</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Loan Programs */}
-          <div>
-            <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Loan Programs</h4>
-            <ul className="space-y-2.5 text-xs text-slate-400">
-              {LOAN_PROGRAMS.slice(0, 5).map(prog => (
-                <li key={prog.id}>
-                  <Link to={`/loan-programs/${prog.slug}`} className="hover:text-white transition-colors">
-                    {prog.title}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link to="/loan-programs" className="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center gap-1">
-                  View all 8 programs &rarr;
-                </Link>
-              </li>
+          {/* Column 1: Help Center */}
+          <div className="space-y-3">
+            <h4 className="text-[#FFD200] font-extrabold text-xs uppercase tracking-wider mb-2">
+              Help Center
+            </h4>
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li><Link to="/help?tab=kb" className="hover:text-[#00B0F0] transition-colors">Knowledge Base</Link></li>
+              <li><Link to="/help?tab=academy" className="hover:text-[#00B0F0] transition-colors">Academy</Link></li>
+              <li><Link to="/help?tab=faqs" className="hover:text-[#00B0F0] transition-colors">FAQs</Link></li>
+              <li><Link to="/help?tab=training" className="hover:text-[#00B0F0] transition-colors">Training</Link></li>
+              <li><Link to="/help?tab=definitions" className="hover:text-[#00B0F0] transition-colors">Definitions</Link></li>
+              <li><Link to="/tools?tab=analyzer" className="hover:text-[#00B0F0] transition-colors">Biz Analyzer</Link></li>
+              <li><Link to="/help?tab=resources" className="hover:text-[#00B0F0] transition-colors">Resources</Link></li>
+              <li><Link to="/help?tab=privacy" className="hover:text-[#00B0F0] transition-colors">Privacy and Security</Link></li>
+              <li><Link to="/help?tab=terms" className="hover:text-[#00B0F0] transition-colors">Terms of Service</Link></li>
+              <li><Link to="/apply" className="text-[#FFD200] font-bold hover:underline">Apply for A Loan</Link></li>
+              <li><Link to="/tools?tab=videos" className="hover:text-[#00B0F0] transition-colors">Case Studies</Link></li>
+              <li><Link to="/tools?tab=reviews" className="hover:text-[#00B0F0] transition-colors">Testimonials</Link></li>
             </ul>
           </div>
 
-          {/* Platform & Methodology */}
-          <div>
-            <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Methodology</h4>
-            <ul className="space-y-2.5 text-xs text-slate-400">
-              <li>
-                <Link to="/how-it-works" className="hover:text-white transition-colors">
-                  How It Works
-                </Link>
-              </li>
-              <li>
-                <Link to="/investment-iq" className="hover:text-white transition-colors">
-                  180-Point Investment IQ
-                </Link>
-              </li>
-              <li>
-                <Link to="/investment-club" className="hover:text-white transition-colors">
-                  Investment Club
-                </Link>
-              </li>
-              <li>
-                <Link to="/help" className="hover:text-white transition-colors">
-                  Help Desk & FAQ
-                </Link>
-              </li>
-              <li>
-                <Link to="/auth/login" className="hover:text-white transition-colors">
-                  Client & Partner Portal
-                </Link>
-              </li>
+          {/* Column 2: Check It Out */}
+          <div className="space-y-3">
+            <h4 className="text-[#00B0F0] font-extrabold text-xs uppercase tracking-wider mb-2">
+              Check It Out
+            </h4>
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li><Link to="/investment-club" className="hover:text-[#FFD200] transition-colors">The Money Club</Link></li>
+              <li><Link to="/investment-iq" className="hover:text-[#FFD200] transition-colors">Investors IQ (180 Pts)</Link></li>
+              <li><Link to="/tools?tab=calculators" className="hover:text-[#FFD200] transition-colors">Financial Calculators</Link></li>
+              <li><Link to="/tools?tab=videos" className="hover:text-[#FFD200] transition-colors">Videos</Link></li>
+              <li><Link to="/company?tab=press" className="hover:text-[#FFD200] transition-colors">Press Room</Link></li>
+              <li><Link to="/loan-programs" className="hover:text-[#FFD200] transition-colors">Small Business Loans</Link></li>
+              <li><Link to="/loan-programs" className="hover:text-[#FFD200] transition-colors">Startup Loans</Link></li>
+              <li><Link to="/loan-programs" className="hover:text-[#FFD200] transition-colors">Inventory Loans</Link></li>
+              <li><Link to="/loan-programs" className="hover:text-[#FFD200] transition-colors">Payroll Loans</Link></li>
+              <li><Link to="/tools?tab=partners" className="hover:text-[#FFD200] transition-colors">CRM nErgy Events</Link></li>
+              <li><Link to="/tools?tab=reviews" className="hover:text-[#FFD200] transition-colors">Reviews</Link></li>
             </ul>
           </div>
 
-          {/* Compliance & Governance */}
-          <div>
-            <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Governance</h4>
-            <ul className="space-y-2.5 text-xs text-slate-400">
-              <li>
-                <span className="text-slate-300 font-medium">3-Lender Deal Limit:</span>
-                <p className="text-[11px] text-slate-400 mt-0.5">Strict atomic cap per FR-08 protects borrower attention.</p>
-              </li>
-              <li>
-                <span className="text-slate-300 font-medium">Mediated Messaging:</span>
-                <p className="text-[11px] text-slate-400 mt-0.5">All communications supervised via OAL Representative.</p>
-              </li>
-              <li>
-                <span className="text-slate-300 font-medium">Privacy Guaranteed:</span>
-                <p className="text-[11px] text-slate-400 mt-0.5">Lender identities hidden from competing lenders.</p>
-              </li>
+          {/* Column 3: Product */}
+          <div className="space-y-3">
+            <h4 className="text-[#FFD200] font-extrabold text-xs uppercase tracking-wider mb-2">
+              Product &amp; Programs
+            </h4>
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li><Link to="/loan-programs" className="hover:text-[#00B0F0] transition-colors">Loan Types Overview</Link></li>
+              <li><Link to="/loan-programs" className="hover:text-[#00B0F0] transition-colors">Loans by Industry</Link></li>
+              <li><Link to="/tools" className="hover:text-[#00B0F0] transition-colors">Marketing Genius</Link></li>
+              <li><Link to="/loan-programs/restaurant" className="hover:text-[#00B0F0] transition-colors">Restaurant Loans</Link></li>
+              <li><Link to="/loan-programs/food-truck" className="hover:text-[#00B0F0] transition-colors">Food Trucks Loans</Link></li>
+              <li><Link to="/loan-programs/franchise" className="hover:text-[#00B0F0] transition-colors">Buy A Franchise</Link></li>
+              <li><Link to="/loan-programs/dental-practice" className="hover:text-[#00B0F0] transition-colors">Dental Practice</Link></li>
+              <li><Link to="/loan-programs/freight-trucking" className="hover:text-[#00B0F0] transition-colors">Truck Loans (Freight)</Link></li>
+              <li><Link to="/loan-programs/hotel-motel-airbnb" className="hover:text-[#00B0F0] transition-colors">Hotel / Motel Loans</Link></li>
+              <li><Link to="/loan-programs/church-facility" className="hover:text-[#00B0F0] transition-colors">Church Loans</Link></li>
+              <li><Link to="/loan-programs/fix-and-flip" className="hover:text-[#00B0F0] transition-colors">Fix and Flip Loans</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 4: Company */}
+          <div className="space-y-3">
+            <h4 className="text-[#00B0F0] font-extrabold text-xs uppercase tracking-wider mb-2">
+              Company &amp; Governance
+            </h4>
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li><Link to="/company?tab=about" className="hover:text-[#FFD200] transition-colors">About Us</Link></li>
+              <li><Link to="/how-it-works" className="hover:text-[#FFD200] transition-colors">How OAL Works</Link></li>
+              <li><Link to="/company?tab=values" className="hover:text-[#FFD200] transition-colors">OAL Values</Link></li>
+              <li><Link to="/company?tab=leadership" className="hover:text-[#FFD200] transition-colors">Management Team</Link></li>
+              <li><Link to="/company?tab=careers" className="hover:text-[#FFD200] transition-colors">Careers</Link></li>
+              <li><Link to="/company?tab=culture" className="hover:text-[#FFD200] transition-colors">Inclusive Culture</Link></li>
+              <li><Link to="/company?tab=contact" className="hover:text-[#FFD200] transition-colors">Contact Us</Link></li>
+              <li><Link to="/borrower/referrals" className="hover:text-[#FFD200] transition-colors">Referral Program</Link></li>
+              <li><Link to="/iso-program" className="text-[#FFD200] font-bold hover:underline">ISO Program (Partners)</Link></li>
+              <li><Link to="/tools?tab=partners" className="hover:text-[#FFD200] transition-colors">Affiliates &amp; Ecosystem</Link></li>
             </ul>
           </div>
 
         </div>
 
-        {/* Bottom copyright & disclaimers */}
+        {/* Bottom Bar: Copyright & Compliance */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© {new Date().getFullYear()} OAL Network Inc. All rights reserved. Commercial Lending Marketplace.</p>
+          <p>© {new Date().getFullYear()} OAL Network Inc. (OPM ASAP Loans NetWORK). Servicing All 50 States.</p>
           <div className="flex items-center gap-6">
-            <span className="text-slate-400">Confidential Prototype Version 1.0</span>
-            <span className="hover:text-slate-300 cursor-pointer">Privacy Policy</span>
-            <span className="hover:text-slate-300 cursor-pointer">Terms of Service</span>
-            <span className="hover:text-slate-300 cursor-pointer">Equal Credit Opportunity</span>
+            <Link to="/help?tab=privacy" className="hover:text-slate-300">Privacy Policy</Link>
+            <Link to="/help?tab=terms" className="hover:text-slate-300">Terms of Service</Link>
+            <Link to="/help?tab=privacy" className="hover:text-slate-300">Patriot Act Notice</Link>
+            <span className="text-slate-500">Equal Credit Opportunity</span>
           </div>
         </div>
+
       </div>
     </footer>
   );
 };
+

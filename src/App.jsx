@@ -16,6 +16,9 @@ import { HowItWorksPage } from './pages/public/HowItWorksPage';
 import { InvestmentIQExplainerPage } from './pages/public/InvestmentIQExplainerPage';
 import { InvestmentClubPage } from './pages/public/InvestmentClubPage';
 import { PublicHelpDeskPage } from './pages/public/PublicHelpDeskPage';
+import { CompanyPage } from './pages/public/CompanyPage';
+import { ToolsAndResourcesPage } from './pages/public/ToolsAndResourcesPage';
+import { IsoProgramPage } from './pages/public/IsoProgramPage';
 
 // Auth Pages
 import { LoginPage } from './pages/auth/LoginPage';
@@ -109,6 +112,29 @@ export function App() {
             <Route path="/investment-iq" element={<InvestmentIQExplainerPage />} />
             <Route path="/investment-club" element={<InvestmentClubPage />} />
             <Route path="/help" element={<PublicHelpDeskPage />} />
+            <Route path="/company" element={<CompanyPage />} />
+            <Route path="/about" element={<CompanyPage initialTab="about" />} />
+            <Route path="/leadership" element={<CompanyPage initialTab="leadership" />} />
+            <Route path="/values" element={<CompanyPage initialTab="values" />} />
+            <Route path="/press" element={<CompanyPage initialTab="press" />} />
+            <Route path="/investors" element={<CompanyPage initialTab="investors" />} />
+            <Route path="/careers" element={<CompanyPage initialTab="careers" />} />
+            <Route path="/culture" element={<CompanyPage initialTab="culture" />} />
+            <Route path="/contact" element={<CompanyPage initialTab="contact" />} />
+            <Route path="/tools" element={<ToolsAndResourcesPage />} />
+            <Route path="/calculators" element={<ToolsAndResourcesPage initialTab="calculators" />} />
+            <Route path="/biz-analyzer" element={<ToolsAndResourcesPage initialTab="biz-analyzer" />} />
+            <Route path="/videos" element={<ToolsAndResourcesPage initialTab="videos" />} />
+            <Route path="/case-studies" element={<ToolsAndResourcesPage initialTab="case-studies" />} />
+            <Route path="/reviews" element={<ToolsAndResourcesPage initialTab="reviews" />} />
+            <Route path="/testimonials" element={<ToolsAndResourcesPage initialTab="reviews" />} />
+            <Route path="/partners" element={<ToolsAndResourcesPage initialTab="partners" />} />
+            <Route path="/iso-program" element={<IsoProgramPage />} />
+            <Route path="/partners/iso" element={<IsoProgramPage />} />
+            <Route path="/definitions" element={<PublicHelpDeskPage initialTab="definitions" />} />
+            <Route path="/privacy" element={<PublicHelpDeskPage initialTab="privacy" />} />
+            <Route path="/terms" element={<PublicHelpDeskPage initialTab="terms" />} />
+            <Route path="/security" element={<PublicHelpDeskPage initialTab="privacy" />} />
           </Route>
 
           {/* Authentication Routes */}
