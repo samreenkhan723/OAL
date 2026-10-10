@@ -25,7 +25,7 @@ export const RepLeadsPage = () => {
               <div className="flex flex-wrap items-center gap-2">
                 <span className="text-xs font-mono font-bold text-slate-400">{lead.id}</span>
                 <StatusBadge status={lead.status} />
-                <span className="text-[11px] font-extrabold text-[#D5B66A] bg-[#0B1730] px-2 py-0.5 rounded">
+                <span className="text-[11px] font-extrabold text-[#D5B66A] bg-[#0B1730] px-2 py-0.5 rounded whitespace-nowrap inline-flex items-center gap-1">
                   IQ {lead.investmentIQ?.total || '150'}/180
                 </span>
               </div>
@@ -35,18 +35,19 @@ export const RepLeadsPage = () => {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2 w-full md:w-auto justify-end">
+            <div className="flex items-center gap-2 w-full sm:w-auto sm:justify-end pt-2 sm:pt-0 border-t sm:border-0 border-slate-100">
               <Link
                 to="/rep/messages"
-                className="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                className="flex-1 sm:flex-none px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors flex items-center justify-center gap-1.5 text-center"
               >
-                Message
+                <MessageSquare className="w-3.5 h-3.5" />
+                <span>Message</span>
               </Link>
               <Link
                 to="/rep/offers"
-                className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all"
+                className="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 text-center"
               >
-                Inspect File
+                <span>Inspect File</span>
               </Link>
             </div>
           </div>

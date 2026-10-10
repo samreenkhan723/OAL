@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, AlertTriangle, ShieldAlert, CheckCircle2, Lock, HelpCircle, Sparkles, UserPlus, ArrowRight } from 'lucide-react';
+import { Award, AlertTriangle, ShieldAlert, CheckCircle2, Lock, HelpCircle, Sparkles, UserPlus, ArrowRight, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { VerifyBadge } from '../../components/common/VerifyBadge';
 
@@ -55,7 +55,7 @@ export const InvestmentClubPage = () => {
         </p>
 
         {/* Free Membership Banner from DOCX Card 1 */}
-        <div className="pt-2">
+        <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
           <Link
             to="/auth/register"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] font-extrabold text-xs shadow-md shadow-amber-300/40 hover:scale-105 active:scale-95 transition-all"
@@ -63,6 +63,14 @@ export const InvestmentClubPage = () => {
             <UserPlus className="w-4 h-4 text-[#002060]" />
             <span>Click Here to Join The Money Club || FREE ||</span>
             <ArrowRight className="w-4 h-4 text-[#002060]" />
+          </Link>
+
+          <Link
+            to="/borrower/money-club"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md shadow-emerald-600/30 hover:scale-105 active:scale-95 transition-all"
+          >
+            <ShieldCheck className="w-4 h-4 text-[#FFD200]" />
+            <span>Enter Logged-In Member Club Portal &rarr;</span>
           </Link>
         </div>
       </div>

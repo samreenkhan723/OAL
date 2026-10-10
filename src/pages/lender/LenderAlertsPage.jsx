@@ -61,7 +61,7 @@ export const LenderAlertsPage = () => {
         {alerts.map((alt) => (
           <div
             key={alt.id}
-            className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs hover:border-blue-400 hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-6"
+            className="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-6 shadow-xs hover:border-blue-400 hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6"
           >
             <div className="space-y-2 flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -75,20 +75,21 @@ export const LenderAlertsPage = () => {
               <h3 className="text-base font-bold text-slate-900 break-words">{alt.title}</h3>
               <p className="text-xs text-slate-600 leading-relaxed break-words">{alt.reason}</p>
 
-              <div className="flex flex-wrap items-center gap-4 text-xs pt-1">
-                <span className="text-slate-500 font-semibold">{alt.amount}</span>
-                <span className="text-[#D5B66A] font-extrabold bg-[#0B1730] px-2 py-0.5 rounded text-[11px]">
-                  Investment IQ: {alt.iq}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs pt-1.5 border-t border-slate-100 sm:border-0">
+                <span className="text-slate-700 font-semibold">{alt.amount}</span>
+                <span className="inline-flex items-center gap-1.5 text-[#D5B66A] font-extrabold bg-[#0B1730] px-3 py-1.5 rounded-lg text-xs whitespace-nowrap self-start sm:self-auto shadow-xs border border-amber-500/20">
+                  <Award className="w-3.5 h-3.5 text-[#D5B66A] shrink-0" />
+                  <span>Investment IQ: {alt.iq}</span>
                 </span>
               </div>
             </div>
 
             <Link
               to={`/lender/leads/${alt.appId}`}
-              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-1.5 self-start md:self-center w-full sm:w-auto"
+              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-1.5 self-stretch md:self-center w-full md:w-auto text-center shrink-0 whitespace-nowrap"
             >
               <span>Inspect Lead</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 shrink-0" />
             </Link>
           </div>
         ))}
