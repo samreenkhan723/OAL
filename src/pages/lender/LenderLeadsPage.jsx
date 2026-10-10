@@ -96,8 +96,9 @@ export const LenderLeadsPage = () => {
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                       {lead.programName}
                     </span>
-                    <span className="text-[11px] font-extrabold text-[#D5B66A] bg-[#0B1730] px-2 py-0.5 rounded whitespace-nowrap inline-flex items-center gap-1">
-                      IQ {lead.investmentIQ?.total || '150'}/180
+                    <span className="text-[11px] font-black text-[#002060] bg-[#FFD200] border border-amber-400 px-2 py-0.5 rounded-full whitespace-nowrap inline-flex items-center gap-1 shadow-xs">
+                      <Award className="w-3 h-3 text-[#002060] shrink-0" />
+                      <span>IQ {lead.investmentIQ?.total || '150'}/180</span>
                     </span>
                   </div>
 

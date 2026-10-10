@@ -672,7 +672,7 @@ export const ApplicationWizard = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">Preliminary Investment IQ:</span>
-                <span className="font-bold text-[#D5B66A] bg-[#0B1730] px-2.5 py-0.5 rounded">Estimated 150+ / 180 Max</span>
+                <span className="font-black text-xs text-[#002060] bg-[#FFD200] border border-amber-400 px-3 py-0.5 rounded-full shadow-xs">Estimated 150+ / 180 Max</span>
               </div>
             </div>
 

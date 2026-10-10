@@ -77,8 +77,8 @@ export const LenderAlertsPage = () => {
 
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs pt-1.5 border-t border-slate-100 sm:border-0">
                 <span className="text-slate-700 font-semibold">{alt.amount}</span>
-                <span className="inline-flex items-center gap-1.5 text-[#D5B66A] font-extrabold bg-[#0B1730] px-3 py-1.5 rounded-lg text-xs whitespace-nowrap self-start sm:self-auto shadow-xs border border-amber-500/20">
-                  <Award className="w-3.5 h-3.5 text-[#D5B66A] shrink-0" />
+                <span className="inline-flex items-center gap-1.5 text-[#002060] font-black bg-[#FFD200] px-2.5 py-0.5 rounded-full text-xs whitespace-nowrap self-start sm:self-auto shadow-xs border border-amber-400">
+                  <Award className="w-3.5 h-3.5 text-[#002060] shrink-0" />
                   <span>Investment IQ: {alt.iq}</span>
                 </span>
               </div>

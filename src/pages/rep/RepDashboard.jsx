@@ -102,13 +102,13 @@ export const RepDashboard = () => {
   return (
     <div className="space-y-8">
       {/* Top Banner */}
-      <div className="bg-gradient-to-r from-[#0B1730] to-[#172B4D] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#003882] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden border border-[#003882]/70">
         {/* Decorative lighting */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#0070C0]/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">
+            <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-[#FFD200] text-[#002060] border border-amber-300 uppercase tracking-wider">
               Placement Agent Workspace
             </span>
             <span className="text-xs text-slate-300">
@@ -132,16 +132,16 @@ export const RepDashboard = () => {
         <div className="relative z-10 flex flex-wrap items-center gap-3">
           <Link
             to="/rep/messages"
-            className="px-5 py-2.5 rounded-xl text-xs font-bold bg-[#D5B66A] hover:bg-[#c4a457] text-slate-950 shadow-md transition-all flex items-center gap-1.5"
+            className="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] border border-amber-300 shadow-md shadow-amber-400/25 transition-all flex items-center gap-1.5"
           >
-            <MessageSquare className="w-4 h-4" />
+            <MessageSquare className="w-4 h-4 text-[#002060]" />
             <span>Mediation Inbox</span>
           </Link>
           <Link
             to="/rep/offers"
             className="px-4 py-2.5 rounded-xl text-xs font-bold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-all flex items-center gap-1.5"
           >
-            <Lock className="w-4 h-4 text-amber-400" />
+            <Lock className="w-4 h-4 text-[#FFD200]" />
             <span>Offers Audit (Read-Only)</span>
           </Link>
         </div>
@@ -151,11 +151,11 @@ export const RepDashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <Link
           to="/rep/leads"
-          className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-blue-400 hover:shadow-md transition-all group"
+          className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all group"
         >
           <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Assigned Borrowers</span>
-          <div className="text-3xl font-extrabold text-[#0B1730] mt-1 font-heading">{assignedApps.length}</div>
-          <span className="text-[11px] text-blue-600 font-semibold mt-1 block group-hover:translate-x-0.5 transition-transform">
+          <div className="text-3xl font-extrabold text-[#002060] mt-1 font-heading">{assignedApps.length}</div>
+          <span className="text-[11px] text-[#0070C0] font-semibold mt-1 block group-hover:translate-x-0.5 transition-transform">
             Active Placement Files &rarr;
           </span>
         </Link>
@@ -183,10 +183,10 @@ export const RepDashboard = () => {
 
         <Link
           to="/rep/messages"
-          className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-blue-400 hover:shadow-md transition-all group"
+          className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all group"
         >
           <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Mediated Messages</span>
-          <div className="text-3xl font-extrabold text-[#D5B66A] mt-1 font-heading">{messages.length}</div>
+          <div className="text-3xl font-extrabold text-[#002060] mt-1 font-heading">{messages.length}</div>
           <span className="text-[11px] text-slate-500 mt-1 block">
             Supervised Tri-Party Threads &rarr;
           </span>
@@ -194,10 +194,10 @@ export const RepDashboard = () => {
       </div>
 
       {/* 24–72 Hours Turnaround SLA Clock (Doc 3 Line 12 & Doc 6 Line 6) */}
-      <div className="bg-gradient-to-r from-slate-900 to-[#172B4D] text-white rounded-3xl p-5 sm:p-7 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#003882] text-white rounded-3xl p-5 sm:p-7 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6 border border-[#003882]/70">
         <div className="space-y-1.5">
           <div className="flex flex-wrap items-center gap-2">
-            <Clock className="w-5 h-5 text-[#D5B66A] shrink-0" />
+            <Clock className="w-5 h-5 text-[#FFD200] shrink-0" />
             <h3 className="text-base font-heading font-bold text-white">
               Commercial Placement SLA: 24 – 72 Hours Turnaround
             </h3>
@@ -212,7 +212,7 @@ export const RepDashboard = () => {
 
         <div className="text-left md:text-right shrink-0">
           <span className="text-[11px] text-slate-400 block uppercase">Median Placement Time</span>
-          <span className="text-2xl font-mono font-extrabold text-[#D5B66A]">31.2 Hours</span>
+          <span className="text-2xl font-mono font-extrabold text-[#FFD200]">31.2 Hours</span>
         </div>
       </div>
 
@@ -251,8 +251,9 @@ export const RepDashboard = () => {
                       <div className="flex flex-wrap items-center gap-2">
                         <span className="text-xs font-mono font-bold text-slate-400">{app.id}</span>
                         <StatusBadge status={app.status} />
-                        <span className="text-[11px] font-extrabold text-[#D5B66A] bg-[#0B1730] px-2 py-0.5 rounded whitespace-nowrap inline-flex items-center gap-1">
-                          IQ {app.investmentIQ?.total || '150'}/180
+                        <span className="text-[11px] font-black text-[#002060] bg-[#FFD200] border border-amber-400 px-2 py-0.5 rounded-full whitespace-nowrap inline-flex items-center gap-1 shadow-xs">
+                          <Award className="w-3 h-3 text-[#002060] shrink-0" />
+                          <span>IQ {app.investmentIQ?.total || '150'}/180</span>
                         </span>
                         <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800">
                           {claimsCount} of 3 Lenders Active
@@ -279,7 +280,7 @@ export const RepDashboard = () => {
                         onClick={() => setActiveChatLead(app.id)}
                         className={`flex-1 sm:flex-none px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer text-center ${
                           activeChatLead === app.id
-                            ? 'bg-blue-600 text-white shadow-xs'
+                            ? 'bg-[#0070C0] text-white shadow-xs'
                             : 'border border-slate-200 text-slate-700 hover:bg-slate-100'
                         }`}
                       >
@@ -291,7 +292,7 @@ export const RepDashboard = () => {
                         to="/rep/offers"
                         className="flex-1 sm:flex-none px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 text-center"
                       >
-                        <Share2 className="w-3.5 h-3.5 text-[#D5B66A]" />
+                        <Share2 className="w-3.5 h-3.5 text-[#FFD200]" />
                         <span>Audit / Share</span>
                       </Link>
                     </div>
@@ -369,7 +370,7 @@ export const RepDashboard = () => {
                 type="button"
                 onClick={() => setTriPartyTarget('both')}
                 className={`flex-1 py-1.5 rounded-lg transition-all text-center cursor-pointer ${
-                  triPartyTarget === 'both' ? 'bg-[#0B1730] text-[#D5B66A] shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900'
+                  triPartyTarget === 'both' ? 'bg-[#002060] text-[#FFD200] shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Broadcast (Both)
@@ -378,7 +379,7 @@ export const RepDashboard = () => {
                 type="button"
                 onClick={() => setTriPartyTarget('borrower')}
                 className={`flex-1 py-1.5 rounded-lg transition-all text-center cursor-pointer ${
-                  triPartyTarget === 'borrower' ? 'bg-blue-600 text-white shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900'
+                  triPartyTarget === 'borrower' ? 'bg-[#0070C0] text-white shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Borrower Only
@@ -425,11 +426,11 @@ export const RepDashboard = () => {
                     ? 'Message borrower regarding document requirements or term sheets...'
                     : 'Message participating underwriters regarding stipulations or closing date...'
                 }
-                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
               />
               <button
                 type="submit"
-                className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/20 flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>

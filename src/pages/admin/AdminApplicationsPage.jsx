@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { FileText, ArrowRight, CheckCircle2, ChevronRight, Search, ShieldCheck } from 'lucide-react';
+import { FileText, ArrowRight, CheckCircle2, ChevronRight, Search, ShieldCheck, Award } from 'lucide-react';
 import { StatusBadge } from '../../components/common/StatusBadge';
 
 export const AdminApplicationsPage = () => {
@@ -74,8 +74,9 @@ export const AdminApplicationsPage = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-xs font-mono font-bold text-slate-400">{app.id}</span>
                   <StatusBadge status={app.status} />
-                  <span className="text-[11px] font-extrabold text-[#D5B66A] bg-[#0B1730] px-2 py-0.5 rounded">
-                    IQ {app.investmentIQ?.total || '150'}/180
+                  <span className="text-[11px] font-black text-[#002060] bg-[#FFD200] border border-amber-400 px-2 py-0.5 rounded-full whitespace-nowrap inline-flex items-center gap-1 shadow-xs">
+                    <Award className="w-3 h-3 text-[#002060] shrink-0" />
+                    <span>IQ {app.investmentIQ?.total || '150'}/180</span>
                   </span>
                 </div>
 

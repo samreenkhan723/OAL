@@ -583,7 +583,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                     <div>
                       <span className="text-[10px] text-slate-400 uppercase font-semibold block">180 LINV IQ</span>
                       <strong className="text-blue-700 font-extrabold text-sm block flex items-center gap-1">
-                        <Award className="w-3.5 h-3.5 text-[#D5B66A]" />
+                        <Award className="w-3.5 h-3.5 text-amber-500" />
                         <span>{app.investmentIQ?.total || 'N/A'} / 180</span>
                       </strong>
                     </div>

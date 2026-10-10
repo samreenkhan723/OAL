@@ -61,16 +61,16 @@ export const AdminDashboard = () => {
   return (
     <div className="space-y-8">
       {/* Top Admin Banner */}
-      <div className="bg-gradient-to-r from-[#0B1730] to-[#172B4D] rounded-3xl p-5 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#003882] rounded-3xl p-5 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden border border-[#003882]/70">
         {/* Subtle decorative glow */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-rose-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#00B0F0]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 uppercase tracking-wider">
+            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#00B0F0]/20 text-sky-200 border border-[#00B0F0]/40 uppercase tracking-wider">
               Super Admin Executive Console
             </span>
-            <span className="text-xs text-slate-300">
+            <span className="text-xs text-sky-100">
               Chief Compliance & Operations: <strong>Victoria Sterling</strong>
             </span>
             <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
@@ -79,11 +79,11 @@ export const AdminDashboard = () => {
             </span>
           </div>
 
-          <h1 className="text-xl sm:text-3xl font-heading font-extrabold text-white">
+          <h1 className="text-xl sm:text-3xl font-heading font-black text-white">
             OAL Master Governance Console
           </h1>
 
-          <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+          <p className="text-xs sm:text-sm text-sky-100 max-w-xl">
             Complete platform oversight across commercial borrowers, institutional lenders, KYC verification pipelines, dual-engine AI scoring, and immutable audit ledgers.
           </p>
         </div>
@@ -91,18 +91,18 @@ export const AdminDashboard = () => {
         <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto">
           <Link
             to="/admin/verification"
-            className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold bg-[#D5B66A] hover:bg-[#c4a457] text-slate-950 shadow-md transition-all flex items-center justify-center gap-1.5 text-center"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-extrabold bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] shadow-md shadow-amber-400/25 border border-amber-300 transition-all flex items-center justify-center gap-1.5 text-center cursor-pointer"
           >
-            <CheckCircle className="w-4 h-4" />
+            <CheckCircle className="w-4 h-4 text-[#002060]" />
             <span>KYC Queue ({pendingKycDocs.length})</span>
           </Link>
 
           <button
             type="button"
             onClick={() => setShowSpecialInvestorModal(true)}
-            className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold bg-purple-600 hover:bg-purple-700 text-white shadow-md shadow-purple-600/30 transition-all flex items-center justify-center gap-1.5 cursor-pointer text-center"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold bg-[#0070C0] hover:bg-[#005a9e] text-white shadow-md shadow-[#0070C0]/30 border border-[#00B0F0]/30 transition-all flex items-center justify-center gap-1.5 cursor-pointer text-center"
           >
-            <Award className="w-4 h-4 text-[#D5B66A]" />
+            <Award className="w-4 h-4 text-[#FFD200]" />
             <span>Special Investor Engine</span>
           </button>
 
@@ -165,28 +165,28 @@ export const AdminDashboard = () => {
 
         <div className="bg-white rounded-2xl border border-slate-200/90 p-3.5 sm:p-4 shadow-xs">
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block truncate">Funded Deals</span>
-          <div className="text-xl sm:text-2xl font-extrabold text-[#D5B66A] mt-1 font-heading">{fundedCount} Closed</div>
+          <div className="text-xl sm:text-2xl font-extrabold text-[#002060] mt-1 font-heading">{fundedCount} Closed</div>
           <span className="text-[10px] text-slate-400 font-semibold mt-1 block truncate">$1.27M Disbursed</span>
         </div>
       </div>
 
       {/* Special AI Scoring Engine Dual-Architecture Banner (Doc 1 Line 96 & Doc 4) */}
-      <div className="bg-gradient-to-r from-purple-950 via-slate-900 to-[#172B4D] text-white rounded-3xl p-4 sm:p-7 shadow-lg space-y-4">
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#003882] text-white rounded-3xl p-4 sm:p-7 shadow-lg space-y-4 border border-[#003882]/70">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 pb-3 border-b border-white/10">
           <div className="flex items-start sm:items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center border border-purple-500/40 shrink-0 mt-0.5 sm:mt-0">
-              <Cpu className="w-5 h-5 text-[#D5B66A]" />
+            <div className="w-10 h-10 rounded-xl bg-[#0070C0]/25 text-[#00B0F0] flex items-center justify-center border border-[#00B0F0]/40 shrink-0 mt-0.5 sm:mt-0">
+              <Cpu className="w-5 h-5 text-[#FFD200]" />
             </div>
             <div className="space-y-1">
               <div className="flex flex-wrap items-center gap-2">
                 <h3 className="text-sm sm:text-base font-heading font-bold text-white">
                   AI Scoring Engine: Dual Scoring Architecture (Doc 1 & Doc 4)
                 </h3>
-                <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-purple-500/30 text-purple-200 border border-purple-500/40 whitespace-nowrap">
+                <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-[#00B0F0]/20 text-sky-200 border border-[#00B0F0]/40 whitespace-nowrap">
                   Special Investor Engine Integrated
                 </span>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-sky-100 leading-relaxed">
                 Doc 1 Mandate: <em>"We can use the AI scoring for regular applicants, but I would like to implement a special scoring engine for qualified verified applicant investors by them completing a special form."</em>
               </p>
             </div>
@@ -195,9 +195,9 @@ export const AdminDashboard = () => {
           <button
             type="button"
             onClick={() => setShowSpecialInvestorModal(true)}
-            className="w-full lg:w-auto px-4 py-2.5 rounded-xl bg-[#D5B66A] hover:bg-[#c4a457] text-slate-950 text-xs font-bold transition-all shadow-md shrink-0 flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
+            className="w-full lg:w-auto px-4 py-2.5 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] text-xs font-extrabold transition-all shadow-md shadow-amber-400/25 border border-amber-300 shrink-0 flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
           >
-            <Award className="w-4 h-4 shrink-0" />
+            <Award className="w-4 h-4 shrink-0 text-[#002060]" />
             <span>Open Special Investor Form Engine</span>
           </button>
         </div>
@@ -206,28 +206,28 @@ export const AdminDashboard = () => {
           <div className="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-2">
             <div className="flex flex-wrap items-center justify-between gap-1.5">
               <strong className="text-white text-sm font-bold">1. Standard 180-Point Regular Applicant Model</strong>
-              <span className="text-[10px] font-bold text-blue-300 bg-blue-500/20 px-2 py-0.5 rounded whitespace-nowrap">Engine v2.4</span>
+              <span className="text-[10px] font-bold text-sky-200 bg-[#0070C0]/30 px-2 py-0.5 rounded whitespace-nowrap border border-[#00B0F0]/30">Engine v2.4</span>
             </div>
-            <p className="text-[11px] text-slate-300 leading-relaxed">
+            <p className="text-[11px] text-sky-100 leading-relaxed">
               Calculates FICO credit (70 pts), operating cash flow & DSCR (50 pts), equipment/property collateral (30 pts), business plan (20 pts), and risk factors (10 pts).
             </p>
-            <Link to="/admin/scoring" className="text-blue-400 font-bold hover:underline block pt-1 text-[11px]">
+            <Link to="/admin/scoring" className="text-[#00B0F0] font-bold hover:underline block pt-1 text-[11px]">
               Inspect Standard 5 Pillars Oversight &rarr;
             </Link>
           </div>
 
-          <div className="bg-white/5 border border-purple-500/30 rounded-2xl p-4 space-y-2">
+          <div className="bg-white/5 border border-[#0070C0]/40 rounded-2xl p-4 space-y-2">
             <div className="flex flex-wrap items-center justify-between gap-1.5">
-              <strong className="text-[#D5B66A] text-sm font-bold">2. Special Verified Investor Form Engine (Doc 4)</strong>
-              <span className="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded whitespace-nowrap">Accredited Intake</span>
+              <strong className="text-[#FFD200] text-sm font-bold">2. Special Verified Investor Form Engine (Doc 4)</strong>
+              <span className="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded whitespace-nowrap border border-emerald-500/30">Accredited Intake</span>
             </div>
-            <p className="text-[11px] text-slate-300 leading-relaxed">
+            <p className="text-[11px] text-sky-100 leading-relaxed">
               Evaluates individual net worth (&gt;$1M excl. residence: 25 pts), annual income (&gt;$200k/$300k joint: 15 pts), entity assets (&gt;$5M: 25 pts), and FINRA Series 7/65/82 credentials.
             </p>
             <button
               type="button"
               onClick={() => setShowSpecialInvestorModal(true)}
-              className="text-[#D5B66A] font-bold hover:underline block pt-1 text-[11px] cursor-pointer text-left"
+              className="text-[#FFD200] font-bold hover:underline block pt-1 text-[11px] cursor-pointer text-left"
             >
               Configure Special Investor Criteria & Form Fields &rarr;
             </button>
@@ -254,7 +254,7 @@ export const AdminDashboard = () => {
 
           <Link
             to="/admin/verification"
-            className="w-full sm:w-auto px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-all text-center shrink-0 flex items-center justify-center gap-1"
+            className="w-full sm:w-auto px-3.5 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all text-center shrink-0 flex items-center justify-center gap-1 shadow-xs"
           >
             <span>Open Verification Queue ({pendingKycDocs.length}) &rarr;</span>
           </Link>
@@ -262,7 +262,7 @@ export const AdminDashboard = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
           <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
-            <span className="text-[10px] font-mono font-bold text-blue-600 block">STAGE 1</span>
+            <span className="text-[10px] font-mono font-bold text-[#0070C0] block">STAGE 1</span>
             <strong className="text-slate-900 block font-bold">Identity & USA PATRIOT Act</strong>
             <p className="text-[10px] text-slate-500 leading-tight">CIP government ID & SSN verification (31 CFR 1020.220).</p>
           </div>
@@ -300,13 +300,13 @@ export const AdminDashboard = () => {
           <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
             <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between">
               <div>
-                <h3 className="text-sm font-bold text-slate-900">
+                <h3 className="text-sm font-bold text-[#002060]">
                   Master Commercial Applications Register
                 </h3>
                 <p className="text-xs text-slate-500">Live operational status and lifecycle milestone progression.</p>
               </div>
 
-              <Link to="/admin/applications" className="text-xs font-bold text-blue-600 hover:underline">
+              <Link to="/admin/applications" className="text-xs font-bold text-[#0070C0] hover:text-[#002060]">
                 Manage All ({applications.length}) &rarr;
               </Link>
             </div>
@@ -318,8 +318,9 @@ export const AdminDashboard = () => {
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="text-xs font-mono font-bold text-slate-400">{app.id}</span>
                       <StatusBadge status={app.status} />
-                      <span className="text-[10px] font-bold bg-[#0B1730] text-[#D5B66A] px-2 py-0.5 rounded whitespace-nowrap inline-flex items-center gap-1">
-                        IQ {app.investmentIQ?.total || '150'}/180
+                      <span className="text-[11px] font-black text-[#002060] bg-[#FFD200] border border-amber-400 px-2 py-0.5 rounded-full whitespace-nowrap inline-flex items-center gap-1 shadow-xs">
+                        <Award className="w-3 h-3 text-[#002060] shrink-0" />
+                        <span>IQ {app.investmentIQ?.total || '150'}/180</span>
                       </span>
                     </div>
 
@@ -335,7 +336,7 @@ export const AdminDashboard = () => {
 
                   <Link
                     to={`/admin/applications`}
-                    className="w-full sm:w-auto px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors self-stretch sm:self-center shrink-0 text-center"
+                    className="w-full sm:w-auto px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:text-white hover:bg-[#0070C0] hover:border-[#0070C0] transition-colors self-stretch sm:self-center shrink-0 text-center"
                   >
                     Examine File
                   </Link>

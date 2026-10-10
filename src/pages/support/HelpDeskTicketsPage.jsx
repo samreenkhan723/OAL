@@ -81,13 +81,13 @@ export const HelpDeskTicketsPage = () => {
   return (
     <div className="space-y-8">
       {/* Top AI Help Desk Banner (Doc 2 Specifications) */}
-      <div className="bg-gradient-to-r from-[#0B1730] to-[#172B4D] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#003882] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden border border-[#003882]/70">
         {/* Subtle decorative glow */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#0070C0]/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 uppercase tracking-wider">
+            <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-[#FFD200] text-[#002060] border border-amber-300 uppercase tracking-wider">
               AI Help Desk & Support Center
             </span>
             <span className="text-xs text-slate-300">
@@ -112,9 +112,9 @@ export const HelpDeskTicketsPage = () => {
           <button
             type="button"
             onClick={() => setShowCreateModal(true)}
-            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/30 transition-all flex items-center justify-center gap-1.5 cursor-pointer text-center"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] border border-amber-300 font-extrabold text-xs shadow-md shadow-amber-400/25 transition-all flex items-center justify-center gap-1.5 cursor-pointer text-center"
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-4 h-4 text-[#002060]" />
             <span>Open New Ticket</span>
           </button>
 
@@ -122,7 +122,7 @@ export const HelpDeskTicketsPage = () => {
             to="/support/knowledge-base"
             className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-xs font-bold transition-all flex items-center justify-center gap-1.5 text-center"
           >
-            <HelpCircle className="w-4 h-4 text-[#D5B66A]" />
+            <HelpCircle className="w-4 h-4 text-[#FFD200]" />
             <span>Knowledge Base</span>
           </Link>
 
@@ -141,7 +141,7 @@ export const HelpDeskTicketsPage = () => {
         <div className="bg-white rounded-2xl border border-slate-200/90 p-3.5 sm:p-5 shadow-xs">
           <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
             <span className="font-semibold uppercase tracking-wider text-[10px] sm:text-[11px] truncate">CSAT Score</span>
-            <Sparkles className="w-4 h-4 text-[#D5B66A] shrink-0" />
+            <Sparkles className="w-4 h-4 text-[#FFD200] shrink-0" />
           </div>
           <div className="text-2xl sm:text-3xl font-extrabold text-emerald-700 font-heading">98.4%</div>
           <span className="text-[10px] sm:text-[11px] text-emerald-600 font-semibold mt-1 block flex items-center gap-1 truncate">
@@ -152,10 +152,10 @@ export const HelpDeskTicketsPage = () => {
         <div className="bg-white rounded-2xl border border-slate-200/90 p-3.5 sm:p-5 shadow-xs">
           <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
             <span className="font-semibold uppercase tracking-wider text-[10px] sm:text-[11px] truncate">First Response</span>
-            <Clock className="w-4 h-4 text-blue-600 shrink-0" />
+            <Clock className="w-4 h-4 text-[#0070C0] shrink-0" />
           </div>
-          <div className="text-2xl sm:text-3xl font-extrabold text-[#0B1730] font-heading">8.2 min</div>
-          <span className="text-[10px] sm:text-[11px] text-blue-600 font-semibold mt-1 block truncate">
+          <div className="text-2xl sm:text-3xl font-extrabold text-[#002060] font-heading">8.2 min</div>
+          <span className="text-[10px] sm:text-[11px] text-[#0070C0] font-semibold mt-1 block truncate">
             AI Reply Suggestions
           </span>
         </div>
@@ -187,7 +187,7 @@ export const HelpDeskTicketsPage = () => {
       <div className="bg-gradient-to-r from-blue-900/5 via-indigo-900/5 to-slate-900/5 border border-blue-200/80 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-start gap-3 flex-1 min-w-0">
           <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 mt-0.5">
-            <LifeBuoy className="w-5 h-5 text-blue-600" />
+            <LifeBuoy className="w-5 h-5 text-[#0070C0]" />
           </div>
           <div className="space-y-1 flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-2">
@@ -222,7 +222,7 @@ export const HelpDeskTicketsPage = () => {
                 onClick={() => setStatusFilter(st)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                   statusFilter === st
-                    ? 'bg-blue-600 text-white shadow-xs'
+                    ? 'bg-[#0070C0] text-white shadow-xs'
                     : 'text-slate-600 hover:bg-slate-100'
                 }`}
               >
@@ -239,7 +239,7 @@ export const HelpDeskTicketsPage = () => {
               placeholder="Search by ticket, requester, subject..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3.5 py-1.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+              className="w-full pl-9 pr-3.5 py-1.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
             />
           </div>
         </div>
@@ -262,7 +262,7 @@ export const HelpDeskTicketsPage = () => {
                 onClick={() => setChannelFilter(c.id)}
                 className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
                   channelFilter === c.id
-                    ? 'bg-slate-900 text-white shadow-xs'
+                    ? 'bg-[#002060] text-[#FFD200] shadow-xs font-bold'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
@@ -295,7 +295,7 @@ export const HelpDeskTicketsPage = () => {
 
                       {/* Channel Badge (Doc 2) */}
                       <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
-                        {channel === 'Email' ? <Mail className="w-3 h-3 text-amber-600" /> : channel === 'SMS' ? <PhoneCall className="w-3 h-3 text-purple-600" /> : <MessageSquare className="w-3 h-3 text-blue-600" />}
+                        {channel === 'Email' ? <Mail className="w-3 h-3 text-amber-600" /> : channel === 'SMS' ? <PhoneCall className="w-3 h-3 text-purple-600" /> : <MessageSquare className="w-3 h-3 text-[#0070C0]" />}
                         <span>{channel}</span>
                       </span>
 
@@ -320,7 +320,7 @@ export const HelpDeskTicketsPage = () => {
 
                   <Link
                     to={`/support/tickets/${t.id}`}
-                    className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 self-stretch sm:self-center shadow-xs text-center"
+                    className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#002060] hover:bg-[#0070C0] text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 self-stretch sm:self-center shadow-xs text-center"
                   >
                     <span>Inspect & Reply</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -436,7 +436,7 @@ export const HelpDeskTicketsPage = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md cursor-pointer"
+                  className="px-5 py-2 bg-[#0070C0] hover:bg-[#005a9e] text-white rounded-xl text-xs font-bold shadow-md shadow-[#0070C0]/25 cursor-pointer"
                 >
                   Submit & Route Ticket
                 </button>

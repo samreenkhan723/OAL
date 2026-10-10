@@ -492,10 +492,10 @@ This statement is provided for federal income tax documentation purposes.
       {/* =========================================================================
           TOP HERO BANNER & FACILITY SELECTOR (Lifecycle Stage 13)
           ========================================================================= */}
-      <div className="bg-gradient-to-r from-[#0B1730] via-[#102347] to-[#1E3A8A] rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden border border-slate-700/60">
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#003882] rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden border border-[#003882]/70">
         {/* Decorative lighting */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#0070C0]/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-[#FFD200]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
@@ -509,8 +509,8 @@ This statement is provided for federal income tax documentation purposes.
                 Doc 1 Mandate (Line 129)
               </span>
 
-              <span className="text-xs text-amber-300 font-semibold flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5" /> Servicing Active
+              <span className="text-xs text-[#FFD200] font-semibold flex items-center gap-1">
+                <Sparkles className="w-3.5 h-3.5 text-[#FFD200]" /> Servicing Active
               </span>
             </div>
 
@@ -526,14 +526,14 @@ This statement is provided for federal income tax documentation purposes.
           {/* Facility Selector Switcher & Quick Actions */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
             {/* Facility Dropdown */}
-            <div className="bg-slate-900/80 border border-slate-700 rounded-2xl p-2 flex flex-col gap-1">
+            <div className="bg-[#001744]/90 border border-slate-700 rounded-2xl p-2 flex flex-col gap-1">
               <label className="text-[10px] uppercase font-bold text-slate-400 px-2 tracking-wider">
                 Active Funded Facility
               </label>
               <select
                 value={selectedFacilityId}
                 onChange={(e) => setSelectedFacilityId(e.target.value)}
-                className="bg-slate-800 text-white font-bold text-xs rounded-xl px-3 py-2 border border-slate-700 focus:outline-none focus:border-blue-500 cursor-pointer"
+                className="bg-[#002060] text-white font-bold text-xs rounded-xl px-3 py-2 border border-slate-700 focus:outline-none focus:border-[#0070C0] cursor-pointer"
               >
                 {FUNDED_FACILITIES.map(fac => (
                   <option key={fac.id} value={fac.id}>
@@ -547,9 +547,9 @@ This statement is provided for federal income tax documentation purposes.
             <button
               type="button"
               onClick={() => setShowPayoffModal(true)}
-              className="w-full sm:w-auto px-4 py-3 rounded-2xl bg-[#D5B66A] hover:bg-[#c4a457] text-slate-950 text-xs font-extrabold shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0 whitespace-nowrap"
+              className="w-full sm:w-auto px-4 py-3 rounded-2xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] border border-amber-300 text-xs font-extrabold shadow-md shadow-amber-400/25 transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0 whitespace-nowrap"
             >
-              <FileCheck className="w-4 h-4 shrink-0" />
+              <FileCheck className="w-4 h-4 shrink-0 text-[#002060]" />
               <span>Get 30-Day Payoff Quote</span>
             </button>
           </div>
@@ -567,7 +567,7 @@ This statement is provided for federal income tax documentation purposes.
           </div>
           <div>
             <span className="text-slate-400 text-[11px] block">Current Facility ID:</span>
-            <strong className="text-amber-400 font-mono font-bold text-sm block">{facility.id}</strong>
+            <strong className="text-[#FFD200] font-mono font-bold text-sm block">{facility.id}</strong>
           </div>
           <div>
             <span className="text-slate-400 text-[11px] block">Payment Health Status:</span>
@@ -601,14 +601,14 @@ This statement is provided for federal income tax documentation purposes.
               onClick={() => setShowWireModal(true)}
               className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap shadow-xs"
             >
-              <Eye className="w-4 h-4 text-[#D5B66A] shrink-0" />
+              <Eye className="w-4 h-4 text-[#FFD200] shrink-0" />
               <span>Inspect Wire Slip</span>
             </button>
 
             <button
               type="button"
               onClick={handleDownloadWireProof}
-              className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap shadow-xs"
+              className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-[#0070C0] border border-sky-200 text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap shadow-xs"
             >
               <Download className="w-4 h-4 shrink-0" />
               <span>Download Fedwire Proof</span>
@@ -1021,7 +1021,7 @@ This statement is provided for federal income tax documentation purposes.
             </div>
 
             {/* Next Payment Hero Card */}
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-slate-900 to-[#102347] text-white space-y-4 shadow-md">
+            <div className="p-5 rounded-2xl bg-gradient-to-br from-[#001744] to-[#002060] border border-[#003882] text-white space-y-4 shadow-md">
               <div className="flex items-center justify-between text-xs text-slate-300">
                 <span className="uppercase tracking-wider font-semibold text-[10px]">Next Due Date</span>
                 <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30 text-[10px]">
@@ -1097,14 +1097,14 @@ This statement is provided for federal income tax documentation purposes.
                 onClick={() => setShowAchModal(true)}
                 className="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                <CreditCard className="w-4 h-4 text-[#D5B66A]" />
+                <CreditCard className="w-4 h-4 text-[#FFD200]" />
                 <span>Update ACH Account / Routing</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setShowCustomPaymentModal(true)}
-                className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <DollarSign className="w-4 h-4" />
                 <span>Make Extra Principal Payment</span>
@@ -1185,7 +1185,7 @@ This statement is provided for federal income tax documentation purposes.
               onClick={() => setShowPayoffModal(true)}
               className="flex-1 py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
             >
-              <Eye className="w-4 h-4 text-[#D5B66A] shrink-0" />
+              <Eye className="w-4 h-4 text-[#FFD200] shrink-0" />
               <span>Preview Legal Letter</span>
             </button>
 
@@ -1240,9 +1240,9 @@ This statement is provided for federal income tax documentation purposes.
             <button
               type="button"
               onClick={() => setShowRefinanceModal(true)}
-              className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/20 flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+              className="w-full py-3 px-4 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
             >
-              <Sparkles className="w-4 h-4 text-[#D5B66A] shrink-0" />
+              <Sparkles className="w-4 h-4 text-[#FFD200] shrink-0" />
               <span>Apply for Top-Up Capital Expansion</span>
             </button>
           </div>
@@ -1256,7 +1256,7 @@ This statement is provided for federal income tax documentation purposes.
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#0070C0]" />
               <h2 className="text-lg font-heading font-extrabold text-slate-900">
                 6. Dedicated Placement Agent & Post-Funding Servicing Desk
               </h2>
@@ -1276,7 +1276,7 @@ This statement is provided for federal income tax documentation purposes.
             <img
               src={facility.assignedRep.avatar}
               alt={facility.assignedRep.name}
-              className="w-16 h-16 rounded-2xl object-cover border-2 border-blue-600 shadow-md"
+              className="w-16 h-16 rounded-2xl object-cover border-2 border-[#0070C0] shadow-md"
             />
             <div>
               <div className="flex items-center gap-2">
@@ -1287,7 +1287,7 @@ This statement is provided for federal income tax documentation purposes.
                   Assigned Servicer
                 </span>
               </div>
-              <div className="text-xs text-blue-600 font-semibold">{facility.assignedRep.title}</div>
+              <div className="text-xs text-[#0070C0] font-semibold">{facility.assignedRep.title}</div>
               <div className="text-xs text-slate-500 mt-1 flex flex-wrap items-center gap-3">
                 <span className="flex items-center gap-1">
                   <Mail className="w-3.5 h-3.5 text-slate-400" /> {facility.assignedRep.email}
@@ -1303,7 +1303,7 @@ This statement is provided for federal income tax documentation purposes.
             <button
               type="button"
               onClick={() => setShowMessageElenaModal(true)}
-              className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
+              className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
             >
               <MessageSquare className="w-4 h-4 shrink-0" />
               <span>Direct Message Elena</span>
@@ -1314,7 +1314,7 @@ This statement is provided for federal income tax documentation purposes.
               onClick={() => setShowScheduleCallModal(true)}
               className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
             >
-              <Calendar className="w-4 h-4 text-[#D5B66A] shrink-0" />
+              <Calendar className="w-4 h-4 text-[#FFD200] shrink-0" />
               <span>Schedule Servicing Call</span>
             </button>
 

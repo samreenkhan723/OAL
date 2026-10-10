@@ -134,13 +134,13 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
   return (
     <div className="space-y-8">
       {/* Top Welcome Banner with Investor Club Badge (Doc 4 & Doc 6) */}
-      <div className="bg-gradient-to-r from-[#0B1730] to-[#172B4D] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#003882] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden border border-[#003882]/70">
         {/* Subtle decorative glow */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#00B0F0]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 uppercase tracking-wider">
+            <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-[#FFD200] text-[#002060] border border-amber-300 uppercase tracking-wider shadow-xs">
               Commercial Borrower Workspace
             </span>
 
@@ -154,16 +154,16 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
               <span>INV-IQ Certified Investor • MVP Money Club (154 LINV IQ) &rarr;</span>
             </Link>
 
-            <span className="text-xs text-slate-300">
+            <span className="text-xs text-sky-100">
               Assigned Rep: <strong>Elena Rostova</strong>
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-white">
+          <h1 className="text-2xl sm:text-3xl font-heading font-black text-white">
             Welcome back, {currentUser.name}
           </h1>
 
-          <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+          <p className="text-xs sm:text-sm text-sky-100 max-w-xl">
             {activeApp ? (
               <>Your commercial file for <strong>{activeApp.businessName}</strong> is active in the institutional marketplace with <strong>{appOffers.length} term sheets available</strong>.</>
             ) : (
@@ -175,15 +175,15 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
         <div className="relative z-10 flex flex-wrap items-center gap-3 w-full md:w-auto">
           <Link
             to="/borrower/offers"
-            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-[#D5B66A] hover:bg-[#c4a457] text-slate-950 shadow-md transition-all flex items-center gap-1.5"
+            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl text-xs font-extrabold bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] shadow-md shadow-amber-400/25 border border-amber-300 transition-all flex items-center gap-1.5 cursor-pointer"
           >
-            <DollarSign className="w-4 h-4" />
+            <DollarSign className="w-4 h-4 text-[#002060]" />
             <span>Review Offers ({pendingOffers.length})</span>
           </Link>
 
           <Link
             to="/borrower/applications/new"
-            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/30 transition-all flex items-center gap-1.5"
+            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-[#0070C0] hover:bg-[#005a9e] text-white shadow-md shadow-[#0070C0]/30 border border-[#00B0F0]/30 transition-all flex items-center gap-1.5 cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>New Loan Request</span>
@@ -199,11 +199,11 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
             onClick={() => setActiveTab('active-app')}
             className={`flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 ${
               activeTab === 'active-app'
-                ? 'bg-white text-slate-900 shadow-xs'
+                ? 'bg-white text-[#002060] shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Layers className="w-4 h-4 text-blue-600" />
+            <Layers className="w-4 h-4 text-[#0070C0]" />
             <span>Active Application & Marketplace Workflow</span>
           </button>
 
@@ -212,11 +212,11 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
             onClick={() => setActiveTab('post-funding')}
             className={`flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 ${
               activeTab === 'post-funding'
-                ? 'bg-[#0B1730] text-[#D5B66A] shadow-xs'
+                ? 'bg-[#002060] text-[#FFD200] shadow-xs border border-[#FFD200]/30'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <History className="w-4 h-4 text-[#D5B66A]" />
+            <History className="w-4 h-4 text-[#FFD200]" />
             <span>Post-Funding Servicing Dashboard (Stage 13)</span>
             <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800">
               Funded
@@ -272,9 +272,9 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
             >
               <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
                 <span className="font-semibold uppercase tracking-wider text-[11px]">Investment IQ</span>
-                <Award className="w-4 h-4 text-[#D5B66A] group-hover:scale-110 transition-transform" />
+                <Award className="w-4 h-4 text-[#FFD200] group-hover:scale-110 transition-transform" />
               </div>
-              <div className="text-3xl font-extrabold text-[#0B1730] font-heading">
+              <div className="text-3xl font-extrabold text-[#002060] font-heading">
                 {activeApp?.investmentIQ?.total || 154}
                 <span className="text-sm font-normal text-slate-400"> / 180</span>
               </div>
@@ -286,13 +286,13 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
             {/* KPI 2: Active Application */}
             <Link
               to={`/borrower/applications/${activeApp?.id || 'APP-2026-1082'}`}
-              className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-blue-400 hover:shadow-md transition-all group"
+              className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all group"
             >
               <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
                 <span className="font-semibold uppercase tracking-wider text-[11px]">Active Request</span>
-                <FileText className="w-4 h-4 text-blue-600 group-hover:scale-110 transition-transform" />
+                <FileText className="w-4 h-4 text-[#0070C0] group-hover:scale-110 transition-transform" />
               </div>
-              <div className="text-2xl font-extrabold text-[#0B1730] font-heading">
+              <div className="text-2xl font-extrabold text-[#002060] font-heading">
                 ${activeApp?.amount ? (activeApp.amount / 1000).toLocaleString() + 'k' : '$450k'}
               </div>
               <div className="mt-2">
@@ -334,17 +334,17 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
               <div className="text-3xl font-extrabold text-emerald-700 font-heading">
                 {appOffers.length}
               </div>
-              <div className="text-[11px] font-semibold text-blue-600 mt-2 flex items-center gap-1">
+              <div className="text-[11px] font-semibold text-[#0070C0] mt-2 flex items-center gap-1">
                 Compare & Accept Terms &rarr;
               </div>
             </Link>
           </div>
 
           {/* Dedicated Institutional Waiting Room & 24-72 Hours Turnaround SLA (Doc 1 Line 22, Doc 3 Line 12) */}
-          <div className="bg-gradient-to-br from-slate-900 to-[#172B4D] text-white rounded-3xl p-6 sm:p-7 shadow-lg space-y-4">
+          <div className="bg-gradient-to-br from-[#001744] via-[#002060] to-[#003882] text-white rounded-3xl p-6 sm:p-7 shadow-lg space-y-4 border border-[#003882]/70">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-[#D5B66A] flex items-center justify-center border border-amber-500/30">
+                <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-[#FFD200] flex items-center justify-center border border-amber-500/30">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
@@ -356,15 +356,15 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
                       Live Queue Active
                     </span>
                   </div>
-                  <p className="text-xs text-slate-300">
+                  <p className="text-xs text-sky-100">
                     Doc 3 Turnaround Benchmark: Institutional business programs typically close in <strong>24 to 72 hours</strong>.
                   </p>
                 </div>
               </div>
 
               <div className="text-left sm:text-right">
-                <span className="text-xs text-slate-400 block">Elapsed Since Submission:</span>
-                <span className="text-sm font-mono font-bold text-[#D5B66A]">18 Hours : 42 Minutes</span>
+                <span className="text-xs text-slate-300 block">Elapsed Since Submission:</span>
+                <span className="text-sm font-mono font-bold text-[#FFD200]">18 Hours : 42 Minutes</span>
               </div>
             </div>
 
@@ -376,7 +376,7 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
                   <Radio className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
                 </div>
                 <div className="text-sm font-bold text-white">Sanitized Profile Live</div>
-                <p className="text-[11px] text-slate-300 leading-relaxed">
+                <p className="text-[11px] text-sky-100 leading-relaxed">
                   Your credit score and sensitive PII are strictly masked from competing funds.
                 </p>
               </div>
@@ -387,7 +387,7 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
                   <Users className="w-3.5 h-3.5 text-purple-400" />
                 </div>
                 <div className="text-sm font-bold text-white">{claimedCount} of {maxSlots} Locked Deals</div>
-                <p className="text-[11px] text-slate-300 leading-relaxed">
+                <p className="text-[11px] text-sky-100 leading-relaxed">
                   {openSlots > 0 ? `${openSlots} open slot remains for eligible accredited institutional funds.` : 'All 3 working deal slots claimed. Additional lenders locked out.'}
                 </p>
               </div>
@@ -395,10 +395,10 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
               <div className="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-1.5">
                 <div className="flex items-center justify-between text-xs text-slate-400">
                   <span>Next Milestone</span>
-                  <DollarSign className="w-3.5 h-3.5 text-[#D5B66A]" />
+                  <DollarSign className="w-3.5 h-3.5 text-[#FFD200]" />
                 </div>
-                <div className="text-sm font-bold text-[#D5B66A]">{appOffers.length} Offers In Waiting Room</div>
-                <p className="text-[11px] text-slate-300 leading-relaxed">
+                <div className="text-sm font-bold text-[#FFD200]">{appOffers.length} Offers In Waiting Room</div>
+                <p className="text-[11px] text-sky-100 leading-relaxed">
                   Compare side-by-side terms or consult Elena Rostova before choosing your preferred terms.
                 </p>
               </div>

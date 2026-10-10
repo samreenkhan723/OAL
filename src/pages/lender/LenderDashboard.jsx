@@ -90,13 +90,13 @@ export const LenderDashboard = () => {
   return (
     <div className="space-y-8">
       {/* Top Hero Banner */}
-      <div className="bg-gradient-to-r from-[#0B1730] to-[#172B4D] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#003882] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden border border-[#003882]/70">
         {/* Decorative lighting */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#0070C0]/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 uppercase tracking-wider">
+            <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-[#FFD200] text-[#002060] border border-amber-300 uppercase tracking-wider">
               Institutional Capital Exchange
             </span>
             <span className="text-xs text-slate-300">
@@ -122,7 +122,7 @@ export const LenderDashboard = () => {
         <div className="relative z-10 flex flex-wrap items-center gap-3 w-full md:w-auto">
           <Link
             to="/lender/leads"
-            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/30 transition-all flex items-center gap-1.5"
+            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-[#0070C0] hover:bg-[#005a9e] text-white shadow-md shadow-[#0070C0]/25 transition-all flex items-center gap-1.5"
           >
             <Users className="w-4 h-4" />
             <span>Browse Marketplace Leads</span>
@@ -138,9 +138,9 @@ export const LenderDashboard = () => {
 
           <Link
             to="/lender/post-funding"
-            className="w-full sm:w-auto justify-center px-4 py-2.5 rounded-xl text-xs font-bold bg-[#D5B66A] hover:bg-[#c4a457] text-slate-950 shadow-md transition-all flex items-center gap-1.5"
+            className="w-full sm:w-auto justify-center px-4 py-2.5 rounded-xl text-xs font-extrabold bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] border border-amber-300 shadow-md shadow-amber-400/25 transition-all flex items-center gap-1.5"
           >
-            <History className="w-4 h-4 text-slate-950" />
+            <History className="w-4 h-4 text-[#002060]" />
             <span>Post-Funding Portfolio</span>
           </Link>
 
@@ -151,7 +151,7 @@ export const LenderDashboard = () => {
             className="w-full sm:w-auto justify-center px-3.5 py-2.5 rounded-xl text-xs font-bold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition-all flex items-center gap-1.5 cursor-pointer"
             title="Sync deal analytics with CRM/ERP"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin text-[#D5B66A]' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin text-[#FFD200]' : ''}`} />
             <span>{isSyncing ? 'Syncing...' : 'Sync ERP'}</span>
           </button>
         </div>
@@ -161,21 +161,21 @@ export const LenderDashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <Link
           to="/lender/leads"
-          className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-blue-400 hover:shadow-md transition-all group"
+          className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all group"
         >
           <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
             <span className="font-semibold uppercase tracking-wider text-[11px]">Qualified Leads</span>
-            <Users className="w-4 h-4 text-blue-600 group-hover:scale-110 transition-transform" />
+            <Users className="w-4 h-4 text-[#0070C0] group-hover:scale-110 transition-transform" />
           </div>
-          <div className="text-3xl font-extrabold text-[#0B1730] font-heading">{qualifiedLeads.length}</div>
-          <div className="text-[11px] font-semibold text-blue-600 mt-2 flex items-center gap-1">
+          <div className="text-3xl font-extrabold text-[#002060] font-heading">{qualifiedLeads.length}</div>
+          <div className="text-[11px] font-semibold text-[#0070C0] mt-2 flex items-center gap-1">
             Browse Sanitized Profiles &rarr;
           </div>
         </Link>
 
         <Link
           to="/lender/working-deals"
-          className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-purple-400 hover:shadow-md transition-all group"
+          className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all group"
         >
           <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
             <span className="font-semibold uppercase tracking-wider text-[11px]">Working Deals</span>
@@ -207,9 +207,9 @@ export const LenderDashboard = () => {
         >
           <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
             <span className="font-semibold uppercase tracking-wider text-[11px]">AI Lead Alerts</span>
-            <Sparkles className="w-4 h-4 text-[#D5B66A] group-hover:scale-110 transition-transform" />
+            <Sparkles className="w-4 h-4 text-[#FFD200] group-hover:scale-110 transition-transform" />
           </div>
-          <div className="text-3xl font-extrabold text-[#D5B66A] font-heading">3 New</div>
+          <div className="text-3xl font-extrabold text-[#002060] font-heading">3 New</div>
           <div className="text-[11px] font-semibold text-amber-700 mt-2">
             &ge; 140 LINV IQ Filtered
           </div>
@@ -217,10 +217,10 @@ export const LenderDashboard = () => {
       </div>
 
       {/* 24–72 Hours Turnaround SLA Speed Benchmark (Doc 3 Line 12 & Doc 6 Line 6) */}
-      <div className="bg-gradient-to-r from-slate-900 to-[#172B4D] text-white rounded-3xl p-6 sm:p-7 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#003882] text-white rounded-3xl p-6 sm:p-7 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-6 border border-[#003882]/70">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5 text-[#D5B66A]" />
+            <Clock className="w-5 h-5 text-[#FFD200]" />
             <h3 className="text-base font-heading font-bold text-white">
               Institutional Turnaround SLA Benchmark: 24 – 72 Hours
             </h3>
@@ -236,9 +236,9 @@ export const LenderDashboard = () => {
         <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 shrink-0">
           <div>
             <span className="text-[11px] text-slate-400 block uppercase">Portfolio Avg. Close</span>
-            <span className="text-2xl font-mono font-extrabold text-[#D5B66A]">26.4 Hours</span>
+            <span className="text-2xl font-mono font-extrabold text-[#FFD200]">26.4 Hours</span>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-[#D5B66A]/20 flex items-center justify-center text-[#D5B66A]">
+          <div className="w-10 h-10 rounded-xl bg-[#FFD200]/20 flex items-center justify-center text-[#FFD200]">
             <Zap className="w-5 h-5" />
           </div>
         </div>
@@ -267,7 +267,7 @@ export const LenderDashboard = () => {
 
               <Link
                 to="/lender/leads"
-                className="text-xs font-bold text-blue-600 hover:underline shrink-0"
+                className="text-xs font-bold text-[#0070C0] hover:underline shrink-0"
               >
                 View Full Registry &rarr;
               </Link>
@@ -289,7 +289,7 @@ export const LenderDashboard = () => {
                   onClick={() => setActiveFilter(f.id)}
                   className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                     activeFilter === f.id
-                      ? 'bg-blue-600 text-white shadow-xs'
+                      ? 'bg-[#0070C0] text-white shadow-xs'
                       : 'bg-white text-slate-600 hover:bg-slate-200 border border-slate-200'
                   }`}
                 >
@@ -320,8 +320,8 @@ export const LenderDashboard = () => {
                         </span>
 
                         {/* LINV IQ Badge with Tier Label (Doc 4 - Lines 7-11) */}
-                        <span className="text-[11px] font-extrabold text-[#D5B66A] bg-[#0B1730] px-2 py-0.5 rounded flex items-center gap-1">
-                          <Award className="w-3 h-3 text-[#D5B66A]" />
+                        <span className="text-[11px] font-black text-[#002060] bg-[#FFD200] border border-amber-400 px-2 py-0.5 rounded-full whitespace-nowrap inline-flex items-center gap-1 shadow-xs">
+                          <Award className="w-3 h-3 text-[#002060] shrink-0" />
                           <span>IQ {score}/180</span>
                         </span>
 
@@ -546,9 +546,9 @@ export const LenderDashboard = () => {
 
             <Link
               to="/lender/messages"
-              className="w-full py-2.5 rounded-xl bg-[#0B1730] hover:bg-[#172B4D] text-white text-xs font-bold text-center block shadow-sm transition-colors flex items-center justify-center gap-1.5"
+              className="w-full py-2.5 rounded-xl bg-[#002060] hover:bg-[#001744] text-white text-xs font-bold text-center block shadow-md transition-colors flex items-center justify-center gap-1.5"
             >
-              <MessageSquare className="w-4 h-4 text-[#D5B66A]" />
+              <MessageSquare className="w-4 h-4 text-[#FFD200]" />
               <span>Open Broker Mediation Desk</span>
             </Link>
           </div>
@@ -557,7 +557,7 @@ export const LenderDashboard = () => {
           <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#D5B66A]" />
+                <Sparkles className="w-4 h-4 text-[#FFD200]" />
                 <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
                   AI Lead Alerts
                 </h3>
@@ -590,7 +590,7 @@ export const LenderDashboard = () => {
 
             <Link
               to="/lender/alerts"
-              className="text-xs font-bold text-blue-600 hover:underline block text-center pt-2"
+              className="text-xs font-bold text-[#0070C0] hover:underline block text-center pt-2"
             >
               Configure Underwriting AI Criteria &rarr;
             </Link>

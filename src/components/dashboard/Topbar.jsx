@@ -87,7 +87,7 @@ export const Topbar = ({ setIsOpen }) => {
             placeholder="Search loans, applications, documents, offers..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 text-xs bg-slate-50 hover:bg-slate-100/80 focus:bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all placeholder:text-slate-400"
+            className="w-full pl-10 pr-4 py-2 text-xs bg-slate-50 hover:bg-slate-100/80 focus:bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0070C0] focus:border-transparent transition-all placeholder:text-slate-400"
           />
         </form>
       </div>
@@ -98,12 +98,12 @@ export const Topbar = ({ setIsOpen }) => {
         {currentRole === 'borrower' && (
           <Link
             to="/borrower/investment-iq"
-            className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-amber-50 to-amber-100/70 border border-amber-200 rounded-xl text-xs font-semibold text-amber-900 hover:shadow-xs transition-shadow"
+            className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-amber-50 to-amber-100/80 border border-amber-300 rounded-xl text-xs font-semibold text-[#002060] hover:shadow-xs transition-shadow"
             title="View 180-Point Investment IQ Breakdown"
           >
-            <span className="text-[10px] tracking-wide text-amber-700 uppercase font-bold">Investment IQ:</span>
-            <span className="text-amber-900 font-extrabold text-sm">154</span>
-            <span className="text-[11px] text-amber-600">/ 180</span>
+            <span className="text-[10px] tracking-wide text-amber-800 uppercase font-bold">Investment IQ:</span>
+            <span className="text-[#002060] font-black text-sm">154</span>
+            <span className="text-[11px] text-amber-700 font-semibold">/ 180</span>
           </Link>
         )}
 
@@ -111,11 +111,11 @@ export const Topbar = ({ setIsOpen }) => {
         {currentRole === 'lender' && (
           <Link
             to="/lender/working-deals"
-            className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-semibold text-blue-900"
+            className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-sky-50 border border-[#00B0F0]/40 rounded-xl text-xs font-semibold text-[#002060]"
           >
-            <span className="text-[10px] text-blue-600 uppercase font-bold">Working Deals:</span>
-            <span className="text-blue-700 font-extrabold">2 Active</span>
-            <span className="text-[11px] text-blue-500">(Max 3/deal)</span>
+            <span className="text-[10px] text-[#0070C0] uppercase font-bold">Working Deals:</span>
+            <span className="text-[#002060] font-extrabold">2 Active</span>
+            <span className="text-[11px] text-slate-500">(Max 3/deal)</span>
           </Link>
         )}
 
@@ -128,15 +128,15 @@ export const Topbar = ({ setIsOpen }) => {
             title="Notifications"
           >
             <Bell className="w-5 h-5" />
-            <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-blue-600 ring-2 ring-white" />
+            <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#0070C0] ring-2 ring-white" />
           </button>
 
           {showNotifications && (
             <div className="absolute right-0 mt-2 w-[calc(100vw-2rem)] sm:w-96 max-w-sm bg-white rounded-2xl shadow-xl border border-slate-200 p-4 z-50">
               <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div className="flex items-center gap-2">
-                  <h4 className="text-sm font-bold text-slate-900">Notifications</h4>
-                  <span className="text-[10px] font-semibold bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">3 New</span>
+                  <h4 className="text-sm font-bold text-[#002060]">Notifications</h4>
+                  <span className="text-[10px] font-bold bg-sky-100 text-[#0070C0] px-1.5 py-0.5 rounded-full border border-sky-200">3 New</span>
                 </div>
                 <button
                   onClick={() => setShowNotifications(false)}
@@ -162,7 +162,7 @@ export const Topbar = ({ setIsOpen }) => {
                 <Link
                   to={currentRole === 'borrower' ? '/borrower/notifications' : `/${currentRole}/notifications`}
                   onClick={() => setShowNotifications(false)}
-                  className="text-xs font-semibold text-blue-600 hover:text-blue-700"
+                  className="text-xs font-bold text-[#0070C0] hover:text-[#002060]"
                 >
                   View All Activity &rarr;
                 </Link>

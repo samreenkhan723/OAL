@@ -61,10 +61,10 @@ export const LenderRankingsPage = () => {
 
                 <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-5 w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-100">
                   <div className="flex items-center gap-2 sm:block text-left sm:text-right">
-                    <div className="text-base sm:text-lg font-extrabold text-[#D5B66A] bg-[#0B1730] px-3 py-1.5 rounded-xl inline-flex items-center gap-1.5 shadow-xs border border-amber-500/20 whitespace-nowrap">
-                      <Award className="w-3.5 h-3.5 text-[#D5B66A] shrink-0" />
+                    <div className="text-xs font-black text-[#002060] bg-[#FFD200] px-2.5 py-1 rounded-full inline-flex items-center gap-1 shadow-xs border border-amber-400 whitespace-nowrap">
+                      <Award className="w-3.5 h-3.5 text-[#002060] shrink-0" />
                       <span>{score}</span>
-                      <span className="text-xs text-slate-400 font-normal">/ 180</span>
+                      <span className="text-[10px] text-[#002060]/70 font-bold">/ 180</span>
                     </div>
                     <span className="text-[10px] text-slate-400 hidden sm:block mt-0.5">Composite Score</span>
                   </div>

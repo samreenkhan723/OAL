@@ -400,10 +400,10 @@ OAL Network Headquarters, New York, NY
       {/* =========================================================================
           HERO BANNER & INV-IQ GREEN BADGE (Doc 4 & Doc 6)
           ========================================================================= */}
-      <div className="bg-gradient-to-r from-[#0B1730] via-[#102347] to-[#064E3B] rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden border border-slate-700/60">
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#003882] rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden border border-[#003882]/70">
         {/* Glow styling */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#0070C0]/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-[#FFD200]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
@@ -414,7 +414,7 @@ OAL Network Headquarters, New York, NY
                 <span>INV-IQ Verified Certified Investor with Green Check Badge</span>
               </span>
 
-              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 uppercase tracking-wider">
+              <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-[#FFD200] text-[#002060] border border-amber-300 uppercase tracking-wider">
                 Doc 4 & 6 Member Portal
               </span>
 
@@ -439,16 +439,16 @@ OAL Network Headquarters, New York, NY
               onClick={handleDownloadLinvIqDossier}
               className="px-4 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              <Download className="w-4 h-4 text-[#D5B66A]" />
+              <Download className="w-4 h-4 text-[#FFD200]" />
               <span>Download 180 LINV IQ Dossier</span>
             </button>
 
             <button
               type="button"
               onClick={() => setActiveTab('verification')}
-              className="px-4 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-extrabold shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="px-4 py-3 rounded-2xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] border border-amber-300 text-xs font-extrabold shadow-md shadow-amber-400/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              <ShieldCheck className="w-4 h-4 text-slate-950" />
+              <ShieldCheck className="w-4 h-4 text-[#002060]" />
               <span>Accreditation Center</span>
             </button>
           </div>
@@ -458,7 +458,7 @@ OAL Network Headquarters, New York, NY
         <div className="relative z-10 mt-6 pt-5 border-t border-slate-700/60 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
           <div>
             <span className="text-slate-400 text-[11px] block">Current Club Tier:</span>
-            <strong className="text-[#D5B66A] font-bold text-sm block">{currentTier.name}</strong>
+            <strong className="text-[#FFD200] font-bold text-sm block">{currentTier.name}</strong>
           </div>
           <div>
             <span className="text-slate-400 text-[11px] block">180 LINV IQ Score:</span>
@@ -490,7 +490,7 @@ OAL Network Headquarters, New York, NY
           onClick={() => setActiveTab('overview')}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
             activeTab === 'overview'
-              ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
+              ? 'bg-[#002060] text-[#FFD200] shadow-md shadow-[#002060]/20'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
@@ -503,7 +503,7 @@ OAL Network Headquarters, New York, NY
           onClick={() => setActiveTab('syndicates')}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
             activeTab === 'syndicates'
-              ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
+              ? 'bg-[#0070C0] text-white shadow-md shadow-[#0070C0]/25'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >

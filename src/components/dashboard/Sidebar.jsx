@@ -313,22 +313,22 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
 
       {/* Sidebar Container */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-[#0B1730] text-slate-300 flex flex-col transition-transform duration-300 ease-in-out border-r border-slate-800 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-[#001744] text-slate-200 flex flex-col transition-transform duration-300 ease-in-out border-r border-[#002060] ${
           isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         {/* Brand Header */}
-        <div className="h-20 px-6 flex items-center justify-between border-b border-slate-800/80 bg-[#0B1730]">
+        <div className="h-20 px-6 flex items-center justify-between border-b border-[#002060] bg-[#001744]">
           <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white shadow-md shadow-blue-900/30">
-              <ShieldCheck className="w-5 h-5 text-[#D5B66A]" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0070C0] to-[#002060] flex items-center justify-center text-white shadow-md shadow-blue-950/40 border border-[#00B0F0]/30">
+              <ShieldCheck className="w-5 h-5 text-[#FFD200]" />
             </div>
             <div>
               <div className="flex items-center gap-1">
                 <span className="font-heading font-extrabold text-lg tracking-tight text-white">OAL</span>
-                <span className="font-heading font-semibold text-lg tracking-tight text-blue-400">NETWORK</span>
+                <span className="font-heading font-semibold text-lg tracking-tight text-[#00B0F0]">NETWORK</span>
               </div>
-              <div className="text-[10px] font-semibold tracking-wider text-amber-400 uppercase">
+              <div className="text-[10px] font-bold tracking-wider text-[#FFD200] uppercase">
                 {currentRole} WORKSPACE
               </div>
             </div>
@@ -338,7 +338,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="lg:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            className="lg:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#002060] transition-colors cursor-pointer"
             title="Close navigation"
           >
             <X className="w-5 h-5" />
@@ -349,7 +349,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
         <div className="flex-1 overflow-y-auto px-4 py-5 space-y-6">
           {sections.map((section, idx) => (
             <div key={idx} className="space-y-1">
-              <div className="px-3 text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              <div className="px-3 text-[11px] font-bold text-sky-200/80 uppercase tracking-wider mb-2">
                 {section.title}
               </div>
               {section.items.map((item) => {
@@ -363,8 +363,8 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
                     onClick={() => setIsOpen(false)}
                     className={`group flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all ${
                       active
-                        ? 'bg-blue-600 text-white font-semibold shadow-md shadow-blue-600/30'
-                        : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+                        ? 'bg-[#0070C0] text-white font-bold shadow-md shadow-[#0070C0]/35'
+                        : 'text-slate-300 hover:text-white hover:bg-[#002060]/75'
                     }`}
                   >
                     <div className="flex items-center gap-3 min-w-0">
@@ -374,10 +374,10 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
 
                     {item.badge && (
                       <span
-                        className={`ml-2 px-1.5 py-0.5 text-[10px] font-semibold rounded-md border ${
+                        className={`ml-2 px-1.5 py-0.5 text-[10px] font-bold rounded-md border ${
                           active
-                            ? 'bg-blue-700 text-white border-blue-500/50'
-                            : 'bg-slate-800 text-slate-300 border-slate-700/60 group-hover:border-slate-600'
+                            ? 'bg-[#FFD200] text-[#002060] border-amber-300 font-black'
+                            : 'bg-[#002060] text-slate-200 border-[#003882]/80 group-hover:border-[#0070C0]/50'
                         }`}
                       >
                         {item.badge}
@@ -391,8 +391,8 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
         </div>
 
         {/* User Card & Profile Settings / Sign Out */}
-        <div className="p-4 border-t border-slate-800 bg-[#0B1730]">
-          <div className="flex items-center gap-3 p-2 rounded-xl bg-slate-900/60 border border-slate-800">
+        <div className="p-4 border-t border-[#002060] bg-[#001744]">
+          <div className="flex items-center gap-3 p-2 rounded-xl bg-[#002060]/70 border border-[#003882]/70">
             <Link
               to={`/${currentRole}/settings`}
               onClick={() => setIsOpen(false)}
@@ -402,18 +402,18 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
               <img
                 src={currentUser.avatar}
                 alt={currentUser.name}
-                className="w-9 h-9 rounded-full object-cover border border-slate-700 flex-shrink-0"
+                className="w-9 h-9 rounded-full object-cover border border-[#0070C0] flex-shrink-0"
               />
               <div className="min-w-0 flex-1">
                 <div className="text-xs font-semibold text-white truncate">{currentUser.name}</div>
-                <div className="text-[10px] text-slate-400 truncate">{currentUser.company || currentUser.email}</div>
+                <div className="text-[10px] text-sky-200/70 truncate">{currentUser.company || currentUser.email}</div>
               </div>
             </Link>
             <Link
               to={`/${currentRole}/settings`}
               onClick={() => setIsOpen(false)}
               title="Profile & Settings"
-              className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+              className="p-1.5 text-slate-400 hover:text-white hover:bg-[#003882] rounded-lg transition-colors"
             >
               <Settings className="w-4 h-4" />
             </Link>
@@ -423,7 +423,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
                 navigate('/', { replace: true });
               }}
               title="Sign Out"
-              className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-[#003882] rounded-lg transition-colors cursor-pointer"
             >
               <LogOut className="w-4 h-4" />
             </button>
