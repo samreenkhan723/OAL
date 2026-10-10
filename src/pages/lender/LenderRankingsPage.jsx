@@ -59,17 +59,19 @@ export const LenderRankingsPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-6 w-full sm:w-auto self-start sm:self-center">
-                  <div className="text-left sm:text-right">
-                    <div className="text-xl font-extrabold text-[#D5B66A] bg-[#0B1730] px-3 py-1 rounded-xl inline-block">
-                      {score} <span className="text-xs text-slate-400 font-normal">/ 180</span>
+                <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-5 w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-100">
+                  <div className="flex items-center gap-2 sm:block text-left sm:text-right">
+                    <div className="text-base sm:text-lg font-extrabold text-[#D5B66A] bg-[#0B1730] px-3 py-1.5 rounded-xl inline-flex items-center gap-1.5 shadow-xs border border-amber-500/20 whitespace-nowrap">
+                      <Award className="w-3.5 h-3.5 text-[#D5B66A] shrink-0" />
+                      <span>{score}</span>
+                      <span className="text-xs text-slate-400 font-normal">/ 180</span>
                     </div>
-                    <span className="text-[10px] text-slate-400 block mt-0.5">Composite Score</span>
+                    <span className="text-[10px] text-slate-400 hidden sm:block mt-0.5">Composite Score</span>
                   </div>
 
                   <Link
                     to={`/lender/leads/${app.id}`}
-                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all text-center shrink-0"
+                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all text-center shrink-0 shadow-xs whitespace-nowrap"
                   >
                     Examine
                   </Link>

@@ -78,6 +78,8 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
             title: 'Transactions',
             items: [
               { label: 'Offer Management', path: '/lender/offers', icon: DollarSign, badge: `${offers.length}` },
+              { label: 'The Money Club Syndicate', path: '/lender/money-club', icon: Award, badge: 'VIP/MVP' },
+              { label: 'Post-Funding Portfolio', path: '/lender/post-funding', icon: History, badge: 'Stage 13' },
             ]
           },
           {
@@ -213,7 +215,9 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
               { label: 'New Loan Request', path: '/borrower/applications/new', icon: FilePlus },
               { label: 'Documents & KYC', path: '/borrower/documents', icon: FolderOpen },
               { label: 'Investment IQ', path: '/borrower/investment-iq', icon: Award, badge: '154/180' },
+              { label: 'The Money Club Portal', path: '/borrower/money-club', icon: Sparkles, badge: 'MVP 154' },
               { label: 'Lender Offers', path: '/borrower/offers', icon: DollarSign, badge: `${pendingOffersCount}` },
+              { label: 'Post-Funding Servicing', path: '/borrower/post-funding', icon: History, badge: 'Stage 13' },
             ]
           },
           {
@@ -281,6 +285,16 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
 
     // Rep lead detail active check
     if (target === '/rep/leads' && current.startsWith('/rep/leads/')) {
+      return true;
+    }
+
+    // Post-Funding Dashboard active check
+    if (target.endsWith('/post-funding') && current.includes('/post-funding')) {
+      return true;
+    }
+
+    // Money Club Member Portal active check
+    if (target.endsWith('/money-club') && current.includes('/money-club')) {
       return true;
     }
 

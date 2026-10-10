@@ -76,7 +76,7 @@ export const LenderWorkingDealsPage = () => {
                     </div>
                     <div className="flex flex-wrap items-center justify-between gap-1">
                       <span className="text-slate-500">Investment IQ:</span>
-                      <strong className="text-[#D5B66A] bg-[#0B1730] px-2 py-0.5 rounded text-[11px] font-bold">
+                      <strong className="text-[#D5B66A] bg-[#0B1730] px-2 py-0.5 rounded text-[11px] font-bold whitespace-nowrap inline-flex items-center gap-1">
                         {deal.investmentIQ?.total || '154'} / 180
                       </strong>
                     </div>

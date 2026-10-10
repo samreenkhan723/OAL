@@ -38,6 +38,8 @@ import { BorrowerMessagesPage } from './pages/borrower/BorrowerMessagesPage';
 import { BorrowerReferralsPage } from './pages/borrower/BorrowerReferralsPage';
 import { BorrowerSettingsPage } from './pages/borrower/BorrowerSettingsPage';
 import { NotificationsPage } from './pages/common/NotificationsPage';
+import { PostFundingDashboardPage } from './pages/common/PostFundingDashboardPage';
+import { MoneyClubMemberPortalPage } from './pages/common/MoneyClubMemberPortalPage';
 
 // Lender Pages
 import { LenderDashboard } from './pages/lender/LenderDashboard';
@@ -170,6 +172,8 @@ export function App() {
             <Route path="messages" element={<BorrowerMessagesPage />} />
             <Route path="notifications" element={<NotificationsPage />} />
             <Route path="referrals" element={<BorrowerReferralsPage />} />
+            <Route path="post-funding" element={<PostFundingDashboardPage />} />
+            <Route path="money-club" element={<MoneyClubMemberPortalPage />} />
             <Route path="settings" element={<BorrowerSettingsPage />} />
           </Route>
 
@@ -193,6 +197,8 @@ export function App() {
             <Route path="saved-leads" element={<LenderSavedLeadsPage />} />
             <Route path="working-deals" element={<LenderWorkingDealsPage />} />
             <Route path="offers" element={<LenderOfferManagementPage />} />
+            <Route path="post-funding" element={<PostFundingDashboardPage />} />
+            <Route path="money-club" element={<MoneyClubMemberPortalPage />} />
             <Route path="messages" element={<LenderMessagesPage />} />
             <Route path="notifications" element={<NotificationsPage />} />
             <Route path="analytics" element={<LenderAnalyticsPage />} />

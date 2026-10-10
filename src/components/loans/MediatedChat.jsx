@@ -65,18 +65,20 @@ export const MediatedChat = ({ applicationId = 'APP-2026-1082' }) => {
   return (
     <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden flex flex-col h-[520px]">
       {/* Header */}
-      <div className="p-4 bg-gradient-to-r from-[#0B1730] to-[#172B4D] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white">
+      <div className="p-3.5 sm:p-4 bg-gradient-to-r from-[#0B1730] to-[#172B4D] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-start sm:items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white shrink-0 mt-0.5 sm:mt-0">
             <MessageSquare className="w-5 h-5" />
           </div>
-          <div>
-            <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
-              <span>Mediated Communication Channel</span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#D5B66A] text-slate-950">
+          <div className="space-y-0.5">
+            <div className="flex flex-wrap items-center gap-2">
+              <h3 className="text-sm font-bold text-white">
+                Mediated Communication Channel
+              </h3>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 whitespace-nowrap shrink-0 shadow-xs">
                 Rule FR-09
               </span>
-            </h3>
+            </div>
             <p className="text-[11px] text-slate-300">
               Supervised via Elena Rostova (Senior OAL Representative)
             </p>
@@ -85,19 +87,21 @@ export const MediatedChat = ({ applicationId = 'APP-2026-1082' }) => {
 
         {/* Rep Toggle switch */}
         {currentRole === 'rep' && (
-          <div className="flex items-center bg-slate-900/80 p-1 rounded-xl border border-slate-700">
+          <div className="flex items-center bg-slate-900/80 p-1 rounded-xl border border-slate-700 w-full sm:w-auto">
             <button
+              type="button"
               onClick={() => setRepActiveThread('borrower')}
-              className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors ${
-                repActiveThread === 'borrower' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'
+              className={`flex-1 sm:flex-none px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-colors text-center cursor-pointer ${
+                repActiveThread === 'borrower' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
               }`}
             >
               Borrower Thread
             </button>
             <button
+              type="button"
               onClick={() => setRepActiveThread('lender')}
-              className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors ${
-                repActiveThread === 'lender' ? 'bg-purple-600 text-white' : 'text-slate-400 hover:text-white'
+              className={`flex-1 sm:flex-none px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-colors text-center cursor-pointer ${
+                repActiveThread === 'lender' ? 'bg-purple-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
               }`}
             >
               Lender Thread
@@ -107,12 +111,10 @@ export const MediatedChat = ({ applicationId = 'APP-2026-1082' }) => {
       </div>
 
       {/* Safety Compliance Banner */}
-      <div className="bg-amber-50 border-b border-amber-200/80 px-4 py-2 flex items-center justify-between text-[11px] text-amber-900">
-        <div className="flex items-center gap-1.5">
-          <Lock className="w-3.5 h-3.5 text-amber-700 flex-shrink-0" />
-          <span>
-            <strong>Mediated Security Invariant:</strong> Direct borrower-to-lender chat is structurally prohibited to ensure compliance and avoid uncoordinated commitments.
-          </span>
+      <div className="bg-amber-50 border-b border-amber-200/80 px-3.5 sm:px-4 py-2.5 flex items-start gap-2 text-[11px] text-amber-900 leading-relaxed">
+        <Lock className="w-3.5 h-3.5 text-amber-700 shrink-0 mt-0.5" />
+        <div>
+          <strong>Mediated Security Invariant:</strong> Direct borrower-to-lender chat is structurally prohibited to ensure compliance and avoid uncoordinated commitments.
         </div>
       </div>
 

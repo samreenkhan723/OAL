@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   FileEdit,
   Send,
@@ -12,7 +13,9 @@ import {
   Cpu,
   Layers,
   Banknote,
-  Check
+  Check,
+  History,
+  ExternalLink
 } from 'lucide-react';
 import { StatusBadge } from '../common/StatusBadge';
 
@@ -29,6 +32,7 @@ const STAGES = [
   { key: 'APPROVED', label: 'Credit Approved', icon: ShieldCheck, desc: 'Underwriting committee signoff' },
   { key: 'FUNDING', label: 'Funding Stage', icon: Banknote, desc: 'Wire execution initiated' },
   { key: 'FUNDED', label: 'Disbursed / Funded', icon: Check, desc: 'Capital deposited into account' },
+  { key: 'POST_FUNDING', label: 'Post-Funding Servicing', icon: History, desc: 'Amortization & debt servicing' },
 ];
 
 export const LoanProcessTracker = ({ currentStatus = 'SUBMITTED', application }) => {
@@ -46,6 +50,7 @@ export const LoanProcessTracker = ({ currentStatus = 'SUBMITTED', application })
       case 'APPROVED': return 9;
       case 'FUNDING': return 10;
       case 'FUNDED': return 11;
+      case 'POST_FUNDING': return 12;
       default: return 1;
     }
   };
@@ -159,6 +164,25 @@ export const LoanProcessTracker = ({ currentStatus = 'SUBMITTED', application })
             </div>
           );
         })}
+      </div>
+
+      {/* Stage 13 Post-Funding Servicing Hub Quick Link */}
+      <div className="mt-6 pt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+        <div className="flex items-center gap-2">
+          <History className="w-4 h-4 text-[#D5B66A]" />
+          <div>
+            <strong className="text-slate-900 block">Stage 13: Post-Funding Commercial Servicing</strong>
+            <span className="text-[11px] text-slate-500">Amortization schedules, wire receipts, ACH auto-pay & 30-day payoff quotes.</span>
+          </div>
+        </div>
+
+        <Link
+          to="/borrower/post-funding"
+          className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all shadow-xs inline-flex items-center justify-center gap-1.5 self-start sm:self-auto cursor-pointer"
+        >
+          <span>Open Post-Funding Dashboard</span>
+          <ExternalLink className="w-3.5 h-3.5" />
+        </Link>
       </div>
     </div>
   );
