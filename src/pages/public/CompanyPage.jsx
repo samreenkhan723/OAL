@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import {
   Building2,
@@ -18,15 +18,23 @@ import {
   FileText,
   TrendingUp,
   HelpCircle,
-  ExternalLink
+  ExternalLink,
+  Lock,
+  Scale,
+  Target,
+  Shield,
+  Zap,
+  BarChart3,
+  Check,
+  X,
+  Layers
 } from 'lucide-react';
 import { VerifyBadge } from '../../components/common/VerifyBadge';
 import { useApp } from '../../context/AppContext';
 
 export const CompanyPage = ({ initialTab = 'about' }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentParam = searchParams.get('tab') || initialTab || 'about';
-  const [activeTab, setActiveTab] = useState(currentParam);
+  const activeTab = searchParams.get('tab') || initialTab || 'about';
   const { addToast } = useApp();
 
   const [contactForm, setContactForm] = useState({
@@ -44,40 +52,6 @@ export const CompanyPage = ({ initialTab = 'about' }) => {
     setSubmitted(true);
     addToast('Message Dispatched', 'Thank you for reaching out to OAL Network. An underwriting specialist will contact you within 24 hours.', 'success');
   };
-
-  const navTabs = [
-    { id: 'about', label: 'About Us' },
-    { id: 'leadership', label: 'Leadership' },
-    { id: 'values', label: 'Our Values' },
-    { id: 'press', label: 'Press Room' },
-    { id: 'investors', label: 'Investors' },
-    { id: 'careers', label: 'Careers' },
-    { id: 'culture', label: 'Inclusive Culture' },
-    { id: 'contact', label: 'Contact Us' }
-  ];
-
-  const scrollToSection = (id) => {
-    setActiveTab(id);
-    setSearchParams({ tab: id }, { replace: true });
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  useEffect(() => {
-    const tab = searchParams.get('tab');
-    if (tab) {
-      setActiveTab(tab);
-      const timer = setTimeout(() => {
-        const el = document.getElementById(tab);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 150);
-      return () => clearTimeout(timer);
-    }
-  }, [searchParams]);
 
   return (
     <div className="space-y-12 pb-20">
@@ -101,581 +75,877 @@ export const CompanyPage = ({ initialTab = 'about' }) => {
           <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl mx-auto">
             OPM ASAP Loans NetWORK — Servicing all 50 states with institutional commercial lending, standardized underwriting, and mediated marketplace integrity.
           </p>
-
         </div>
       </section>
 
-      {/* Main Content Area - All sections rendered on a single page */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      {/* Main Content Area - Render ONLY the selected department section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* SECTION 1: ABOUT US */}
-        <section id="about" className="scroll-mt-28 space-y-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0070C0] uppercase tracking-wider">
-                <ShieldCheck className="w-4 h-4 text-[#00B0F0]" />
-                <span>The OAL Commercial Exchange Standard</span>
-              </div>
-              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-                Re-Engineering Commercial Debt Across All 50 States
-              </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                OAL Network (OPM ASAP Loans NetWORK) is a modern commercial lending exchange that connects business borrowers directly with verified institutional lenders, fiduciaries, and accredited debt underwriters.
-              </p>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Unlike traditional lead aggregators who sell unredacted loan inquiries across the web, OAL Network operates an auditable, closed marketplace governed by strict privacy isolation, the 180-point Investment IQ evaluation engine, and a hard 3-lender concurrency limit on active working deals.
-              </p>
+        {/* TAB 1: ABOUT US */}
+        {activeTab === 'about' && (
+          <div className="space-y-16 animate-in fade-in duration-200 pb-8">
+            {/* 1. Hero Overview & The 3 Pillars */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+              <div className="lg:col-span-7 space-y-5 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0070C0] uppercase tracking-wider">
+                    <ShieldCheck className="w-4 h-4 text-[#00B0F0]" />
+                    <span>The OAL Commercial Exchange Standard</span>
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-[#002060] leading-tight">
+                    Re-Engineering Commercial Debt Across All 50 States
+                  </h2>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    OAL Network (OPM ASAP Loans NetWORK) is a modern institutional commercial lending exchange connecting verified small business borrowers, mid-market enterprises, and commercial real estate developers directly with accredited debt underwriters, balance-sheet banks, and private credit funds.
+                  </p>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Unlike traditional lead brokers who sell unredacted loan inquiries across the internet, OAL Network operates a strictly auditable, closed marketplace governed by cryptographic privacy shielding, the standardized 180-Point Investment IQ evaluation engine, and a hard 3-lender concurrency limit on active working deals.
+                  </p>
+                </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3">
-                <div className="p-4 rounded-2xl bg-sky-50/70 border border-[#00B0F0]/30 space-y-1">
-                  <span className="text-2xl font-extrabold text-[#0070C0] font-heading">$500M+</span>
-                  <p className="text-xs font-semibold text-slate-800">Funding Capacity</p>
-                  <p className="text-[11px] text-slate-500">$10,000 to $500 Million+ institutional range.</p>
-                </div>
-                <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-300 space-y-1">
-                  <span className="text-2xl font-extrabold text-amber-700 font-heading">24–72 Hrs</span>
-                  <p className="text-xs font-semibold text-slate-800">Funding Speed</p>
-                  <p className="text-[11px] text-slate-500">Typical approval in 2-24 hours for fast programs.</p>
-                </div>
-                <div className="p-4 rounded-2xl bg-blue-50/70 border border-[#0070C0]/30 space-y-1">
-                  <span className="text-2xl font-extrabold text-[#002060] font-heading">50 States</span>
-                  <p className="text-xs font-semibold text-slate-800">Nationwide Reach</p>
-                  <p className="text-[11px] text-slate-500">Fully compliant commercial debt across all territories.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 bg-gradient-to-br from-[#002060] to-[#0070C0] text-white p-8 rounded-3xl shadow-xl space-y-6">
-              <h3 className="text-xl font-heading font-bold text-white flex items-center gap-2">
-                <Award className="w-5 h-5 text-[#FFD200]" />
-                <span>The Three Pillars of OAL</span>
-              </h3>
-              <div className="space-y-4 text-xs text-slate-200">
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-lg bg-[#00B0F0]/20 border border-[#00B0F0] text-[#00B0F0] flex items-center justify-center shrink-0 mt-0.5 font-bold">
-                    1
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3">
+                  <div className="p-4 rounded-2xl bg-sky-50/70 border border-[#00B0F0]/30 space-y-1 shadow-sm">
+                    <span className="text-2xl font-extrabold text-[#0070C0] font-heading">$500M+</span>
+                    <p className="text-xs font-semibold text-slate-800">Funding Capacity</p>
+                    <p className="text-[11px] text-slate-500 leading-snug">$10,000 to $500 Million+ institutional capacity.</p>
                   </div>
-                  <div>
-                    <strong className="text-white block text-sm font-semibold">180-Point Investment IQ</strong>
-                    <p className="text-slate-300 mt-0.5">Objective, transparent scoring across Credit (70), Cash Flow (50), Collateral (30), Business Plan (20), and Risk (10).</p>
+                  <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-300 space-y-1 shadow-sm">
+                    <span className="text-2xl font-extrabold text-amber-700 font-heading">24–72 Hrs</span>
+                    <p className="text-xs font-semibold text-slate-800">Funding Speed</p>
+                    <p className="text-[11px] text-slate-500 leading-snug">Fast underwriting approval in 2–24 hrs for working capital.</p>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-lg bg-[#FFD200]/20 border border-[#FFD200] text-[#FFD200] flex items-center justify-center shrink-0 mt-0.5 font-bold">
-                    2
-                  </div>
-                  <div>
-                    <strong className="text-white block text-sm font-semibold">Rule FR-08: Max 3 Working Deals</strong>
-                    <p className="text-slate-300 mt-0.5">No application is worked by more than three lenders at once, eliminating predatory bidding and protecting borrower focus.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-lg bg-[#00B0F0]/20 border border-[#00B0F0] text-[#00B0F0] flex items-center justify-center shrink-0 mt-0.5 font-bold">
-                    3
-                  </div>
-                  <div>
-                    <strong className="text-white block text-sm font-semibold">Rule FR-09: Mediated Oversight</strong>
-                    <p className="text-slate-300 mt-0.5">Assigned OAL Representatives broker communications between lenders and applicants for simple, secured, and quick transactions.</p>
+                  <div className="p-4 rounded-2xl bg-blue-50/70 border border-[#0070C0]/30 space-y-1 shadow-sm">
+                    <span className="text-2xl font-extrabold text-[#002060] font-heading">50 States</span>
+                    <p className="text-xs font-semibold text-slate-800">Nationwide Reach</p>
+                    <p className="text-[11px] text-slate-500 leading-snug">Fully compliant commercial debt across all territories.</p>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-2">
-                <Link
-                  to="/how-it-works"
-                  className="w-full py-3 rounded-xl bg-[#FFD200] hover:bg-[#F5C500] text-[#002060] font-bold text-xs text-center block transition-all shadow-md"
-                >
-                  Explore How It Works &rarr;
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 2: LEADERSHIP / MANAGEMENT TEAM */}
-        <section id="leadership" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
-          <div className="max-w-2xl space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Executive Management</span>
-              <VerifyBadge note="Client confirmation pending for official executive biographies and executive roster" />
-            </div>
-            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-              Our Leadership &amp; Management Team
-            </h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Led by veteran commercial credit executives, underwriting analysts, and fintech platform architects committed to transparent institutional lending.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-amber-50 border border-amber-300/80 text-xs text-amber-900 flex items-start gap-3">
-            <HelpCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-            <div>
-              <strong>Client Content Notice:</strong> Formal executive headshots and finalized executive biographies will be published upon client sign-off. Below is the operational governance structure.
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                role: 'Chief Compliance & Operations Officer',
-                name: 'Victoria Sterling',
-                dept: 'Regulatory Oversight & Governance',
-                focus: 'Enforces international security standards, multi-factor authentication, KYC validation, and SEC Rule 501 compliance across all 50 states.'
-              },
-              {
-                role: 'Senior Commercial Placement Specialist',
-                name: 'Elena Rostova',
-                dept: 'OAL Representative Brokerage',
-                focus: 'Mediates deal rooms between institutional debt funds and qualified applicants, supervising competitive terms under Rule FR-09.'
-              },
-              {
-                role: 'Head of Underwriting Support',
-                name: 'Alex Chen',
-                dept: 'Institutional Help Desk Operations',
-                focus: 'Manages multi-channel applicant ticketing, technical support, and automated response routing to lower application abandonment rates.'
-              }
-            ].map((ldr, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-3 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#002060] to-[#0070C0] text-white flex items-center justify-center font-bold text-base shadow-sm">
-                  {ldr.name.split(' ').map(n => n[0]).join('')}
-                </div>
+              <div className="lg:col-span-5 bg-gradient-to-br from-[#002060] to-[#0070C0] text-white p-8 rounded-3xl shadow-xl flex flex-col justify-between space-y-6">
                 <div>
-                  <h3 className="text-base font-bold text-[#002060]">{ldr.name}</h3>
-                  <p className="text-xs font-semibold text-[#0070C0]">{ldr.role}</p>
-                  <span className="text-[10px] text-slate-400 font-medium block mt-0.5">{ldr.dept}</span>
+                  <h3 className="text-xl font-heading font-bold text-white flex items-center gap-2">
+                    <Award className="w-5 h-5 text-[#FFD200]" />
+                    <span>The Three Pillars of OAL</span>
+                  </h3>
+                  <p className="text-xs text-slate-200 mt-1">Our governing framework protecting both borrowers and capital desks.</p>
+
+                  <div className="space-y-4 text-xs text-slate-200 mt-6">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-lg bg-[#00B0F0]/20 border border-[#00B0F0] text-[#00B0F0] flex items-center justify-center shrink-0 mt-0.5 font-bold">
+                        1
+                      </div>
+                      <div>
+                        <strong className="text-white block text-sm font-semibold">180-Point Investment IQ</strong>
+                        <p className="text-slate-300 mt-0.5">Objective, transparent scoring across Credit (70), Cash Flow (50), Collateral (30), Business Plan (20), and Risk (10).</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-lg bg-[#FFD200]/20 border border-[#FFD200] text-[#FFD200] flex items-center justify-center shrink-0 mt-0.5 font-bold">
+                        2
+                      </div>
+                      <div>
+                        <strong className="text-white block text-sm font-semibold">Rule FR-08: Max 3 Working Deals</strong>
+                        <p className="text-slate-300 mt-0.5">No application is worked by more than three lenders at once, eliminating predatory bidding and protecting borrower focus.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-lg bg-[#00B0F0]/20 border border-[#00B0F0] text-[#00B0F0] flex items-center justify-center shrink-0 mt-0.5 font-bold">
+                        3
+                      </div>
+                      <div>
+                        <strong className="text-white block text-sm font-semibold">Rule FR-09: Mediated Oversight</strong>
+                        <p className="text-slate-300 mt-0.5">Assigned OAL Representatives broker communications between lenders and applicants for simple, secured, and quick transactions.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-xs text-slate-600 leading-relaxed pt-2 border-t border-slate-100">
-                  {ldr.focus}
+
+                <div className="pt-2">
+                  <Link
+                    to="/how-it-works"
+                    className="w-full py-3 rounded-xl bg-[#FFD200] hover:bg-[#F5C500] text-[#002060] font-bold text-xs text-center block transition-all shadow-md"
+                  >
+                    Explore How It Works &rarr;
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Mission & The Problem We Solve: Broken Brokerage vs OAL Model */}
+            <div className="rounded-3xl border border-slate-200/90 bg-white p-8 sm:p-10 shadow-sm space-y-8">
+              <div className="max-w-3xl space-y-3">
+                <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0070C0] uppercase tracking-wider">
+                  <Target className="w-4 h-4 text-[#0070C0]" />
+                  <span>Our Founding Purpose</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#002060]">
+                  Why OAL Network Exists: Disrupting the Predatory Broker Market
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  For decades, commercial debt financing has been plagued by predatory lead generation and black-box broker syndicates. Business owners who applied online had their confidential tax filings and bank records sold to hundreds of aggressive boiler-room telemarketers, causing credit score collapse from blind multi-inquiries and confusing hidden points.
+                </p>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  OAL Network was engineered from the ground up as a mediated, institutional exchange. We replace the chaos of uncontrolled lead reselling with a private, rule-bound clearinghouse that safeguards borrower sovereignty while delivering pristine, pre-underwritten files to institutional capital desks.
                 </p>
               </div>
-            ))}
-          </div>
-        </section>
 
-        {/* SECTION 3: OUR VALUES */}
-        <section id="values" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
-          <div className="max-w-2xl space-y-3">
-            <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Corporate Philosophy</span>
-            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-              The Principles Driving OAL Network
-            </h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Commercial lending requires mutual trust, absolute confidentiality, and data-driven fairness. These principles govern every interaction across our exchange.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: 'Transparency in Underwriting',
-                desc: 'No black-box decisioning. The 180-point Investment IQ openly discloses every factor influencing approval readiness.',
-                icon: Award,
-                color: 'border-[#00B0F0] bg-sky-50/50'
-              },
-              {
-                title: 'Data Privacy First',
-                desc: 'Borrower sensitive PII is shielded from open browsing. Only authenticated, verified lenders under active contract access details.',
-                icon: ShieldCheck,
-                color: 'border-[#0070C0] bg-blue-50/50'
-              },
-              {
-                title: 'Anti-Predatory Guardrails',
-                desc: 'Enforcing a strict cap of 3 concurrent lenders prevents high-pressure bidding loops and preserves borrower focus.',
-                icon: CheckCircle2,
-                color: 'border-amber-400 bg-amber-50/50'
-              },
-              {
-                title: 'Inclusive Commercial Access',
-                desc: 'Programs designed for good and bad credit profiles, startups, faith communities, and underserved business sectors.',
-                icon: HeartHandshake,
-                color: 'border-[#002060] bg-slate-50/80'
-              }
-            ].map((val, idx) => (
-              <div key={idx} className={`p-6 rounded-2xl border-2 ${val.color} space-y-3 transition-transform hover:-translate-y-1`}>
-                <div className="w-10 h-10 rounded-xl bg-white shadow-xs flex items-center justify-center text-[#0070C0]">
-                  <val.icon className="w-5 h-5 text-[#0070C0]" />
-                </div>
-                <h3 className="text-base font-bold text-[#002060]">{val.title}</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">{val.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* SECTION 4: PRESS ROOM */}
-        <section id="press" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
-          <div className="max-w-2xl space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Media &amp; Announcements</span>
-              <VerifyBadge note="Client confirmation pending for official press releases" />
-            </div>
-            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-              Press Room &amp; Corporate Releases
-            </h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Stay updated with announcements, marketplace expansions, and commercial debt underwriting insights from OAL Network.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            {[
-              {
-                date: 'Official Notice',
-                category: 'Platform Launch',
-                title: 'OAL Network Unveils Mediated Commercial Lending Platform with 180-Point Investment IQ™',
-                summary: 'New institutional architecture limits active working deals to three concurrent lenders, protecting business applicants across all 50 states.',
-                readTime: '3 min read'
-              },
-              {
-                date: 'Program Expansion',
-                category: 'Specialized Debt',
-                title: 'Dedicated Financing Channels Announced for Freight Trucking, Churches, and Healthcare Practices',
-                summary: 'Expanding capital access for specialized sectors with tailored equipment debt, leasehold improvements, and 2-24 hour approvals.',
-                readTime: '2 min read'
-              },
-              {
-                date: 'Partnership Notice',
-                category: 'Broker & ISO Program',
-                title: 'OAL Network Introduces ISO Broker Partner Portal for Certified Referrals',
-                summary: 'Independent Sales Organizations gain real-time commission tracking, dedicated OAL representative placement, and expedited file processing.',
-                readTime: '4 min read'
-              }
-            ].map((pr, idx) => (
-              <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="space-y-1.5 max-w-2xl">
-                  <div className="flex items-center gap-2 text-[11px] font-semibold text-[#0070C0]">
-                    <span className="bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200">{pr.category}</span>
-                    <span>•</span>
-                    <span className="text-slate-400">{pr.date}</span>
+              {/* Contrast Comparison Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                {/* Traditional Broken Brokerage */}
+                <div className="p-6 rounded-2xl bg-rose-50/50 border border-rose-200/80 space-y-4">
+                  <div className="flex items-center gap-2 text-rose-800 font-bold font-heading text-base">
+                    <div className="w-6 h-6 rounded-full bg-rose-200 text-rose-800 flex items-center justify-center text-xs">
+                      <X className="w-4 h-4" />
+                    </div>
+                    <span>Traditional Commercial Brokerages</span>
                   </div>
-                  <h3 className="text-base font-bold text-[#002060]">{pr.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{pr.summary}</p>
+                  <ul className="space-y-3 text-xs text-slate-700">
+                    <li className="flex items-start gap-2">
+                      <X className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                      <span><strong>Unredacted Lead Reselling:</strong> Applications broadcasted across public lead marketplaces to dozen of unknown brokers.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <X className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                      <span><strong>Credit Score Damage:</strong> Blind, uncoordinated hard credit pulls across multiple agencies without borrower consent.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <X className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                      <span><strong>Hidden Upfront Fees & Phantom Terms:</strong> Bait-and-switch term sheets with undisclosed points and backend broker markup.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <X className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                      <span><strong>Aggressive Boiler Rooms:</strong> Constant spam calls and high-pressure sales tactics confusing the borrower.</span>
+                    </li>
+                  </ul>
                 </div>
-                <span className="text-xs font-bold text-[#0070C0] hover:text-[#00B0F0] whitespace-nowrap cursor-pointer inline-flex items-center gap-1">
-                  <span>Read Release</span> &rarr;
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
 
-        {/* SECTION 5: INVESTORS */}
-        <section id="investors" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
-          <div className="max-w-2xl space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Capital Partnerships</span>
-              <VerifyBadge note="Client confirmation pending for investor relations terms and SEC documentation" />
-            </div>
-            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-              Institutional Investors &amp; Capital Partners
-            </h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Connect with the OAL Network debt exchange as an accredited investor, credit fund, family office, or institutional liquidity provider.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-4">
-              <h3 className="text-lg font-bold text-[#002060]">The Money Club for Investors</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Join our verified investor community powered by licensed lenders. Access vetted deal flow categorized by 180-point Investment IQ ratings, complete with standardized cash flow analytics.
-              </p>
-              <div className="pt-2">
-                <Link
-                  to="/investment-club"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#002060] text-white text-xs font-bold transition-all shadow-md"
-                >
-                  <span>View Investment Club Tiers</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                {/* The OAL Network Standard */}
+                <div className="p-6 rounded-2xl bg-sky-50/60 border border-[#00B0F0]/40 space-y-4 shadow-sm">
+                  <div className="flex items-center gap-2 text-[#002060] font-bold font-heading text-base">
+                    <div className="w-6 h-6 rounded-full bg-[#00B0F0] text-white flex items-center justify-center text-xs">
+                      <Check className="w-4 h-4" />
+                    </div>
+                    <span>The OAL Commercial Exchange Standard</span>
+                  </div>
+                  <ul className="space-y-3 text-xs text-slate-700">
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-[#0070C0] shrink-0 mt-0.5 font-bold" />
+                      <span><strong>Rule FR-08 Concurrency Cap:</strong> Maximum 3 accredited lenders can review a deal simultaneously, preserving credit and confidentiality.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-[#0070C0] shrink-0 mt-0.5 font-bold" />
+                      <span><strong>180-Point Investment IQ Engine:</strong> Objective mathematical underwriting across Credit (70), Cash Flow (50), and Collateral (30).</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-[#0070C0] shrink-0 mt-0.5 font-bold" />
+                      <span><strong>Rule FR-09 Mediated Oversight:</strong> An assigned, licensed OAL Representative brokers all negotiations, filtering out predatory noise.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-[#0070C0] shrink-0 mt-0.5 font-bold" />
+                      <span><strong>Zero Data Brokering:</strong> 256-bit encrypted virtual deal rooms ensuring strict PII isolation from start to finish.</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
-            <div className="p-8 rounded-3xl bg-gradient-to-br from-[#002060] to-[#0070C0] text-white shadow-xl space-y-4">
-              <h3 className="text-lg font-bold text-[#FFD200]">Accreditation &amp; SEC Rule 501</h3>
-              <p className="text-xs text-slate-200 leading-relaxed">
-                Accredited investor verification requirements: Net worth exceeding $1 Million (excluding primary residence), annual income &ge; $200k individual ($300k joint), or qualifying Series 7, 65, or 82 credentials.
-              </p>
-              <div className="pt-2">
+            {/* 3. The Tri-Party Exchange Ecosystem */}
+            <div className="space-y-8">
+              <div className="text-center max-w-2xl mx-auto space-y-2">
+                <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0070C0] uppercase tracking-wider">
+                  <Layers className="w-4 h-4 text-[#00B0F0]" />
+                  <span>The Ecosystem Architecture</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#002060]">
+                  The Tri-Party Exchange Ecosystem
+                </h3>
+                <p className="text-sm text-slate-600">
+                  How OAL Network seamlessly unites borrowers, licensed representatives, and institutional capital desks under a single unified protocol.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Stakeholder 1: Commercial Borrowers */}
+                <div className="p-6 rounded-3xl bg-white border border-slate-200/90 hover:border-[#0070C0]/50 transition-all shadow-sm space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-200 text-[#0070C0] flex items-center justify-center">
+                    <Building2 className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold text-[#0070C0] uppercase tracking-wider">Stakeholder 01</span>
+                    <h4 className="text-lg font-heading font-bold text-[#002060] mt-0.5">Commercial Borrowers</h4>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Small business owners, franchise operators, trucking fleets, healthcare clinics, and commercial property developers accessing honest capital from $10k to $500M+ with both Good Credit and Bad Credit specialized pathways.
+                  </p>
+                  <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-600">
+                    <div className="flex items-center gap-1.5 font-semibold text-slate-800">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0070C0]" />
+                      <span>Zero unredacted data selling</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 font-semibold text-slate-800">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0070C0]" />
+                      <span>Fast 24–72 hour funding timelines</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 font-semibold text-slate-800">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0070C0]" />
+                      <span>Transparent fee structures &amp; DSCR match</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Stakeholder 2: Licensed OAL Representatives */}
+                <div className="p-6 rounded-3xl bg-white border border-slate-200/90 hover:border-[#0070C0]/50 transition-all shadow-sm space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center">
+                    <Users className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold text-amber-700 uppercase tracking-wider">Stakeholder 02</span>
+                    <h4 className="text-lg font-heading font-bold text-[#002060] mt-0.5">OAL Representatives</h4>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Vetted underwriting specialists and deal navigators who act as dedicated arbiters. Under Rule FR-09, representatives shield borrowers from aggressive lender sales tactics while coordinating term sheet comparisons.
+                  </p>
+                  <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-600">
+                    <div className="flex items-center gap-1.5 font-semibold text-slate-800">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Rule FR-09 mediated deal rooms</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 font-semibold text-slate-800">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Professional underwriting preparation</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 font-semibold text-slate-800">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Objective lender term comparisons</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Stakeholder 3: Institutional Lenders */}
+                <div className="p-6 rounded-3xl bg-white border border-slate-200/90 hover:border-[#0070C0]/50 transition-all shadow-sm space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 text-[#002060] flex items-center justify-center">
+                    <Shield className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold text-[#002060] uppercase tracking-wider">Stakeholder 03</span>
+                    <h4 className="text-lg font-heading font-bold text-[#002060] mt-0.5">Institutional Lenders</h4>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    FDIC-insured banks, CDFIs, SBA preferred lenders, and private debt funds receiving pre-vetted credit dossiers scored by the 180-Point Investment IQ engine with complete DSCR cash flow validations.
+                  </p>
+                  <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-600">
+                    <div className="flex items-center gap-1.5 font-semibold text-slate-800">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#002060]" />
+                      <span>Audited DSCR &amp; verified bank statements</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 font-semibold text-slate-800">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#002060]" />
+                      <span>Rule FR-08 high conversion exclusivity</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 font-semibold text-slate-800">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#002060]" />
+                      <span>Zero lead waste or duplicate submissions</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 4. The 4 Fundamental Pillars of Governance & Execution */}
+            <div className="rounded-3xl bg-slate-50 border border-slate-200/90 p-8 sm:p-10 space-y-8">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0070C0] uppercase tracking-wider">
+                  <Scale className="w-4 h-4 text-[#0070C0]" />
+                  <span>Corporate Commitments</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#002060]">
+                  Four Institutional Pillars Governing Every Deal
+                </h3>
+                <p className="text-sm text-slate-600 max-w-3xl">
+                  Every transaction executed through the OAL Network clearinghouse is held to rigorous statutory, privacy, and underwriting metrics.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-sky-100/70 text-[#0070C0] flex items-center justify-center">
+                    <BarChart3 className="w-5 h-5" />
+                  </div>
+                  <h4 className="text-base font-heading font-bold text-[#002060]">
+                    1. Mathematical Underwriting Transparency
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    The 180-Point Investment IQ algorithm replaces subjective broker hunches with a deterministic scoring rubric: Credit Standing (70), Operating Cash Flow (50), Collateral Asset Value (30), Business Plan &amp; Forecast (20), and Industry Risk Profile (10).
+                  </p>
+                </div>
+
+                <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-blue-100/70 text-[#002060] flex items-center justify-center">
+                    <Lock className="w-5 h-5" />
+                  </div>
+                  <h4 className="text-base font-heading font-bold text-[#002060]">
+                    2. Cryptographic Privacy &amp; Data Shielding
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Confidential financial records, EINs, and tax returns remain locked within bank-grade 256-bit TLS encrypted deal rooms. Information is only unredacted and delivered to vetted underwriting desks with express borrower consent.
+                  </p>
+                </div>
+
+                <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-amber-100/70 text-amber-700 flex items-center justify-center">
+                    <Globe className="w-5 h-5" />
+                  </div>
+                  <h4 className="text-base font-heading font-bold text-[#002060]">
+                    3. Pan-American Access Across All 50 States
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    OAL Network operates across all 50 states without geographic bias, servicing regional manufacturing hubs, rural agriculture, inner-city storefronts, multi-unit franchises, and major metropolitan commercial real estate developments.
+                  </p>
+                </div>
+
+                <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-100/70 text-emerald-700 flex items-center justify-center">
+                    <Zap className="w-5 h-5" />
+                  </div>
+                  <h4 className="text-base font-heading font-bold text-[#002060]">
+                    4. 24–72 Hour Execution Speed with Integrity
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    We balance urgent liquidity requirements with institutional compliance. Rapid approval cycles take 2 to 24 hours for short-term revenue-based liquidity, and 24 to 72 hours for fully documented commercial term debt and equipment programs.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 5. Institutional Call to Action Strip */}
+            <div className="rounded-3xl bg-gradient-to-r from-[#002060] via-[#003B8E] to-[#0070C0] p-8 sm:p-10 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="space-y-2 max-w-xl text-center md:text-left">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#FFD200]">Direct Market Access</span>
+                <h3 className="text-2xl sm:text-3xl font-heading font-extrabold text-white">
+                  Ready to Experience the OAL Difference?
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                  Whether you are seeking commercial working capital, structuring a franchise buyout, or exploring debt programs across all 50 states, our exchange is built to protect and accelerate your enterprise.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
                 <Link
                   to="/investment-iq"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FFD200] hover:bg-[#F5C500] text-[#002060] text-xs font-bold transition-all shadow-md"
+                  className="px-6 py-3.5 rounded-xl bg-[#FFD200] hover:bg-[#F5C500] text-[#002060] font-bold text-xs text-center transition-all shadow-md"
                 >
-                  <span>Accreditation Guidelines &rarr;</span>
+                  Calculate Investment IQ
+                </Link>
+                <Link
+                  to="/loan-types"
+                  className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs text-center transition-all"
+                >
+                  View Loan Programs
                 </Link>
               </div>
             </div>
           </div>
-        </section>
+        )}
 
-        {/* SECTION 6: CAREERS */}
-        <section id="careers" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
-          <div className="max-w-2xl space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Join Our Team</span>
-              <VerifyBadge note="Client confirmation pending for open career listings" />
-            </div>
-            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-              Careers at OAL Network
-            </h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Build the future of commercial lending. We are seeking passionate underwriting specialists, fiduciary placement agents, and fintech software engineers.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            {[
-              {
-                title: 'Commercial Placement Specialist (OAL Representative)',
-                type: 'Full-Time • Remote / Hybrid',
-                location: 'Nationwide (All 50 States)',
-                desc: 'Mediate commercial debt inquiries, interface with institutional lenders, and guide applicants from initial intake through final closing wires.'
-              },
-              {
-                title: 'Commercial Credit Risk Underwriter',
-                type: 'Full-Time',
-                location: 'New York, NY / Remote',
-                desc: 'Audit financial statements, evaluate 180-point Investment IQ scoring metrics, and verify KYC compliance for commercial loan applications.'
-              },
-              {
-                title: 'Institutional ISO Relations Manager',
-                type: 'Full-Time',
-                location: 'Remote',
-                desc: 'Support Independent Sales Organizations, broker partnerships, and referral networks utilizing the OAL ISO program portal.'
-              }
-            ].map((pos, idx) => (
-              <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="space-y-1">
-                  <h3 className="text-base font-bold text-[#002060]">{pos.title}</h3>
-                  <div className="flex items-center gap-3 text-xs text-slate-500">
-                    <span className="font-semibold text-[#0070C0]">{pos.type}</span>
-                    <span>•</span>
-                    <span>{pos.location}</span>
-                  </div>
-                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">{pos.desc}</p>
-                </div>
-                <button
-                  onClick={() => {
-                    setContactForm(prev => ({ ...prev, topic: `Career Application: ${pos.title}` }));
-                    scrollToSection('contact');
-                  }}
-                  className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#002060] text-white text-xs font-bold whitespace-nowrap shadow-xs cursor-pointer"
-                >
-                  Apply Now
-                </button>
+        {/* TAB 2: LEADERSHIP / MANAGEMENT TEAM */}
+        {activeTab === 'leadership' && (
+          <div className="space-y-8 animate-in fade-in duration-200">
+            <div className="max-w-2xl space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Executive Management</span>
+                <VerifyBadge note="Client confirmation pending for official executive biographies and executive roster" />
               </div>
-            ))}
-          </div>
-        </section>
-
-        {/* SECTION 7: INCLUSIVE CULTURE */}
-        <section id="culture" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
-          <div className="max-w-2xl space-y-3">
-            <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Diversity &amp; Inclusion</span>
-            <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
-              An Inclusive Culture for All Borrowers &amp; Partners
-            </h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Fair access to commercial capital empowers local communities, minority-owned enterprises, faith institutions, and entrepreneurial visionaries.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-sky-50 text-[#0070C0] flex items-center justify-center font-bold">
-                <Globe className="w-5 h-5 text-[#00B0F0]" />
-              </div>
-              <h3 className="text-base font-bold text-[#002060]">All 50 States &amp; Territories</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Commercial funding opportunities are extended equally across rural, suburban, and urban communities with no geographic bias.
+              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+                Our Leadership &amp; Management Team
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Led by veteran commercial credit executives, underwriting analysts, and fintech platform architects committed to transparent institutional lending.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center font-bold">
-                <HeartHandshake className="w-5 h-5 text-amber-600" />
-              </div>
-              <h3 className="text-base font-bold text-[#002060]">Good &amp; Bad Credit Flexibility</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Past credit adversity should not permanently lock an enterprise out of growth capital. We structure debt solutions around forward cash flow and collateral strength.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#002060] flex items-center justify-center font-bold">
-                <ShieldCheck className="w-5 h-5 text-[#0070C0]" />
-              </div>
-              <h3 className="text-base font-bold text-[#002060]">Equal Opportunity Financing</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                OAL Network strictly adheres to the Equal Credit Opportunity Act (ECOA) and federal anti-discrimination lending regulations.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 8: CONTACT US */}
-        <section id="contact" className="scroll-mt-28 pt-12 border-t border-slate-200/80 space-y-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-            <div className="lg:col-span-5 space-y-6">
+            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-300/80 text-xs text-amber-900 flex items-start gap-3">
+              <HelpCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
               <div>
-                <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Direct Communications</span>
-                <h2 className="text-3xl font-heading font-extrabold text-[#002060] mt-1">
-                  Contact OAL Network
-                </h2>
-                <p className="text-sm text-slate-600 mt-2 leading-relaxed">
-                  Have questions about the 180-point Investment IQ, specialized loan categories, or becoming a verified lending member? Our underwriting specialists are standing by.
+                <strong>Client Content Notice:</strong> Formal executive headshots and finalized executive biographies will be published upon client sign-off. Below is the operational governance structure.
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  role: 'Chief Compliance & Operations Officer',
+                  name: 'Victoria Sterling',
+                  dept: 'Regulatory Oversight & Governance',
+                  focus: 'Enforces international security standards, multi-factor authentication, KYC validation, and SEC Rule 501 compliance across all 50 states.'
+                },
+                {
+                  role: 'Senior Commercial Placement Specialist',
+                  name: 'Elena Rostova',
+                  dept: 'OAL Representative Brokerage',
+                  focus: 'Mediates deal rooms between institutional debt funds and qualified applicants, supervising competitive terms under Rule FR-09.'
+                },
+                {
+                  role: 'Head of Underwriting Support',
+                  name: 'Alex Chen',
+                  dept: 'Institutional Help Desk Operations',
+                  focus: 'Manages multi-channel applicant ticketing, technical support, and automated response routing to lower application abandonment rates.'
+                }
+              ].map((ldr, i) => (
+                <div key={i} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-3 hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#002060] to-[#0070C0] text-white flex items-center justify-center font-bold text-base shadow-sm">
+                    {ldr.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-[#002060]">{ldr.name}</h3>
+                    <p className="text-xs font-semibold text-[#0070C0]">{ldr.role}</p>
+                    <span className="text-[10px] text-slate-400 font-medium block mt-0.5">{ldr.dept}</span>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed pt-2 border-t border-slate-100">
+                    {ldr.focus}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* TAB 3: OUR VALUES */}
+        {activeTab === 'values' && (
+          <div className="space-y-8 animate-in fade-in duration-200">
+            <div className="max-w-2xl space-y-3">
+              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Corporate Philosophy</span>
+              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+                The Principles Driving OAL Network
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Commercial lending requires mutual trust, absolute confidentiality, and data-driven fairness. These principles govern every interaction across our exchange.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  title: 'Transparency in Underwriting',
+                  desc: 'No black-box decisioning. The 180-point Investment IQ openly discloses every factor influencing approval readiness.',
+                  icon: Award,
+                  color: 'border-[#00B0F0] bg-sky-50/50'
+                },
+                {
+                  title: 'Data Privacy First',
+                  desc: 'Borrower sensitive PII is shielded from open browsing. Only authenticated, verified lenders under active contract access details.',
+                  icon: ShieldCheck,
+                  color: 'border-[#0070C0] bg-blue-50/50'
+                },
+                {
+                  title: 'Anti-Predatory Guardrails',
+                  desc: 'Enforcing a strict cap of 3 concurrent lenders prevents high-pressure bidding loops and preserves borrower focus.',
+                  icon: CheckCircle2,
+                  color: 'border-amber-400 bg-amber-50/50'
+                },
+                {
+                  title: 'Inclusive Commercial Access',
+                  desc: 'Programs designed for good and bad credit profiles, startups, faith communities, and underserved business sectors.',
+                  icon: HeartHandshake,
+                  color: 'border-[#002060] bg-slate-50/80'
+                }
+              ].map((val, idx) => (
+                <div key={idx} className={`p-6 rounded-2xl border-2 ${val.color} space-y-3 transition-transform hover:-translate-y-1`}>
+                  <div className="w-10 h-10 rounded-xl bg-white shadow-xs flex items-center justify-center text-[#0070C0]">
+                    <val.icon className="w-5 h-5 text-[#0070C0]" />
+                  </div>
+                  <h3 className="text-base font-bold text-[#002060]">{val.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{val.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* TAB 4: PRESS ROOM */}
+        {activeTab === 'press' && (
+          <div className="space-y-8 animate-in fade-in duration-200">
+            <div className="max-w-2xl space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Media &amp; Announcements</span>
+                <VerifyBadge note="Client confirmation pending for official press releases" />
+              </div>
+              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+                Press Room &amp; Corporate Releases
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Stay updated with announcements, marketplace expansions, and commercial debt underwriting insights from OAL Network.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  date: 'Official Notice',
+                  category: 'Platform Launch',
+                  title: 'OAL Network Unveils Mediated Commercial Lending Platform with 180-Point Investment IQ™',
+                  summary: 'New institutional architecture limits active working deals to three concurrent lenders, protecting business applicants across all 50 states.',
+                  readTime: '3 min read'
+                },
+                {
+                  date: 'Program Expansion',
+                  category: 'Specialized Debt',
+                  title: 'Dedicated Financing Channels Announced for Freight Trucking, Churches, and Healthcare Practices',
+                  summary: 'Expanding capital access for specialized sectors with tailored equipment debt, leasehold improvements, and 2-24 hour approvals.',
+                  readTime: '2 min read'
+                },
+                {
+                  date: 'Partnership Notice',
+                  category: 'Broker & ISO Program',
+                  title: 'OAL Network Introduces ISO Broker Partner Portal for Certified Referrals',
+                  summary: 'Independent Sales Organizations gain real-time commission tracking, dedicated OAL representative placement, and expedited file processing.',
+                  readTime: '4 min read'
+                }
+              ].map((pr, idx) => (
+                <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="space-y-1.5 max-w-2xl">
+                    <div className="flex items-center gap-2 text-[11px] font-semibold text-[#0070C0]">
+                      <span className="bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200">{pr.category}</span>
+                      <span>•</span>
+                      <span className="text-slate-400">{pr.date}</span>
+                    </div>
+                    <h3 className="text-base font-bold text-[#002060]">{pr.title}</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">{pr.summary}</p>
+                  </div>
+                  <span className="text-xs font-bold text-[#0070C0] hover:text-[#00B0F0] whitespace-nowrap cursor-pointer inline-flex items-center gap-1">
+                    <span>Read Release</span> &rarr;
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* TAB 5: INVESTORS */}
+        {activeTab === 'investors' && (
+          <div className="space-y-8 animate-in fade-in duration-200">
+            <div className="max-w-2xl space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Capital Partnerships</span>
+                <VerifyBadge note="Client confirmation pending for investor relations terms and SEC documentation" />
+              </div>
+              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+                Institutional Investors &amp; Capital Partners
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Connect with the OAL Network debt exchange as an accredited investor, credit fund, family office, or institutional liquidity provider.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-4">
+                <h3 className="text-lg font-bold text-[#002060]">The Money Club for Investors</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Join our verified investor community powered by licensed lenders. Access vetted deal flow categorized by 180-point Investment IQ ratings, complete with standardized cash flow analytics.
+                </p>
+                <div className="pt-2">
+                  <Link
+                    to="/investment-club"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#002060] text-white text-xs font-bold transition-all shadow-md"
+                  >
+                    <span>View Investment Club Tiers</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+
+              <div className="p-8 rounded-3xl bg-gradient-to-br from-[#002060] to-[#0070C0] text-white shadow-xl space-y-4">
+                <h3 className="text-lg font-bold text-[#FFD200]">Accreditation &amp; SEC Rule 501</h3>
+                <p className="text-xs text-slate-200 leading-relaxed">
+                  Accredited investor verification requirements: Net worth exceeding $1 Million (excluding primary residence), annual income &ge; $200k individual ($300k joint), or qualifying Series 7, 65, or 82 credentials.
+                </p>
+                <div className="pt-2">
+                  <Link
+                    to="/investment-iq"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FFD200] hover:bg-[#F5C500] text-[#002060] text-xs font-bold transition-all shadow-md"
+                  >
+                    <span>Accreditation Guidelines &rarr;</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 6: CAREERS */}
+        {activeTab === 'careers' && (
+          <div className="space-y-8 animate-in fade-in duration-200">
+            <div className="max-w-2xl space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Join Our Team</span>
+                <VerifyBadge note="Client confirmation pending for open career listings" />
+              </div>
+              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+                Careers at OAL Network
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Build the future of commercial lending. We are seeking passionate underwriting specialists, fiduciary placement agents, and fintech software engineers.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  title: 'Commercial Placement Specialist (OAL Representative)',
+                  type: 'Full-Time • Remote / Hybrid',
+                  location: 'Nationwide (All 50 States)',
+                  desc: 'Mediate commercial debt inquiries, interface with institutional lenders, and guide applicants from initial intake through final closing wires.'
+                },
+                {
+                  title: 'Commercial Credit Risk Underwriter',
+                  type: 'Full-Time',
+                  location: 'New York, NY / Remote',
+                  desc: 'Audit financial statements, evaluate 180-point Investment IQ scoring metrics, and verify KYC compliance for commercial loan applications.'
+                },
+                {
+                  title: 'Institutional ISO Relations Manager',
+                  type: 'Full-Time',
+                  location: 'Remote',
+                  desc: 'Support Independent Sales Organizations, broker partnerships, and referral networks utilizing the OAL ISO program portal.'
+                }
+              ].map((pos, idx) => (
+                <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <h3 className="text-base font-bold text-[#002060]">{pos.title}</h3>
+                    <div className="flex items-center gap-3 text-xs text-slate-500">
+                      <span className="font-semibold text-[#0070C0]">{pos.type}</span>
+                      <span>•</span>
+                      <span>{pos.location}</span>
+                    </div>
+                    <p className="text-xs text-slate-600 mt-2 leading-relaxed">{pos.desc}</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setSearchParams({ tab: 'contact' });
+                      setContactForm(prev => ({ ...prev, topic: `Career Application: ${pos.title}` }));
+                    }}
+                    className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#002060] text-white text-xs font-bold whitespace-nowrap shadow-xs cursor-pointer"
+                  >
+                    Apply Now
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* TAB 7: INCLUSIVE CULTURE */}
+        {activeTab === 'culture' && (
+          <div className="space-y-8 animate-in fade-in duration-200">
+            <div className="max-w-2xl space-y-3">
+              <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Diversity &amp; Inclusion</span>
+              <h2 className="text-3xl font-heading font-extrabold text-[#002060]">
+                An Inclusive Culture for All Borrowers &amp; Partners
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Fair access to commercial capital empowers local communities, minority-owned enterprises, faith institutions, and entrepreneurial visionaries.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 text-[#0070C0] flex items-center justify-center font-bold">
+                  <Globe className="w-5 h-5 text-[#00B0F0]" />
+                </div>
+                <h3 className="text-base font-bold text-[#002060]">All 50 States &amp; Territories</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Commercial funding opportunities are extended equally across rural, suburban, and urban communities with no geographic bias.
                 </p>
               </div>
 
-              <div className="space-y-4 pt-2">
-                <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5 text-[#00B0F0]" />
-                  </div>
-                  <div>
-                    <span className="text-[11px] text-slate-400 font-semibold uppercase block">Underwriting Direct Line</span>
-                    <strong className="text-sm font-bold text-slate-900">+1 (800) 592-OAL-NET (6256)</strong>
-                  </div>
+              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center font-bold">
+                  <HeartHandshake className="w-5 h-5 text-amber-600" />
+                </div>
+                <h3 className="text-base font-bold text-[#002060]">Good &amp; Bad Credit Flexibility</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Past credit adversity should not permanently lock an enterprise out of growth capital. We structure debt solutions around forward cash flow and collateral strength.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#002060] flex items-center justify-center font-bold">
+                  <ShieldCheck className="w-5 h-5 text-[#0070C0]" />
+                </div>
+                <h3 className="text-base font-bold text-[#002060]">Equal Opportunity Financing</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  OAL Network strictly adheres to the Equal Credit Opportunity Act (ECOA) and federal anti-discrimination lending regulations.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 8: CONTACT US */}
+        {activeTab === 'contact' && (
+          <div className="space-y-8 animate-in fade-in duration-200">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+              <div className="lg:col-span-5 space-y-6">
+                <div>
+                  <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">Direct Communications</span>
+                  <h2 className="text-3xl font-heading font-extrabold text-[#002060] mt-1">
+                    Contact OAL Network
+                  </h2>
+                  <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                    Have questions about the 180-point Investment IQ, specialized loan categories, or becoming a verified lending member? Our underwriting specialists are standing by.
+                  </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5 text-[#FFD200]" />
+                <div className="space-y-4 pt-2">
+                  <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0">
+                      <Phone className="w-5 h-5 text-[#00B0F0]" />
+                    </div>
+                    <div>
+                      <span className="text-[11px] text-slate-400 font-semibold uppercase block">Underwriting Direct Line</span>
+                      <strong className="text-sm font-bold text-slate-900">+1 (800) 592-OAL-NET (6256)</strong>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-[11px] text-slate-400 font-semibold uppercase block">Inquiries &amp; Submissions</span>
-                    <strong className="text-sm font-bold text-slate-900">underwriting@oalnetwork.com</strong>
-                  </div>
-                </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#002060] flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-[#0070C0]" />
+                  <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
+                      <Mail className="w-5 h-5 text-[#FFD200]" />
+                    </div>
+                    <div>
+                      <span className="text-[11px] text-slate-400 font-semibold uppercase block">Inquiries &amp; Submissions</span>
+                      <strong className="text-sm font-bold text-slate-900">underwriting@oalnetwork.com</strong>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-[11px] text-slate-400 font-semibold uppercase block">Headquarters</span>
-                    <strong className="text-sm font-bold text-slate-900">Financial District, New York, NY 10005</strong>
+
+                  <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#002060] flex items-center justify-center shrink-0">
+                      <MapPin className="w-5 h-5 text-[#0070C0]" />
+                    </div>
+                    <div>
+                      <span className="text-[11px] text-slate-400 font-semibold uppercase block">Headquarters</span>
+                      <strong className="text-sm font-bold text-slate-900">Financial District, New York, NY 10005</strong>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Contact Form */}
-            <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 shadow-xl p-8">
-              {submitted ? (
-                <div className="text-center py-12 space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto border-2 border-emerald-400">
-                    <CheckCircle2 className="w-8 h-8" />
+              {/* Contact Form */}
+              <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 shadow-xl p-8">
+                {submitted ? (
+                  <div className="text-center py-12 space-y-4">
+                    <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto border-2 border-emerald-400">
+                      <CheckCircle2 className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900">Inquiry Dispatched Successfully</h3>
+                    <p className="text-xs text-slate-600 max-w-sm mx-auto leading-relaxed">
+                      Your inquiry has been assigned ticket routing. An OAL Representative or underwriting director will review and reply within 24 business hours.
+                    </p>
+                    <button
+                      onClick={() => {
+                        setSubmitted(false);
+                        setContactForm({ name: '', email: '', phone: '', topic: 'General Inquiry', message: '' });
+                      }}
+                      className="px-6 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#002060] text-white text-xs font-bold transition-all cursor-pointer"
+                    >
+                      Send Another Message
+                    </button>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900">Inquiry Dispatched Successfully</h3>
-                  <p className="text-xs text-slate-600 max-w-sm mx-auto leading-relaxed">
-                    Your inquiry has been assigned ticket routing. An OAL Representative or underwriting director will review and reply within 24 business hours.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setContactForm({ name: '', email: '', phone: '', topic: 'General Inquiry', message: '' });
-                    }}
-                    className="px-6 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#002060] text-white text-xs font-bold transition-all cursor-pointer"
-                  >
-                    Send Another Message
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleContactSubmit} className="space-y-4">
-                  <h3 className="text-lg font-bold text-[#002060] pb-2 border-b border-slate-100">
-                    Submit an Inquiry
-                  </h3>
+                ) : (
+                  <form onSubmit={handleContactSubmit} className="space-y-4">
+                    <h3 className="text-lg font-bold text-[#002060] pb-2 border-b border-slate-100">
+                      Submit an Inquiry
+                    </h3>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Full Name <span className="text-rose-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Your Name"
+                          value={contactForm.name}
+                          onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                          className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] outline-none"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Business Email <span className="text-rose-500">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          placeholder="name@company.com"
+                          value={contactForm.email}
+                          onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                          className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          placeholder="+1 (555) 000-0000"
+                          value={contactForm.phone}
+                          onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                          className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] outline-none"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Topic of Inquiry
+                        </label>
+                        <select
+                          value={contactForm.topic}
+                          onChange={(e) => setContactForm({ ...contactForm, topic: e.target.value })}
+                          className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] outline-none bg-white"
+                        >
+                          <option value="General Inquiry">General Inquiry</option>
+                          <option value="Borrower Loan Application">Borrower Loan Application</option>
+                          <option value="Lender Membership Program">Lender Membership Program</option>
+                          <option value="ISO & Broker Partner Program">ISO &amp; Broker Partner Program</option>
+                          <option value="Investment Club / Accreditation">Investment Club / Accreditation</option>
+                          <option value="Press / Media">Press / Media</option>
+                        </select>
+                      </div>
+                    </div>
+
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">
-                        Full Name <span className="text-rose-500">*</span>
+                        Message Details <span className="text-rose-500">*</span>
                       </label>
-                      <input
-                        type="text"
+                      <textarea
+                        rows={4}
                         required
-                        placeholder="Your Name"
-                        value={contactForm.name}
-                        onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                        placeholder="Please provide details regarding your financing inquiry or institutional partnership..."
+                        value={contactForm.message}
+                        onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
                         className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] outline-none"
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">
-                        Business Email <span className="text-rose-500">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="name@company.com"
-                        value={contactForm.email}
-                        onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] outline-none"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        placeholder="+1 (555) 000-0000"
-                        value={contactForm.phone}
-                        onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] outline-none"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">
-                        Topic of Inquiry
-                      </label>
-                      <select
-                        value={contactForm.topic}
-                        onChange={(e) => setContactForm({ ...contactForm, topic: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] outline-none bg-white"
-                      >
-                        <option value="General Inquiry">General Inquiry</option>
-                        <option value="Borrower Loan Application">Borrower Loan Application</option>
-                        <option value="Lender Membership Program">Lender Membership Program</option>
-                        <option value="ISO & Broker Partner Program">ISO &amp; Broker Partner Program</option>
-                        <option value="Investment Club / Accreditation">Investment Club / Accreditation</option>
-                        <option value="Press / Media">Press / Media</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
-                      Message Details <span className="text-rose-500">*</span>
-                    </label>
-                    <textarea
-                      rows={4}
-                      required
-                      placeholder="Please provide details regarding your financing inquiry or institutional partnership..."
-                      value={contactForm.message}
-                      onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] outline-none"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 rounded-xl bg-[#0070C0] hover:bg-[#002060] text-white text-xs font-bold shadow-md shadow-blue-700/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <Send className="w-4 h-4 text-[#FFD200]" />
-                    <span>Transmit Inquiry to Underwriting Team</span>
-                  </button>
-                </form>
-              )}
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 rounded-xl bg-[#0070C0] hover:bg-[#002060] text-white text-xs font-bold shadow-md shadow-blue-700/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <Send className="w-4 h-4 text-[#FFD200]" />
+                      <span>Transmit Inquiry to Underwriting Team</span>
+                    </button>
+                  </form>
+                )}
+              </div>
             </div>
           </div>
-        </section>
+        )}
 
       </div>
     </div>
