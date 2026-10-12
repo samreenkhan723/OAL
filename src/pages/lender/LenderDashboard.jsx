@@ -300,7 +300,7 @@ export const LenderDashboard = () => {
 
             {/* Leads List */}
             <div className="divide-y divide-slate-100">
-              {filteredLeads.slice(0, 5).map(lead => {
+              {filteredLeads.slice(0, 3).map(lead => {
                 const claimsCount = lead.workingDeals?.claimedLendersCount || 0;
                 const isFull = claimsCount >= 3;
                 const userHasClaimed = lead.workingDeals?.claims?.some(c => c.lenderId === currentUser.id);

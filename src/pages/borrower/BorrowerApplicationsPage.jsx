@@ -7,9 +7,9 @@ import { StatusBadge } from '../../components/common/StatusBadge';
 export const BorrowerApplicationsPage = () => {
   const { applications, currentUser } = useApp();
 
-  // Show borrower's applications (or all in demo context)
+  // Show borrower's applications (or clean top 2 fallback in demo context)
   const myApps = applications.filter(a => a.borrowerId === currentUser.id);
-  const displayApps = myApps.length > 0 ? myApps : applications;
+  const displayApps = myApps.length > 0 ? myApps : applications.slice(0, 2);
 
   return (
     <div className="space-y-6">
