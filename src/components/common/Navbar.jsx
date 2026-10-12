@@ -137,9 +137,9 @@ export const Navbar = () => {
               <>
                 <Link
                   to="/auth/login"
-                  className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-bold text-white hover:text-[#FFD200] bg-white/10 hover:bg-white/15 border border-white/20 transition-all shadow-xs"
+                  className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-black text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] transition-all shadow-xs border border-amber-300"
                 >
-                  <LogIn className="w-3 h-3 text-[#00B0F0] shrink-0" />
+                  <LogIn className="w-3 h-3 text-[#002060] shrink-0" />
                   <span>Login</span>
                 </Link>
 
@@ -580,9 +580,9 @@ export const Navbar = () => {
                 <Link
                   to="/auth/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-800 bg-slate-50 hover:bg-slate-100"
+                  className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-xs font-black text-[#002060] border border-amber-300 shadow-xs"
                 >
-                  <LogIn className="w-3.5 h-3.5 text-[#0070C0]" />
+                  <LogIn className="w-3.5 h-3.5 text-[#002060]" />
                   <span>Login</span>
                 </Link>
                 <Link
