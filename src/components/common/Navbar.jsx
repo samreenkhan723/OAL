@@ -257,7 +257,7 @@ export const Navbar = () => {
               )}
             </div>
 
-            {/* 4. On the Money strictly per Sitemap doc */}
+            {/* 4. The Money Club strictly per Sitemap Blueprint */}
             <Link
               to="/investment-club"
               onMouseEnter={() => setActiveDropdown(null)}
@@ -268,7 +268,7 @@ export const Navbar = () => {
               }`}
             >
               <Coins className="w-3.5 h-3.5 text-[#00B0F0]" />
-              <span>On the Money</span>
+              <span>The Money Club</span>
             </Link>
 
             {/* 5. FAQs - Hover immediately closes dropdowns */}
@@ -349,6 +349,19 @@ export const Navbar = () => {
                 </div>
               )}
             </div>
+
+            {/* 7. || APPLY || strictly per Sitemap Blueprint */}
+            <Link
+              to="/apply"
+              onMouseEnter={() => setActiveDropdown(null)}
+              className={`h-16 flex items-center px-2 xl:px-2.5 text-xs xl:text-sm font-extrabold whitespace-nowrap transition-colors ${
+                location.pathname === '/apply'
+                  ? 'text-[#0070C0] font-bold border-b-2 border-[#0070C0]'
+                  : 'text-[#0070C0] hover:text-[#002060]'
+              }`}
+            >
+              || APPLY ||
+            </Link>
 
           </nav>
 
@@ -488,14 +501,14 @@ export const Navbar = () => {
             )}
           </div>
 
-          {/* On the Money */}
+          {/* The Money Club */}
           <Link
             to="/investment-club"
             onClick={() => setMobileMenuOpen(false)}
             className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-bold text-slate-800 hover:bg-sky-50 hover:text-[#0070C0] transition-colors"
           >
             <Coins className="w-4 h-4 text-[#00B0F0]" />
-            <span>On the Money</span>
+            <span>The Money Club</span>
           </Link>
 
           {/* FAQs */}
@@ -540,6 +553,15 @@ export const Navbar = () => {
               </div>
             )}
           </div>
+
+          {/* || APPLY || */}
+          <Link
+            to="/apply"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-lg text-sm font-extrabold text-[#0070C0] bg-sky-50/80 hover:bg-sky-100 transition-colors"
+          >
+            || APPLY ||
+          </Link>
 
           {/* Mobile Bottom Actions */}
           <div className="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
