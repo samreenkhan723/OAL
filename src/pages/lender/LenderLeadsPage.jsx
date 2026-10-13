@@ -161,7 +161,7 @@ export const LenderLeadsPage = () => {
                   </div>
 
                   <h3 className="text-sm font-bold text-slate-900 truncate">
-                    {lead.businessName}
+                    Protected Commercial Applicant #{lead.id}
                   </h3>
 
                   <p className="text-xs text-slate-500 truncate max-w-xl">

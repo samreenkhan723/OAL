@@ -9,13 +9,13 @@ export const BorrowerOffersPage = () => {
   const { applications, offers, currentUser } = useApp();
   
   // Borrower's applications
-  const myApps = applications.filter(a => a.borrowerId === currentUser.id);
-  const displayApps = myApps.length > 0 ? myApps : applications.slice(0, 1);
+  const myApps = (applications || []).filter(a => a.borrowerId === currentUser?.id);
+  const displayApps = myApps.length > 0 ? myApps : (applications || []).slice(0, 1);
 
   const [selectedAppId, setSelectedAppId] = useState(displayApps[0]?.id || 'APP-2026-1082');
 
   const selectedApp = displayApps.find(a => a.id === selectedAppId) || displayApps[0];
-  const selectedAppOffers = offers.filter(o => o.applicationId === selectedApp?.id);
+  const selectedAppOffers = offers.filter(o => o.applicationId === selectedApp?.id && (o.sharedWithBorrower === true || o.status === 'ACCEPTED'));
   const hasAccepted = selectedAppOffers.some(o => o.status === 'ACCEPTED');
 
   return (

@@ -1,8 +1,11 @@
 import React from 'react';
-import { NetworkControlBoard } from '../../components/network/NetworkControlBoard';
+import { Navigate } from 'react-router-dom';
 
+/**
+ * Redirects Rep Network Panel navigation to dedicated /network/dashboard workspace
+ */
 export const RepNetworkPanel = () => {
-  return <NetworkControlBoard panelType="rep" />;
+  return <Navigate to="/network/dashboard" replace />;
 };
 
 export default RepNetworkPanel;

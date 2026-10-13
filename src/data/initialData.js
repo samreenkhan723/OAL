@@ -457,6 +457,7 @@ export const INITIAL_OFFERS = [
       'Satisfactory final inspection upon equipment delivery'
     ],
     status: 'PENDING_BORROWER_REVIEW', // 'PENDING_BORROWER_REVIEW' | 'ACCEPTED' | 'DECLINED' | 'EXPIRED' | 'WITHDRAWN'
+    sharedWithBorrower: true,
     createdAt: '2026-10-05T14:10:00Z',
     expiresAt: '2026-10-19T23:59:59Z'
   },
@@ -478,6 +479,7 @@ export const INITIAL_OFFERS = [
       'Escrow deposit of 2 months monthly payments'
     ],
     status: 'PENDING_BORROWER_REVIEW',
+    sharedWithBorrower: false,
     createdAt: '2026-10-06T09:30:00Z',
     expiresAt: '2026-10-20T23:59:59Z'
   },
@@ -498,6 +500,7 @@ export const INITIAL_OFFERS = [
       'UCC filing on Planmeca 3D scanner hardware'
     ],
     status: 'ACCEPTED',
+    sharedWithBorrower: true,
     createdAt: '2026-09-30T10:00:00Z',
     acceptedAt: '2026-10-02T16:15:00Z',
     expiresAt: '2026-10-14T23:59:59Z'
@@ -914,4 +917,80 @@ export const INITIAL_REPS = [
     maxCapacity: 15
   }
 ];
+
+export const INITIAL_INVESTOR_VERIFICATIONS = [
+  {
+    id: 'INV-REQ-2026-001',
+    borrowerId: 'usr_borrower_02',
+    borrowerName: 'Sarah Jenkins',
+    borrowerEmail: 'sarah.jenkins@lumina-health.com',
+    company: 'Lumina Health Technologies Inc.',
+    applicantType: 'corporate',
+    netWorthExceeds1M: true,
+    annualIncome200k: false,
+    jointIncome300k: false,
+    corporateAssetsExceeds5M: true,
+    entityAccreditedOwnership: true,
+    finraLicense: 'series65',
+    licenseNumber: 'CRD# 6849201',
+    declarationsAcknowledged: true,
+    consentToVerify: true,
+    status: 'VERIFIED',
+    submittedAt: '2026-10-10T14:20:00.000Z',
+    reviewedAt: '2026-10-11T09:15:00.000Z',
+    reviewedBy: 'Victoria Sterling (Compliance Officer)',
+    rejectionReason: null,
+    documents: [
+      {
+        name: 'cpa_audited_balance_sheet_2025.pdf',
+        size: '4.2 MB',
+        type: 'CPA / Attorney Certification',
+        uploadedAt: '2026-10-10T14:20:00.000Z'
+      },
+      {
+        name: 'finra_series65_active_status.pdf',
+        size: '1.1 MB',
+        type: 'FINRA License Proof',
+        uploadedAt: '2026-10-10T14:22:00.000Z'
+      }
+    ]
+  },
+  {
+    id: 'INV-REQ-2026-002',
+    borrowerId: 'usr_borrower_03',
+    borrowerName: 'David K. Vance',
+    borrowerEmail: 'david@vance-holdings.com',
+    company: 'Vance Capital Holdings LLC',
+    applicantType: 'individual',
+    netWorthExceeds1M: true,
+    annualIncome200k: true,
+    jointIncome300k: false,
+    corporateAssetsExceeds5M: false,
+    entityAccreditedOwnership: false,
+    finraLicense: 'series7',
+    licenseNumber: 'CRD# 4921094',
+    declarationsAcknowledged: true,
+    consentToVerify: true,
+    status: 'PENDING_REVIEW',
+    submittedAt: '2026-10-13T16:45:00.000Z',
+    reviewedAt: null,
+    reviewedBy: null,
+    rejectionReason: null,
+    documents: [
+      {
+        name: 'individual_w2_tax_returns_2024_2025.pdf',
+        size: '5.8 MB',
+        type: 'W-2 / Tax Returns',
+        uploadedAt: '2026-10-13T16:45:00.000Z'
+      },
+      {
+        name: 'crd_brokercheck_series7.pdf',
+        size: '950 KB',
+        type: 'FINRA License Proof',
+        uploadedAt: '2026-10-13T16:47:00.000Z'
+      }
+    ]
+  }
+];
+
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import {
@@ -69,6 +69,13 @@ export const NetworkControlBoard = ({
     currentRole: contextRole,
     applications,
     offers,
+    submitOffer,
+    updateOffer,
+    withdrawOffer,
+    shareOfferWithBorrower,
+    savedLeadIds,
+    toggleSaveLead,
+    isLeadSaved,
     networkActivity,
     claimWorkingDeal,
     addToast,
@@ -118,6 +125,18 @@ export const NetworkControlBoard = ({
   const [brokerMessageChannel, setBrokerMessageChannel] = useState('CHAT'); // 'CHAT' | 'EMAIL' | 'SMS'
   const [brokerMessageText, setBrokerMessageText] = useState('');
 
+  // Dynamic Broker resolution from active/selected loan file
+  const activeTargetLead = modalLead || brokerMessageTarget || currentApp;
+  const currentAssignedRep = activeTargetLead?.assignedRep;
+  const isBrokerAssigned = Boolean(currentAssignedRep && currentAssignedRep.id);
+  const assignedBrokerName = isBrokerAssigned ? currentAssignedRep.name : 'Unassigned Placement Desk';
+  const assignedBrokerEmail = isBrokerAssigned
+    ? (currentAssignedRep.email || `${currentAssignedRep.name.toLowerCase().replace(/\s+/g, '.')}@oalnetwork.com`)
+    : 'placement-desk@oalnetwork.com';
+  const assignedBrokerPhone = isBrokerAssigned
+    ? (currentAssignedRep.phone || '+1 (888) 550-LOAN')
+    : '+1 (888) 550-LOAN';
+
   // Offer modal state
   const [showSubmitOfferModal, setShowSubmitOfferModal] = useState(false);
   const [selectedAppForOffer, setSelectedAppForOffer] = useState(null);
@@ -126,41 +145,23 @@ export const NetworkControlBoard = ({
   const [showShareModal, setShowShareModal] = useState(false);
   const [sharingOffer, setSharingOffer] = useState(null);
 
-  // Local offers list to allow dynamic drafting, editing, and withdrawing without overriding AppContext
-  const [localOffers, setLocalOffers] = useState(() => {
-    return offers && offers.length > 0 ? offers : [
-      {
-        id: 'OFF-2026-901',
-        applicationId: 'APP-2026-1082',
-        businessName: 'Apex Heavy Freight Logistics Inc.',
-        lenderId: 'usr_lender_01',
-        lenderName: 'Apex Commercial Capital',
-        amount: 750000,
-        interestRate: 7.85,
-        termMonths: 60,
-        monthlyPayment: 15150,
-        originationFeePercent: 1.5,
-        status: 'PENDING_BORROWER_REVIEW',
-        sharedWithBorrower: true,
-        createdAt: '2026-10-12T14:30:00Z'
-      },
-      {
-        id: 'OFF-2026-902',
-        applicationId: 'APP-2026-1094',
-        businessName: 'NexGen Cloud Infrastructure',
-        lenderId: 'usr_lender_01',
-        lenderName: 'Apex Commercial Capital',
-        amount: 450000,
-        interestRate: 8.25,
-        termMonths: 48,
-        monthlyPayment: 11040,
-        originationFeePercent: 2.0,
-        status: 'DRAFT',
-        sharedWithBorrower: false,
-        createdAt: '2026-10-13T09:15:00Z'
-      }
-    ];
-  });
+  // Synchronized offers list derived from AppContext with role permissions
+  const displayOffers = useMemo(() => {
+    if (activeRole === 'lender') {
+      const myId = currentUser?.id || 'usr_lender_01';
+      return (offers || []).filter(o => o.lenderId === myId || !o.lenderId);
+    }
+    if (activeRole === 'rep') {
+      if (currentUser?.role === 'admin') return offers || [];
+      const assignedIds = new Set(
+        (applications || [])
+          .filter(a => a.assignedRep && (a.assignedRep.id === currentUser?.id || (a.assignedRep.email && currentUser?.email && a.assignedRep.email.toLowerCase() === currentUser?.email.toLowerCase())))
+          .map(a => a.id)
+      );
+      return (offers || []).filter(o => assignedIds.has(o.applicationId) || assignedIds.size === 0);
+    }
+    return offers || [];
+  }, [offers, activeRole, currentUser, applications]);
 
   // Offer submission form
   const [offerForm, setOfferForm] = useState({
@@ -169,17 +170,6 @@ export const NetworkControlBoard = ({
     termMonths: '60',
     monthlyPayment: '9120',
     originationFeePercent: '1.5'
-  });
-
-  // Saved / Bookmarked leads with localStorage persistence
-  const [savedLeadIds, setSavedLeadIds] = useState(() => {
-    try {
-      const stored = localStorage.getItem('oal_saved_lead_ids');
-      if (stored) return JSON.parse(stored);
-    } catch (e) {
-      // Ignore fallback
-    }
-    return ['APP-2026-1094', 'APP-2026-1082'];
   });
 
   // Communication hub state
@@ -305,24 +295,6 @@ export const NetworkControlBoard = ({
     };
   };
 
-  // Toggle Bookmark / Save Lead
-  const toggleSaveLead = (leadId, e) => {
-    e?.stopPropagation();
-    setSavedLeadIds(prev => {
-      const next = prev.includes(leadId) ? prev.filter(id => id !== leadId) : [...prev, leadId];
-      try {
-        localStorage.setItem('oal_saved_lead_ids', JSON.stringify(next));
-      } catch (err) {}
-      return next;
-    });
-
-    if (savedLeadIds.includes(leadId)) {
-      if (addToast) addToast('Removed from Saved Leads', `Deal #${leadId} removed from your watch list.`, 'info');
-    } else {
-      if (addToast) addToast('Deal Saved to Watch List', `Deal #${leadId} added to your saved leads section.`, 'success');
-    }
-  };
-
   // Working Deal Claim Handler
   const handleClaimDeal = (appId, e) => {
     e?.stopPropagation();
@@ -337,32 +309,18 @@ export const NetworkControlBoard = ({
     e.preventDefault();
     if (!selectedAppForOffer) return;
 
-    const newOffer = {
-      id: `OFF-2026-${Math.floor(100 + Math.random() * 900)}`,
+    submitOffer({
       applicationId: selectedAppForOffer.id,
-      businessName: selectedAppForOffer.businessName,
-      lenderId: currentUser?.id || 'usr_lender_01',
-      lenderName: currentUser?.name || 'Apex Commercial Capital',
       amount: Number(offerForm.amount),
       interestRate: Number(offerForm.interestRate),
       termMonths: Number(offerForm.termMonths),
       monthlyPayment: Number(offerForm.monthlyPayment || Math.round((Number(offerForm.amount) * (1 + 0.08 * (Number(offerForm.termMonths) / 12))) / Number(offerForm.termMonths))),
       originationFeePercent: Number(offerForm.originationFeePercent),
-      status: 'PENDING_BORROWER_REVIEW',
-      sharedWithBorrower: false,
-      createdAt: new Date().toISOString()
-    };
+      prepaymentPenalty: 'None after 12 months',
+      requiredConditions: ['First-position UCC lien on corporate equipment', 'Quarterly revenue disclosure covenant']
+    });
 
-    setLocalOffers(prev => [newOffer, ...prev]);
     setShowSubmitOfferModal(false);
-
-    if (addToast) {
-      addToast(
-        'Term Sheet Submitted to OAL Broker',
-        `Offer for $${Number(offerForm.amount).toLocaleString()} (${offerForm.interestRate}% APR) submitted. Broker Elena Rostova will mediate terms.`,
-        'success'
-      );
-    }
   };
 
   // Edit Offer Handler (Lender Exclusive)
@@ -370,43 +328,27 @@ export const NetworkControlBoard = ({
     e.preventDefault();
     if (!editingOffer) return;
 
-    setLocalOffers(prev =>
-      prev.map(off => off.id === editingOffer.id ? { ...off, ...editingOffer } : off)
-    );
+    updateOffer(editingOffer.id, {
+      amount: Number(editingOffer.amount),
+      interestRate: Number(editingOffer.interestRate),
+      termMonths: Number(editingOffer.termMonths),
+      monthlyPayment: Number(editingOffer.monthlyPayment),
+      originationFeePercent: Number(editingOffer.originationFeePercent)
+    });
     setShowEditOfferModal(false);
     setEditingOffer(null);
-
-    if (addToast) {
-      addToast('Offer Terms Updated', `Term sheet ${editingOffer.id} has been revised.`, 'info');
-    }
   };
 
   // Withdraw Offer Handler (Lender Exclusive)
   const handleWithdrawOffer = (offerId) => {
-    setLocalOffers(prev =>
-      prev.map(off => off.id === offerId ? { ...off, status: 'WITHDRAWN' } : off)
-    );
-    if (addToast) {
-      addToast('Offer Withdrawn', `Offer #${offerId} has been withdrawn from borrower review.`, 'warning');
-    }
+    withdrawOffer(offerId);
   };
 
   // Share with Borrower Handler (OAL Rep Exclusive)
   const handleConfirmShareWithBorrower = () => {
     if (!sharingOffer) return;
-
-    setLocalOffers(prev =>
-      prev.map(off => off.id === sharingOffer.id ? { ...off, sharedWithBorrower: true, status: 'PENDING_BORROWER_REVIEW' } : off)
-    );
+    shareOfferWithBorrower(sharingOffer.id);
     setShowShareModal(false);
-
-    if (addToast) {
-      addToast(
-        'Offer Shared to Borrower Waiting Room',
-        `Term sheet #${sharingOffer.id} ($${Number(sharingOffer.amount).toLocaleString()}) transmitted to borrower portal for review.`,
-        'success'
-      );
-    }
     setSharingOffer(null);
   };
 
@@ -415,14 +357,28 @@ export const NetworkControlBoard = ({
     e.preventDefault();
     if (!brokerMessageText.trim()) return;
 
+    const targetApp = brokerMessageTarget || currentApp;
+    const targetRep = targetApp?.assignedRep;
+
+    if (!targetRep || !targetRep.id) {
+      if (addToast) {
+        addToast(
+          'Representative Assignment Required',
+          `Cannot dispatch message: Deal #${targetApp?.id || selectedLeadId} does not have an assigned OAL Representative yet.`,
+          'warning'
+        );
+      }
+      return;
+    }
+
     if (sendMessage) {
       sendMessage({
-        conversationId: `CONV_${activeRole}_rep_${brokerMessageTarget?.id || 'APP-2026-1082'}`,
-        text: `[OAL Network Panel - ${brokerMessageChannel} to Broker Elena Rostova]\n${brokerMessageText}`,
-        applicationId: brokerMessageTarget?.id || 'APP-2026-1082',
+        conversationId: `CONV_${activeRole}_rep_${targetApp.id}`,
+        text: `[OAL Network Panel - ${brokerMessageChannel} to Broker ${targetRep.name}]\n${brokerMessageText}`,
+        applicationId: targetApp.id,
         receiverRole: 'rep',
-        receiverId: 'usr_rep_01',
-        receiverName: 'Elena Rostova (OAL Broker)'
+        receiverId: targetRep.id,
+        receiverName: `${targetRep.name} (OAL Broker)`
       });
     }
 
@@ -442,8 +398,8 @@ export const NetworkControlBoard = ({
 
     if (addToast) {
       addToast(
-        `${brokerMessageChannel} Transmitted to Elena Rostova`,
-        `Your inquiry regarding deal #${brokerMessageTarget?.id || 'General'} has been dispatched. Direct Borrower contact prohibited per FR-09.`,
+        `${brokerMessageChannel} Transmitted to ${targetRep.name}`,
+        `Your inquiry regarding deal #${targetApp.id} has been dispatched. Direct Borrower contact prohibited per FR-09.`,
         'success'
       );
     }
@@ -454,10 +410,22 @@ export const NetworkControlBoard = ({
     e.preventDefault();
     if (!newChatText.trim()) return;
 
+    const rep = currentApp?.assignedRep;
+    if (activeRole === 'lender' && (!rep || !rep.id)) {
+      if (addToast) {
+        addToast(
+          'Representative Assignment Required',
+          `Cannot send message: Loan file #${selectedLeadId} has no assigned OAL Representative yet.`,
+          'warning'
+        );
+      }
+      return;
+    }
+
     const newMsg = {
       id: `MSG-${Date.now()}`,
       sender: activeRole,
-      senderName: currentUser?.name || (activeRole === 'lender' ? 'Apex Commercial Capital' : 'Elena Rostova (OAL Rep)'),
+      senderName: currentUser?.name || (activeRole === 'lender' ? 'Apex Commercial Capital' : (rep?.name ? `${rep.name} (OAL Rep)` : 'OAL Rep')),
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       text: newChatText
     };
@@ -467,10 +435,12 @@ export const NetworkControlBoard = ({
 
     if (sendMessage) {
       sendMessage({
-        conversationId: `CONV_${activeRole}_rep_active`,
+        conversationId: `CONV_${activeRole}_rep_${selectedLeadId}`,
         text: newChatText,
         applicationId: selectedLeadId,
-        receiverRole: activeRole === 'rep' ? 'borrower' : 'rep'
+        receiverRole: activeRole === 'rep' ? 'lender' : 'rep',
+        receiverId: activeRole === 'lender' ? rep?.id : undefined,
+        receiverName: activeRole === 'lender' ? `${rep?.name || 'OAL Broker'} (OAL Broker)` : undefined
       });
     }
   };
@@ -487,7 +457,7 @@ REQUESTED CAPITAL         : $${Number(app.amount).toLocaleString('en-US', { mini
 PROGRAM CLASSIFICATION    : ${app.programName || 'Commercial Loan'}
 CURRENT WORKSPACE STATUS  : ${app.status}
 TOTAL TIME TO FUNDING     : ${timeline.totalElapsed} (Guarantee: 24-72h SLA Benchmark)
-FIDUCIARY BROKER MEDIATOR : ${app.assignedRep?.name || 'Elena Rostova (OAL Rep)'}
+FIDUCIARY BROKER MEDIATOR : ${app.assignedRep?.name ? `${app.assignedRep.name} (OAL Rep)` : 'Unassigned Placement Desk'}
 --------------------------------------------------------------------------------
 IMMUTABLE MILESTONE TIMESTAMPS (CLIENT WIREFRAME STANDARD):
 ${timeline.milestones.map((m, idx) => `[${m.completed ? 'COMPLETED' : 'PENDING'}] Milestone #${idx + 1}: ${m.label.padEnd(42, ' ')} | Timestamp: ${m.timestamp} (${m.elapsed})`).join('\n')}
@@ -596,14 +566,20 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
 
             <button
               type="button"
+              disabled={!isBrokerAssigned}
               onClick={() => {
                 setBrokerMessageTarget(currentApp);
                 setShowBrokerMessageModal(true);
               }}
-              className="px-4 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className={`px-4 py-3 rounded-2xl border text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                isBrokerAssigned
+                  ? 'bg-white/10 hover:bg-white/15 text-white border-white/20'
+                  : 'bg-white/5 text-slate-400 border-white/10 cursor-not-allowed opacity-60'
+              }`}
+              title={isBrokerAssigned ? `Inquire via Broker ${assignedBrokerName}` : 'No representative assigned to this loan file yet'}
             >
               <MessageSquare className="w-4 h-4 text-sky-300" />
-              <span>Contact Broker (Elena)</span>
+              <span>{isBrokerAssigned ? `Contact Broker (${assignedBrokerName.split(' ')[0]})` : 'Broker Unassigned'}</span>
             </button>
           </div>
         </div>
@@ -619,7 +595,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
             <strong className="text-emerald-400 font-bold text-sm block">${totalFundedVolume.toLocaleString()}</strong>
           </div>
           <div>
-            <span className="text-slate-400 text-[11px] block">Working Deals Active:</span>
+            <span className="text-slate-400 text-[11px] block">Marketplace-Wide Active Files:</span>
             <strong className="text-[#00B0F0] font-bold text-sm block">{workingDealsCount} Underwriting Files</strong>
           </div>
           <div>
@@ -631,50 +607,43 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
         </div>
       </div>
 
-      {/* =========================================================================
-          EXACT 8 CLIENT-DEFINED NAVIGATION TABS (Mandated Order)
-          ========================================================================= */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between text-xs px-1">
-          <span className="font-extrabold text-slate-800 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-            <Layers className="w-4 h-4 text-[#0070C0]" />
-            <span>OAL Network Panel — 8 Core Operational Sections</span>
-          </span>
-          <span className="text-slate-500 text-[11px]">
-            Active Section: <strong>{NETWORK_SECTIONS.find(s => s.id === activeTab)?.label}</strong>
+      {/* Contextual Section Header & Breadcrumb (Replacing Redundant 8-Pill Horizontal Navigation) */}
+      <div className="bg-white rounded-2xl border border-slate-200/90 px-5 py-3.5 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-2 text-xs flex-wrap">
+          <Link
+            to={`/${activeRole}/dashboard`}
+            className="text-slate-400 hover:text-[#0070C0] font-semibold transition-colors flex items-center gap-1"
+          >
+            <span>{activeRole === 'lender' ? 'Lender Dashboard' : activeRole === 'rep' ? 'Rep Dashboard' : 'Admin Hub'}</span>
+          </Link>
+          <span className="text-slate-300">/</span>
+          <span className="text-slate-500 font-semibold">OAL Network Panel</span>
+          <span className="text-slate-300">/</span>
+          <span className="text-[#002060] font-extrabold flex items-center gap-1.5">
+            {(() => {
+              const sec = NETWORK_SECTIONS.find(s => s.id === activeTab) || NETWORK_SECTIONS[0];
+              const Icon = sec.icon;
+              return (
+                <>
+                  <Icon className="w-3.5 h-3.5 text-[#0070C0]" />
+                  <span>{sec.label}</span>
+                </>
+              );
+            })()}
           </span>
         </div>
 
-        {/* Scrollable Control Tabs Pill Bar */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
-          {NETWORK_SECTIONS.map(section => {
-            const Icon = section.icon;
-            const isActive = activeTab === section.id;
-            return (
-              <button
-                key={section.id}
-                type="button"
-                onClick={() => handleTabSelect(section.id)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer shrink-0 ${
-                  isActive
-                    ? 'bg-[#0070C0] text-white shadow-md shadow-[#0070C0]/25'
-                    : 'bg-white text-slate-700 hover:text-slate-950 hover:bg-slate-100 border border-slate-200/90 shadow-2xs'
-                }`}
-              >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-slate-500'}`} />
-                <span>{section.label}</span>
-                {section.badge && (
-                  <span
-                    className={`text-[9px] px-1.5 py-0.5 rounded font-black ${
-                      isActive ? 'bg-[#002060] text-white' : 'bg-slate-100 text-slate-600 border border-slate-200'
-                    }`}
-                  >
-                    {section.badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
+        <div className="flex items-center gap-2 text-xs">
+          <span className="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-blue-50 text-[#0070C0] border border-blue-100 flex items-center gap-1.5">
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>Fiduciary Workspace</span>
+          </span>
+          <Link
+            to={`/${activeRole}/dashboard`}
+            className="px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition-all flex items-center gap-1"
+          >
+            <span>&larr; Return to Dashboard</span>
+          </Link>
         </div>
       </div>
 
@@ -1468,7 +1437,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                   <div>
                     <span className="text-slate-400 block">Assigned Fiduciary Broker:</span>
                     <strong className="text-[#002060] font-bold block mt-0.5">
-                      {currentApp.assignedRep?.name || 'Elena Rostova (OAL Senior Broker)'}
+                      {currentApp.assignedRep?.name ? `${currentApp.assignedRep.name} (OAL Fiduciary Broker)` : 'Unassigned Placement Desk'}
                     </strong>
                   </div>
                 </div>
@@ -1506,14 +1475,20 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
 
                     <button
                       type="button"
+                      disabled={!currentApp.assignedRep}
                       onClick={() => {
                         setBrokerMessageTarget(currentApp);
                         setShowBrokerMessageModal(true);
                       }}
-                      className="w-full py-2.5 px-4 rounded-xl bg-sky-50 hover:bg-sky-100 text-[#0070C0] text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                      className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                        currentApp.assignedRep
+                          ? 'bg-sky-50 hover:bg-sky-100 text-[#0070C0]'
+                          : 'bg-slate-100 text-slate-400 cursor-not-allowed opacity-60'
+                      }`}
+                      title={currentApp.assignedRep ? `Contact Broker ${currentApp.assignedRep.name}` : 'No representative assigned yet'}
                     >
                       <MessageSquare className="w-3.5 h-3.5" />
-                      <span>Contact Broker Elena</span>
+                      <span>{currentApp.assignedRep ? `Contact Broker (${currentApp.assignedRep.name.split(' ')[0]})` : 'Broker Unassigned'}</span>
                     </button>
                   </div>
                 )}
@@ -1582,17 +1557,30 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
               </button>
             </div>
 
-            {savedLeadIds.length === 0 ? (
-              <div className="p-12 text-center space-y-3 bg-slate-50 rounded-2xl border border-slate-200">
-                <Bookmark className="w-8 h-8 text-slate-300 mx-auto" />
-                <h4 className="font-bold text-slate-800 text-sm">No Saved Leads in Watch List</h4>
-                <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                  Click the bookmark icon on any loan card in the Live Marketplace or Qualified Leads views to track it here.
-                </p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {applications.filter(a => savedLeadIds.includes(a.id)).map(app => (
+            {(() => {
+              const savedApps = applications.filter(a => {
+                if (!savedLeadIds.includes(a.id)) return false;
+                if (activeRole === 'rep' && currentUser?.role !== 'admin') {
+                  return a.assignedRep && (a.assignedRep.id === currentUser?.id || (a.assignedRep.email && currentUser?.email && a.assignedRep.email.toLowerCase() === currentUser?.email.toLowerCase()));
+                }
+                return true;
+              });
+
+              if (savedApps.length === 0) {
+                return (
+                  <div className="p-12 text-center space-y-3 bg-slate-50 rounded-2xl border border-slate-200">
+                    <Bookmark className="w-8 h-8 text-slate-300 mx-auto" />
+                    <h4 className="font-bold text-slate-800 text-sm">No Saved Leads in Watch List</h4>
+                    <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                      Click the bookmark icon on any loan card in the Live Marketplace or Qualified Leads views to track it here.
+                    </p>
+                  </div>
+                );
+              }
+
+              return (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {savedApps.map(app => (
                   <div
                     key={app.id}
                     className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-4 hover:border-[#0070C0] transition-colors"
@@ -1647,7 +1635,8 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                   </div>
                 ))}
               </div>
-            )}
+            );
+          })()}
           </div>
         </div>
       )}
@@ -1730,16 +1719,25 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {localOffers.map(off => {
-                    return (
-                      <tr key={off.id} className="hover:bg-slate-50">
-                        <td className="p-3.5 font-mono font-bold text-slate-900">{off.id}</td>
-                        <td className="p-3.5 font-semibold text-slate-800">
-                          {activeRole === 'lender' ? `Protected Deal #${off.applicationId}` : off.businessName}
-                        </td>
-                        <td className="p-3.5 font-bold text-slate-900">${off.amount.toLocaleString()}</td>
-                        <td className="p-3.5 font-bold text-[#002060]">{off.interestRate}% APR</td>
-                        <td className="p-3.5 text-slate-600">{off.termMonths} Mo</td>
+                  {displayOffers.length === 0 ? (
+                    <tr>
+                      <td colSpan={8} className="p-8 text-center text-slate-500 text-xs">
+                        No active commercial term sheets currently issued for this portfolio.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayOffers.map(off => {
+                      const linkedApp = applications.find(a => a.id === off.applicationId);
+                      const displayEntity = activeRole === 'lender'
+                        ? `Protected Deal #${off.applicationId}`
+                        : (off.businessName || linkedApp?.businessName || 'Commercial Applicant');
+                      return (
+                        <tr key={off.id} className="hover:bg-slate-50">
+                          <td className="p-3.5 font-mono font-bold text-slate-900">{off.id}</td>
+                          <td className="p-3.5 font-semibold text-slate-800">{displayEntity}</td>
+                          <td className="p-3.5 font-bold text-slate-900">${Number(off.amount).toLocaleString()}</td>
+                          <td className="p-3.5 font-bold text-[#002060]">{off.interestRate}% APR</td>
+                          <td className="p-3.5 text-slate-600">{off.termMonths} Mo</td>
                         <td className="p-3.5 text-slate-700 font-semibold">${off.monthlyPayment?.toLocaleString()}/mo</td>
                         <td className="p-3.5">
                           <StatusBadge status={off.status} size="xs" />
@@ -1789,7 +1787,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                         </td>
                       </tr>
                     );
-                  })}
+                  }))}
                 </tbody>
               </table>
             </div>
@@ -1851,7 +1849,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
               <div>
                 <strong className="font-bold block">Strict Rule FR-09: Direct Lender-to-Borrower Communication Prohibited</strong>
                 <p className="text-amber-800 mt-0.5">
-                  All rate discoveries, covenant negotiations, and diligence documents must be mediated by Assigned OAL Fiduciary Broker Elena Rostova. Underwriter identities remain anonymous.
+                  All rate discoveries, covenant negotiations, and diligence documents must be mediated by Assigned OAL Fiduciary Broker {isBrokerAssigned ? assignedBrokerName : '(Pending Placement Desk Assignment)'}. Underwriter identities remain anonymous.
                 </p>
               </div>
             </div>
@@ -1862,16 +1860,16 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 {/* Chat Header */}
                 <div className="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <img
-                      src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
-                      alt="Elena Rostova"
-                      className="w-10 h-10 rounded-xl object-cover border border-slate-300"
-                    />
+                    <div className="w-10 h-10 rounded-xl bg-blue-100 text-[#0070C0] font-black text-sm flex items-center justify-center border border-blue-200">
+                      {isBrokerAssigned ? assignedBrokerName.split(' ').map(n => n[0]).join('') : '?'}
+                    </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-xs">Elena Rostova (OAL Senior Fiduciary Broker)</h4>
-                      <span className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <span>Active Fiduciary Queue</span>
+                      <h4 className="font-bold text-slate-900 text-xs">
+                        {isBrokerAssigned ? `${assignedBrokerName} (Assigned OAL Broker)` : 'Unassigned Placement Desk'}
+                      </h4>
+                      <span className={`text-[11px] font-semibold flex items-center gap-1 ${isBrokerAssigned ? 'text-emerald-600' : 'text-amber-600'}`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${isBrokerAssigned ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`} />
+                        <span>{isBrokerAssigned ? 'Active Fiduciary Queue' : 'Awaiting Broker Assignment'}</span>
                       </span>
                     </div>
                   </div>
@@ -1910,14 +1908,20 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 <form onSubmit={handleSendInlineChat} className="p-3 bg-white border-t border-slate-200 flex gap-2">
                   <input
                     type="text"
+                    disabled={activeRole === 'lender' && !isBrokerAssigned}
                     value={newChatText}
                     onChange={(e) => setNewChatText(e.target.value)}
-                    placeholder="Type message to Broker Elena regarding underwriting terms or covenants..."
-                    className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#0070C0]"
+                    placeholder={
+                      !isBrokerAssigned && activeRole === 'lender'
+                        ? 'Broker unassigned. Message dispatch disabled until an OAL Representative is assigned...'
+                        : `Type message to Broker ${assignedBrokerName.split(' ')[0]} regarding underwriting terms...`
+                    }
+                    className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#0070C0] disabled:bg-slate-100 disabled:text-slate-400"
                   />
                   <button
                     type="submit"
-                    className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs"
+                    disabled={activeRole === 'lender' && !isBrokerAssigned}
+                    className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs disabled:bg-slate-300 disabled:cursor-not-allowed"
                   >
                     <Send className="w-3.5 h-3.5" />
                     <span>Send</span>
@@ -1931,7 +1935,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
               <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-4 text-xs">
                 <div className="flex items-center gap-2 text-[#002060] font-bold">
                   <Mail className="w-4 h-4 text-[#0070C0]" />
-                  <span>Secure Email Relay: broker.elena@oalnetwork.com</span>
+                  <span>Secure Email Relay: {assignedBrokerEmail}</span>
                 </div>
                 <p className="text-slate-600 leading-relaxed">
                   All official underwriter queries are dispatched through OAL's automated PGP-encrypted mail relay. Inbound responses are automatically sanitized and attached to Deal Reference #{selectedLeadId}.
@@ -1939,7 +1943,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 <div className="p-4 rounded-xl bg-white border border-slate-200 space-y-2">
                   <span className="text-[11px] font-bold text-slate-400 block">SIMULATED EMAIL LOG:</span>
                   <div className="font-mono text-[11px] text-slate-700">
-                    [DISPATCHED] To: broker.elena@oalnetwork.com | Subject: Re: Deal #{selectedLeadId} DSCR Audit Term Sheet
+                    [DISPATCHED] To: {assignedBrokerEmail} | Subject: Re: Deal #{selectedLeadId} DSCR Audit Term Sheet
                   </div>
                 </div>
               </div>
@@ -1950,13 +1954,13 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
               <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-4 text-xs">
                 <div className="flex items-center gap-2 text-[#002060] font-bold">
                   <PhoneCall className="w-4 h-4 text-[#0070C0]" />
-                  <span>Fiduciary SMS Hotline: +1 (888) 550-LOAN</span>
+                  <span>Fiduciary SMS Hotline: {assignedBrokerPhone}</span>
                 </div>
                 <p className="text-slate-600 leading-relaxed">
-                  Instant SMS notifications are routed directly to Broker Elena Rostova's dedicated broker terminal for rapid turnaround during active SLA windows.
+                  Instant SMS notifications are routed directly to Broker {assignedBrokerName}'s dedicated terminal for rapid turnaround during active SLA windows.
                 </p>
                 <div className="p-4 rounded-xl bg-white border border-slate-200 font-mono text-[11px] text-slate-700">
-                  [SMS GATEWAY READY] Priority: HIGH | Recipient: Elena Rostova (OAL Rep)
+                  [SMS GATEWAY READY] Priority: HIGH | Recipient: {assignedBrokerName} (OAL Rep)
                 </div>
               </div>
             )}
@@ -2135,14 +2139,12 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
           <div className="bg-white rounded-3xl max-w-lg w-full p-5 sm:p-7 shadow-2xl border border-slate-200 space-y-5 max-h-[92vh] overflow-y-auto">
             <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
               <div className="flex items-center gap-3">
-                <img
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
-                  alt="Elena Rostova"
-                  className="w-12 h-12 rounded-xl object-cover border border-slate-200 shadow-xs shrink-0"
-                />
+                <div className="w-12 h-12 rounded-xl bg-blue-100 text-[#0070C0] font-black text-base flex items-center justify-center border border-blue-200 shrink-0">
+                  {isBrokerAssigned ? assignedBrokerName.split(' ').map(n => n[0]).join('') : '?'}
+                </div>
                 <div>
                   <h3 className="text-base font-heading font-extrabold text-[#002060]">
-                    Inquire via Elena Rostova (Broker)
+                    Inquire via {assignedBrokerName}
                   </h3>
                   <div className="text-xs text-[#0070C0] font-medium">
                     Re: Deal #{brokerMessageTarget?.id || selectedLeadId}
@@ -2159,6 +2161,13 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
             </div>
 
             <form onSubmit={handleSendBrokerMessage} className="space-y-4 text-xs">
+              {!isBrokerAssigned && (
+                <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-xs flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+                  <span>Representative assignment required: This deal is awaiting placement desk assignment by OAL Lead Distribution. Message transmission is disabled.</span>
+                </div>
+              )}
+
               <div>
                 <label className="font-bold text-slate-700 block mb-1">Select Relay Channel</label>
                 <div className="grid grid-cols-3 gap-2">
@@ -2184,15 +2193,20 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 <textarea
                   required
                   rows={4}
+                  disabled={!isBrokerAssigned}
                   value={brokerMessageText}
                   onChange={(e) => setBrokerMessageText(e.target.value)}
-                  placeholder="Inquire regarding bank statements, collateral valuation, or specific underwriting covenants..."
-                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium"
+                  placeholder={
+                    !isBrokerAssigned
+                      ? 'No assigned broker available on this loan file.'
+                      : 'Inquire regarding bank statements, collateral valuation, or specific underwriting covenants...'
+                  }
+                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium disabled:bg-slate-100 disabled:text-slate-400"
                 />
               </div>
 
               <div className="p-3 bg-slate-50 rounded-xl text-[11px] text-slate-500">
-                Rule FR-09 Enforced: Elena Rostova will relay acceptable terms to the borrower while maintaining underwriter confidentiality.
+                Rule FR-09 Enforced: {assignedBrokerName} will relay acceptable terms to the borrower while maintaining underwriter confidentiality.
               </div>
 
               <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-3 pt-2">
@@ -2205,7 +2219,8 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 </button>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md flex items-center justify-center gap-1.5 cursor-pointer text-center"
+                  disabled={!isBrokerAssigned}
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md flex items-center justify-center gap-1.5 cursor-pointer text-center disabled:bg-slate-300 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
                   <span>Send {brokerMessageChannel}</span>

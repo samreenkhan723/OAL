@@ -113,8 +113,10 @@ export const Topbar = ({ setIsOpen }) => {
             to="/lender/working-deals"
             className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-sky-50 border border-[#00B0F0]/40 rounded-xl text-xs font-semibold text-[#002060]"
           >
-            <span className="text-[10px] text-[#0070C0] uppercase font-bold">Working Deals:</span>
-            <span className="text-[#002060] font-extrabold">2 Active</span>
+            <span className="text-[10px] text-[#0070C0] uppercase font-bold">Personal Working Deals:</span>
+            <span className="text-[#002060] font-extrabold">
+              {(applications || []).filter(a => a.workingDeals?.claims?.some(c => c.lenderId === (currentUser?.id || 'usr_lender_01'))).length} Active
+            </span>
             <span className="text-[11px] text-slate-500">(Max 3/deal)</span>
           </Link>
         )}

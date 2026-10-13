@@ -5,6 +5,7 @@ import { AppProvider } from './context/AppContext';
 // Layouts & Route Protection
 import { PublicLayout } from './layouts/PublicLayout';
 import { DashboardLayout } from './layouts/DashboardLayout';
+import { NetworkLayout } from './layouts/NetworkLayout';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 
 // Public Pages
@@ -347,7 +348,7 @@ export function App() {
             path="/network"
             element={
               <ProtectedRoute allowedRoles={['admin', 'lender', 'rep']}>
-                <DashboardLayout />
+                <NetworkLayout />
               </ProtectedRoute>
             }
           >

@@ -90,7 +90,11 @@ export const WorkingDealSlots = ({ application, onClaimSuccess }) => {
                 <div>
                   <div className="text-xs font-semibold text-slate-900 truncate">
                     {/* Anonymized per PRD: lenders never see competing lender real identities */}
-                    {isMyClaim ? `${currentUser?.name} (You)` : claim.lenderAlias || `Institutional Lender #${8000 + slotIdx}`}
+                    {isMyClaim
+                      ? `${currentUser?.name || 'Institutional Lender'} (You)`
+                      : currentRole === 'lender'
+                      ? `Active Underwriter #${8000 + slotIdx} (Competing Underwriter)`
+                      : claim.lenderAlias || `Institutional Lender #${8000 + slotIdx}`}
                   </div>
                   <div className="text-[11px] text-slate-500 mt-0.5">
                     Claimed: {new Date(claim.claimedAt).toLocaleDateString()}

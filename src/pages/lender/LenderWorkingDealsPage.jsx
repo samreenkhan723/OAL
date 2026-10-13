@@ -66,7 +66,7 @@ export const LenderWorkingDealsPage = () => {
                     <StatusBadge status={deal.status} />
                   </div>
 
-                  <h3 className="text-base font-bold text-slate-900 break-words">{deal.businessName}</h3>
+                  <h3 className="text-base font-bold text-slate-900 break-words">Protected Commercial Applicant #{deal.id}</h3>
                   <p className="text-xs text-slate-500 break-words">{deal.programName} • {deal.loanPurpose}</p>
 
                   <div className="my-4 p-3.5 rounded-xl bg-slate-50 border border-slate-100 text-xs space-y-2">

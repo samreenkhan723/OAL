@@ -26,7 +26,7 @@ export const LenderLoanRequestsPage = () => {
                 <span className="text-xs font-mono font-bold text-slate-400">{req.id}</span>
                 <StatusBadge status={req.status} />
               </div>
-              <h3 className="text-sm font-bold text-slate-900 mt-1 truncate">{req.businessName}</h3>
+              <h3 className="text-sm font-bold text-slate-900 mt-1 truncate">Protected Commercial Applicant #{req.id}</h3>
               <p className="text-xs text-slate-500 break-words">{req.programName} • ${req.amount.toLocaleString()}</p>
             </div>
 

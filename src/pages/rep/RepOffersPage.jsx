@@ -4,7 +4,7 @@ import { Lock, DollarSign, ShieldAlert, CheckCircle2, Clock, Eye, Share2, X, Che
 import { StatusBadge } from '../../components/common/StatusBadge';
 
 export const RepOffersPage = () => {
-  const { offers, applications, currentUser, addToast } = useApp();
+  const { offers, applications, currentUser, addToast, shareOfferWithBorrower } = useApp();
   const [selectedOffer, setSelectedOffer] = useState(null);
   const [showShareModal, setShowShareModal] = useState(false);
   const [offerToShare, setOfferToShare] = useState(null);
@@ -41,14 +41,8 @@ export const RepOffersPage = () => {
 
   const handleConfirmShare = () => {
     if (!offerToShare) return;
+    shareOfferWithBorrower(offerToShare.id);
     setShowShareModal(false);
-    if (addToast) {
-      addToast(
-        'Term Sheet Shared with Borrower',
-        `Offer ${offerToShare.id} ($${offerToShare.amount.toLocaleString()}) has been securely dispatched to the borrower's offers portal and notification inbox.`,
-        'success'
-      );
-    }
     setOfferToShare(null);
   };
 
@@ -156,14 +150,21 @@ export const RepOffersPage = () => {
                   </button>
 
                   {/* Share with Borrower Action (Doc 1 - Line 61) */}
-                  <button
-                    type="button"
-                    onClick={() => handleOpenShare(offer)}
-                    className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center gap-1.5 cursor-pointer"
-                  >
-                    <Share2 className="w-3.5 h-3.5" />
-                    <span>Share with Borrower</span>
-                  </button>
+                  {offer.sharedWithBorrower ? (
+                    <span className="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Shared with Borrower</span>
+                    </span>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => handleOpenShare(offer)}
+                      className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center gap-1.5 cursor-pointer"
+                    >
+                      <Share2 className="w-3.5 h-3.5" />
+                      <span>Share with Borrower</span>
+                    </button>
+                  )}
                 </div>
               </div>
             );

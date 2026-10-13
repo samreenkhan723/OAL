@@ -9,7 +9,8 @@ import {
   INITIAL_KB_ARTICLES,
   INITIAL_AUDIT_LOGS,
   INITIAL_NETWORK_ACTIVITY,
-  INITIAL_REPS
+  INITIAL_REPS,
+  INITIAL_INVESTOR_VERIFICATIONS
 } from '../data/initialData';
 import {
   MOCK_USERS,
@@ -172,6 +173,9 @@ export const AppProvider = ({ children }) => {
     return localStorage.getItem('oal_active_role') || 'borrower';
   });
 
+  // Active user object with safe guest fallback to prevent runtime crashes (defined early for all hooks)
+  const currentUser = activeUser || (isAuthenticated ? (MOCK_USERS.find(u => u.role === currentRole) || MOCK_USERS[0]) : GUEST_USER);
+
   // Data collections with localStorage persistence
   const [applications, setApplications] = useState(() => {
     const saved = localStorage.getItem('oal_applications');
@@ -229,6 +233,16 @@ export const AppProvider = ({ children }) => {
     }
   });
 
+  // Accredited Investor Verification requests state with localStorage persistence
+  const [investorVerifications, setInvestorVerifications] = useState(() => {
+    try {
+      const saved = localStorage.getItem('oal_investor_verifications');
+      return saved ? JSON.parse(saved) : INITIAL_INVESTOR_VERIFICATIONS;
+    } catch (e) {
+      return INITIAL_INVESTOR_VERIFICATIONS;
+    }
+  });
+
   // Lead Distribution Settings with localStorage persistence (AUTO | MANUAL)
   const [distributionSettings, setDistributionSettings] = useState(() => {
     try {
@@ -259,6 +273,62 @@ export const AppProvider = ({ children }) => {
       return [];
     }
   });
+
+  // User-scoped saved leads state with safe, non-destructive legacy fallback
+  const loadUserSavedLeads = (userId) => {
+    if (!userId) return [];
+    try {
+      const userScoped = localStorage.getItem(`oal_saved_lead_ids_${userId}`);
+      if (userScoped) return JSON.parse(userScoped);
+
+      // Non-destructive fallback: check legacy shared key
+      const legacy = localStorage.getItem('oal_saved_lead_ids');
+      if (legacy) {
+        const parsed = JSON.parse(legacy);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+    } catch (e) {}
+    // Seed default bookmarks for primary demo accounts
+    return userId === 'usr_lender_01' || userId === 'usr_rep_01' ? ['APP-2026-1094', 'APP-2026-1082'] : [];
+  };
+
+  const [savedLeadIds, setSavedLeadIds] = useState(() => loadUserSavedLeads(activeUser?.id || currentUser?.id));
+
+  // Sync saved leads whenever active user changes
+  useEffect(() => {
+    const currentId = activeUser?.id || currentUser?.id;
+    if (currentId) {
+      setSavedLeadIds(loadUserSavedLeads(currentId));
+    }
+  }, [activeUser?.id, currentUser?.id]);
+
+  // Toggle bookmark / save lead scoped to current user
+  const toggleSaveLead = (leadId) => {
+    if (!leadId) return;
+    const currentId = activeUser?.id || currentUser?.id || 'usr_lender_01';
+    setSavedLeadIds(prev => {
+      const isSaved = prev.includes(leadId);
+      const updated = isSaved ? prev.filter(id => id !== leadId) : [...prev, leadId];
+      try {
+        localStorage.setItem(`oal_saved_lead_ids_${currentId}`, JSON.stringify(updated));
+        // Keep legacy key updated if primary lender
+        if (currentRole === 'lender' || currentId === 'usr_lender_01') {
+          localStorage.setItem('oal_saved_lead_ids', JSON.stringify(updated));
+        }
+      } catch (e) {}
+
+      if (isSaved) {
+        addToast('Removed from Saved Leads', `Deal #${leadId} removed from your watch list.`, 'info');
+      } else {
+        addToast('Deal Saved to Watch List', `Deal #${leadId} added to your saved leads section.`, 'success');
+      }
+      return updated;
+    });
+  };
+
+  const isLeadSaved = (leadId) => savedLeadIds.includes(leadId);
 
   // In-app toasts
   const [toasts, setToasts] = useState([]);
@@ -324,6 +394,14 @@ export const AppProvider = ({ children }) => {
       console.error('Failed to sync notifications', e);
     }
   }, [notifications]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('oal_investor_verifications', JSON.stringify(investorVerifications));
+    } catch (e) {
+      console.error('Failed to sync investor verifications', e);
+    }
+  }, [investorVerifications]);
 
   // Toast dispatch helper
   const addToast = (title, message, type = 'info') => {
@@ -911,9 +989,6 @@ export const AppProvider = ({ children }) => {
     addToast('Demo Perspective Switched', `Active demo profile: ${matched.name} (${matched.role.toUpperCase()})`, 'info');
   };
 
-  // Active user object with safe guest fallback to prevent runtime crashes
-  const currentUser = activeUser || (isAuthenticated ? (MOCK_USERS.find(u => u.role === currentRole) || MOCK_USERS[0]) : GUEST_USER);
-
   // 1. Create New Loan Application
   const createApplication = (formData) => {
     const newId = `APP-2026-${Math.floor(1000 + Math.random() * 9000)}`;
@@ -1103,17 +1178,18 @@ export const AppProvider = ({ children }) => {
     const newOffer = {
       id: newOfferId,
       applicationId: offerData.applicationId,
-      lenderId: currentUser.id,
-      lenderAlias: `Lender #${Math.floor(4000 + Math.random() * 5000)} (${currentUser.company || 'Commercial Capital Fund'})`,
+      lenderId: currentUser?.id || 'usr_lender_01',
+      lenderAlias: `Lender #${Math.floor(4000 + Math.random() * 5000)} (${currentUser?.company || 'Commercial Capital Fund'})`,
       amount: Number(offerData.amount),
       interestRate: Number(offerData.interestRate),
       termMonths: Number(offerData.termMonths),
-      monthlyPayment: Number(offerData.monthlyPayment),
+      monthlyPayment: Number(offerData.monthlyPayment || Math.round((Number(offerData.amount) * (1 + 0.08 * (Number(offerData.termMonths) / 12))) / Number(offerData.termMonths))),
       originationFeePercent: Number(offerData.originationFeePercent || 1.5),
       closingCosts: Math.round(Number(offerData.amount) * 0.015),
       prepaymentPenalty: offerData.prepaymentPenalty || 'None after 12 months',
       requiredConditions: offerData.requiredConditions || ['Standard UCC filing and active commercial insurance verification.'],
       status: 'PENDING_BORROWER_REVIEW',
+      sharedWithBorrower: false,
       createdAt: new Date().toISOString(),
       expiresAt: new Date(Date.now() + 14 * 86400000).toISOString()
     };
@@ -1136,7 +1212,7 @@ export const AppProvider = ({ children }) => {
     const log = {
       id: `AUD-${Date.now()}`,
       timestamp: new Date().toISOString(),
-      actor: currentUser.name,
+      actor: currentUser?.name || 'Institutional Lender',
       action: 'OFFER_SUBMITTED',
       target: offerData.applicationId,
       details: `New offer ${newOfferId} created for $${Number(offerData.amount).toLocaleString()} @ ${offerData.interestRate}%.`,
@@ -1144,7 +1220,7 @@ export const AppProvider = ({ children }) => {
     };
     setAuditLogs(prev => [log, ...prev]);
 
-    addToast('Offer Submitted', `Offer ${newOfferId} submitted. The borrower and representative have been notified.`, 'success');
+    addToast('Offer Submitted', `Offer ${newOfferId} submitted. The representative has been notified to review and mediate.`, 'success');
     return { success: true, offer: newOffer };
   };
 
@@ -1181,7 +1257,7 @@ export const AppProvider = ({ children }) => {
     const log = {
       id: `AUD-${Date.now()}`,
       timestamp: new Date().toISOString(),
-      actor: `${currentUser.name} (Borrower)`,
+      actor: `${currentUser?.name || 'Borrower'} (Borrower)`,
       action: 'OFFER_ACCEPTED',
       target: offer.applicationId,
       details: `Borrower accepted offer ${offerId} ($${offer.amount.toLocaleString()} @ ${offer.interestRate}%). Moving to loan processing.`,
@@ -1192,8 +1268,13 @@ export const AppProvider = ({ children }) => {
     addToast('Offer Accepted!', `Congratulations! Offer ${offerId} has been accepted. Your OAL Rep is initiating processing.`, 'success');
   };
 
-  // 4b. Update / Edit Offer (For Rep & Underwriters)
+  // 4b. Update / Edit Offer (Lender who created it, or Admin)
   const updateOffer = (offerId, updatedFields) => {
+    if (currentRole === 'rep') {
+      addToast('Permission Denied', 'OAL Representatives have view-only access and cannot edit lender offers (PRD FR-10).', 'error');
+      return { success: false, message: 'Rep cannot edit offers' };
+    }
+
     setOffers(prev => prev.map(o => {
       if (o.id === offerId) {
         return {
@@ -1208,7 +1289,7 @@ export const AppProvider = ({ children }) => {
     const log = {
       id: `AUD-${Date.now()}`,
       timestamp: new Date().toISOString(),
-      actor: `${currentUser?.name || 'Representative'} (${currentRole})`,
+      actor: `${currentUser?.name || 'Lender'} (${currentRole})`,
       action: 'OFFER_UPDATED',
       target: offerId,
       details: `Updated offer parameters (Principal: $${updatedFields.amount || 'N/A'}, Rate: ${updatedFields.interestRate || 'N/A'}%).`,
@@ -1217,6 +1298,85 @@ export const AppProvider = ({ children }) => {
     setAuditLogs(prev => [log, ...prev]);
 
     addToast('Offer Terms Updated', `Successfully updated terms for offer ${offerId}.`, 'success');
+    return { success: true };
+  };
+
+  // 4c. Withdraw Offer (Lender author, or Admin)
+  const withdrawOffer = (offerId) => {
+    if (currentRole === 'rep') {
+      addToast('Permission Denied', 'Representatives have view-only access and cannot withdraw lender offers.', 'error');
+      return { success: false, message: 'Rep cannot withdraw offers' };
+    }
+
+    const offer = offers.find(o => o.id === offerId);
+    if (!offer) {
+      addToast('Error', 'Offer not found', 'error');
+      return { success: false, message: 'Offer not found' };
+    }
+
+    setOffers(prev => prev.map(o => {
+      if (o.id === offerId) {
+        return {
+          ...o,
+          status: 'WITHDRAWN',
+          withdrawnAt: new Date().toISOString()
+        };
+      }
+      return o;
+    }));
+
+    const log = {
+      id: `AUD-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      actor: `${currentUser?.name || 'Lender'} (${currentRole})`,
+      action: 'OFFER_WITHDRAWN',
+      target: offerId,
+      details: `Withdrew offer ${offerId} from active borrower review.`,
+      severity: 'WARNING'
+    };
+    setAuditLogs(prev => [log, ...prev]);
+
+    addToast('Offer Withdrawn', `Offer ${offerId} has been withdrawn from consideration.`, 'warning');
+    return { success: true };
+  };
+
+  // 4d. Share Offer with Borrower (OAL Rep or Admin only)
+  const shareOfferWithBorrower = (offerId) => {
+    if (currentRole === 'lender') {
+      addToast('Permission Denied', 'Rule FR-09: Lenders cannot directly share offers with borrowers.', 'error');
+      return { success: false, message: 'Lender cannot directly share' };
+    }
+
+    const offer = offers.find(o => o.id === offerId);
+    if (!offer) {
+      addToast('Error', 'Offer not found', 'error');
+      return { success: false, message: 'Offer not found' };
+    }
+
+    setOffers(prev => prev.map(o => {
+      if (o.id === offerId) {
+        return {
+          ...o,
+          sharedWithBorrower: true,
+          sharedAt: new Date().toISOString()
+        };
+      }
+      return o;
+    }));
+
+    const log = {
+      id: `AUD-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      actor: `${currentUser?.name || 'OAL Rep'} (${currentRole})`,
+      action: 'OFFER_SHARED_WITH_BORROWER',
+      target: offerId,
+      details: `Representative shared term sheet ${offerId} ($${offer.amount.toLocaleString()} @ ${offer.interestRate}%) with borrower.`,
+      severity: 'INFO'
+    };
+    setAuditLogs(prev => [log, ...prev]);
+
+    addToast('Term Sheet Shared', `Offer ${offerId} ($${offer.amount.toLocaleString()}) has been securely dispatched to the borrower waiting room.`, 'success');
+    return { success: true };
   };
 
   // 5. Progress Application Status (For Admin / Lifecycle testing)
@@ -1532,6 +1692,128 @@ export const AppProvider = ({ children }) => {
     addToast('Demo Reset', 'All demo data restored to factory defaults.', 'info');
   };
 
+  // Accredited Investor Verification Handlers (Investment IQ - Investment Club PRD)
+  const getBorrowerInvestorStatus = (borrowerId) => {
+    const targetId = borrowerId || currentUser?.id;
+    if (!targetId) return { status: 'NOT_APPLIED', verification: null };
+    const found = (investorVerifications || []).find(v => v.borrowerId === targetId);
+    if (!found) return { status: 'NOT_APPLIED', verification: null };
+    return { status: found.status, verification: found };
+  };
+
+  const submitInvestorVerification = (formData) => {
+    const reqId = `INV-REQ-${Date.now()}-${Math.floor(100 + Math.random() * 900)}`;
+    const newReq = {
+      id: reqId,
+      borrowerId: currentUser?.id || 'usr_borrower_01',
+      borrowerName: currentUser?.name || 'Marcus Vance',
+      borrowerEmail: currentUser?.email || 'marcus@blueharborseafood.com',
+      company: currentUser?.company || 'Blue Harbor Seafood Bistro LLC',
+      applicantType: formData.applicantType || 'individual', // 'individual' | 'joint' | 'corporate'
+      netWorthExceeds1M: Boolean(formData.netWorthExceeds1M),
+      annualIncome200k: Boolean(formData.annualIncome200k),
+      jointIncome300k: Boolean(formData.jointIncome300k),
+      corporateAssetsExceeds5M: Boolean(formData.corporateAssetsExceeds5M),
+      entityAccreditedOwnership: Boolean(formData.entityAccreditedOwnership),
+      finraLicense: formData.finraLicense || 'none', // 'series7' | 'series65' | 'series82' | 'none'
+      licenseNumber: formData.licenseNumber || '',
+      estimatedNetWorth: formData.estimatedNetWorth || '',
+      estimatedIncome: formData.estimatedIncome || '',
+      corporateAssets: formData.corporateAssets || '',
+      documents: formData.documents || [],
+      declarationsAcknowledged: Boolean(formData.declarationsAcknowledged),
+      consentToVerify: Boolean(formData.consentToVerify),
+      status: 'PENDING_REVIEW', // 'NOT_APPLIED' | 'PENDING_REVIEW' | 'VERIFIED' | 'REJECTED'
+      submittedAt: new Date().toISOString(),
+      reviewedAt: null,
+      reviewedBy: null,
+      rejectionReason: null
+    };
+
+    setInvestorVerifications(prev => {
+      const filtered = (prev || []).filter(v => v.borrowerId !== newReq.borrowerId);
+      return [newReq, ...filtered];
+    });
+
+    const auditRecord = {
+      id: `AUD-INV-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      actor: `${currentUser?.name || 'Marcus Vance'} (Borrower)`,
+      action: 'ACCREDITED_INVESTOR_APPLIED',
+      target: reqId,
+      details: `Submitted accredited investor verification request (${newReq.applicantType.toUpperCase()}, FINRA: ${newReq.finraLicense.toUpperCase()}). Attached ${newReq.documents.length} supporting documents.`,
+      severity: 'INFO'
+    };
+    setAuditLogs(prev => [auditRecord, ...(prev || [])]);
+
+    addToast('Verification Request Submitted', `Application ${reqId} received. Compliance team will review your accredited investor credentials.`, 'success');
+    return { success: true, verification: newReq };
+  };
+
+  const approveInvestorVerification = (verificationId) => {
+    let applicantName = '';
+    setInvestorVerifications(prev => prev.map(v => {
+      if (v.id === verificationId) {
+        applicantName = v.borrowerName;
+        return {
+          ...v,
+          status: 'VERIFIED',
+          reviewedAt: new Date().toISOString(),
+          reviewedBy: currentUser?.name || 'Victoria Sterling (Compliance Officer)',
+          rejectionReason: null
+        };
+      }
+      return v;
+    }));
+
+    const auditRecord = {
+      id: `AUD-INV-APP-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      actor: `${currentUser?.name || 'Victoria Sterling'} (Admin)`,
+      action: 'ACCREDITED_INVESTOR_APPROVED',
+      target: verificationId,
+      details: `Approved accredited investor credentials for ${applicantName || verificationId}. Verified Accredited Investor green-check badge issued.`,
+      severity: 'SUCCESS'
+    };
+    setAuditLogs(prev => [auditRecord, ...(prev || [])]);
+
+    addToast('Investor Approved', `Accredited investor credentials approved for ${applicantName || verificationId}. Green-check badge issued.`, 'success');
+    return { success: true };
+  };
+
+  const rejectInvestorVerification = (verificationId, reason = '') => {
+    let applicantName = '';
+    const rejectionNote = reason?.trim() || 'Supporting documentation does not satisfy SEC Rule 501 / FINRA qualification criteria.';
+
+    setInvestorVerifications(prev => prev.map(v => {
+      if (v.id === verificationId) {
+        applicantName = v.borrowerName;
+        return {
+          ...v,
+          status: 'REJECTED',
+          reviewedAt: new Date().toISOString(),
+          reviewedBy: currentUser?.name || 'Victoria Sterling (Compliance Officer)',
+          rejectionReason: rejectionNote
+        };
+      }
+      return v;
+    }));
+
+    const auditRecord = {
+      id: `AUD-INV-REJ-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      actor: `${currentUser?.name || 'Victoria Sterling'} (Admin)`,
+      action: 'ACCREDITED_INVESTOR_REJECTED',
+      target: verificationId,
+      details: `Declined accredited investor application for ${applicantName || verificationId}. Reason: "${rejectionNote}"`,
+      severity: 'WARNING'
+    };
+    setAuditLogs(prev => [auditRecord, ...(prev || [])]);
+
+    addToast('Investor Application Declined', `Accredited investor application declined with formal compliance note.`, 'warning');
+    return { success: true };
+  };
+
   return (
     <AppContext.Provider value={{
       isAuthenticated,
@@ -1560,10 +1842,15 @@ export const AppProvider = ({ children }) => {
       toasts,
       addToast,
       removeToast,
+      savedLeadIds,
+      toggleSaveLead,
+      isLeadSaved,
       createApplication,
       claimWorkingDeal,
       submitOffer,
       updateOffer,
+      withdrawOffer,
+      shareOfferWithBorrower,
       acceptOffer,
       advanceApplicationStatus,
       uploadDocument,
@@ -1578,7 +1865,12 @@ export const AppProvider = ({ children }) => {
       updateDistributionMode,
       updateRepRouting,
       assignOrReassignLead,
-      resetDemoData
+      resetDemoData,
+      investorVerifications,
+      getBorrowerInvestorStatus,
+      submitInvestorVerification,
+      approveInvestorVerification,
+      rejectInvestorVerification
     }}>
       {children}
     </AppContext.Provider>

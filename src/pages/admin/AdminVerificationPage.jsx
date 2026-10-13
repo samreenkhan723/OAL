@@ -16,7 +16,8 @@ import {
   AlertTriangle,
   Lock,
   Search,
-  Filter
+  Filter,
+  Award
 } from 'lucide-react';
 import { StatusBadge } from '../../components/common/StatusBadge';
 import { VerifyBadge } from '../../components/common/VerifyBadge';
@@ -60,10 +61,13 @@ export const AdminVerificationPage = () => {
     registeredUsers,
     approveUserAccount,
     rejectUserAccount,
-    addToast
+    addToast,
+    investorVerifications,
+    approveInvestorVerification,
+    rejectInvestorVerification
   } = useApp();
 
-  const [activeTab, setActiveTab] = useState('borrower'); // 'borrower' | 'lender' | 'rep'
+  const [activeTab, setActiveTab] = useState('borrower'); // 'borrower' | 'lender' | 'rep' | 'investor'
   const [selectedDoc, setSelectedDoc] = useState(null);
   const [actionNotes, setActionNotes] = useState('');
 
@@ -74,6 +78,14 @@ export const AdminVerificationPage = () => {
   );
   const [rejectionCustomNote, setRejectionCustomNote] = useState('');
 
+  // Investor verification modal states
+  const [selectedInvestorReq, setSelectedInvestorReq] = useState(null);
+  const [rejectingInvestorReq, setRejectingInvestorReq] = useState(null);
+  const [investorRejectionReason, setInvestorRejectionReason] = useState(
+    'Uploaded net worth or income documentation does not satisfy SEC Rule 501 threshold standards.'
+  );
+  const [investorRejectionCustomNote, setInvestorRejectionCustomNote] = useState('');
+
   // Approval confirmation modal state
   const [approvingUser, setApprovingUser] = useState(null);
 
@@ -81,7 +93,7 @@ export const AdminVerificationPage = () => {
   const [previewDoc, setPreviewDoc] = useState(null);
 
   // Filter state for applicants
-  const [statusFilter, setStatusFilter] = useState('ALL'); // 'ALL' | 'PENDING_APPROVAL' | 'ACTIVE' | 'REJECTED'
+  const [statusFilter, setStatusFilter] = useState('ALL'); // 'ALL' | 'PENDING_APPROVAL' | 'ACTIVE' | 'REJECTED' | 'PENDING_REVIEW' | 'VERIFIED'
   const [searchQuery, setSearchQuery] = useState('');
 
   // Handle document decision for Borrower KYC
@@ -149,6 +161,45 @@ export const AdminVerificationPage = () => {
     setRejectionCustomNote('');
   };
 
+  // Investor verification filtering and pending counts
+  const pendingInvestorsCount = (investorVerifications || []).filter(
+    (v) => v.status === 'PENDING_REVIEW'
+  ).length;
+
+  const filteredInvestors = (investorVerifications || []).filter((v) => {
+    if (statusFilter !== 'ALL' && v.status !== statusFilter) {
+      return false;
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      const matchesName = v.borrowerName?.toLowerCase().includes(q);
+      const matchesEmail = v.borrowerEmail?.toLowerCase().includes(q);
+      const matchesBusiness = v.businessName?.toLowerCase().includes(q);
+      const matchesType = v.applicantType?.toLowerCase().includes(q);
+      return matchesName || matchesEmail || matchesBusiness || matchesType;
+    }
+    return true;
+  });
+
+  const handleApproveInvestor = (reqId) => {
+    approveInvestorVerification(reqId);
+    setSelectedInvestorReq(null);
+  };
+
+  const handleConfirmInvestorRejection = (e) => {
+    e.preventDefault();
+    if (!rejectingInvestorReq) return;
+    const finalReason =
+      investorRejectionReason === 'OTHER'
+        ? investorRejectionCustomNote.trim() || 'Application rejected by compliance committee.'
+        : investorRejectionReason + (investorRejectionCustomNote.trim() ? ` — Note: ${investorRejectionCustomNote.trim()}` : '');
+
+    rejectInvestorVerification(rejectingInvestorReq.id, finalReason);
+    setRejectingInvestorReq(null);
+    setInvestorRejectionCustomNote('');
+    setSelectedInvestorReq(null);
+  };
+
   return (
     <div className="space-y-6">
       {/* Top Header */}
@@ -166,21 +217,21 @@ export const AdminVerificationPage = () => {
         </div>
       </div>
 
-      {/* 3 Primary Navigation Tabs */}
-      <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-1.5 flex flex-col sm:flex-row gap-1.5">
+      {/* 4 Compliance Navigation Tabs */}
+      <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-1.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1.5">
         <button
           onClick={() => {
             setActiveTab('borrower');
             setStatusFilter('ALL');
           }}
-          className={`flex-1 py-3 px-4 rounded-xl text-xs font-heading font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+          className={`py-3 px-4 rounded-xl text-xs font-heading font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
             activeTab === 'borrower'
               ? 'bg-[#002060] text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
           }`}
         >
           <FileText className="w-4 h-4 text-[#FFD200]" />
-          <span>1. Borrower KYC Documents</span>
+          <span>1. Borrower KYC</span>
           <span className={`text-[11px] px-2 py-0.5 rounded-full font-mono ${
             activeTab === 'borrower' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
           }`}>
@@ -193,14 +244,14 @@ export const AdminVerificationPage = () => {
             setActiveTab('lender');
             setStatusFilter('ALL');
           }}
-          className={`flex-1 py-3 px-4 rounded-xl text-xs font-heading font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+          className={`py-3 px-4 rounded-xl text-xs font-heading font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
             activeTab === 'lender'
               ? 'bg-[#002060] text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
           }`}
         >
           <Building2 className="w-4 h-4 text-[#00B0F0]" />
-          <span>2. Institutional Lender Applications</span>
+          <span>2. Institutional Lenders</span>
           {pendingLendersCount > 0 && (
             <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-mono font-bold animate-pulse">
               {pendingLendersCount} Pending
@@ -220,14 +271,14 @@ export const AdminVerificationPage = () => {
             setActiveTab('rep');
             setStatusFilter('ALL');
           }}
-          className={`flex-1 py-3 px-4 rounded-xl text-xs font-heading font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+          className={`py-3 px-4 rounded-xl text-xs font-heading font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
             activeTab === 'rep'
               ? 'bg-[#002060] text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
           }`}
         >
           <UserCheck className="w-4 h-4 text-emerald-400" />
-          <span>3. OAL Representative Applications</span>
+          <span>3. OAL Reps</span>
           {pendingRepsCount > 0 && (
             <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-mono font-bold animate-pulse">
               {pendingRepsCount} Pending
@@ -238,6 +289,33 @@ export const AdminVerificationPage = () => {
               activeTab === 'rep' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
             }`}>
               {repUsers.length}
+            </span>
+          )}
+        </button>
+
+        <button
+          onClick={() => {
+            setActiveTab('investor');
+            setStatusFilter('ALL');
+          }}
+          className={`py-3 px-4 rounded-xl text-xs font-heading font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            activeTab === 'investor'
+              ? 'bg-[#002060] text-white shadow-sm'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+          }`}
+        >
+          <Award className="w-4 h-4 text-emerald-400" />
+          <span>4. Accredited Investors</span>
+          {pendingInvestorsCount > 0 && (
+            <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-mono font-bold animate-pulse">
+              {pendingInvestorsCount} Pending
+            </span>
+          )}
+          {pendingInvestorsCount === 0 && (
+            <span className={`text-[11px] px-2 py-0.5 rounded-full font-mono ${
+              activeTab === 'investor' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
+            }`}>
+              {(investorVerifications || []).length}
             </span>
           )}
         </button>
@@ -752,6 +830,335 @@ export const AdminVerificationPage = () => {
       )}
 
       {/* ============================================================ */}
+      {/* SECTION 4: ACCREDITED INVESTOR VERIFICATION APPLICATIONS   */}
+      {/* ============================================================ */}
+      {activeTab === 'investor' && (
+        <div className="space-y-4">
+          {/* Filter Bar */}
+          <div className="bg-white rounded-2xl border border-slate-200/90 p-4 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2 flex-1 max-w-md">
+              <Search className="w-4 h-4 text-slate-400 shrink-0" />
+              <input
+                type="text"
+                placeholder="Search investor applications by name, entity, or email..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs outline-none focus:ring-1 focus:ring-[#0070C0]"
+              />
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Filter className="w-3.5 h-3.5 text-slate-400" />
+              <span className="text-slate-500 font-medium">Filter Status:</span>
+              <div className="inline-flex rounded-lg bg-slate-100 p-0.5">
+                {['ALL', 'PENDING_REVIEW', 'VERIFIED', 'REJECTED'].map((st) => (
+                  <button
+                    key={st}
+                    onClick={() => setStatusFilter(st)}
+                    className={`px-2.5 py-1 rounded-md text-[11px] font-bold transition-all cursor-pointer ${
+                      statusFilter === st
+                        ? 'bg-white text-[#002060] shadow-2xs'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    {st === 'ALL'
+                      ? 'All'
+                      : st === 'PENDING_REVIEW'
+                      ? 'Pending'
+                      : st === 'VERIFIED'
+                      ? 'Verified'
+                      : 'Rejected'}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* List of Investor Applications */}
+          <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
+            <div className="p-4 border-b border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
+              <span>
+                Accredited Investor Verification Queue ({filteredInvestors.length} Applications)
+              </span>
+              <span className="text-[#0070C0] font-bold">
+                SEC Rule 501(a) Qualification &amp; FINRA Credentialing
+              </span>
+            </div>
+
+            {filteredInvestors.length === 0 ? (
+              <div className="p-8 text-center text-xs text-slate-500">
+                No accredited investor verification requests found matching the selected filter criteria.
+              </div>
+            ) : (
+              <div className="divide-y divide-slate-100">
+                {filteredInvestors.map((req) => {
+                  const isPending = req.status === 'PENDING_REVIEW';
+                  const isVerified = req.status === 'VERIFIED';
+                  const isRejected = req.status === 'REJECTED';
+
+                  const typeLabel =
+                    req.applicantType === 'individual'
+                      ? 'Individual'
+                      : req.applicantType === 'joint'
+                      ? 'Joint / Spousal'
+                      : 'Corporate Entity';
+
+                  return (
+                    <div
+                      key={req.id}
+                      className="p-5 space-y-4 hover:bg-slate-50/50 transition-colors"
+                    >
+                      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        {/* Investor Details */}
+                        <div className="space-y-1.5 flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-xs font-mono font-bold text-slate-400">
+                              {req.id}
+                            </span>
+                            <span
+                              className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${
+                                isVerified
+                                  ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                  : isPending
+                                  ? 'bg-amber-50 text-amber-700 border-amber-200 animate-pulse'
+                                  : 'bg-rose-50 text-rose-700 border-rose-200'
+                              }`}
+                            >
+                              {isVerified
+                                ? 'VERIFIED ACCREDITED INVESTOR'
+                                : isPending
+                                ? 'PENDING COMPLIANCE REVIEW'
+                                : 'REJECTED'}
+                            </span>
+                            <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-[#0070C0] border border-blue-100">
+                              {typeLabel}
+                            </span>
+                            {req.finraCredentials?.series7 && (
+                              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200">
+                                Series 7
+                              </span>
+                            )}
+                            {req.finraCredentials?.series65 && (
+                              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200">
+                                Series 65
+                              </span>
+                            )}
+                            {req.finraCredentials?.series82 && (
+                              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200">
+                                Series 82
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="flex flex-wrap items-baseline gap-2">
+                            <h4 className="text-sm font-bold text-slate-900">
+                              {req.borrowerName}
+                            </h4>
+                            <span className="text-xs text-slate-500 font-medium">
+                              &bull; {req.businessName || 'Borrower Principal'}
+                            </span>
+                            <span className="text-xs text-slate-400">({req.borrowerEmail})</span>
+                          </div>
+
+                          {/* Financial Declarations Summary */}
+                          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-600 pt-0.5">
+                            {req.applicantType === 'individual' && (
+                              <>
+                                <span>
+                                  Net Worth (excl. residence):{' '}
+                                  <strong className="text-slate-800">
+                                    {req.financialData?.netWorthExcludingHome
+                                      ? `$${Number(req.financialData.netWorthExcludingHome).toLocaleString()}`
+                                      : 'Not specified'}
+                                  </strong>
+                                </span>
+                                <span>
+                                  2024 / 2025 Income:{' '}
+                                  <strong className="text-slate-800">
+                                    ${Number(req.financialData?.individualIncome2024 || 0).toLocaleString()} / ${Number(req.financialData?.individualIncome2025 || 0).toLocaleString()}
+                                  </strong>
+                                </span>
+                              </>
+                            )}
+
+                            {req.applicantType === 'joint' && (
+                              <>
+                                <span>
+                                  Spouse:{' '}
+                                  <strong className="text-slate-800">
+                                    {req.financialData?.spouseName || 'Not specified'}
+                                  </strong>
+                                </span>
+                                <span>
+                                  Joint 2-Yr Income:{' '}
+                                  <strong className="text-slate-800">
+                                    ${Number(req.financialData?.jointIncome2024 || 0).toLocaleString()} / ${Number(req.financialData?.jointIncome2025 || 0).toLocaleString()}
+                                  </strong>
+                                </span>
+                              </>
+                            )}
+
+                            {req.applicantType === 'corporate' && (
+                              <>
+                                <span>
+                                  Structure:{' '}
+                                  <strong className="text-slate-800">
+                                    {req.financialData?.corporateStructure || 'Entity'}
+                                  </strong>
+                                </span>
+                                <span>
+                                  Total Assets:{' '}
+                                  <strong className="text-slate-800">
+                                    ${Number(req.financialData?.corporateAssets || 0).toLocaleString()}
+                                  </strong>
+                                </span>
+                                <span>
+                                  100% Accredited Equity Owners:{' '}
+                                  <strong className="text-slate-800">
+                                    {req.financialData?.entityOwnershipAccredited ? 'Yes' : 'No'}
+                                  </strong>
+                                </span>
+                              </>
+                            )}
+
+                            <span className="text-slate-400">
+                              Submitted:{' '}
+                              {req.submittedAt
+                                ? new Date(req.submittedAt).toLocaleDateString()
+                                : 'Recent'}
+                            </span>
+                          </div>
+
+                          {isRejected && req.rejectionReason && (
+                            <div className="text-xs text-rose-700 bg-rose-50 border border-rose-200 rounded-lg p-2 mt-1">
+                              <strong>Rejection Determination:</strong> {req.rejectionReason}
+                            </div>
+                          )}
+                          {isVerified && (
+                            <div className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg p-2 mt-1 flex items-center gap-1.5">
+                              <CheckCircle className="w-3.5 h-3.5 shrink-0 text-emerald-600" />
+                              <span>
+                                Approved by {req.reviewedBy || 'Admin Compliance Committee'} on{' '}
+                                {req.reviewedAt
+                                  ? new Date(req.reviewedAt).toLocaleDateString()
+                                  : 'Recent'}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex flex-wrap items-center gap-2 shrink-0">
+                          <button
+                            type="button"
+                            onClick={() => setSelectedInvestorReq(req)}
+                            className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-100 text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5"
+                          >
+                            <Eye className="w-3.5 h-3.5 text-[#0070C0]" />
+                            <span>Inspect Declarations</span>
+                          </button>
+
+                          {isPending && (
+                            <>
+                              <button
+                                type="button"
+                                onClick={() => handleApproveInvestor(req.id)}
+                                className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-2xs cursor-pointer flex items-center gap-1.5"
+                              >
+                                <Check className="w-3.5 h-3.5" />
+                                <span>Approve</span>
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setRejectingInvestorReq(req);
+                                  setInvestorRejectionCustomNote('');
+                                }}
+                                className="px-3 py-1.5 rounded-lg border border-rose-200 text-rose-600 hover:bg-rose-50 text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5"
+                              >
+                                <XCircle className="w-3.5 h-3.5" />
+                                <span>Reject</span>
+                              </button>
+                            </>
+                          )}
+
+                          {isVerified && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setRejectingInvestorReq(req);
+                                setInvestorRejectionReason('Accreditation revoked following periodic compliance review.');
+                                setInvestorRejectionCustomNote('');
+                              }}
+                              className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-rose-50 hover:text-rose-700 text-xs font-semibold transition-colors cursor-pointer"
+                            >
+                              Revoke / Reject
+                            </button>
+                          )}
+
+                          {isRejected && (
+                            <button
+                              type="button"
+                              onClick={() => handleApproveInvestor(req.id)}
+                              className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-emerald-50 hover:text-emerald-700 text-xs font-semibold transition-colors cursor-pointer"
+                            >
+                              Re-evaluate &amp; Approve
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Supporting Documents Strip */}
+                      <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <FileCheck2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                          <span className="font-bold text-slate-700">Uploaded Verification Documents:</span>
+                          {req.documents && req.documents.length > 0 ? (
+                            req.documents.map((d, i) => (
+                              <span
+                                key={i}
+                                className="inline-flex items-center gap-1 font-mono text-slate-700 bg-white px-2 py-0.5 rounded border border-slate-200"
+                              >
+                                <FileText className="w-3 h-3 text-[#0070C0]" />
+                                {d.name} ({formatDocumentSize(d.size)})
+                              </span>
+                            ))
+                          ) : (
+                            <span className="text-slate-400 italic">No files attached</span>
+                          )}
+                        </div>
+
+                        {req.documents && req.documents.length > 0 && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const d = req.documents[0];
+                              setPreviewDoc({
+                                name: d.name,
+                                docType: d.type === 'cpaCertification' ? 'CPA / Attorney Certification' : d.type === 'finraLicense' ? 'FINRA License Proof' : 'Tax Return / Financial Proof',
+                                size: d.size,
+                                uploadDate: d.uploadDate || req.submittedAt,
+                                applicantName: req.borrowerName,
+                                applicantRole: 'Accredited Investor Applicant'
+                              });
+                            }}
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0070C0] hover:text-[#002060] transition-colors cursor-pointer shrink-0"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>Preview Primary Doc</span>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================ */}
       {/* MODAL 1: CONFIRM APPROVAL                                    */}
       {/* ============================================================ */}
       {approvingUser && (
@@ -991,6 +1398,363 @@ export const AdminVerificationPage = () => {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* ============================================================ */}
+      {/* MODAL 4: INSPECT ACCREDITED INVESTOR APPLICATION             */}
+      {/* ============================================================ */}
+      {selectedInvestorReq && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 overflow-y-auto">
+          <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-2xl w-full p-6 space-y-5 my-8 max-h-[90vh] overflow-y-auto">
+            {/* Header */}
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                  <Award className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-[#002060]">
+                    Accredited Investor Verification File
+                  </h3>
+                  <p className="text-xs text-slate-500">
+                    Application #{selectedInvestorReq.id} &bull; SEC Rule 501 Compliance Review
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedInvestorReq(null)}
+                className="text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Applicant Profile */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs">
+              <div>
+                <span className="text-slate-400 block text-[11px]">Applicant Name</span>
+                <span className="font-bold text-slate-900">{selectedInvestorReq.borrowerName}</span>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[11px]">Commercial Entity</span>
+                <span className="font-bold text-slate-900">{selectedInvestorReq.businessName || 'N/A'}</span>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[11px]">Email Address</span>
+                <span className="font-mono text-slate-800">{selectedInvestorReq.borrowerEmail}</span>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[11px]">Applicant Classification</span>
+                <span className="font-bold capitalize text-[#0070C0]">
+                  {selectedInvestorReq.applicantType} Applicant
+                </span>
+              </div>
+            </div>
+
+            {/* Financial Declarations */}
+            <div className="space-y-2">
+              <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <span>Financial Qualification Declarations</span>
+              </h4>
+              <div className="border border-slate-200 rounded-xl p-3.5 bg-white space-y-2.5 text-xs">
+                {selectedInvestorReq.applicantType === 'individual' && (
+                  <>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-600">Net Worth (Excluding Primary Residence):</span>
+                      <span className="font-bold text-slate-900 font-mono">
+                        ${Number(selectedInvestorReq.financialData?.netWorthExcludingHome || 0).toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-600">2024 Individual Annual Income:</span>
+                      <span className="font-bold text-slate-900 font-mono">
+                        ${Number(selectedInvestorReq.financialData?.individualIncome2024 || 0).toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-600">2025 Individual Annual Income:</span>
+                      <span className="font-bold text-slate-900 font-mono">
+                        ${Number(selectedInvestorReq.financialData?.individualIncome2025 || 0).toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="text-[11px] text-emerald-700 bg-emerald-50 rounded-lg p-2 font-medium">
+                      &check; Self-declared qualification standard: Net worth &gt; $1,000,000 or annual income &gt; $200,000 in each of the past 2 years.
+                    </div>
+                  </>
+                )}
+
+                {selectedInvestorReq.applicantType === 'joint' && (
+                  <>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-600">Spouse Full Legal Name:</span>
+                      <span className="font-bold text-slate-900">
+                        {selectedInvestorReq.financialData?.spouseName || 'Not specified'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-600">2024 Joint Annual Income:</span>
+                      <span className="font-bold text-slate-900 font-mono">
+                        ${Number(selectedInvestorReq.financialData?.jointIncome2024 || 0).toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-600">2025 Joint Annual Income:</span>
+                      <span className="font-bold text-slate-900 font-mono">
+                        ${Number(selectedInvestorReq.financialData?.jointIncome2025 || 0).toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="text-[11px] text-emerald-700 bg-emerald-50 rounded-lg p-2 font-medium">
+                      &check; Self-declared qualification standard: Joint spousal annual income &gt; $300,000 in each of the past 2 years.
+                    </div>
+                  </>
+                )}
+
+                {selectedInvestorReq.applicantType === 'corporate' && (
+                  <>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-600">Corporate Structure:</span>
+                      <span className="font-bold text-slate-900">
+                        {selectedInvestorReq.financialData?.corporateStructure || 'Entity'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-600">Total Qualifying Assets:</span>
+                      <span className="font-bold text-slate-900 font-mono">
+                        ${Number(selectedInvestorReq.financialData?.corporateAssets || 0).toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-600">100% Accredited Equity Ownership:</span>
+                      <span className="font-bold text-slate-900">
+                        {selectedInvestorReq.financialData?.entityOwnershipAccredited ? 'Affirmed' : 'Not Affirmed'}
+                      </span>
+                    </div>
+                    <div className="text-[11px] text-emerald-700 bg-emerald-50 rounded-lg p-2 font-medium">
+                      &check; Self-declared qualification standard: Corporate entity assets &gt; $5,000,000 or 100% accredited equity owners.
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* FINRA Licensing */}
+            <div className="space-y-2">
+              <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                FINRA Professional Credentials
+              </h4>
+              <div className="flex flex-wrap gap-2 text-xs">
+                {selectedInvestorReq.finraCredentials?.series7 && (
+                  <span className="px-3 py-1 rounded-lg bg-purple-50 text-purple-700 border border-purple-200 font-bold">
+                    Series 7 Licensed
+                  </span>
+                )}
+                {selectedInvestorReq.finraCredentials?.series65 && (
+                  <span className="px-3 py-1 rounded-lg bg-purple-50 text-purple-700 border border-purple-200 font-bold">
+                    Series 65 Licensed
+                  </span>
+                )}
+                {selectedInvestorReq.finraCredentials?.series82 && (
+                  <span className="px-3 py-1 rounded-lg bg-purple-50 text-purple-700 border border-purple-200 font-bold">
+                    Series 82 Licensed
+                  </span>
+                )}
+                {selectedInvestorReq.finraCredentials?.none && (
+                  <span className="px-3 py-1 rounded-lg bg-slate-100 text-slate-600 border border-slate-200">
+                    No Securities Licenses Held
+                  </span>
+                )}
+                {selectedInvestorReq.finraCredentials?.crdNumber && (
+                  <span className="px-3 py-1 rounded-lg bg-slate-50 text-slate-700 border border-slate-200 font-mono">
+                    CRD / License #{selectedInvestorReq.finraCredentials.crdNumber}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Uploaded Documents */}
+            <div className="space-y-2">
+              <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                Attached Verification Documentation ({selectedInvestorReq.documents?.length || 0})
+              </h4>
+              <div className="space-y-2">
+                {selectedInvestorReq.documents && selectedInvestorReq.documents.length > 0 ? (
+                  selectedInvestorReq.documents.map((doc, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between text-xs"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <FileCheck2 className="w-4 h-4 text-emerald-600" />
+                        <div>
+                          <p className="font-bold text-slate-800">{doc.name}</p>
+                          <p className="text-[11px] text-slate-400 capitalize">
+                            Type: {doc.type || 'Certification Document'} &bull; {formatDocumentSize(doc.size)}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPreviewDoc({
+                            name: doc.name,
+                            docType: doc.type,
+                            size: doc.size,
+                            uploadDate: doc.uploadDate || selectedInvestorReq.submittedAt,
+                            applicantName: selectedInvestorReq.borrowerName,
+                            applicantRole: 'Accredited Investor Applicant'
+                          })
+                        }
+                        className="text-xs font-bold text-[#0070C0] hover:text-[#002060] flex items-center gap-1 cursor-pointer"
+                      >
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>Preview</span>
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-xs text-slate-400 italic">No files attached.</p>
+                )}
+              </div>
+            </div>
+
+            {/* Consent & Audit Trail */}
+            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-600 space-y-1">
+              <div className="font-bold text-slate-800 flex items-center gap-1">
+                <Check className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Electronic Consent &amp; Legal Attestation Verified</span>
+              </div>
+              <p>Applicant signed under penalty of perjury &bull; Third-party CPA verification consented.</p>
+              <p className="font-mono text-slate-400 text-[10px]">
+                Submission Timestamp: {selectedInvestorReq.submittedAt || 'N/A'} &bull; Client IP: {selectedInvestorReq.consent?.ipAddress || '127.0.0.1'}
+              </p>
+            </div>
+
+            {/* Action Footer */}
+            <div className="flex items-center justify-between pt-3 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setSelectedInvestorReq(null)}
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
+              >
+                Close File
+              </button>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setRejectingInvestorReq(selectedInvestorReq);
+                    setInvestorRejectionCustomNote('');
+                  }}
+                  className="px-4 py-2 rounded-xl border border-rose-200 text-rose-600 hover:bg-rose-50 text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5"
+                >
+                  <XCircle className="w-4 h-4" />
+                  <span>Reject</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleApproveInvestor(selectedInvestorReq.id)}
+                  className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold shadow-sm transition-all cursor-pointer flex items-center gap-1.5"
+                >
+                  <CheckCircle className="w-4 h-4" />
+                  <span>Approve Accredited Status</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================ */}
+      {/* MODAL 5: REJECT ACCREDITED INVESTOR APPLICATION               */}
+      {/* ============================================================ */}
+      {rejectingInvestorReq && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4">
+          <form
+            onSubmit={handleConfirmInvestorRejection}
+            className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full p-6 space-y-5"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0">
+                <XCircle className="w-7 h-7" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-[#002060]">
+                  Reject Accredited Investor Request
+                </h3>
+                <p className="text-xs text-slate-500">
+                  {rejectingInvestorReq.borrowerName} ({rejectingInvestorReq.id})
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  Compliance Rejection Preset
+                </label>
+                <select
+                  value={investorRejectionReason}
+                  onChange={(e) => setInvestorRejectionReason(e.target.value)}
+                  className="w-full p-2.5 text-xs border border-slate-200 rounded-xl bg-white focus:ring-2 focus:ring-rose-500 outline-none"
+                >
+                  <option value="Uploaded net worth or income documentation does not satisfy SEC Rule 501 threshold standards.">
+                    Uploaded net worth or income documentation does not satisfy SEC Rule 501 threshold standards
+                  </option>
+                  <option value="CPA / Attorney certification letter is missing, expired, or unverifiable.">
+                    CPA / Attorney certification letter is missing, expired, or unverifiable
+                  </option>
+                  <option value="FINRA Central Registration Depository (CRD) credentials could not be verified.">
+                    FINRA Central Registration Depository (CRD) credentials could not be verified
+                  </option>
+                  <option value="Corporate balance sheet does not reflect $5,000,000+ in qualifying non-residential assets.">
+                    Corporate balance sheet does not reflect $5,000,000+ in qualifying non-residential assets
+                  </option>
+                  <option value="OTHER">Other / Custom Determination</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  Detailed Notes for Applicant (Optional)
+                </label>
+                <textarea
+                  rows={3}
+                  value={investorRejectionCustomNote}
+                  onChange={(e) => setInvestorRejectionCustomNote(e.target.value)}
+                  placeholder="Provide guidance that will appear on the applicant's Investment IQ status portal..."
+                  className="w-full p-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="p-3 bg-rose-50/80 rounded-xl border border-rose-200 text-[11px] text-rose-800 flex items-start gap-2">
+              <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+              <span>
+                The applicant will receive a notice in their Investment IQ dashboard with this compliance explanation and the ability to submit corrective documents.
+              </span>
+            </div>
+
+            <div className="flex items-center justify-end gap-3 pt-2">
+              <button
+                type="button"
+                onClick={() => setRejectingInvestorReq(null)}
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-extrabold shadow-sm transition-all cursor-pointer flex items-center gap-1.5"
+              >
+                <XCircle className="w-4 h-4" />
+                <span>Confirm Rejection</span>
+              </button>
+            </div>
+          </form>
         </div>
       )}
     </div>
