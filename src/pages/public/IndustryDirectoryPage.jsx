@@ -29,7 +29,14 @@ import {
   Smile,
   Container,
   Landmark,
-  Hammer
+  Hammer,
+  Hotel,
+  HeartPulse,
+  Clapperboard,
+  Car,
+  GraduationCap,
+  Sprout,
+  Zap
 } from 'lucide-react';
 
 export const IndustryDirectoryPage = () => {
@@ -50,6 +57,16 @@ export const IndustryDirectoryPage = () => {
       case 'Heart': return Heart;
       case 'Cpu': return Cpu;
       case 'ShoppingBag': return ShoppingBag;
+      case 'Hotel': return Hotel;
+      case 'HeartPulse': return HeartPulse;
+      case 'Clapperboard': return Clapperboard;
+      case 'Car': return Car;
+      case 'GraduationCap': return GraduationCap;
+      case 'Sprout': return Sprout;
+      case 'Hammer': return Hammer;
+      case 'Zap': return Zap;
+      case 'Landmark': return Landmark;
+      case 'UtensilsCrossed': return UtensilsCrossed;
       default: return Building2;
     }
   };

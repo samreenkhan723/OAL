@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { LOAN_PROGRAMS } from '../../data/loanPrograms';
+import { LOAN_PROGRAMS, ALL_LOAN_PROGRAMS } from '../../data/loanPrograms';
 import {
   FileText,
   DollarSign,
@@ -26,17 +26,19 @@ export const ApplicationWizard = () => {
   const [searchParams] = useSearchParams();
   const programParam = searchParams.get('program');
 
+  const availablePrograms = ALL_LOAN_PROGRAMS || LOAN_PROGRAMS;
+
   const [currentStep, setCurrentStep] = useState(1);
   const [programFilter, setProgramFilter] = useState(() => {
     if (programParam) {
-      const match = LOAN_PROGRAMS.find(p => p.id === programParam || p.slug === programParam);
+      const match = availablePrograms.find(p => p.id === programParam || p.slug === programParam);
       if (match?.isIndustryProgram) return 'industry';
     }
     return 'all';
   });
   const [formData, setFormData] = useState(() => {
     const matched = programParam
-      ? LOAN_PROGRAMS.find(p => p.id === programParam || p.slug === programParam)
+      ? availablePrograms.find(p => p.id === programParam || p.slug === programParam)
       : null;
     const initialProg = matched || LOAN_PROGRAMS[0];
 
@@ -414,7 +416,7 @@ export const ApplicationWizard = () => {
                       programFilter === 'all' ? 'bg-white text-blue-700 shadow-xs font-bold' : 'text-slate-600'
                     }`}
                   >
-                    All ({LOAN_PROGRAMS.length})
+                    All ({availablePrograms.length})
                   </button>
                   <button
                     type="button"
@@ -438,7 +440,7 @@ export const ApplicationWizard = () => {
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-h-72 overflow-y-auto p-1.5 border border-slate-200/80 rounded-xl bg-slate-50/30">
-                {LOAN_PROGRAMS.filter(prog => {
+                {availablePrograms.filter(prog => {
                   if (programFilter === 'industry') return prog.isIndustryProgram;
                   if (programFilter === 'specialty') return !prog.isIndustryProgram;
                   return true;

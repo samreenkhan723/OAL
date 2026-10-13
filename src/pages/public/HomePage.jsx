@@ -93,7 +93,7 @@ export const HomePage = () => {
           subtitle: 'Commercial Fleet, Semis & Operating Lines',
           tags: ['Semi-Truck Purchases', 'Reefer Trailers']
         };
-      case 'hospitality':
+      case 'hotel-motel-airbnb':
         return {
           image: '/images/loan_hospitality.jpg',
           badge: 'HOTEL & AIRBNB',
@@ -204,6 +204,107 @@ export const HomePage = () => {
           tags: ['Inventory Lines', 'Storefront Modernization']
         };
 
+      // 11 New Loans by Industry (Strictly per DOCX specifications)
+      case 'hospitality':
+        return {
+          image: '/images/industry_hospitality.jpg',
+          badge: 'HOTEL & HOSPITALITY',
+          badgeColor: 'bg-amber-50 text-amber-900 border-amber-300 font-bold',
+          scope: '$25,000 – $500M+ • PIP & Renovation',
+          subtitle: 'Hotels, Motels, Resorts & Guest Dining Buildouts',
+          tags: ['PIP Renovations', 'Hotel Acquisitions']
+        };
+      case 'healthcare':
+        return {
+          image: '/images/industry_healthcare.jpg',
+          badge: 'HEALTHCARE & MEDICAL',
+          badgeColor: 'bg-emerald-50 text-emerald-900 border-emerald-300 font-bold',
+          scope: '$25,000 – $500M+ • Practice Capital',
+          subtitle: 'Dental Practices, Urgent Care & Ambulatory Centers',
+          tags: ['Medical Equipment', 'Practice Expansion']
+        };
+      case 'financial-services':
+        return {
+          image: '/images/industry_financial_services.jpg',
+          badge: 'FINANCIAL SERVICES',
+          badgeColor: 'bg-slate-100 text-slate-800 border-slate-300 font-bold',
+          scope: '$25,000 – $500M+ • Growth Capital',
+          subtitle: 'Fintech Platforms, Banks & Wealth Advisory',
+          tags: ['Fintech Infrastructure', 'Operating Liquidity']
+        };
+      case 'entertainment':
+        return {
+          image: '/images/industry_entertainment.jpg',
+          badge: 'ENTERTAINMENT & MEDIA',
+          badgeColor: 'bg-purple-50 text-purple-900 border-purple-300 font-bold',
+          scope: '$25,000 – $500M+ • Production Debt',
+          subtitle: 'Film Production, Music Studios & Event Venues',
+          tags: ['Production Costs', 'Talent & Venues']
+        };
+      case 'food-beverage':
+        return {
+          image: '/images/industry_food_beverage.jpg',
+          badge: 'FOOD & BEVERAGE',
+          badgeColor: 'bg-orange-50 text-orange-900 border-orange-300 font-bold',
+          scope: '$25,000 – $500M+ • Dining Capital',
+          subtitle: 'Restaurants, Cafés, Bars & Commercial Bakeries',
+          tags: ['Kitchen Equipment', 'Restaurant Expansion']
+        };
+      case 'automotive':
+        return {
+          image: '/images/industry_automotive.jpg',
+          badge: 'AUTOMOTIVE & FLEET',
+          badgeColor: 'bg-sky-50 text-[#0070C0] border-sky-300 font-bold',
+          scope: '$25,000 – $500M+ • Inventory & Tools',
+          subtitle: 'Dealerships, Repair Centers & Car Washes',
+          tags: ['Floor Plan Inventory', 'Diagnostic Machinery']
+        };
+      case 'energy':
+        return {
+          image: '/images/industry_energy.jpg',
+          badge: 'ENERGY & RENEWABLES',
+          badgeColor: 'bg-yellow-50 text-yellow-900 border-yellow-300 font-bold',
+          scope: '$50,000 – $500M+ • Project Financing',
+          subtitle: 'Commercial Solar, Wind Farms & Infrastructure',
+          tags: ['Solar & Wind Projects', 'Grid Infrastructure']
+        };
+      case 'education':
+        return {
+          image: '/images/industry_education.jpg',
+          badge: 'EDUCATION & EDTECH',
+          badgeColor: 'bg-blue-50 text-[#002060] border-blue-300 font-bold',
+          scope: '$25,000 – $500M+ • Campus Expansion',
+          subtitle: 'Private Academies, Vocational Schools & EdTech',
+          tags: ['Campus Expansion', 'Classroom Tech']
+        };
+      case 'construction':
+        return {
+          image: '/images/industry_construction.jpg',
+          badge: 'CONSTRUCTION & TRADES',
+          badgeColor: 'bg-amber-50 text-amber-900 border-amber-300 font-bold',
+          scope: '$50,000 – $500M+ • Project Financing',
+          subtitle: 'General Contractors, Civil Works & Specialty Trades',
+          tags: ['Heavy Equipment', 'Material & Payroll']
+        };
+      case 'ecommerce':
+        return {
+          image: '/images/industry_ecommerce.jpg',
+          badge: 'E-COMMERCE & DTC',
+          badgeColor: 'bg-indigo-50 text-indigo-900 border-indigo-300 font-bold',
+          scope: '$15,000 – $500M+ • Inventory & Ads',
+          subtitle: 'Online Retailers, DTC Brands & Amazon Sellers',
+          tags: ['Bulk Inventory', 'Digital Marketing']
+        };
+      case 'agriculture':
+        return {
+          image: '/images/industry_agriculture.jpg',
+          badge: 'AGRICULTURE & FARMING',
+          badgeColor: 'bg-emerald-50 text-emerald-900 border-emerald-300 font-bold',
+          scope: '$25,000 – $500M+ • Seasonal Credit',
+          subtitle: 'Crop Farms, Livestock, Dairy & Agribusinesses',
+          tags: ['Operating Inputs', 'Farm Machinery']
+        };
+
       default:
         return {
           image: '/images/loan_franchise.jpg',
@@ -236,6 +337,28 @@ export const HomePage = () => {
         return 'Apply for Technology Loans';
       case 'retail':
         return 'Apply for Retail Loans';
+      case 'hospitality':
+        return 'Apply for Hospitality Loans';
+      case 'healthcare':
+        return 'Apply for Healthcare Loans';
+      case 'financial-services':
+        return 'Apply for Financial Services Loans';
+      case 'entertainment':
+        return 'Apply for Entertainment Loans';
+      case 'food-beverage':
+        return 'Apply for Food & Beverage Loans';
+      case 'automotive':
+        return 'Apply for Automotive Loans';
+      case 'energy':
+        return 'Apply for Energy Loans';
+      case 'education':
+        return 'Apply for Education Loans';
+      case 'construction':
+        return 'Apply for Construction Loans';
+      case 'ecommerce':
+        return 'Apply for E-commerce Loans';
+      case 'agriculture':
+        return 'Apply for Agriculture Loans';
       default:
         return 'Apply for Commercial Loans';
     }
@@ -294,9 +417,9 @@ export const HomePage = () => {
                 </p>
               </div>
 
-              {/* Authoritative Body Description (WCAG AA Compliant Slate-700) */}
+              {/* Authoritative Body Description strictly per client requirement */}
               <p className="text-sm sm:text-base text-slate-700 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
-                Direct access to institutional commercial underwriters. Protect your credit under <strong className="text-[#002060] font-bold">Rule FR-08</strong> (maximum 3 concurrent lenders), calculate your proprietary <strong className="text-[#002060] font-bold">180-Point Investment IQ™</strong>, and close deals with dedicated OAL Representative mediation.
+                OPM ASAP Loans (OAL Network) gives businesses access to capital for major initiatives while preserving cash reserves and supporting growth. It can be tailored to fund equipment purchases, cover operating costs, or expand product lines. Join the OAL Network to access forty seven plus (47+) commercial lenders looking forward to helping you fund your business, project or your next Fix and Flip Loan.
               </p>
 
               {/* Action Buttons: High-Conversion Yellow Primary */}
@@ -588,7 +711,7 @@ export const HomePage = () => {
           </h2>
           
           <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
-            Purpose-built commercial debt structures tailored to the unique business models, equipment needs, and cash flow cycles of 9 key industry sectors.
+            Purpose-built commercial debt structures tailored to the unique business models, equipment needs, and cash flow cycles of 20 key industry sectors.
           </p>
         </div>
 
@@ -679,11 +802,136 @@ export const HomePage = () => {
             to="/industries"
             className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-white border-2 border-slate-200 hover:border-[#0070C0] text-sm font-bold text-[#002060] hover:text-[#0070C0] shadow-xs transition-all"
           >
-            <span>Explore All 9 Industry Sectors Directory</span>
+            <span>Explore All 20 Industry Sectors Directory</span>
             <ArrowRight className="w-4 h-4 text-[#0070C0]" />
           </Link>
         </div>
 
+      </section>
+
+      {/* 2C. BAD CREDIT LOAN APPROVAL PROGRAMS & SMALL BUSINESS CAPITAL — STRICTLY PER CLIENT DOC */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#001744] via-[#002060] to-[#003882] text-white p-6 sm:p-10 lg:p-12 shadow-2xl border-2 border-[#0070C0]/50">
+          
+          {/* Ambient Lighting */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#00B0F0]/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#FFD200]/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Left Content Area (8 Columns) */}
+            <div className="lg:col-span-8 space-y-4 sm:space-y-5 text-center lg:text-left">
+              
+              {/* Highlight Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFD200] text-[#002060] font-black text-xs uppercase tracking-wider shadow-sm border border-amber-300">
+                <Sparkles className="w-3.5 h-3.5 text-[#002060]" />
+                <span>We Also Provide Bad Credit Loan Approval Programs</span>
+              </div>
+
+              {/* Dominant Heading & Subtitle from Client Doc Lines 14-15 */}
+              <div className="space-y-2">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-white tracking-tight">
+                  Bad Credit Loan Approval Programs
+                </h2>
+                <p className="text-base sm:text-lg font-bold text-[#00B0F0] tracking-tight">
+                  Commercial Lending Programs that provide loans for all types of businesses and funding needs.
+                </p>
+              </div>
+
+              {/* Exact Client Doc Text Line 16 */}
+              <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal max-w-2xl mx-auto lg:mx-0">
+                The OAL Network gives small businesses access to larger amounts of capital for specific needs, such as equipment or real estate purchases, often with flexible repayment terms. This financing helps the business owners improve cash flow, fund growth, and keep operations stable.
+              </p>
+
+              {/* 3 Key Benefits from Client Copy */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-left">
+                <div className="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15">
+                  <div className="flex items-center gap-2 text-[#FFD200] font-extrabold text-xs mb-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#FFD200]" />
+                    <span>Flexible Terms</span>
+                  </div>
+                  <p className="text-xs text-slate-300">Repayment schedules tailored to operational cash flows.</p>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15">
+                  <div className="flex items-center gap-2 text-[#FFD200] font-extrabold text-xs mb-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#FFD200]" />
+                    <span>Higher Capital Limits</span>
+                  </div>
+                  <p className="text-xs text-slate-300">Larger loan amounts for equipment and commercial real estate.</p>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15">
+                  <div className="flex items-center gap-2 text-[#FFD200] font-extrabold text-xs mb-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#FFD200]" />
+                    <span>Stable Operations</span>
+                  </div>
+                  <p className="text-xs text-slate-300">Preserve day-to-day liquidity while expanding business initiatives.</p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
+                <Link
+                  to="/apply?program=bad-credit"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-extrabold text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] shadow-md shadow-amber-400/25 transition-all hover:scale-[1.01] active:scale-95 cursor-pointer border border-amber-300"
+                >
+                  <span>Apply for Bad Credit Loan</span>
+                  <ArrowRight className="w-4 h-4 text-[#002060]" />
+                </Link>
+
+                <Link
+                  to="/loan-programs/bad-credit"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all"
+                >
+                  <span>View Program Requirements</span>
+                  <ChevronRight className="w-4 h-4 text-slate-300" />
+                </Link>
+              </div>
+
+            </div>
+
+            {/* Right Visual Box (4 Columns) */}
+            <div className="lg:col-span-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-white space-y-4 shadow-xl">
+              <div className="flex items-center gap-2 pb-3 border-b border-white/15">
+                <ShieldCheck className="w-5 h-5 text-[#FFD200]" />
+                <h4 className="font-bold text-xs uppercase tracking-wider text-white">Underwriting Highlights</h4>
+              </div>
+
+              <div className="space-y-3 text-xs">
+                <div className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-[#00B0F0] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-white block">Credit Score Inclusivity</span>
+                    <span className="text-slate-300 text-[11px]">Programs available for past challenges, liens, or emerging credit files.</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-[#00B0F0] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-white block">Cash-Flow Focused</span>
+                    <span className="text-slate-300 text-[11px]">Underwriting evaluates business revenue and real potential, not just scores.</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-[#00B0F0] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-white block">Speed of Funding</span>
+                    <span className="text-slate-300 text-[11px]">Decisions in 24–72 hours with dedicated representative mediation.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-white/15 text-center">
+                <span className="text-[11px] text-slate-300 block uppercase">Funding Scope</span>
+                <span className="text-lg font-black text-[#FFD200]">$10,000 to $500 Million+</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </section>
 
       {/* 3. USA PATRIOT ACT MANDATORY NOTICE — FROM CLIENT BLUEPRINT */}
