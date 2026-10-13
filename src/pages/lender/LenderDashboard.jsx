@@ -38,13 +38,13 @@ export const LenderDashboard = () => {
   const [isSyncing, setIsSyncing] = useState(false);
   const [lastSyncTime, setLastSyncTime] = useState('2 mins ago');
 
-  const qualifiedLeads = applications.filter(
+  const qualifiedLeads = (applications || []).filter(
     a => a.status === 'QUALIFIED' || a.status === 'WORKING_DEAL' || a.status === 'OFFER_RECEIVED'
   );
-  const myWorkingDeals = applications.filter(
-    a => a.workingDeals?.claims?.some(c => c.lenderId === currentUser.id)
+  const myWorkingDeals = (applications || []).filter(
+    a => a.workingDeals?.claims?.some(c => c.lenderId === (currentUser?.id || 'usr_lender_01'))
   );
-  const myOffers = offers.filter(o => o.lenderId === currentUser.id);
+  const myOffers = (offers || []).filter(o => o.lenderId === (currentUser?.id || 'usr_lender_01'));
 
   // Trigger CRM / ERP manual sync (Doc 1 - Line 48)
   const handleTriggerErpSync = () => {
@@ -178,12 +178,12 @@ export const LenderDashboard = () => {
           className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all group"
         >
           <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
-            <span className="font-semibold uppercase tracking-wider text-[11px]">Working Deals</span>
+            <span className="font-semibold uppercase tracking-wider text-[11px]">Personal Working Deals</span>
             <Briefcase className="w-4 h-4 text-[#0070C0] group-hover:scale-110 transition-transform" />
           </div>
           <div className="text-3xl font-extrabold text-[#002060] font-heading">{myWorkingDeals.length}</div>
           <div className="text-[11px] font-semibold text-[#0070C0] mt-2">
-            Max 3 Concurrent Claims (Rule FR-08)
+            Personal Claims (Max 3/deal)
           </div>
         </Link>
 
@@ -334,7 +334,7 @@ export const LenderDashboard = () => {
                       </div>
 
                       <div className="text-sm font-bold text-slate-900">
-                        {lead.businessName}
+                        Protected Commercial Applicant #{lead.id}
                       </div>
 
                       <div className="text-xs text-slate-500 flex flex-wrap items-center gap-3">

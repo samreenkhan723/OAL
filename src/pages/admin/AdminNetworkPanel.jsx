@@ -1,6 +1,11 @@
 import React from 'react';
-import { NetworkControlBoard } from '../../components/network/NetworkControlBoard';
+import { Navigate } from 'react-router-dom';
 
+/**
+ * Redirects Admin Network Panel navigation to dedicated /network/dashboard workspace
+ */
 export const AdminNetworkPanel = () => {
-  return <NetworkControlBoard panelType="admin" />;
+  return <Navigate to="/network/dashboard" replace />;
 };
+
+export default AdminNetworkPanel;

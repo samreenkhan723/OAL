@@ -22,7 +22,18 @@ export const OfferComparison = ({ applicationId, offers = [] }) => {
     conditionsText: 'First-position UCC lien on equipment; quarterly financial disclosure.'
   });
 
-  const appOffers = offers.filter(o => !applicationId || o.applicationId === applicationId);
+  const appOffers = offers.filter(o => {
+    if (applicationId && o.applicationId !== applicationId) return false;
+    if (currentRole === 'borrower' || currentRole === 'BORROWER') {
+      return o.sharedWithBorrower === true || o.status === 'ACCEPTED';
+    }
+    if (currentRole === 'lender' || currentRole === 'LENDER') {
+      // FIX 2: Strict Competitor Confidentiality — Lender sees ONLY their own proprietary offers
+      const myId = currentUser?.id || 'usr_lender_01';
+      return o.lenderId === myId;
+    }
+    return true;
+  });
   const hasAcceptedOffer = appOffers.some(o => o.status === 'ACCEPTED');
 
   const handleConfirmAccept = () => {
@@ -141,9 +152,15 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
       {appOffers.length === 0 ? (
         <div className="p-12 text-center text-slate-500">
           <Clock className="w-10 h-10 text-slate-300 mx-auto mb-3" />
-          <h4 className="text-sm font-bold text-slate-700">No Offers Issued Yet</h4>
+          <h4 className="text-sm font-bold text-slate-700">
+            {currentRole === 'lender'
+              ? 'No Active Term Sheets Issued by Your Fund'
+              : 'No Offers Available for Review Yet'}
+          </h4>
           <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
-            Participating lenders are currently reviewing credit files and business financials. Qualified offers will appear here automatically.
+            {currentRole === 'lender'
+              ? 'You have not submitted an underwriting proposal for this application. Click "Draft & Submit Offer" above to issue your terms.'
+              : 'Participating lenders and your assigned representative are reviewing credit files. Eligible offers will appear here once shared.'}
           </p>
         </div>
       ) : (

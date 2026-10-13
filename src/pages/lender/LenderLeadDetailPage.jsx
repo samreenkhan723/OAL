@@ -50,7 +50,7 @@ export const LenderLeadDetailPage = () => {
           </div>
 
           <h1 className="text-2xl font-bold font-heading text-slate-900 mt-1">
-            {lead.businessName}
+            Protected Commercial Applicant #{lead.id}
           </h1>
 
           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600 mt-2">

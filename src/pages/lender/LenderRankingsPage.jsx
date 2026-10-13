@@ -56,7 +56,7 @@ export const LenderRankingsPage = () => {
                     </div>
 
                     <h3 className="text-sm font-bold text-slate-900 truncate mt-0.5">
-                      {app.businessName}
+                      Protected Commercial Applicant #{app.id}
                     </h3>
 
                     <div className="text-xs text-slate-500">

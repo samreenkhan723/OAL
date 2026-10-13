@@ -66,7 +66,7 @@ export const LenderOfferManagementPage = () => {
                   </div>
 
                   <h3 className="text-sm font-bold text-slate-900 break-words">
-                    {linkedApp?.businessName || 'Commercial Applicant'}
+                    Protected Commercial Applicant #{offer.applicationId}
                   </h3>
 
                   <div className="flex flex-wrap items-center gap-4 text-xs pt-1">
