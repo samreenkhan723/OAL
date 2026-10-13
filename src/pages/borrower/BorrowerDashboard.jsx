@@ -236,17 +236,17 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
       {activeTab === 'active-app' && (
         <div className="space-y-8">
           {/* USA PATRIOT Act & CIP Compliance Card (Doc 6 - Lines 37-38) */}
-          <div className="bg-gradient-to-r from-blue-900/5 via-indigo-900/5 to-slate-900/5 border border-blue-200/80 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="bg-gradient-to-r from-[#002060]/5 via-[#0070C0]/5 to-slate-900/5 border border-sky-200/80 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-start gap-3">
-              <div className="w-9 h-9 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-5 h-5 text-blue-700" />
+              <div className="w-9 h-9 rounded-xl bg-[#002060]/10 text-[#002060] flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5 text-[#0070C0]" />
               </div>
               <div className="space-y-0.5">
                 <div className="flex flex-wrap items-center gap-2">
                   <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
                     USA PATRIOT Act & Customer Identification Program (CIP) Verified
                   </h4>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060]">
                     Federal Rule 31 CFR 1020.220
                   </span>
                 </div>
@@ -304,21 +304,21 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
             <button
               type="button"
               onClick={() => setShowReviewingLendersModal(true)}
-              className="bg-white rounded-2xl border border-purple-200 p-5 shadow-xs hover:border-purple-500 hover:shadow-md transition-all text-left group cursor-pointer relative overflow-hidden"
+              className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all text-left group cursor-pointer relative overflow-hidden"
             >
               <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
-                <span className="font-semibold uppercase tracking-wider text-[11px] text-purple-900">
+                <span className="font-semibold uppercase tracking-wider text-[11px] text-[#002060]">
                   Reviewing Lenders
                 </span>
-                <div className="w-2.5 h-2.5 rounded-full bg-purple-600 animate-ping" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#0070C0] animate-ping" />
               </div>
-              <div className="text-3xl font-extrabold text-purple-950 font-heading">
+              <div className="text-3xl font-extrabold text-[#002060] font-heading">
                 {claimedCount}
                 <span className="text-sm font-normal text-slate-400"> of {maxSlots} Max</span>
               </div>
-              <div className="text-[11px] font-bold text-purple-700 mt-2 flex items-center justify-between">
+              <div className="text-[11px] font-bold text-[#0070C0] mt-2 flex items-center justify-between">
                 <span>Inspect Active Reviewers</span>
-                <span className="text-purple-600 group-hover:translate-x-1 transition-transform">&rarr;</span>
+                <span className="text-[#0070C0] group-hover:translate-x-1 transition-transform">&rarr;</span>
               </div>
             </button>
 
@@ -384,7 +384,7 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
               <div className="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-1.5">
                 <div className="flex items-center justify-between text-xs text-slate-400">
                   <span>Concurrent Underwriters</span>
-                  <Users className="w-3.5 h-3.5 text-purple-400" />
+                  <Users className="w-3.5 h-3.5 text-[#00B0F0]" />
                 </div>
                 <div className="text-sm font-bold text-white">{claimedCount} of {maxSlots} Locked Deals</div>
                 <p className="text-[11px] text-sky-100 leading-relaxed">
@@ -504,7 +504,7 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
                   <img
                     src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
                     alt="Elena Rostova"
-                    className="w-12 h-12 rounded-full object-cover border-2 border-blue-600 shadow-xs"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-[#0070C0] shadow-xs"
                   />
                   <div>
                     <h4 className="text-sm font-bold text-slate-900">Elena Rostova</h4>
@@ -533,7 +533,7 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
 
                   <div className="flex items-center justify-between text-slate-600">
                     <span className="flex items-center gap-1.5">
-                      <PhoneCall className="w-3.5 h-3.5 text-purple-600" />
+                      <PhoneCall className="w-3.5 h-3.5 text-[#0070C0]" />
                       SMS Alerts:
                     </span>
                     <span className="font-semibold text-slate-800">+1 (555) 392-1084</span>
@@ -550,25 +550,25 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
 
                 <Link
                   to="/borrower/messages"
-                  className="w-full py-2.5 rounded-xl bg-[#0B1730] hover:bg-[#172B4D] text-white text-xs font-bold text-center block shadow-sm transition-colors flex items-center justify-center gap-1.5"
+                  className="w-full py-2.5 rounded-xl bg-[#002060] hover:bg-[#002060] text-white text-xs font-bold text-center block shadow-sm transition-colors flex items-center justify-center gap-1.5"
                 >
-                  <MessageSquare className="w-4 h-4 text-[#D5B66A]" />
+                  <MessageSquare className="w-4 h-4 text-[#FFD200]" />
                   <span>Message Elena Rostova</span>
                 </Link>
               </div>
 
               {/* Help Desk Support Card (Doc 2) */}
-              <div className="bg-blue-50/60 border border-blue-200 rounded-2xl p-5 space-y-2">
-                <h4 className="text-xs font-bold text-blue-900 flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-blue-600" />
+              <div className="bg-sky-50/60 border border-sky-200 rounded-2xl p-5 space-y-2">
+                <h4 className="text-xs font-bold text-[#002060] flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-[#0070C0]" />
                   Need Underwriting Guidance?
                 </h4>
-                <p className="text-[11px] text-blue-800 leading-relaxed">
+                <p className="text-[11px] text-slate-600 leading-relaxed">
                   Have questions regarding equipment invoices, UCC subordination, or 24h closing timelines?
                 </p>
                 <Link
                   to="/support/tickets"
-                  className="text-xs font-bold text-blue-600 hover:underline block pt-1"
+                  className="text-xs font-bold text-[#0070C0] hover:text-[#002060] font-bold block pt-1"
                 >
                   Visit AI Help Desk & Knowledge Base &rarr;
                 </Link>
@@ -605,7 +605,7 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 to="/borrower/post-funding"
-                className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5"
+                className="px-4 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5"
               >
                 <ExternalLink className="w-4 h-4" />
                 <span>Open Dedicated Post-Funding Hub</span>
@@ -616,14 +616,14 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
                 onClick={handleDownloadClosingDossier}
                 className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer"
               >
-                <Download className="w-4 h-4 text-[#D5B66A]" />
+                <Download className="w-4 h-4 text-[#FFD200]" />
                 <span>Download Closing Dossier</span>
               </button>
 
               <button
                 type="button"
                 onClick={handleRequestPayoffQuote}
-                className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
+                className="px-4 py-2.5 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] border border-amber-300 text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
               >
                 <FileCheck className="w-4 h-4" />
                 <span>Request Payoff Quote</span>
@@ -645,7 +645,7 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
 
             <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs">
               <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Principal Remaining</span>
-              <div className="text-3xl font-extrabold text-[#0B1730] mt-1 font-heading">
+              <div className="text-3xl font-extrabold text-[#002060] mt-1 font-heading">
                 ${postFundingData.principalRemaining.toLocaleString()}
               </div>
               <span className="text-[11px] text-slate-500 mt-1 block">
@@ -773,7 +773,7 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
                 <button
                   type="button"
                   onClick={() => addToast && addToast('Refinance Request Submitted', 'Elena Rostova has been notified of your interest in secondary line expansion.', 'success')}
-                  className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/20 text-center cursor-pointer"
+                  className="w-full py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 text-center cursor-pointer"
                 >
                   Request Pre-Approval for Expansion Capital
                 </button>
@@ -819,12 +819,12 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
             <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-purple-600 animate-ping" />
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#0070C0] animate-ping" />
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060]">
                     Live Deal Review Monitor (Rule FR-08)
                   </span>
                 </div>
-                <h3 className="text-lg font-heading font-extrabold text-[#0B1730]">
+                <h3 className="text-lg font-heading font-extrabold text-[#002060]">
                   Active Institutional Underwriters in File #{activeApp?.id}
                 </h3>
                 <p className="text-xs text-slate-500">
@@ -842,16 +842,16 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
             </div>
 
             {/* Slot Counter & Cap Indicator */}
-            <div className="p-4 rounded-2xl bg-purple-50/80 border border-purple-200 text-xs text-purple-950 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="p-4 rounded-2xl bg-sky-50/80 border border-sky-200 text-xs text-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <span className="font-bold text-purple-900 block">
+                <span className="font-bold text-[#002060] block">
                   Concurrent Working Deals Cap Status:
                 </span>
-                <span className="text-purple-800">
+                <span className="text-slate-700">
                   {claimedCount} of {maxSlots} Slots Currently Underwritten
                 </span>
               </div>
-              <div className="px-3 py-1 bg-white rounded-xl font-bold text-purple-900 border border-purple-200 text-center">
+              <div className="px-3 py-1 bg-white rounded-xl font-bold text-[#002060] border border-sky-200 text-center">
                 {openSlots > 0 ? `${openSlots} Slot Available` : 'Deal Locked to Other Lenders'}
               </div>
             </div>
@@ -866,7 +866,7 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
                 <div key={i} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 text-xs space-y-2">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-[10px]">
+                      <span className="w-6 h-6 rounded-full bg-[#0070C0] text-white font-bold flex items-center justify-center text-[10px]">
                         #{i + 1}
                       </span>
                       <strong className="text-slate-900 text-sm">{lender.lenderAlias}</strong>

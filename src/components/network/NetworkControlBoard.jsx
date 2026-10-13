@@ -297,9 +297,9 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
       {/* =========================================================================
           HERO BANNER & NETWORK STATUS BAR (Doc 1 Lines 68-71)
           ========================================================================= */}
-      <div className="bg-gradient-to-r from-[#0B1730] via-[#102347] to-[#1E3A8A] rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden border border-slate-700/60">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#0070C0] rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden border border-slate-700/60">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#0070C0]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-[#0070C0]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
@@ -309,7 +309,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 <span>Live Online & Mobile Lending Marketplace</span>
               </span>
 
-              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 uppercase tracking-wider">
+              <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-[#FFD200] text-[#002060] uppercase tracking-wider">
                 Doc 1 Lines 68-89
               </span>
 
@@ -335,9 +335,9 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 setStatusFilter('NEW_ONLY');
                 setActiveTab('feed');
               }}
-              className="px-4 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="px-4 py-3 rounded-2xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] border border-amber-300 text-xs font-extrabold shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              <Zap className="w-4 h-4 fill-slate-950" />
+              <Zap className="w-4 h-4 fill-[#002060]" />
               <span>Filter New Applicants (&lt; 2h)</span>
             </button>
 
@@ -349,7 +349,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
               }}
               className="px-4 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
+              <MessageSquare className="w-4 h-4 text-sky-300" />
               <span>Contact Broker (Elena)</span>
             </button>
           </div>
@@ -363,14 +363,14 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
           </div>
           <div>
             <span className="text-slate-400 text-[11px] block">New Applicants (&lt; 2 hrs):</span>
-            <strong className="text-amber-400 font-bold text-sm flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <strong className="text-[#FFD200] font-bold text-sm flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#FFD200] animate-pulse" />
               <span>2 Fresh Files Live</span>
             </strong>
           </div>
           <div>
             <span className="text-slate-400 text-[11px] block">Working Deals Active:</span>
-            <strong className="text-purple-300 font-bold text-sm block">Max 3 Lenders / Deal (Rule FR-08)</strong>
+            <strong className="text-[#00B0F0] font-bold text-sm block">Max 3 Lenders / Deal (Rule FR-08)</strong>
           </div>
           <div>
             <span className="text-slate-400 text-[11px] block">Avg Speed-to-Funding:</span>
@@ -387,7 +387,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
       <div className="space-y-3">
         <div className="flex items-center justify-between text-xs px-1">
           <span className="font-extrabold text-slate-800 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-            <Layers className="w-4 h-4 text-blue-600" />
+            <Layers className="w-4 h-4 text-[#0070C0]" />
             <span>12 Operational Control Tabs (Doc 1 Mandate)</span>
           </span>
           <span className="text-slate-400 text-[11px]">
@@ -407,7 +407,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer shrink-0 ${
                   isActive
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
+                    ? 'bg-[#0070C0] text-white shadow-md shadow-[#0070C0]/25'
                     : 'bg-white text-slate-700 hover:text-slate-950 hover:bg-slate-100 border border-slate-200/90 shadow-2xs'
                 }`}
               >
@@ -416,7 +416,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 {tab.badge && (
                   <span
                     className={`text-[9px] px-1.5 py-0.2 rounded font-black ${
-                      isActive ? 'bg-blue-700 text-white' : 'bg-slate-100 text-slate-600 border border-slate-200'
+                      isActive ? 'bg-[#002060] text-white' : 'bg-slate-100 text-slate-600 border border-slate-200'
                     }`}
                   >
                     {tab.badge}
@@ -442,7 +442,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search deals by business name, loan program, or deal ID..."
-                className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-blue-600"
+                className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#0070C0]"
               />
             </div>
 
@@ -465,11 +465,11 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 onClick={() => setStatusFilter('NEW_ONLY')}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
                   statusFilter === 'NEW_ONLY'
-                    ? 'bg-amber-400 text-slate-950 font-black shadow-xs'
+                    ? 'bg-[#FFD200] text-[#002060] font-black border border-amber-300 shadow-xs'
                     : 'bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100'
                 }`}
               >
-                <Zap className="w-3 h-3 fill-amber-500" />
+                <Zap className={`w-3 h-3 ${statusFilter === 'NEW_ONLY' ? 'fill-[#002060]' : 'fill-amber-500'}`} />
                 <span>New Applicants (&lt; 2h)</span>
               </button>
 
@@ -478,7 +478,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 onClick={() => setStatusFilter('WORKING_DEALS')}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                   statusFilter === 'WORKING_DEALS'
-                    ? 'bg-purple-600 text-white shadow-xs'
+                    ? 'bg-[#002060] text-white shadow-xs'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
@@ -490,7 +490,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 onClick={() => setStatusFilter('OFFERS')}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                   statusFilter === 'OFFERS'
-                    ? 'bg-emerald-600 text-white shadow-xs'
+                    ? 'bg-[#0070C0] text-white shadow-xs'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
@@ -502,7 +502,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 onClick={() => setStatusFilter('FUNDED')}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                   statusFilter === 'FUNDED'
-                    ? 'bg-blue-600 text-white shadow-xs'
+                    ? 'bg-[#0070C0] text-white shadow-xs'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
@@ -526,7 +526,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                   key={app.id}
                   className={`rounded-3xl border transition-all p-6 space-y-5 bg-white shadow-xs hover:shadow-md ${
                     isNew
-                      ? 'border-amber-400 ring-2 ring-amber-400/30'
+                      ? 'border-[#FFD200] ring-2 ring-[#FFD200]/30'
                       : 'border-slate-200/90'
                   }`}
                 >
@@ -536,8 +536,8 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                       <div className="flex flex-wrap items-center gap-2">
                         {/* FEATURE 1: Distinctive Glowing New Applicant Badge */}
                         {isNew ? (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-sm animate-pulse">
-                            <Zap className="w-3.5 h-3.5 fill-slate-950" />
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFD200] text-[#002060] font-black text-xs uppercase tracking-wider shadow-sm border border-amber-300 animate-pulse">
+                            <Zap className="w-3.5 h-3.5 fill-[#002060]" />
                             <span>NEW APPLICANT (&lt; 2 HRS)</span>
                           </span>
                         ) : (
@@ -567,7 +567,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                       }`}
                       title={isSaved ? 'Remove from Saved Leads' : 'Save to Watch List'}
                     >
-                      <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-amber-500' : ''}`} />
+                      <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-[#FFD200]' : ''}`} />
                     </button>
                   </div>
 
@@ -582,8 +582,8 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
 
                     <div>
                       <span className="text-[10px] text-slate-400 uppercase font-semibold block">180 LINV IQ</span>
-                      <strong className="text-blue-700 font-extrabold text-sm block flex items-center gap-1">
-                        <Award className="w-3.5 h-3.5 text-amber-500" />
+                      <strong className="text-[#002060] font-extrabold text-sm block flex items-center gap-1">
+                        <Award className="w-3.5 h-3.5 text-[#0070C0]" />
                         <span>{app.investmentIQ?.total || 'N/A'} / 180</span>
                       </strong>
                     </div>
@@ -597,17 +597,17 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
 
                     <div>
                       <span className="text-[10px] text-slate-400 uppercase font-semibold block">Working Deal Slots</span>
-                      <strong className={`text-xs font-bold block ${openSlots > 0 ? 'text-purple-700' : 'text-rose-600'}`}>
+                      <strong className={`text-xs font-bold block ${openSlots > 0 ? 'text-[#002060]' : 'text-rose-600'}`}>
                         {claimedCount} / {maxSlots} {openSlots > 0 ? `(${openSlots} Open)` : '(Locked)'}
                       </strong>
                     </div>
                   </div>
 
                   {/* FEATURE 2: End-to-End Application-to-Funding Timestamp Lifecycle (Doc 1 Line 70) */}
-                  <div className="p-3.5 sm:p-4 rounded-2xl bg-blue-50/60 border border-blue-200 space-y-3">
+                  <div className="p-3.5 sm:p-4 rounded-2xl bg-sky-50/60 border border-sky-200 space-y-3">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs">
-                      <div className="flex items-center gap-1.5 font-bold text-blue-950">
-                        <Clock className="w-4 h-4 text-blue-700 shrink-0" />
+                      <div className="flex items-center gap-1.5 font-bold text-[#002060]">
+                        <Clock className="w-4 h-4 text-[#0070C0] shrink-0" />
                         <span>Application-to-Funding Timestamp Lifecycle (Doc 1)</span>
                       </div>
                       <span className="text-[11px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 self-start sm:self-auto">
@@ -618,11 +618,11 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                     {/* Stepper Timeline Visual */}
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 pt-1 text-[10px]">
                       {timeline.milestones.map((m, idx) => (
-                        <div key={m.id} className="p-2 rounded-xl bg-white/70 border border-blue-100/90 space-y-1">
+                        <div key={m.id} className="p-2 rounded-xl bg-white/70 border border-sky-100/90 space-y-1">
                           <div className="flex items-center gap-1.5">
                             <span
                               className={`w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black shrink-0 ${
-                                m.completed ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-500'
+                                m.completed ? 'bg-[#0070C0] text-white' : 'bg-slate-200 text-slate-500'
                               }`}
                             >
                               {idx + 1}
@@ -631,7 +631,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                           </div>
                           <span
                             className={`block text-[10px] leading-tight font-medium truncate ${
-                              m.completed ? 'text-blue-950 font-bold' : 'text-slate-500'
+                              m.completed ? 'text-[#002060] font-bold' : 'text-slate-500'
                             }`}
                             title={m.label}
                           >
@@ -641,14 +641,14 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                       ))}
                     </div>
 
-                    <div className="pt-2 border-t border-blue-200 flex items-center justify-between text-[11px]">
+                    <div className="pt-2 border-t border-sky-200 flex items-center justify-between text-[11px]">
                       <span className="text-slate-500 truncate mr-2">
                         Broker Assigned: <strong>{app.assignedRep?.name || 'Elena Rostova'}</strong>
                       </span>
                       <button
                         type="button"
                         onClick={() => handleDownloadTimestampDossier(app)}
-                        className="text-blue-700 hover:text-blue-900 font-bold inline-flex items-center gap-1 cursor-pointer shrink-0"
+                        className="text-[#0070C0] hover:text-[#005a9e] font-bold inline-flex items-center gap-1 cursor-pointer shrink-0"
                       >
                         <Download className="w-3 h-3" />
                         <span>Audit Dossier</span>
@@ -666,7 +666,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                         disabled={openSlots === 0}
                         className={`w-full sm:w-auto sm:flex-1 py-2.5 px-3.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap shadow-xs ${
                           openSlots > 0
-                            ? 'bg-purple-600 hover:bg-purple-700 text-white'
+                            ? 'bg-[#002060] hover:bg-[#001744] text-white shadow-sm'
                             : 'bg-slate-200 text-slate-400 cursor-not-allowed'
                         }`}
                         title={openSlots > 0 ? 'Claim 1 of 3 Working Deal slots' : 'Deal locked (All 3 slots claimed)'}
@@ -683,7 +683,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                           setOfferForm(prev => ({ ...prev, amount: app.amount.toString() }));
                           setShowSubmitOfferModal(true);
                         }}
-                        className="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
+                        className="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] border border-amber-300 text-xs font-extrabold transition-all shadow-sm flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
                       >
                         <DollarSign className="w-3.5 h-3.5 shrink-0" />
                         <span>Submit Offer</span>
@@ -735,7 +735,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
             <div>
               <div className="flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-blue-600" />
+                <MessageSquare className="w-5 h-5 text-[#0070C0]" />
                 <h2 className="text-lg font-heading font-extrabold text-slate-900">
                   Broker-Mediated Communication Hub (Chat / Email / SMS)
                 </h2>
@@ -788,7 +788,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 />
                 <div>
                   <h4 className="font-bold text-slate-900 text-sm">Elena Rostova</h4>
-                  <div className="text-blue-600 font-semibold">Senior Commercial Placement Broker</div>
+                  <div className="text-[#0070C0] font-semibold">Senior Commercial Placement Broker</div>
                   <div className="text-[11px] text-slate-400">Desk: +1 (555) 901-8321 ext 104</div>
                 </div>
               </div>
@@ -822,14 +822,14 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 value={brokerMessageText}
                 onChange={(e) => setBrokerMessageText(e.target.value)}
                 placeholder={`Type your ${commChannel} message to Elena regarding active deal underwriting, DSCR verification, or term revisions...`}
-                className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-medium"
+                className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium"
               />
             </div>
 
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md flex items-center gap-1.5 cursor-pointer"
+                className="px-6 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md flex items-center gap-1.5 cursor-pointer"
               >
                 <Send className="w-4 h-4" />
                 <span>Dispatch {commChannel} Message</span>
@@ -856,7 +856,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
 
             <Link
               to="/lender/leads"
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1.5 self-start sm:self-auto"
+              className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1.5 self-start sm:self-auto"
             >
               <span>Open Dedicated Leads Page</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -882,10 +882,10 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                     <td className="p-3.5 font-mono font-bold text-slate-900">{app.id}</td>
                     <td className="p-3.5 font-semibold text-slate-800">{app.businessName}</td>
                     <td className="p-3.5 font-bold text-slate-900">${app.amount.toLocaleString()}</td>
-                    <td className="p-3.5 font-bold text-blue-700">{app.investmentIQ?.total || 'N/A'}/180</td>
+                    <td className="p-3.5 font-bold text-[#002060]">{app.investmentIQ?.total || 'N/A'}/180</td>
                     <td className="p-3.5 text-slate-600">${app.annualRevenue?.toLocaleString() || 'N/A'}</td>
                     <td className="p-3.5">
-                      <span className="font-semibold text-purple-700">
+                      <span className="font-semibold text-[#002060]">
                         {app.workingDeals?.claimedLendersCount || 0} / 3 Claimed
                       </span>
                     </td>
@@ -896,7 +896,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                           setSelectedLeadForDetail(app);
                           setShowLeadDetailModal(true);
                         }}
-                        className="px-3 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold cursor-pointer"
+                        className="px-3 py-1 rounded-lg bg-sky-50 hover:bg-sky-100 text-[#0070C0] font-bold cursor-pointer"
                       >
                         Inspect
                       </button>
@@ -917,7 +917,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
             <div>
               <div className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-amber-500" />
+                <Sparkles className="w-5 h-5 text-[#0070C0]" />
                 <h2 className="text-lg font-heading font-extrabold text-slate-900">
                   4. AI Lead Alerts & Matchmaking Stream
                 </h2>
@@ -929,7 +929,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
 
             <Link
               to="/lender/alerts"
-              className="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black transition-all shadow-xs inline-flex items-center gap-1.5 self-start sm:self-auto"
+              className="px-4 py-2 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] border border-amber-300 text-xs font-extrabold transition-all shadow-xs inline-flex items-center gap-1.5 self-start sm:self-auto"
             >
               <span>Manage Alert Triggers</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -939,7 +939,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
           <div className="space-y-3">
             <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 text-xs">
               <div className="space-y-1">
-                <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 uppercase">
+                <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-[#FFD200] text-[#002060] uppercase">
                   HIGH VALUE MATCH • 162 LINV IQ
                 </span>
                 <h4 className="font-bold text-slate-900 text-sm">
@@ -952,7 +952,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
               <button
                 type="button"
                 onClick={(e) => handleClaimDeal('APP-2026-1094', e)}
-                className="w-full sm:w-auto px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold shrink-0 cursor-pointer text-center"
+                className="w-full sm:w-auto px-4 py-2 rounded-xl bg-[#002060] hover:bg-[#001744] text-white font-bold shrink-0 cursor-pointer text-center shadow-sm"
               >
                 Claim Deal
               </button>
@@ -973,7 +973,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
               <button
                 type="button"
                 onClick={(e) => handleClaimDeal('APP-2026-1148', e)}
-                className="w-full sm:w-auto px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold shrink-0 cursor-pointer text-center"
+                className="w-full sm:w-auto px-4 py-2 rounded-xl bg-[#002060] hover:bg-[#001744] text-white font-bold shrink-0 cursor-pointer text-center shadow-sm"
               >
                 Claim Deal
               </button>
@@ -999,7 +999,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
 
             <Link
               to={activeTab === 'saved-leads' ? '/lender/saved-leads' : activeTab === 'offers' ? '/lender/offers' : activeTab === 'analytics' ? '/lender/analytics' : activeTab === 'reports' ? '/lender/reports' : activeTab === 'billing' ? '/lender/billing' : '/lender/settings'}
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1.5 self-start sm:self-auto"
+              className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1.5 self-start sm:self-auto"
             >
               <span>Open Full {CONTROL_TABS.find(t => t.id === activeTab)?.label.split('.')[1]} Page</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -1026,10 +1026,10 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
           <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-7 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto space-y-5">
             <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
               <div className="space-y-1">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 uppercase">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060] uppercase">
                   Sanitized Underwriter Dossier (Rule FR-04)
                 </span>
-                <h3 className="text-lg font-heading font-extrabold text-[#0B1730]">
+                <h3 className="text-lg font-heading font-extrabold text-[#002060]">
                   {selectedLeadForDetail.businessName} (#{selectedLeadForDetail.id})
                 </h3>
               </div>
@@ -1087,7 +1087,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                   setShowLeadDetailModal(false);
                   handleClaimDeal(selectedLeadForDetail.id);
                 }}
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md cursor-pointer text-center"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#002060] hover:bg-[#001744] text-white text-xs font-bold shadow-sm cursor-pointer text-center"
               >
                 Claim Working Deal
               </button>
@@ -1110,10 +1110,10 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                   className="w-12 h-12 rounded-xl object-cover border border-slate-200 shadow-xs shrink-0"
                 />
                 <div>
-                  <h3 className="text-base font-heading font-extrabold text-[#0B1730]">
+                  <h3 className="text-base font-heading font-extrabold text-[#002060]">
                     Inquire via Elena Rostova (Broker)
                   </h3>
-                  <div className="text-xs text-blue-600 font-medium">
+                  <div className="text-xs text-[#0070C0] font-medium">
                     Re: {brokerMessageTarget?.businessName || 'Marketplace Lead'} (#{brokerMessageTarget?.id})
                   </div>
                 </div>
@@ -1135,7 +1135,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                     type="button"
                     onClick={() => setBrokerMessageChannel('CHAT')}
                     className={`py-2 rounded-xl font-bold border transition-all cursor-pointer ${
-                      brokerMessageChannel === 'CHAT' ? 'bg-blue-50 border-blue-600 text-blue-900' : 'bg-white border-slate-200 text-slate-600'
+                      brokerMessageChannel === 'CHAT' ? 'bg-sky-50 border-[#0070C0] text-[#002060]' : 'bg-white border-slate-200 text-slate-600'
                     }`}
                   >
                     Chat
@@ -1144,7 +1144,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                     type="button"
                     onClick={() => setBrokerMessageChannel('EMAIL')}
                     className={`py-2 rounded-xl font-bold border transition-all cursor-pointer ${
-                      brokerMessageChannel === 'EMAIL' ? 'bg-blue-50 border-blue-600 text-blue-900' : 'bg-white border-slate-200 text-slate-600'
+                      brokerMessageChannel === 'EMAIL' ? 'bg-sky-50 border-[#0070C0] text-[#002060]' : 'bg-white border-slate-200 text-slate-600'
                     }`}
                   >
                     Email
@@ -1153,7 +1153,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                     type="button"
                     onClick={() => setBrokerMessageChannel('SMS')}
                     className={`py-2 rounded-xl font-bold border transition-all cursor-pointer ${
-                      brokerMessageChannel === 'SMS' ? 'bg-blue-50 border-blue-600 text-blue-900' : 'bg-white border-slate-200 text-slate-600'
+                      brokerMessageChannel === 'SMS' ? 'bg-sky-50 border-[#0070C0] text-[#002060]' : 'bg-white border-slate-200 text-slate-600'
                     }`}
                   >
                     SMS
@@ -1169,7 +1169,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                   value={brokerMessageText}
                   onChange={(e) => setBrokerMessageText(e.target.value)}
                   placeholder="Ask Elena about 6-month bank statements, equipment liens, or specific terms before locking the file..."
-                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-medium"
+                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium"
                 />
               </div>
 
@@ -1187,7 +1187,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 </button>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md flex items-center justify-center gap-1.5 cursor-pointer text-center"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md flex items-center justify-center gap-1.5 cursor-pointer text-center"
                 >
                   <Send className="w-4 h-4" />
                   <span>Send {brokerMessageChannel}</span>
@@ -1206,10 +1206,10 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
           <div className="bg-white rounded-3xl max-w-lg w-full p-5 sm:p-7 shadow-2xl border border-slate-200 space-y-5 max-h-[92vh] overflow-y-auto">
             <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
               <div className="space-y-1">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060] uppercase">
                   Term Sheet Proposal (Lender Exclusive)
                 </span>
-                <h3 className="text-base font-heading font-extrabold text-[#0B1730]">
+                <h3 className="text-base font-heading font-extrabold text-[#002060]">
                   Submit Offer for {selectedAppForOffer.businessName}
                 </h3>
               </div>
@@ -1231,7 +1231,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                     required
                     value={offerForm.amount}
                     onChange={(e) => setOfferForm({ ...offerForm, amount: e.target.value })}
-                    className="w-full p-2.5 rounded-xl border border-slate-300 font-bold text-slate-900 focus:border-blue-600 focus:outline-none"
+                    className="w-full p-2.5 rounded-xl border border-slate-300 font-bold text-slate-900 focus:border-[#0070C0] focus:outline-none"
                   />
                 </div>
 
@@ -1243,7 +1243,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                     required
                     value={offerForm.interestRate}
                     onChange={(e) => setOfferForm({ ...offerForm, interestRate: e.target.value })}
-                    className="w-full p-2.5 rounded-xl border border-slate-300 font-bold text-blue-700 focus:border-blue-600 focus:outline-none"
+                    className="w-full p-2.5 rounded-xl border border-slate-300 font-bold text-[#002060] focus:border-[#0070C0] focus:outline-none"
                   />
                 </div>
               </div>
@@ -1254,7 +1254,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                   <select
                     value={offerForm.termMonths}
                     onChange={(e) => setOfferForm({ ...offerForm, termMonths: e.target.value })}
-                    className="w-full p-2.5 rounded-xl border border-slate-300 focus:border-blue-600 focus:outline-none cursor-pointer"
+                    className="w-full p-2.5 rounded-xl border border-slate-300 focus:border-[#0070C0] focus:outline-none cursor-pointer"
                   >
                     <option value="24">24 Months (2 Years)</option>
                     <option value="36">36 Months (3 Years)</option>
@@ -1271,7 +1271,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                     step="0.1"
                     value={offerForm.originationFeePercent}
                     onChange={(e) => setOfferForm({ ...offerForm, originationFeePercent: e.target.value })}
-                    className="w-full p-2.5 rounded-xl border border-slate-300 focus:border-blue-600 focus:outline-none"
+                    className="w-full p-2.5 rounded-xl border border-slate-300 focus:border-[#0070C0] focus:outline-none"
                   />
                 </div>
               </div>
@@ -1290,7 +1290,7 @@ All rate discovery and term revisions mediated via OAL Network Brokerage Service
                 </button>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-md cursor-pointer text-center"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] font-extrabold border border-amber-300 shadow-md cursor-pointer text-center"
                 >
                   Confirm & Transmit Offer
                 </button>

@@ -17,10 +17,10 @@ export const LenderWorkingDealsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+            <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
               Active Working Deals
             </h1>
-            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 uppercase">
+            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#002060]/10 text-[#002060] uppercase">
               Rule FR-08 (Max 3/Deal)
             </span>
           </div>
@@ -31,7 +31,7 @@ export const LenderWorkingDealsPage = () => {
 
         <Link
           to="/lender/leads"
-          className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all self-start sm:self-auto w-full sm:w-auto text-center"
+          className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md shadow-[#0070C0]/25 transition-all self-start sm:self-auto w-full sm:w-auto text-center"
         >
           Claim New Working Deals
         </Link>
@@ -46,7 +46,7 @@ export const LenderWorkingDealsPage = () => {
           </p>
           <Link
             to="/lender/leads"
-            className="inline-block mt-2 text-xs font-bold text-blue-600 hover:underline"
+            className="inline-block mt-2 text-xs font-bold text-[#0070C0] hover:text-[#002060] font-bold"
           >
             Browse Marketplace Leads &rarr;
           </Link>
@@ -58,7 +58,7 @@ export const LenderWorkingDealsPage = () => {
             return (
               <div
                 key={deal.id}
-                className="bg-white rounded-2xl border border-purple-200/90 p-6 shadow-xs space-y-4 hover:shadow-md transition-all flex flex-col justify-between"
+                className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
@@ -83,7 +83,7 @@ export const LenderWorkingDealsPage = () => {
                     </div>
                     <div className="flex flex-wrap items-center justify-between gap-1">
                       <span className="text-slate-500">Working Deal Capacity:</span>
-                      <span className="font-bold text-purple-700">{claims.length} of 3 Slots Filled</span>
+                      <span className="font-bold text-[#002060]">{claims.length} of 3 Slots Filled</span>
                     </div>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ export const LenderWorkingDealsPage = () => {
                 <div className="pt-2 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <Link
                     to="/lender/messages"
-                    className="p-2 text-xs font-semibold text-slate-600 hover:text-blue-600 flex items-center justify-center sm:justify-start gap-1.5"
+                    className="p-2 text-xs font-semibold text-slate-600 hover:text-[#0070C0] flex items-center justify-center sm:justify-start gap-1.5"
                   >
                     <MessageSquare className="w-4 h-4 text-slate-400" />
                     <span>Message Rep</span>
@@ -99,7 +99,7 @@ export const LenderWorkingDealsPage = () => {
 
                   <Link
                     to={`/lender/leads/${deal.id}`}
-                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-1.5 w-full sm:w-auto"
+                    className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md shadow-[#0070C0]/25 transition-all flex items-center justify-center gap-1.5 w-full sm:w-auto"
                   >
                     <DollarSign className="w-4 h-4" />
                     <span>Manage / Issue Offer</span>

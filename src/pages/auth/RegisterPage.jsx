@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { LOAN_PROGRAMS } from '../../data/loanPrograms';
+import { computeSimulatedAuthToken } from '../../data/mockUsers';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -17,13 +18,15 @@ import {
   Scale,
   Eye,
   EyeOff,
-  Check
+  Check,
+  AlertCircle,
+  Info
 } from 'lucide-react';
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { switchRole, addToast } = useApp();
+  const { validateEmailAvailability, addToast } = useApp();
 
   const fromLocation = location.state?.from;
   const searchParams = new URLSearchParams(location.search);
@@ -42,25 +45,75 @@ export const RegisterPage = () => {
     agree: true
   });
 
+  const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    switchRole(form.role);
-    addToast('Account Created', 'Please verify your email and phone to complete onboarding.', 'success');
+    setError('');
 
-    const targetDestination =
-      fromLocation ||
-      (programSlug ? { pathname: '/borrower/applications/new', search: `?program=${programSlug}` } : null);
+    // Field validation
+    if (!form.fullName.trim() || !form.email.trim() || !form.password.trim()) {
+      setError('Please fill in all required fields.');
+      return;
+    }
 
+    if (form.password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+
+    // Duplicate email validation
+    const emailNormalized = form.email.trim().toLowerCase();
+    if (validateEmailAvailability && !validateEmailAvailability(emailNormalized)) {
+      setError('An account with this email address already exists. Please sign in or use another email.');
+      return;
+    }
+
+    // Role restrictions: public registration only supports 'borrower' or 'lender'
+    const selectedRole = form.role === 'lender' ? 'lender' : 'borrower';
+
+    // Unique user ID generation
+    const uniqueUserId = `usr_${selectedRole}_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+
+    // Build the pending user record with actual submitted data
+    const pendingUser = {
+      id: uniqueUserId,
+      name: form.fullName.trim(),
+      email: emailNormalized,
+      phone: form.phone.trim(),
+      company: form.companyName.trim() || `${form.fullName.trim()} Enterprises`,
+      role: selectedRole,
+      title: selectedRole === 'lender' ? 'Managing Partner / Underwriter' : 'Principal / Business Owner',
+      avatar: selectedRole === 'lender'
+        ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80'
+        : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+      verified: false,
+      mfaEnabled: true,
+      mfaVerified: false,
+      isPrototypeAccount: true,
+      createdAt: new Date().toISOString(),
+      simulatedAuthToken: computeSimulatedAuthToken(emailNormalized, form.password)
+    };
+
+    addToast('Registration Details Captured', 'Please complete the simulated OTP contact challenge and MFA.', 'info');
+
+    let targetDestination = fromLocation;
+    if (!targetDestination && selectedRole === 'borrower' && programSlug) {
+      targetDestination = { pathname: '/borrower/applications/new', search: `?program=${programSlug}` };
+    }
+
+    // Forward the pending user state to the verification screens
     navigate('/auth/verify', {
       state: {
+        pendingUser,
         from: targetDestination,
         program: programSlug,
         programTitle
       }
     });
   };
+
 
   return (
     <div className="min-h-screen bg-[#F0F9FF] flex flex-col lg:flex-row antialiased">
@@ -196,6 +249,14 @@ export const RegisterPage = () => {
                 Select your account role to access the commercial debt exchange.
               </p>
             </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 flex items-start gap-3 text-xs text-rose-800">
+                <AlertCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
+                <span className="leading-relaxed">{error}</span>
+              </div>
+            )}
 
             {/* Selected Program Announcement Banner */}
             {programSlug && (

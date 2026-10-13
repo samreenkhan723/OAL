@@ -38,7 +38,7 @@ export const RepOffersPage = () => {
       {/* Header */}
       <div>
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Offer Management & Fiduciary Oversight
           </h1>
           <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200 flex items-center gap-1">
@@ -135,7 +135,7 @@ export const RepOffersPage = () => {
                   <button
                     type="button"
                     onClick={() => handleOpenShare(offer)}
-                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/20 flex items-center gap-1.5 cursor-pointer"
+                    className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center gap-1.5 cursor-pointer"
                   >
                     <Share2 className="w-3.5 h-3.5" />
                     <span>Share with Borrower</span>
@@ -218,7 +218,7 @@ export const RepOffersPage = () => {
                   setSelectedOffer(null);
                   handleOpenShare(target);
                 }}
-                className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-md shadow-blue-600/20"
+                className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-md shadow-[#0070C0]/25"
               >
                 <Share2 className="w-3.5 h-3.5" />
                 <span>Share with Borrower</span>
@@ -278,7 +278,7 @@ export const RepOffersPage = () => {
               <button
                 type="button"
                 onClick={handleConfirmShare}
-                className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/20 cursor-pointer"
+                className="px-5 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 cursor-pointer"
               >
                 Confirm & Share
               </button>

@@ -16,7 +16,7 @@ export const BorrowerApplicationsPage = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             My Loan Applications
           </h1>
           <p className="text-xs text-slate-500 mt-1">
@@ -26,7 +26,7 @@ export const BorrowerApplicationsPage = () => {
 
         <Link
           to="/borrower/applications/new"
-          className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-600/20 transition-all self-start sm:self-auto w-full sm:w-auto"
+          className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-[#0070C0] hover:bg-[#005a9e] shadow-md shadow-[#0070C0]/25 transition-all self-start sm:self-auto w-full sm:w-auto"
         >
           <Plus className="w-4 h-4" />
           <span>New Commercial Request</span>
@@ -66,7 +66,7 @@ export const BorrowerApplicationsPage = () => {
                 </div>
                 <div>
                   <span className="text-slate-400">Working Lenders:</span>{' '}
-                  <strong className="text-purple-700">{app.workingDeals?.claimedLendersCount || 0} of 3</strong>
+                  <strong className="text-[#002060]">{app.workingDeals?.claimedLendersCount || 0} of 3</strong>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@ export const BorrowerApplicationsPage = () => {
 
               <Link
                 to={`/borrower/applications/${app.id}`}
-                className="w-full sm:w-auto justify-center px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5"
+                className="w-full sm:w-auto justify-center px-5 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md shadow-[#0070C0]/25 transition-all flex items-center gap-1.5"
               >
                 <span>Application Details</span>
                 <ArrowRight className="w-4 h-4" />

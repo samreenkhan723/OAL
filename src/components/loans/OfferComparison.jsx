@@ -128,7 +128,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
           {currentRole === 'lender' && (
             <button
               onClick={() => setShowNewOfferModal(true)}
-              className="w-full sm:w-auto justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5 cursor-pointer"
+              className="w-full sm:w-auto justify-center px-4 py-2 bg-[#0070C0] hover:bg-[#005a9e] active:bg-[#002060] text-white rounded-xl text-xs font-bold shadow-md shadow-[#0070C0]/25 transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <DollarSign className="w-4 h-4" />
               <span>Draft & Submit Offer</span>
@@ -235,7 +235,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
                       className={`w-full py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm ${
                         hasAcceptedOffer
                           ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                          : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white shadow-blue-600/20'
+                          : 'bg-[#0070C0] hover:bg-[#005a9e] active:bg-[#002060] text-white shadow-[#0070C0]/25'
                       }`}
                     >
                       {hasAcceptedOffer ? 'Another Offer Accepted' : 'Accept This Offer'}
@@ -334,7 +334,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
                   type="number"
                   value={newOfferData.amount}
                   onChange={(e) => setNewOfferData({ ...newOfferData, amount: e.target.value })}
-                  className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -347,7 +347,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
                     step="0.01"
                     value={newOfferData.interestRate}
                     onChange={(e) => setNewOfferData({ ...newOfferData, interestRate: e.target.value })}
-                    className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                     required
                   />
                 </div>
@@ -356,7 +356,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
                   <select
                     value={newOfferData.termMonths}
                     onChange={(e) => setNewOfferData({ ...newOfferData, termMonths: e.target.value })}
-                    className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   >
                     <option value={12}>12 Months</option>
                     <option value={24}>24 Months</option>
@@ -376,7 +376,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
                     type="number"
                     value={newOfferData.monthlyPayment}
                     onChange={(e) => setNewOfferData({ ...newOfferData, monthlyPayment: e.target.value })}
-                    className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                     required
                   />
                 </div>
@@ -387,7 +387,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
                     step="0.1"
                     value={newOfferData.originationFeePercent}
                     onChange={(e) => setNewOfferData({ ...newOfferData, originationFeePercent: e.target.value })}
-                    className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                     required
                   />
                 </div>
@@ -399,7 +399,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
                   type="text"
                   value={newOfferData.prepaymentPenalty}
                   onChange={(e) => setNewOfferData({ ...newOfferData, prepaymentPenalty: e.target.value })}
-                  className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 />
               </div>
 
@@ -409,7 +409,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
                   rows={2}
                   value={newOfferData.conditionsText}
                   onChange={(e) => setNewOfferData({ ...newOfferData, conditionsText: e.target.value })}
-                  className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 />
               </div>
 
@@ -423,7 +423,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
                 </button>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto text-center px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 cursor-pointer"
+                  className="w-full sm:w-auto text-center px-5 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md shadow-[#0070C0]/25 cursor-pointer"
                 >
                   Submit Offer
                 </button>
@@ -519,7 +519,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK LENDER EXCHANGE
               <button
                 type="button"
                 onClick={() => handleDownloadTermSheet(selectedPortfolioOffer)}
-                className="w-full sm:w-auto px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 cursor-pointer text-center text-xs flex items-center justify-center gap-1.5"
+                className="w-full sm:w-auto px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md shadow-[#0070C0]/25 cursor-pointer text-center text-xs flex items-center justify-center gap-1.5"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Download Term Sheet</span>

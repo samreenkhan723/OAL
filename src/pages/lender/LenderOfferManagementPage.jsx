@@ -13,7 +13,7 @@ export const LenderOfferManagementPage = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Offer Management
           </h1>
           <p className="text-xs text-slate-500 mt-1">
@@ -23,7 +23,7 @@ export const LenderOfferManagementPage = () => {
 
         <Link
           to="/lender/working-deals"
-          className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all self-start sm:self-auto w-full sm:w-auto text-center"
+          className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md shadow-[#0070C0]/25 transition-all self-start sm:self-auto w-full sm:w-auto text-center"
         >
           Draft New Offer from Working Deals
         </Link>
@@ -76,7 +76,7 @@ export const LenderOfferManagementPage = () => {
                 <div className="flex items-center gap-3 self-start md:self-center w-full md:w-auto">
                   <Link
                     to={`/lender/leads/${offer.applicationId}`}
-                    className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-all w-full sm:w-auto text-center"
+                    className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-[#0070C0] text-white text-xs font-bold transition-all w-full sm:w-auto text-center"
                   >
                     View Deal
                   </Link>

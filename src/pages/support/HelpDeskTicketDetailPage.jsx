@@ -113,7 +113,7 @@ export const HelpDeskTicketDetailPage = () => {
       <div>
         <Link
           to="/support/tickets"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-blue-600 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#0070C0] transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
           <span>Back to Ticket Queue</span>
@@ -131,19 +131,19 @@ export const HelpDeskTicketDetailPage = () => {
             </span>
 
             {/* Channel origin */}
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-              {channel === 'Email' ? <Mail className="w-3 h-3 text-amber-600" /> : channel === 'SMS' ? <PhoneCall className="w-3 h-3 text-purple-600" /> : <MessageSquare className="w-3 h-3 text-blue-600" />}
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-50 text-[#0070C0] border border-sky-200">
+              {channel === 'Email' ? <Mail className="w-3 h-3 text-amber-600" /> : channel === 'SMS' ? <PhoneCall className="w-3 h-3 text-[#0070C0]" /> : <MessageSquare className="w-3 h-3 text-[#0070C0]" />}
               <span>{channel} Intake</span>
             </span>
 
             {/* Auto-routed badge */}
-            <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">
-              <Bot className="w-3 h-3 text-purple-600" />
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-sky-50 text-[#0070C0] border border-sky-200">
+              <Bot className="w-3 h-3 text-[#0070C0]" />
               <span>Assigned: {ticket.assignedTo}</span>
             </span>
           </div>
 
-          <h1 className="text-xl font-bold font-heading text-slate-900">
+          <h1 className="text-xl font-bold font-heading text-[#002060]">
             {ticket.subject}
           </h1>
 
@@ -164,18 +164,18 @@ export const HelpDeskTicketDetailPage = () => {
 
       {/* AI Suggestion Box (Doc 2 Line 23: Response Suggestions) */}
       {ticket.aiSuggestion && (
-        <div className="p-5 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50/70 border border-blue-200 space-y-2">
+        <div className="p-5 rounded-2xl bg-gradient-to-r from-sky-50 to-blue-50/70 border border-sky-200 space-y-2">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div className="flex items-center gap-2 text-xs font-bold text-blue-900">
-              <Sparkles className="w-4 h-4 text-[#D5B66A]" />
+            <div className="flex items-center gap-2 text-xs font-bold text-[#002060]">
+              <Sparkles className="w-4 h-4 text-[#FFD200]" />
               <span>Doc 2 AI Response Suggestion (Review & Personalize)</span>
             </div>
-            <span className="text-[10px] font-semibold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full self-start sm:self-auto">
+            <span className="text-[10px] font-semibold text-[#0070C0] bg-sky-100 px-2 py-0.5 rounded-full self-start sm:self-auto">
               Automated Draft Assistance
             </span>
           </div>
 
-          <p className="text-xs text-blue-950/80 leading-relaxed italic bg-white/70 p-3 rounded-xl border border-blue-100">
+          <p className="text-xs text-slate-700 leading-relaxed italic bg-white/70 p-3 rounded-xl border border-sky-100">
             "{ticket.aiSuggestion}"
           </p>
 
@@ -185,7 +185,7 @@ export const HelpDeskTicketDetailPage = () => {
               <button
                 type="button"
                 onClick={() => handleInsertKbLink('KYC Upload Checklist', 'https://oalnetwork.com/help/kyc')}
-                className="text-blue-600 hover:underline font-semibold cursor-pointer"
+                className="text-[#0070C0] hover:text-[#002060] font-bold font-semibold cursor-pointer"
               >
                 + KYC Checklist
               </button>
@@ -193,7 +193,7 @@ export const HelpDeskTicketDetailPage = () => {
               <button
                 type="button"
                 onClick={() => handleInsertKbLink('180-Point IQ Guidelines', 'https://oalnetwork.com/help/iq')}
-                className="text-blue-600 hover:underline font-semibold cursor-pointer"
+                className="text-[#0070C0] hover:text-[#002060] font-bold font-semibold cursor-pointer"
               >
                 + IQ Guide
               </button>
@@ -202,7 +202,7 @@ export const HelpDeskTicketDetailPage = () => {
             <button
               onClick={handleApplyAiSuggestion}
               className={`px-4 py-2 rounded-xl text-white text-xs font-bold shadow-xs transition-all w-full sm:w-auto text-center cursor-pointer flex items-center justify-center gap-1.5 ${
-                isCopied ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-600 hover:bg-blue-700'
+                isCopied ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-[#0070C0] hover:bg-[#005a9e]'
               }`}
             >
               {isCopied ? (
@@ -318,7 +318,7 @@ export const HelpDeskTicketDetailPage = () => {
               className={`w-full px-3.5 py-2.5 text-xs border rounded-xl focus:outline-none transition-all ${
                 isInternalNote
                   ? 'bg-amber-50/50 border-amber-200 focus:ring-2 focus:ring-amber-500 text-amber-950 placeholder-amber-700/60'
-                  : 'bg-white border-slate-200 focus:ring-2 focus:ring-blue-600'
+                  : 'bg-white border-slate-200 focus:ring-2 focus:ring-[#0070C0]'
               }`}
             />
 
@@ -328,7 +328,7 @@ export const HelpDeskTicketDetailPage = () => {
                 className={`w-full sm:w-auto px-5 py-2.5 text-white text-xs font-bold rounded-xl shadow-md flex items-center justify-center gap-1.5 cursor-pointer transition-all ${
                   isInternalNote
                     ? 'bg-amber-600 hover:bg-amber-700 shadow-amber-600/20'
-                    : 'bg-blue-600 hover:bg-blue-700 shadow-blue-600/20'
+                    : 'bg-[#0070C0] hover:bg-[#005a9e] shadow-[#0070C0]/25'
                 }`}
               >
                 {isInternalNote ? (

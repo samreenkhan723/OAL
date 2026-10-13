@@ -31,7 +31,7 @@ export const LenderLeadDetailPage = () => {
       <div>
         <Link
           to="/lender/leads"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-blue-600 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#0070C0] transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
           <span>Back to Marketplace Leads</span>

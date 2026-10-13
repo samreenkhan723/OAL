@@ -19,7 +19,7 @@ export const AdminSettingsPage = () => {
   return (
     <div className="max-w-4xl space-y-6">
       <div>
-        <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+        <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
           System Governance & Security Policies
         </h1>
         <p className="text-xs text-slate-500 mt-1">
@@ -34,7 +34,7 @@ export const AdminSettingsPage = () => {
               <span className="text-xs font-bold text-slate-900 block break-words">Working Deal Hard Concurrency Limit (Rule FR-08)</span>
               <span className="text-[11px] text-slate-500">Atomic locking stops claims after maximum concurrent lenders reached.</span>
             </div>
-            <span className="text-xs font-bold px-3 py-1 bg-purple-100 text-purple-800 rounded-lg self-start sm:self-auto shrink-0">
+            <span className="text-xs font-bold px-3 py-1 bg-[#002060]/10 text-[#002060] rounded-lg self-start sm:self-auto shrink-0">
               3 Lenders (Strict)
             </span>
           </div>
@@ -65,7 +65,7 @@ export const AdminSettingsPage = () => {
 
           <button
             type="submit"
-            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all cursor-pointer text-center"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md shadow-[#0070C0]/25 transition-all cursor-pointer text-center"
           >
             Save System Policies
           </button>

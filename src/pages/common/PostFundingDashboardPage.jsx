@@ -648,7 +648,7 @@ This statement is provided for federal income tax documentation purposes.
           <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
             <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
               <span className="font-semibold uppercase tracking-wider text-[10px]">Closing / Wire Date</span>
-              <Calendar className="w-4 h-4 text-purple-600" />
+              <Calendar className="w-4 h-4 text-[#0070C0]" />
             </div>
             <div className="text-2xl font-extrabold text-slate-900 font-heading">
               {new Date(facility.disbursementDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
@@ -887,7 +887,7 @@ This statement is provided for federal income tax documentation purposes.
                           <span>Paid</span>
                         </span>
                       ) : item.status === 'SCHEDULED_ACH' ? (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-blue-100 text-blue-800 whitespace-nowrap shrink-0 shadow-2xs border border-blue-200">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-[#002060]/10 text-[#002060] whitespace-nowrap shrink-0 shadow-2xs border border-blue-200">
                           <Clock className="w-3 h-3 shrink-0" />
                           <span>Scheduled ACH</span>
                         </span>
@@ -902,7 +902,7 @@ This statement is provided for federal income tax documentation purposes.
                         <button
                           type="button"
                           onClick={() => handleDownloadPaymentReceipt(item.paymentNumber, item.totalPayment, item.dueDate)}
-                          className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold transition-all shadow-xs inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
+                          className="px-3 py-1.5 rounded-lg bg-[#0070C0] hover:bg-[#005a9e] text-white text-[11px] font-bold transition-all shadow-xs inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
                           title="Download payment receipt"
                         >
                           <Download className="w-3 h-3 shrink-0" />
@@ -946,7 +946,7 @@ This statement is provided for federal income tax documentation purposes.
                         <Check className="w-3 h-3 shrink-0" /> Paid
                       </span>
                     ) : item.status === 'SCHEDULED_ACH' ? (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-800 whitespace-nowrap shrink-0">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#002060]/10 text-[#002060] whitespace-nowrap shrink-0">
                         <Clock className="w-3 h-3 shrink-0" /> Scheduled ACH
                       </span>
                     ) : (
@@ -990,7 +990,7 @@ This statement is provided for federal income tax documentation purposes.
                       <button
                         type="button"
                         onClick={() => handleDownloadPaymentReceipt(item.paymentNumber, item.totalPayment, item.dueDate)}
-                        className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs inline-flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
+                        className="px-3 py-1.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-xs inline-flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
                       >
                         <Download className="w-3.5 h-3.5 shrink-0" />
                         <span>Download Receipt</span>
@@ -1010,12 +1010,12 @@ This statement is provided for federal income tax documentation purposes.
           <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-7 space-y-6">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-purple-600" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#0070C0]" />
                 <h2 className="text-base font-heading font-extrabold text-slate-900">
                   3. Auto-Pay (ACH) Manager
                 </h2>
               </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800">
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060]">
                 Direct Debit
               </span>
             </div>
@@ -1192,7 +1192,7 @@ This statement is provided for federal income tax documentation purposes.
             <button
               type="button"
               onClick={handleDownloadPayoffStatement}
-              className="flex-1 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/20 flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
+              className="flex-1 py-2.5 px-3 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/20 flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
             >
               <Download className="w-4 h-4 shrink-0" />
               <span>Download Payoff Letter</span>
@@ -1343,7 +1343,7 @@ This statement is provided for federal income tax documentation purposes.
                     Federal Wire Transfer Clearance Dossier
                   </span>
                 </div>
-                <h3 className="text-lg font-heading font-extrabold text-[#0B1730]">
+                <h3 className="text-lg font-heading font-extrabold text-[#002060]">
                   Official Wire Transit Proof: Facility #{facility.id}
                 </h3>
               </div>
@@ -1389,7 +1389,7 @@ This statement is provided for federal income tax documentation purposes.
               <button
                 type="button"
                 onClick={handleDownloadWireProof}
-                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Certified Slip</span>
@@ -1410,7 +1410,7 @@ This statement is provided for federal income tax documentation purposes.
                 <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
                   Certified 30-Day Payoff Demand Letter
                 </span>
-                <h3 className="text-lg font-heading font-extrabold text-[#0B1730]">
+                <h3 className="text-lg font-heading font-extrabold text-[#002060]">
                   Official Payoff Quote: Facility #{facility.id}
                 </h3>
               </div>
@@ -1480,7 +1480,7 @@ This statement is provided for federal income tax documentation purposes.
               <button
                 type="button"
                 onClick={handleDownloadPayoffStatement}
-                className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Certified Letter</span>
@@ -1498,10 +1498,10 @@ This statement is provided for federal income tax documentation purposes.
           <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-200 space-y-5">
             <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
               <div className="space-y-1">
-                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060]">
                   ACH Direct Debit Setup
                 </span>
-                <h3 className="text-lg font-heading font-extrabold text-[#0B1730]">
+                <h3 className="text-lg font-heading font-extrabold text-[#002060]">
                   Update Payment Method for {facility.id}
                 </h3>
               </div>
@@ -1522,7 +1522,7 @@ This statement is provided for federal income tax documentation purposes.
                   required
                   value={achForm.bankName}
                   onChange={(e) => setAchForm({ ...achForm, bankName: e.target.value })}
-                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-medium"
+                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium"
                   placeholder="e.g. Wells Fargo Commercial Banking"
                 />
               </div>
@@ -1536,7 +1536,7 @@ This statement is provided for federal income tax documentation purposes.
                     maxLength={9}
                     value={achForm.routingNumber}
                     onChange={(e) => setAchForm({ ...achForm, routingNumber: e.target.value })}
-                    className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-mono font-medium"
+                    className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-mono font-medium"
                     placeholder="121000247"
                   />
                 </div>
@@ -1548,7 +1548,7 @@ This statement is provided for federal income tax documentation purposes.
                     required
                     value={achForm.accountNumber}
                     onChange={(e) => setAchForm({ ...achForm, accountNumber: e.target.value })}
-                    className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-mono font-medium"
+                    className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-mono font-medium"
                     placeholder="4192881029"
                   />
                 </div>
@@ -1559,7 +1559,7 @@ This statement is provided for federal income tax documentation purposes.
                 <select
                   value={achForm.accountType}
                   onChange={(e) => setAchForm({ ...achForm, accountType: e.target.value })}
-                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-medium cursor-pointer"
+                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium cursor-pointer"
                 >
                   <option value="Commercial Checking">Commercial Checking (Standard)</option>
                   <option value="Commercial Savings / Money Market">Commercial Savings / Money Market</option>
@@ -1581,7 +1581,7 @@ This statement is provided for federal income tax documentation purposes.
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md cursor-pointer"
                 >
                   Save & Validate Bank
                 </button>
@@ -1602,7 +1602,7 @@ This statement is provided for federal income tax documentation purposes.
                 <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
                   Instant ACH Principal Payment
                 </span>
-                <h3 className="text-lg font-heading font-extrabold text-[#0B1730]">
+                <h3 className="text-lg font-heading font-extrabold text-[#002060]">
                   Make Additional Debt Service Payment
                 </h3>
               </div>
@@ -1624,7 +1624,7 @@ This statement is provided for federal income tax documentation purposes.
                     onClick={() => setCustomPaymentType('PRINCIPAL_REDUCTION')}
                     className={`p-3 rounded-xl border text-left font-bold transition-all cursor-pointer ${
                       customPaymentType === 'PRINCIPAL_REDUCTION'
-                        ? 'border-blue-600 bg-blue-50 text-blue-900 shadow-xs'
+                        ? 'border-[#0070C0] bg-blue-50 text-blue-900 shadow-xs'
                         : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
                     }`}
                   >
@@ -1637,7 +1637,7 @@ This statement is provided for federal income tax documentation purposes.
                     onClick={() => setCustomPaymentType('REGULAR_DEBT_SERVICE')}
                     className={`p-3 rounded-xl border text-left font-bold transition-all cursor-pointer ${
                       customPaymentType === 'REGULAR_DEBT_SERVICE'
-                        ? 'border-blue-600 bg-blue-50 text-blue-900 shadow-xs'
+                        ? 'border-[#0070C0] bg-blue-50 text-blue-900 shadow-xs'
                         : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
                     }`}
                   >
@@ -1658,7 +1658,7 @@ This statement is provided for federal income tax documentation purposes.
                     max={facility.principalRemaining}
                     value={customPaymentAmount}
                     onChange={(e) => setCustomPaymentAmount(e.target.value)}
-                    className="w-full pl-8 pr-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-extrabold text-sm"
+                    className="w-full pl-8 pr-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-extrabold text-sm"
                   />
                 </div>
               </div>
@@ -1688,7 +1688,7 @@ This statement is provided for federal income tax documentation purposes.
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-md cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#002060] hover:bg-[#001744] text-white font-bold shadow-md cursor-pointer transition-colors"
                 >
                   Authorize ACH Debit
                 </button>
@@ -1709,7 +1709,7 @@ This statement is provided for federal income tax documentation purposes.
                 <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 flex items-center gap-1 w-max">
                   <Sparkles className="w-3 h-3 text-amber-600" /> Fast-Track Pre-Approved
                 </span>
-                <h3 className="text-lg font-heading font-extrabold text-[#0B1730]">
+                <h3 className="text-lg font-heading font-extrabold text-[#002060]">
                   Apply for Top-Up Growth Capital
                 </h3>
               </div>
@@ -1750,7 +1750,7 @@ This statement is provided for federal income tax documentation purposes.
                 <select
                   value={refinanceTerm}
                   onChange={(e) => setRefinanceTerm(e.target.value)}
-                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-medium cursor-pointer"
+                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium cursor-pointer"
                 >
                   <option value="24">24 Months (2 Years)</option>
                   <option value="36">36 Months (3 Years - Recommended)</option>
@@ -1764,7 +1764,7 @@ This statement is provided for federal income tax documentation purposes.
                 <select
                   value={refinancePurpose}
                   onChange={(e) => setRefinancePurpose(e.target.value)}
-                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-medium cursor-pointer"
+                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium cursor-pointer"
                 >
                   <option value="Working Capital & Seasonal Inventory">Working Capital & Seasonal Inventory</option>
                   <option value="Commercial Equipment Acquisition">Commercial Equipment Acquisition</option>
@@ -1797,7 +1797,7 @@ This statement is provided for federal income tax documentation purposes.
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md cursor-pointer"
                 >
                   Submit Pre-Approved Application
                 </button>
@@ -1821,7 +1821,7 @@ This statement is provided for federal income tax documentation purposes.
                   className="w-12 h-12 rounded-xl object-cover border border-slate-200 shadow-xs"
                 />
                 <div>
-                  <h3 className="text-base font-heading font-extrabold text-[#0B1730]">
+                  <h3 className="text-base font-heading font-extrabold text-[#002060]">
                     Message {facility.assignedRep.name}
                   </h3>
                   <div className="text-xs text-blue-600 font-medium">Re: Facility #{facility.id}</div>
@@ -1844,7 +1844,7 @@ This statement is provided for federal income tax documentation purposes.
                   rows={5}
                   value={elenaMessageText}
                   onChange={(e) => setElenaMessageText(e.target.value)}
-                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-medium leading-relaxed"
+                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium leading-relaxed"
                   placeholder="Type your message to Elena regarding amortization, payoff, or additional funding..."
                 />
               </div>
@@ -1863,7 +1863,7 @@ This statement is provided for federal income tax documentation purposes.
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md flex items-center gap-1.5 cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md flex items-center gap-1.5 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>Send Message</span>
@@ -1882,10 +1882,10 @@ This statement is provided for federal income tax documentation purposes.
           <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-200 space-y-5">
             <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
               <div className="space-y-1">
-                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060]">
                   15-Min Portfolio Review
                 </span>
-                <h3 className="text-lg font-heading font-extrabold text-[#0B1730]">
+                <h3 className="text-lg font-heading font-extrabold text-[#002060]">
                   Schedule Servicing Call with Elena
                 </h3>
               </div>
@@ -1907,7 +1907,7 @@ This statement is provided for federal income tax documentation purposes.
                     required
                     value={callDate}
                     onChange={(e) => setCallDate(e.target.value)}
-                    className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-medium cursor-pointer"
+                    className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium cursor-pointer"
                   />
                 </div>
 
@@ -1916,7 +1916,7 @@ This statement is provided for federal income tax documentation purposes.
                   <select
                     value={callTime}
                     onChange={(e) => setCallTime(e.target.value)}
-                    className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-medium cursor-pointer"
+                    className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium cursor-pointer"
                   >
                     <option value="10:00">10:00 AM EST</option>
                     <option value="11:30">11:30 AM EST</option>
@@ -1932,7 +1932,7 @@ This statement is provided for federal income tax documentation purposes.
                 <select
                   value={callTopic}
                   onChange={(e) => setCallTopic(e.target.value)}
-                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 font-medium cursor-pointer"
+                  className="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#0070C0] font-medium cursor-pointer"
                 >
                   <option value="Quarterly Servicing Review & Refinancing Assessment">
                     Quarterly Servicing Review & Refinancing Assessment
@@ -1963,7 +1963,7 @@ This statement is provided for federal income tax documentation purposes.
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md cursor-pointer"
                 >
                   Confirm Appointment
                 </button>

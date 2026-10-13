@@ -11,6 +11,7 @@ import {
   UserPlus,
   LogIn,
   Building2,
+  Building,
   UtensilsCrossed,
   Truck,
   Store,
@@ -26,7 +27,13 @@ import {
   Briefcase,
   HeartHandshake,
   Mail,
-  Coins
+  Coins,
+  Boxes,
+  Radio,
+  Factory,
+  Heart,
+  Cpu,
+  ShoppingBag
 } from 'lucide-react';
 
 export const Navbar = () => {
@@ -68,16 +75,17 @@ export const Navbar = () => {
     };
   }, []);
 
-  // Industry Loan Programs strictly per Client Sitemap Blueprint
-  const industryPrograms = [
-    { label: 'Restaurant Loans', path: '/loan-programs/restaurant', icon: UtensilsCrossed },
-    { label: 'Food Truck Loans', path: '/loan-programs/food-truck', icon: Truck },
-    { label: 'Buy A Franchise', path: '/loan-programs/franchise', icon: Store },
-    { label: 'Dental Practice Financing', path: '/loan-programs/dental-practice', icon: Smile },
-    { label: 'Freight & Trucking Loans', path: '/loan-programs/freight-trucking', icon: Container },
-    { label: 'Hotels / Motels / Airbnb', path: '/loan-programs/hotel-motel-airbnb', icon: Building2 },
-    { label: 'Church Loans', path: '/loan-programs/church-facility', icon: Landmark },
-    { label: 'Fix & Flip Loans', path: '/loan-programs/fix-and-flip', icon: Hammer },
+  // 9 Loans by Industry strictly per new client requirement documents
+  const coreIndustries = [
+    { label: 'Transportation', path: '/industries/transportation', icon: Truck },
+    { label: 'Professional Services', path: '/industries/professional-services', icon: Briefcase },
+    { label: 'Real Estate', path: '/industries/real-estate', icon: Building },
+    { label: 'Logistics', path: '/industries/logistics', icon: Boxes },
+    { label: 'Telecom', path: '/industries/telecom', icon: Radio },
+    { label: 'Manufacturing', path: '/industries/manufacturing', icon: Factory },
+    { label: 'Nonprofit', path: '/industries/nonprofit', icon: Heart },
+    { label: 'Technology', path: '/industries/technology', icon: Cpu },
+    { label: 'Retail', path: '/industries/retail', icon: ShoppingBag },
   ];
 
   // Company Section strictly per doc: "Sitemap – OAL Network website (1).docx"
@@ -258,12 +266,12 @@ export const Navbar = () => {
                       onClick={() => setActiveDropdown(null)}
                       className="text-xs font-bold text-[#0070C0] hover:text-[#002060] transition-colors"
                     >
-                      All 8 Programs &rarr;
+                      Directory & Matrix &rarr;
                     </Link>
                   </div>
 
                   <div className="grid grid-cols-2 gap-1.5">
-                    {industryPrograms.map((prog) => {
+                    {coreIndustries.map((prog) => {
                       const Icon = prog.icon;
                       return (
                         <Link
@@ -281,6 +289,17 @@ export const Navbar = () => {
                         </Link>
                       );
                     })}
+                  </div>
+
+                  <div className="mt-2.5 pt-2 border-t border-slate-100 px-2 flex items-center justify-between text-[11px]">
+                    <span className="text-slate-400 font-medium">Specialty Programs:</span>
+                    <Link
+                      to="/loan-programs"
+                      onClick={() => setActiveDropdown(null)}
+                      className="text-[#0070C0] font-bold hover:underline"
+                    >
+                      Restaurants, Churches, Franchises &rarr;
+                    </Link>
                   </div>
                 </div>
               )}
@@ -379,18 +398,6 @@ export const Navbar = () => {
               )}
             </div>
 
-            {/* 7. || APPLY || strictly per Sitemap Blueprint */}
-            <Link
-              to="/apply"
-              onMouseEnter={() => setActiveDropdown(null)}
-              className={`h-16 flex items-center px-2 xl:px-2.5 text-xs xl:text-sm font-extrabold whitespace-nowrap transition-colors ${
-                location.pathname === '/apply'
-                  ? 'text-[#0070C0] font-bold border-b-2 border-[#0070C0]'
-                  : 'text-[#0070C0] hover:text-[#002060]'
-              }`}
-            >
-              || APPLY ||
-            </Link>
 
           </nav>
 
@@ -486,9 +493,9 @@ export const Navbar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block px-2.5 py-1.5 text-xs font-extrabold text-[#0070C0] bg-sky-50/50 rounded-lg mb-1"
                 >
-                  All Industries Overview &rarr;
+                  All 9 Industries Directory &rarr;
                 </Link>
-                {industryPrograms.map((prog) => (
+                {coreIndustries.map((prog) => (
                   <Link
                     key={prog.path}
                     to={prog.path}
@@ -498,6 +505,13 @@ export const Navbar = () => {
                     {prog.label}
                   </Link>
                 ))}
+                <Link
+                  to="/loan-programs"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-2.5 py-1.5 text-xs font-semibold text-slate-500 hover:text-[#0070C0] border-t border-slate-100 pt-2"
+                >
+                  Specialty Programs (Restaurants, Churches...) &rarr;
+                </Link>
               </div>
             )}
           </div>
@@ -555,14 +569,6 @@ export const Navbar = () => {
             )}
           </div>
 
-          {/* || APPLY || */}
-          <Link
-            to="/apply"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-lg text-sm font-extrabold text-[#0070C0] bg-sky-50/80 hover:bg-sky-100 transition-colors"
-          >
-            || APPLY ||
-          </Link>
 
           {/* Mobile Bottom Actions */}
           <div className="pt-4 border-t border-slate-100 flex flex-col gap-2.5">

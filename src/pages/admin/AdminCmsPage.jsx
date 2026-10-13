@@ -73,7 +73,7 @@ export const AdminCmsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+            <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
               Content Management System (CMS)
             </h1>
             <VerifyBadge note="Client confirmation pending for CMS publishing workflows and marketing content roles (PRD FR-15)" />
@@ -85,7 +85,7 @@ export const AdminCmsPage = () => {
 
         <button
           onClick={handleOpenCreate}
-          className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/20 flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
+          className="px-4 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>New Page Draft</span>
@@ -109,7 +109,7 @@ export const AdminCmsPage = () => {
             </div>
             <button
               onClick={() => handleOpenEdit(item)}
-              className="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-slate-700 font-bold transition-colors self-start sm:self-center w-full sm:w-auto text-center cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-slate-700 font-bold transition-colors self-start sm:self-center w-full sm:w-auto text-center cursor-pointer"
             >
               Edit Copy
             </button>
@@ -135,7 +135,7 @@ export const AdminCmsPage = () => {
                   type="text"
                   value={editForm.page}
                   onChange={(e) => setEditForm({ ...editForm, page: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -146,7 +146,7 @@ export const AdminCmsPage = () => {
                   type="text"
                   value={editForm.path}
                   onChange={(e) => setEditForm({ ...editForm, path: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none font-mono"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none font-mono"
                   required
                 />
               </div>
@@ -157,7 +157,7 @@ export const AdminCmsPage = () => {
                   rows={2}
                   value={editForm.headline}
                   onChange={(e) => setEditForm({ ...editForm, headline: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -167,7 +167,7 @@ export const AdminCmsPage = () => {
                 <select
                   value={editForm.status}
                   onChange={(e) => setEditForm({ ...editForm, status: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 >
                   <option value="PUBLISHED">PUBLISHED (Live)</option>
                   <option value="DRAFT">DRAFT (Staging Only)</option>
@@ -184,7 +184,7 @@ export const AdminCmsPage = () => {
                 </button>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 cursor-pointer text-center"
+                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md shadow-[#0070C0]/25 cursor-pointer text-center"
                 >
                   Save Copy Changes
                 </button>
@@ -213,7 +213,7 @@ export const AdminCmsPage = () => {
                   value={newDraftForm.page}
                   onChange={(e) => setNewDraftForm({ ...newDraftForm, page: e.target.value })}
                   placeholder="e.g. Equipment Financing Guide"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -225,7 +225,7 @@ export const AdminCmsPage = () => {
                   value={newDraftForm.path}
                   onChange={(e) => setNewDraftForm({ ...newDraftForm, path: e.target.value })}
                   placeholder="/programs/equipment-loans"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none font-mono"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none font-mono"
                   required
                 />
               </div>
@@ -237,7 +237,7 @@ export const AdminCmsPage = () => {
                   value={newDraftForm.headline}
                   onChange={(e) => setNewDraftForm({ ...newDraftForm, headline: e.target.value })}
                   placeholder="Enter main heading banner copy..."
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -247,7 +247,7 @@ export const AdminCmsPage = () => {
                 <select
                   value={newDraftForm.status}
                   onChange={(e) => setNewDraftForm({ ...newDraftForm, status: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 >
                   <option value="DRAFT">DRAFT (Staging / Pending Review)</option>
                   <option value="PUBLISHED">PUBLISHED (Live Immediately)</option>
@@ -264,7 +264,7 @@ export const AdminCmsPage = () => {
                 </button>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 cursor-pointer text-center"
+                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md shadow-[#0070C0]/25 cursor-pointer text-center"
                 >
                   Create Page Draft
                 </button>

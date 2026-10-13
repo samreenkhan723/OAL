@@ -29,7 +29,7 @@ export const AdminRepPage = () => {
     <div className="space-y-6">
       <div>
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Representative Team Management
           </h1>
           <VerifyBadge note="Client confirmation pending for representative team administration menu and supervisor assignment rules" />
@@ -60,7 +60,7 @@ export const AdminRepPage = () => {
 
             <button
               onClick={() => handleOpenRouting(r)}
-              className="px-4 py-2 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors w-full sm:w-auto text-center"
+              className="px-4 py-2 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-xs font-bold text-slate-700 transition-colors w-full sm:w-auto text-center"
             >
               Manage Routing
             </button>
@@ -98,7 +98,7 @@ export const AdminRepPage = () => {
                   max="50"
                   value={repForm.maxCapacity}
                   onChange={(e) => setRepForm({ ...repForm, maxCapacity: Number(e.target.value) })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -108,7 +108,7 @@ export const AdminRepPage = () => {
                 <select
                   value={repForm.status}
                   onChange={(e) => setRepForm({ ...repForm, status: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 >
                   <option value="ACTIVE">ACTIVE (Accepting Leads)</option>
                   <option value="PAUSED">PAUSED (Queue Saturated)</option>
@@ -125,7 +125,7 @@ export const AdminRepPage = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 w-full sm:w-auto"
+                  className="px-5 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md shadow-[#0070C0]/25 w-full sm:w-auto"
                 >
                   Save Routing Policy
                 </button>

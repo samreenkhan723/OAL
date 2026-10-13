@@ -80,7 +80,7 @@ PORTFOLIO SUMMARY:
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Underwriting & Portfolio Reports
           </h1>
           <p className="text-xs text-slate-500 mt-1">
@@ -90,7 +90,7 @@ PORTFOLIO SUMMARY:
 
         <button
           onClick={() => setShowGenerateModal(true)}
-          className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/20 flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
+          className="px-4 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Generate Custom Report</span>
@@ -114,7 +114,7 @@ PORTFOLIO SUMMARY:
 
             <button
               onClick={() => handleDownload(rep.title)}
-              className="px-4 py-2 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
+              className="px-4 py-2 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
             >
               <Download className="w-4 h-4" />
               <span>Download</span>
@@ -141,7 +141,7 @@ PORTFOLIO SUMMARY:
                   type="text"
                   value={genForm.title}
                   onChange={(e) => setGenForm({ ...genForm, title: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -151,7 +151,7 @@ PORTFOLIO SUMMARY:
                 <select
                   value={genForm.dateRange}
                   onChange={(e) => setGenForm({ ...genForm, dateRange: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 >
                   <option value="Past 7 Days">Past 7 Days</option>
                   <option value="Past 30 Days">Past 30 Days</option>
@@ -165,7 +165,7 @@ PORTFOLIO SUMMARY:
                 <select
                   value={genForm.format}
                   onChange={(e) => setGenForm({ ...genForm, format: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 >
                   <option value="CSV / Excel">CSV / Excel Spreadsheet</option>
                   <option value="PDF Summary">PDF Summary Report</option>
@@ -183,7 +183,7 @@ PORTFOLIO SUMMARY:
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 w-full sm:w-auto"
+                  className="px-5 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md shadow-[#0070C0]/25 w-full sm:w-auto"
                 >
                   Compile & Export
                 </button>

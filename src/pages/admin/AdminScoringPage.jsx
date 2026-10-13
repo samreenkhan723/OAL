@@ -41,10 +41,10 @@ export const AdminScoringPage = () => {
       {/* Header */}
       <div>
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             AI Scoring Engine Oversight (Dual Model Architecture)
           </h1>
-          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
+          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#002060]/10 text-[#002060] border border-[#002060]/20">
             Doc 1 Line 96 Architecture
           </span>
         </div>
@@ -69,10 +69,10 @@ export const AdminScoringPage = () => {
           type="button"
           onClick={() => setActiveTab('investor')}
           className={`flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-            activeTab === 'investor' ? 'bg-[#0B1730] text-[#D5B66A] shadow-xs' : 'text-slate-600 hover:text-slate-900'
+            activeTab === 'investor' ? 'bg-[#002060] text-[#FFD200] shadow-xs' : 'text-slate-600 hover:text-slate-900'
           }`}
         >
-          <Award className="w-3.5 h-3.5 text-[#D5B66A]" />
+          <Award className="w-3.5 h-3.5 text-[#FFD200]" />
           <span>2. Special Verified Investor Form Engine (Doc 4)</span>
         </button>
       </div>
@@ -81,9 +81,9 @@ export const AdminScoringPage = () => {
       {activeTab === 'standard' && (
         <div className="space-y-6">
           {/* Engine Status Banner */}
-          <div className="bg-gradient-to-r from-[#0B1730] to-[#172B4D] rounded-2xl p-6 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
+          <div className="bg-gradient-to-r from-[#001744] to-[#002060] rounded-2xl p-6 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
             <div>
-              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 uppercase">
+              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#FFD200] text-[#002060] uppercase">
                 Active Algorithmic Version
               </span>
               <h2 className="text-xl font-bold font-heading text-white mt-1">
@@ -95,7 +95,7 @@ export const AdminScoringPage = () => {
             </div>
 
             <div className="text-left sm:text-right">
-              <div className="text-3xl font-extrabold text-[#D5B66A] font-heading">180 PTS</div>
+              <div className="text-3xl font-extrabold text-[#FFD200] font-heading">180 PTS</div>
               <span className="text-xs text-slate-300">Max Composite Score</span>
             </div>
           </div>
@@ -130,7 +130,7 @@ export const AdminScoringPage = () => {
       {/* VIEW 2: SPECIAL INVESTOR FORM ENGINE (Doc 1 Line 96 & Doc 4) */}
       {activeTab === 'investor' && (
         <div className="space-y-6">
-          <div className="bg-gradient-to-r from-purple-950 to-slate-900 rounded-2xl p-6 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
+          <div className="bg-gradient-to-r from-[#001744] to-[#002060] rounded-2xl p-6 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
             <div>
               <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#FFD200] text-[#002060] uppercase">
                 Special Scoring Engine (Doc 1 Line 96)
@@ -144,7 +144,7 @@ export const AdminScoringPage = () => {
             </div>
 
             <div className="text-left sm:text-right">
-              <div className="text-3xl font-extrabold text-[#D5B66A] font-heading">LINV IQ</div>
+              <div className="text-3xl font-extrabold text-[#FFD200] font-heading">LINV IQ</div>
               <span className="text-xs text-slate-300">Investor Rating Standard</span>
             </div>
           </div>
@@ -162,14 +162,14 @@ export const AdminScoringPage = () => {
                 <div className="space-y-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <h4 className="text-sm font-bold text-slate-900">{item.category}</h4>
-                    <span className="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">
+                    <span className="text-xs font-bold text-[#002060] bg-[#002060]/10 px-2 py-0.5 rounded border border-[#002060]/20">
                       {item.score}
                     </span>
                   </div>
                   <p className="text-xs text-slate-600">{item.requirement}</p>
                 </div>
 
-                <span className="text-xs font-semibold text-purple-700 bg-purple-50 px-3 py-1 rounded-full border border-purple-200 self-start sm:self-auto">
+                <span className="text-xs font-semibold text-[#002060] bg-[#002060]/10 px-3 py-1 rounded-full border border-[#002060]/20 self-start sm:self-auto">
                   Verified Intake
                 </span>
               </div>
@@ -178,7 +178,7 @@ export const AdminScoringPage = () => {
 
           {/* Club Tiers Breakdown */}
           <div className="p-6 rounded-2xl bg-slate-900 text-white space-y-3">
-            <h4 className="font-bold text-xs uppercase tracking-wider text-[#D5B66A]">
+            <h4 className="font-bold text-xs uppercase tracking-wider text-[#FFD200]">
               The Money Club Tier Hierarchy Resulting From Special Scoring (Doc 4 Lines 4-11)
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">

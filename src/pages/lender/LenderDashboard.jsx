@@ -179,10 +179,10 @@ export const LenderDashboard = () => {
         >
           <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
             <span className="font-semibold uppercase tracking-wider text-[11px]">Working Deals</span>
-            <Briefcase className="w-4 h-4 text-purple-600 group-hover:scale-110 transition-transform" />
+            <Briefcase className="w-4 h-4 text-[#0070C0] group-hover:scale-110 transition-transform" />
           </div>
-          <div className="text-3xl font-extrabold text-purple-700 font-heading">{myWorkingDeals.length}</div>
-          <div className="text-[11px] font-semibold text-purple-700 mt-2">
+          <div className="text-3xl font-extrabold text-[#002060] font-heading">{myWorkingDeals.length}</div>
+          <div className="text-[11px] font-semibold text-[#0070C0] mt-2">
             Max 3 Concurrent Claims (Rule FR-08)
           </div>
         </Link>
@@ -353,8 +353,8 @@ export const LenderDashboard = () => {
 
                       {/* Concurrent Reviewers Indicator (Doc 3 - Line 23) */}
                       <div className="pt-1 flex items-center gap-2 text-[11px]">
-                        <span className="w-2 h-2 rounded-full bg-purple-600 animate-pulse" />
-                        <span className="font-semibold text-purple-900">
+                        <span className="w-2 h-2 rounded-full bg-[#0070C0] animate-pulse" />
+                        <span className="font-semibold text-[#002060]">
                           {claimsCount === 0
                             ? 'No lenders in file yet (Exclusive opportunity)'
                             : claimsCount === 1
@@ -372,7 +372,7 @@ export const LenderDashboard = () => {
                           className={`text-[11px] font-bold px-2 py-0.5 rounded-full inline-block ${
                             isFull
                               ? 'bg-rose-100 text-rose-800'
-                              : 'bg-purple-100 text-purple-800'
+                              : 'bg-[#002060]/10 text-[#002060]'
                           }`}
                         >
                           {isFull ? 'FILE LOCKED (3/3 MAX)' : `${3 - claimsCount} Slot${3 - claimsCount > 1 ? 's' : ''} Open`}
@@ -400,7 +400,7 @@ export const LenderDashboard = () => {
                           <button
                             type="button"
                             onClick={e => handleDirectClaim(lead.id, e)}
-                            className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold transition-all shadow-md shadow-purple-600/20 flex items-center gap-1.5 cursor-pointer"
+                            className="px-4 py-2 rounded-xl bg-[#002060] hover:bg-[#001744] text-white text-xs font-bold transition-all shadow-md shadow-[#002060]/20 flex items-center gap-1.5 cursor-pointer"
                             title="Lock this file to formulate your term sheet (Rule FR-08)"
                           >
                             <Lock className="w-3.5 h-3.5" />
@@ -495,7 +495,7 @@ export const LenderDashboard = () => {
               <img
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
                 alt="Elena Rostova"
-                className="w-12 h-12 rounded-full object-cover border-2 border-blue-600 shadow-xs"
+                className="w-12 h-12 rounded-full object-cover border-2 border-[#0070C0] shadow-xs"
               />
               <div>
                 <h4 className="text-sm font-bold text-slate-900">Elena Rostova</h4>
@@ -537,7 +537,7 @@ export const LenderDashboard = () => {
 
               <div className="flex items-center justify-between text-slate-600">
                 <span className="flex items-center gap-1.5">
-                  <PhoneCall className="w-3.5 h-3.5 text-purple-600" />
+                  <PhoneCall className="w-3.5 h-3.5 text-[#0070C0]" />
                   SMS Fast-Track:
                 </span>
                 <span className="font-semibold text-slate-800">+1 (555) 720-4491</span>
@@ -597,12 +597,12 @@ export const LenderDashboard = () => {
           </div>
 
           {/* Anonymity & Compliance Box */}
-          <div className="bg-purple-50/70 border border-purple-200 rounded-2xl p-5 space-y-2 text-xs text-purple-950">
-            <h4 className="font-bold flex items-center gap-1.5 text-purple-900">
-              <ShieldCheck className="w-4 h-4 text-purple-700" />
+          <div className="bg-sky-50/70 border border-sky-200 rounded-2xl p-5 space-y-2 text-xs text-slate-800">
+            <h4 className="font-bold flex items-center gap-1.5 text-[#002060]">
+              <ShieldCheck className="w-4 h-4 text-[#0070C0]" />
               Lender Privacy Guard (Doc 1 Line 71)
             </h4>
-            <p className="text-[11px] text-purple-900/80 leading-relaxed">
+            <p className="text-[11px] text-slate-600 leading-relaxed">
               Your institutional fund identity, rate quotes, and deal notes are strictly hidden from competing lenders on all working deals.
             </p>
           </div>

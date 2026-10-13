@@ -138,11 +138,11 @@ export const AdminDashboard = () => {
 
         <Link
           to="/admin/offers"
-          className="bg-white rounded-2xl border border-slate-200/90 p-3.5 sm:p-4 shadow-xs hover:border-purple-400 transition-all group"
+          className="bg-white rounded-2xl border border-slate-200/90 p-3.5 sm:p-4 shadow-xs hover:border-[#0070C0] transition-all group"
         >
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block truncate">Working Deals</span>
-          <div className="text-xl sm:text-2xl font-extrabold text-purple-700 mt-1 font-heading">{activeWorkingDealsCount}</div>
-          <span className="text-[10px] text-purple-700 font-semibold mt-1 block truncate">Max 3/Deal Cap &rarr;</span>
+          <div className="text-xl sm:text-2xl font-extrabold text-[#002060] mt-1 font-heading">{activeWorkingDealsCount}</div>
+          <span className="text-[10px] text-[#0070C0] font-semibold mt-1 block truncate">Max 3/Deal Cap &rarr;</span>
         </Link>
 
         <Link
@@ -268,7 +268,7 @@ export const AdminDashboard = () => {
           </div>
 
           <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
-            <span className="text-[10px] font-mono font-bold text-purple-600 block">STAGE 2</span>
+            <span className="text-[10px] font-mono font-bold text-[#0070C0] block">STAGE 2</span>
             <strong className="text-slate-900 block font-bold">FinCEN & OFAC Screening</strong>
             <p className="text-[10px] text-slate-500 leading-tight">Automated watchlist check against anti-money laundering ledgers.</p>
           </div>
@@ -286,7 +286,7 @@ export const AdminDashboard = () => {
           </div>
 
           <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
-            <span className="text-[10px] font-mono font-bold text-indigo-600 block">STAGE 5</span>
+            <span className="text-[10px] font-mono font-bold text-[#002060] block">STAGE 5</span>
             <strong className="text-slate-900 block font-bold">UCC Lien & Collateral Invoices</strong>
             <p className="text-[10px] text-slate-500 leading-tight">Public UCC search and serial equipment valuation approval.</p>
           </div>
@@ -351,15 +351,15 @@ export const AdminDashboard = () => {
             <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs p-5 space-y-3">
               <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                 <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-                  <Users className="w-4 h-4 text-purple-600" />
+                  <Users className="w-4 h-4 text-[#0070C0]" />
                   <span>Lead Distribution Engine</span>
                 </h4>
-                <span className="text-[10px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded">Active</span>
+                <span className="text-[10px] font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded">Active</span>
               </div>
               <p className="text-[11px] text-slate-500 leading-relaxed">
                 Automated matching routes leads based on ticket size, industry, and LINV IQ scores. Enforces Rule FR-08 (Max 3 concurrent underwriter claims per deal).
               </p>
-              <Link to="/admin/lead-distribution" className="text-xs font-bold text-purple-700 hover:underline block pt-1">
+              <Link to="/admin/lead-distribution" className="text-xs font-bold text-[#0070C0] hover:text-[#002060] block pt-1">
                 Configure Routing Rules & Exclusivity Caps &rarr;
               </Link>
             </div>
@@ -368,15 +368,15 @@ export const AdminDashboard = () => {
             <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs p-5 space-y-3">
               <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                 <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-                  <Megaphone className="w-4 h-4 text-blue-600" />
+                  <Megaphone className="w-4 h-4 text-[#0070C0]" />
                   <span>Sponsor Placements & Ads</span>
                 </h4>
-                <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">3 Banners</span>
+                <span className="text-[10px] font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded">3 Banners</span>
               </div>
               <p className="text-[11px] text-slate-500 leading-relaxed">
                 Commercial kitchen equipment financing, fleet telematics, and dental lease placements. Impression tracking and CPC attribution active across dashboards.
               </p>
-              <Link to="/admin/advertisements" className="text-xs font-bold text-blue-600 hover:underline block pt-1">
+              <Link to="/admin/advertisements" className="text-xs font-bold text-[#0070C0] hover:text-[#002060] font-bold block pt-1">
                 Manage Ads & Sponsor Banners &rarr;
               </Link>
             </div>
@@ -424,7 +424,7 @@ export const AdminDashboard = () => {
 
             <Link
               to="/admin/referrals"
-              className="text-xs font-bold text-blue-600 hover:underline block pt-1 text-center"
+              className="text-xs font-bold text-[#0070C0] hover:text-[#002060] font-bold block pt-1 text-center"
             >
               Open Affiliate & Referral Ledger &rarr;
             </Link>
@@ -437,7 +437,7 @@ export const AdminDashboard = () => {
                 <History className="w-4 h-4 text-blue-600" />
                 <span>Immutable Audit Trail</span>
               </h3>
-              <Link to="/admin/audit-logs" className="text-[11px] text-blue-600 font-bold hover:underline">
+              <Link to="/admin/audit-logs" className="text-[11px] text-[#0070C0] font-bold hover:text-[#002060]">
                 View All &rarr;
               </Link>
             </div>
@@ -468,14 +468,14 @@ export const AdminDashboard = () => {
             <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060]">
                     Doc 1 & Doc 4 Feature
                   </span>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FFD200] text-[#002060]">
                     The Money Club Standard
                   </span>
                 </div>
-                <h3 className="text-lg font-heading font-extrabold text-[#0B1730] mt-1">
+                <h3 className="text-lg font-heading font-extrabold text-[#002060] mt-1">
                   Special Scoring Engine for Qualified Verified Applicant Investors
                 </h3>
                 <p className="text-xs text-slate-500 mt-0.5">
@@ -499,15 +499,15 @@ export const AdminDashboard = () => {
               </h4>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="p-3.5 rounded-xl bg-purple-50/70 border border-purple-200 space-y-1">
-                  <span className="text-purple-700 font-bold block text-sm">Individual Net Worth: 25 / 25 Pts</span>
+                <div className="p-3.5 rounded-xl bg-sky-50/70 border border-sky-200 space-y-1">
+                  <span className="text-[#002060] font-bold block text-sm">Individual Net Worth: 25 / 25 Pts</span>
                   <p className="text-slate-600 text-[11px] leading-relaxed">
                     Net worth exceeding <strong>$1,000,000</strong>, strictly excluding primary personal residence.
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200 space-y-1">
-                  <span className="text-blue-700 font-bold block text-sm">Annual Income: 15 / 15 Pts</span>
+                <div className="p-3.5 rounded-xl bg-sky-50/70 border border-sky-200 space-y-1">
+                  <span className="text-[#0070C0] font-bold block text-sm">Annual Income: 15 / 15 Pts</span>
                   <p className="text-slate-600 text-[11px] leading-relaxed">
                     Individual &gt;<strong>$200,000</strong>/yr or Joint with spouse &gt;<strong>$300,000</strong>/yr in each of the last 2 years.
                   </p>
@@ -530,7 +530,7 @@ export const AdminDashboard = () => {
 
               {/* The 4 Club Tiers Hierarchy */}
               <div className="p-4 rounded-2xl bg-slate-900 text-white space-y-3">
-                <h5 className="font-bold text-xs uppercase tracking-wider text-[#D5B66A]">
+                <h5 className="font-bold text-xs uppercase tracking-wider text-[#FFD200]">
                   Assigned Club Tier Hierarchy (Doc 4 Lines 4-11)
                 </h5>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">

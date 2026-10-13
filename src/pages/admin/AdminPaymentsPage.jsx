@@ -49,7 +49,7 @@ export const AdminPaymentsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+            <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
               Payments & Commercial Fee Ledger
             </h1>
             <VerifyBadge note="Client confirmation pending for automated payment gateway integrations and payout lifecycle (PRD FR-15)" />
@@ -61,7 +61,7 @@ export const AdminPaymentsPage = () => {
 
         <button
           onClick={handleExportLedger}
-          className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
+          className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
         >
           <Download className="w-4 h-4" />
           <span>Export Fee Ledger</span>

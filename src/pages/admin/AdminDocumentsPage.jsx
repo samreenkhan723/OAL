@@ -51,7 +51,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK REPOSITORY
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Centralized Document Repository
           </h1>
           <p className="text-xs text-slate-500 mt-1">
@@ -66,7 +66,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK REPOSITORY
             placeholder="Search documents..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none bg-white"
+            className="w-full pl-9 pr-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none bg-white"
           />
         </div>
       </div>
@@ -97,7 +97,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK REPOSITORY
               <div className="flex items-center gap-2 w-full md:w-auto justify-end">
                 <button
                   onClick={() => setSelectedDoc(doc)}
-                  className="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
+                  className="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
                 >
                   <Eye className="w-3.5 h-3.5" />
                   <span>Inspect Document</span>
@@ -164,7 +164,7 @@ CONFIDENTIAL - OAL FINANCIAL NETWORK REPOSITORY
               <button
                 type="button"
                 onClick={() => setSelectedDoc(null)}
-                className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-colors w-full sm:w-auto text-center cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-[#0070C0] text-white text-xs font-bold transition-colors w-full sm:w-auto text-center cursor-pointer"
               >
                 Close File
               </button>

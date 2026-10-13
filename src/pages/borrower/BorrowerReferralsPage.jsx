@@ -27,7 +27,7 @@ export const BorrowerReferralsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+            <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
               Referrals & Partner Affiliates
             </h1>
             <VerifyBadge note="Client confirmation pending for exact commercial referral commission tiers and payout frequency" />
@@ -42,7 +42,7 @@ export const BorrowerReferralsPage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs">
           <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Total Earned</span>
-          <div className="text-3xl font-extrabold text-[#0B1730] mt-1 font-heading">${currentUser?.referralEarnings || 1750}</div>
+          <div className="text-3xl font-extrabold text-[#002060] mt-1 font-heading">${currentUser?.referralEarnings || 1750}</div>
           <span className="text-[11px] text-emerald-600 font-semibold mt-1 block">Paid via Direct ACH</span>
         </div>
 
@@ -54,15 +54,15 @@ export const BorrowerReferralsPage = () => {
 
         <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs">
           <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Commission Tier</span>
-          <div className="text-3xl font-extrabold text-[#D5B66A] mt-1 font-heading">Tier-2 Affiliate</div>
+          <div className="text-3xl font-extrabold text-[#FFD200] mt-1 font-heading">Tier-2 Affiliate</div>
           <span className="text-[11px] text-slate-500 mt-1 block">0.50% Origination Basis Points</span>
         </div>
       </div>
 
       {/* Share Box */}
-      <div className="bg-gradient-to-br from-[#0B1730] to-[#172B4D] rounded-2xl p-6 sm:p-8 text-white space-y-4 shadow-xl">
+      <div className="bg-gradient-to-br from-[#001744] to-[#002060] rounded-2xl p-6 sm:p-8 text-white space-y-4 shadow-xl">
         <div className="flex items-center gap-2">
-          <Gift className="w-5 h-5 text-[#D5B66A]" />
+          <Gift className="w-5 h-5 text-[#FFD200]" />
           <h3 className="text-base font-bold text-white">Your Unique Referral Link</h3>
         </div>
         <p className="text-xs text-slate-300 max-w-xl">
@@ -78,7 +78,7 @@ export const BorrowerReferralsPage = () => {
           />
           <button
             onClick={handleCopy}
-            className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
           >
             {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'Copied!' : 'Copy Link'}</span>

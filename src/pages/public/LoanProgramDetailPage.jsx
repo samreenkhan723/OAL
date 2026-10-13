@@ -19,6 +19,7 @@ import {
   X
 } from 'lucide-react';
 import { VerifyBadge } from '../../components/common/VerifyBadge';
+import { IndustryDetailPage } from './IndustryDetailPage';
 
 export const LoanProgramDetailPage = () => {
   const { slug } = useParams();
@@ -27,6 +28,10 @@ export const LoanProgramDetailPage = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   const program = LOAN_PROGRAMS.find(p => p.slug === slug || p.id === slug) || LOAN_PROGRAMS[0];
+
+  if (program?.isIndustryProgram) {
+    return <IndustryDetailPage />;
+  }
 
   const getProgramImage = (idOrSlug) => {
     switch (idOrSlug) {

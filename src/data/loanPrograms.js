@@ -1,5 +1,7 @@
-// Master Loan Programs catalog strictly aligned with Client Sitemap Blueprint DOCX
-export const LOAN_PROGRAMS = [
+import { INDUSTRY_LOANS } from './industryLoans.js';
+
+// Master Blueprint Loan Programs catalog strictly aligned with Client Sitemap Blueprint DOCX
+export const ORIGINAL_LOAN_PROGRAMS = [
   {
     id: 'restaurant',
     slug: 'restaurant',
@@ -16,6 +18,7 @@ export const LOAN_PROGRAMS = [
     rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
     description: 'Specialized commercial financing for full-service restaurants, bistros, and culinary establishments looking to purchase commercial kitchen appliances, expand dining seating, or manage seasonal inventory cash flows. Easy approval process accommodating both good and bad credit profiles.',
     icon: 'UtensilsCrossed',
+    image: '/images/loan_restaurant.jpg',
     badge: 'GOOD & BAD CREDIT',
     eligiblePurposes: [
       'Commercial kitchen equipment purchases & leasehold improvements',
@@ -48,6 +51,7 @@ export const LOAN_PROGRAMS = [
     rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
     description: 'Dedicated mobile food and beverage debt funding covering custom chassis fabrication, exhaust hood installations, commissary prep kitchen deposits, and initial operations. Easy approval process welcoming good and bad credit borrowers.',
     icon: 'Truck',
+    image: '/images/loan_food_truck.jpg',
     badge: 'GOOD & BAD CREDIT',
     eligiblePurposes: [
       'Food truck vehicle purchase / chassis down payment',
@@ -80,6 +84,7 @@ export const LOAN_PROGRAMS = [
     rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
     description: 'Tailored capital solutions for new and seasoned franchisees across retail, automotive, fitness, and quick-service restaurant (QSR) brands. Whether acquiring territory rights or completing mandatory brand remodels, our network connects you with specialized franchise lenders.',
     icon: 'Store',
+    image: '/images/loan_franchise.jpg',
     badge: 'We Can Help',
     eligiblePurposes: [
       'Initial franchise fee payment and territorial licensing',
@@ -112,6 +117,7 @@ export const LOAN_PROGRAMS = [
     rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
     description: 'Comprehensive financing for general dentists, orthodontists, pediatric dentists, and oral surgeons. Covers starting a new practice, purchasing an existing clinical practice, acquiring partner equity, or upgrading to 3D CBCT digital imaging suites.',
     icon: 'Smile',
+    image: '/images/loan_dental.jpg',
     badge: 'Healthcare Specialist',
     eligiblePurposes: [
       'Purchases of existing dental practices or partner buyout',
@@ -144,6 +150,7 @@ export const LOAN_PROGRAMS = [
     rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
     description: 'Commercial transport debt financing for owner-operators and logistics fleets. Designed to handle diesel fuel volatility, Class 8 tractor purchases, maintenance overhauls, and freight factoring needs with fast 2-24 hour approvals.',
     icon: 'Container',
+    image: '/images/loan_trucking.jpg',
     badge: '2-24 Hr Approval',
     eligiblePurposes: [
       'Class 8 semi-tractor & dry van / reefer trailer acquisitions',
@@ -176,6 +183,7 @@ export const LOAN_PROGRAMS = [
     rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
     description: 'Commercial debt for boutique hotels, flagged motels, and short-term rental (Airbnb / VRBO) portfolios. Covers new construction acquisitions, purchases of existing properties, and comprehensive repair, renovation, and remodeling programs (PIP).',
     icon: 'Building2',
+    image: '/images/loan_hospitality.jpg',
     badge: 'Hospitality Capital',
     eligiblePurposes: [
       'Purchases of existing hotel, motel, or Airbnb properties',
@@ -208,6 +216,7 @@ export const LOAN_PROGRAMS = [
     rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
     description: 'Respectful, mission-aligned commercial financing for houses of worship and nonprofit religious institutions. Specializing in purchasing existing church facilities, sanctuary expansions, structural repairs, and modern audiovisual sound gear.',
     icon: 'Landmark',
+    image: '/images/loan_church.jpg',
     badge: 'Faith-Based Financing',
     eligiblePurposes: [
       'Purchases of existing church properties and worship facilities',
@@ -240,6 +249,7 @@ export const LOAN_PROGRAMS = [
     rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
     description: 'Speed-focused bridge and rehabilitation debt for residential (1-4 unit) and commercial real estate investors. Designed to fund acquisitions at distressed prices with fast 2-24 hour approvals, regardless of credit challenges, based on after-repair asset value.',
     icon: 'Hammer',
+    image: '/images/loan_fix_flip.jpg',
     badge: '2-24 Hr Approval',
     eligiblePurposes: [
       'Distressed property acquisition at auctions or off-market',
@@ -257,4 +267,33 @@ export const LOAN_PROGRAMS = [
     ]
   }
 ];
+
+// Map the 9 client-provided industry documents to standard loan program structure
+export const INDUSTRY_PROGRAMS = INDUSTRY_LOANS.map(ind => ({
+  id: ind.id,
+  slug: ind.slug,
+  title: ind.title,
+  subtitle: ind.subtitle,
+  tagline: ind.heroTagline,
+  creditRequirement: 'Verified Commercial Underwriting',
+  approvalTime: ind.approvalTime,
+  fundingScope: ind.fundingScope,
+  minAmount: ind.minAmount,
+  maxAmount: ind.maxAmount,
+  termMonths: 'Flexible Commercial Terms',
+  typicalRate: 'Market Underwriting Rates',
+  rateDescription: ind.rateDescription,
+  description: ind.description,
+  icon: ind.iconName,
+  image: ind.image,
+  badge: ind.badge,
+  eligiblePurposes: ind.primaryPurposes,
+  requiredDocuments: ind.requiredDocuments,
+  isIndustryProgram: true
+}));
+
+export const SPECIALTY_PROGRAMS = [...ORIGINAL_LOAN_PROGRAMS];
+
+// Master catalog including both Blueprint specialty programs and 9 Loans by Industry
+export const LOAN_PROGRAMS = [...ORIGINAL_LOAN_PROGRAMS, ...INDUSTRY_PROGRAMS];
 

@@ -157,6 +157,30 @@ export const LoanProgramsPage = () => {
         </div>
       </div>
 
+      {/* Notice Banner: 9 Loans by Industry Directory */}
+      <div className="bg-gradient-to-r from-sky-50 via-blue-50 to-amber-50/50 border border-sky-200/80 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
+        <div className="flex items-start gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-[#002060] text-[#FFD200] flex items-center justify-center shrink-0 shadow-sm">
+            <Building2 className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="text-sm sm:text-base font-extrabold text-[#002060]">
+              Looking for Commercial Loans by Industry?
+            </h3>
+            <p className="text-xs text-slate-600 mt-0.5">
+              Explore our dedicated 9-sector directory: Transportation, Real Estate, Logistics, Telecom, Manufacturing, Nonprofit, Technology, Retail, and Professional Services.
+            </p>
+          </div>
+        </div>
+        <Link
+          to="/industries"
+          className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-black text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] shadow-sm transition-all border border-amber-300"
+        >
+          <span>Explore 9 Industries</span>
+          <ArrowRight className="w-4 h-4 text-[#002060]" />
+        </Link>
+      </div>
+
       {/* 2. Program Grid with Photography Cards */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">

@@ -91,7 +91,7 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-2 text-xs sm:text-[13px] text-slate-300">
               <li><Link to="/loan-programs" className="hover:text-[#00B0F0] transition-colors">Loan Types</Link></li>
-              <li><Link to="/loan-programs" className="hover:text-[#00B0F0] transition-colors">Loans by Industry</Link></li>
+              <li><Link to="/industries" className="hover:text-[#00B0F0] transition-colors font-semibold">Loans by Industry (9 Sectors)</Link></li>
               <li><Link to="/tools" className="hover:text-[#00B0F0] transition-colors">Marketing Genius</Link></li>
               <li><Link to="/loan-programs" className="hover:text-[#00B0F0] transition-colors">Financing</Link></li>
               <li><Link to="/loan-programs/restaurant" className="hover:text-[#00B0F0] transition-colors">Restaurant Loans</Link></li>

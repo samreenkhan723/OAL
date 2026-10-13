@@ -100,9 +100,9 @@ export const LoanProcessTracker = ({ currentStatus = 'SUBMITTED', application })
               <div
                 className={`w-9 h-9 rounded-full flex items-center justify-center relative z-10 transition-all ${
                   isDone
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
+                    ? 'bg-blue-600 text-white shadow-md shadow-[#0070C0]/25'
                     : isCurrent
-                    ? 'bg-[#0B1730] text-[#D5B66A] ring-4 ring-blue-600/20 shadow-lg'
+                    ? 'bg-[#002060] text-[#FFD200] ring-4 ring-[#0070C0]/25 shadow-lg'
                     : 'bg-slate-100 text-slate-400 border border-slate-200'
                 }`}
               >
@@ -139,7 +139,7 @@ export const LoanProcessTracker = ({ currentStatus = 'SUBMITTED', application })
                   isDone
                     ? 'bg-blue-600 text-white'
                     : isCurrent
-                    ? 'bg-[#0B1730] text-[#D5B66A] ring-2 ring-blue-500'
+                    ? 'bg-[#002060] text-[#FFD200] ring-2 ring-[#0070C0]'
                     : 'bg-slate-100 text-slate-400 border border-slate-200'
                 }`}
               >
@@ -169,7 +169,7 @@ export const LoanProcessTracker = ({ currentStatus = 'SUBMITTED', application })
       {/* Stage 13 Post-Funding Servicing Hub Quick Link */}
       <div className="mt-6 pt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs bg-slate-50/70 p-4 rounded-xl border border-slate-200">
         <div className="flex items-center gap-2">
-          <History className="w-4 h-4 text-[#D5B66A]" />
+          <History className="w-4 h-4 text-[#FFD200]" />
           <div>
             <strong className="text-slate-900 block">Stage 13: Post-Funding Commercial Servicing</strong>
             <span className="text-[11px] text-slate-500">Amortization schedules, wire receipts, ACH auto-pay & 30-day payoff quotes.</span>
@@ -178,7 +178,7 @@ export const LoanProcessTracker = ({ currentStatus = 'SUBMITTED', application })
 
         <Link
           to="/borrower/post-funding"
-          className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all shadow-xs inline-flex items-center justify-center gap-1.5 self-start sm:self-auto cursor-pointer"
+          className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold transition-all shadow-xs inline-flex items-center justify-center gap-1.5 self-start sm:self-auto cursor-pointer"
         >
           <span>Open Post-Funding Dashboard</span>
           <ExternalLink className="w-3.5 h-3.5" />

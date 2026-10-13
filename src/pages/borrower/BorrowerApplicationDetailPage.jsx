@@ -66,7 +66,7 @@ export const BorrowerApplicationDetailPage = () => {
       <div>
         <Link
           to="/borrower/applications"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-blue-600 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#0070C0] transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
           <span>Back to All Applications</span>
@@ -91,11 +91,11 @@ export const BorrowerApplicationDetailPage = () => {
           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600 mt-2">
             <div>
               <span className="text-slate-400">Program:</span>{' '}
-              <strong className="text-blue-600">{app.programName}</strong>
+              <strong className="text-[#0070C0]">{app.programName}</strong>
             </div>
             <div>
               <span className="text-slate-400">Requested Capital:</span>{' '}
-              <strong className="text-slate-900 font-extrabold">${app.amount.toLocaleString()}</strong>
+              <strong className="text-[#002060] font-extrabold">${app.amount.toLocaleString()}</strong>
             </div>
             <div>
               <span className="text-slate-400">Assigned Rep:</span>{' '}
@@ -107,7 +107,7 @@ export const BorrowerApplicationDetailPage = () => {
         <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
           <Link
             to="/borrower/offers"
-            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl bg-[#D5B66A] hover:bg-[#c4a457] text-slate-950 text-xs font-bold shadow-md transition-all flex items-center gap-1.5"
+            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] border border-amber-300 text-xs font-bold shadow-md transition-all flex items-center gap-1.5"
           >
             <DollarSign className="w-4 h-4" />
             <span>View Offers ({appOffers.length})</span>
@@ -126,7 +126,7 @@ export const BorrowerApplicationDetailPage = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 py-3 px-4 text-xs font-bold border-b-2 transition-all whitespace-nowrap ${
                 isActive
-                  ? 'border-blue-600 text-blue-600'
+                  ? 'border-[#0070C0] text-[#0070C0]'
                   : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
               }`}
             >
@@ -206,7 +206,7 @@ export const BorrowerApplicationDetailPage = () => {
             </div>
             <Link
               to="/borrower/documents"
-              className="w-full sm:w-auto text-center px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold hover:bg-blue-700"
+              className="w-full sm:w-auto text-center px-4 py-2 bg-[#0070C0] text-white rounded-xl text-xs font-bold hover:bg-[#005a9e] transition-colors"
             >
               Upload / Replace File
             </Link>

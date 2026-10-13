@@ -28,10 +28,10 @@ export const WorkingDealSlots = ({ application, onClaimSuccess }) => {
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-              <Briefcase className="w-4 h-4 text-purple-600" />
+              <Briefcase className="w-4 h-4 text-[#0070C0]" />
               Working Deal Underwriting Slots
             </span>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060]">
               Rule FR-08 (Max 3)
             </span>
           </div>
@@ -66,7 +66,7 @@ export const WorkingDealSlots = ({ application, onClaimSuccess }) => {
               className={`p-4 rounded-xl border transition-all ${
                 isSlotFilled
                   ? isMyClaim
-                    ? 'bg-blue-50/80 border-blue-300 ring-2 ring-blue-500/20'
+                    ? 'bg-blue-50/80 border-blue-300 ring-2 ring-[#0070C0]/20'
                     : 'bg-slate-50 border-slate-200'
                   : 'bg-white border-dashed border-slate-300 text-slate-400'
               }`}
@@ -138,7 +138,7 @@ export const WorkingDealSlots = ({ application, onClaimSuccess }) => {
               className={`w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer text-center ${
                 isFull
                   ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                  : 'bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white shadow-purple-600/20'
+                  : 'bg-[#002060] hover:bg-[#001744] active:bg-[#001744] text-white shadow-sm'
               }`}
             >
               {isFull ? 'Deal Full (3/3 Lenders)' : 'Claim Working Deal Slot'}

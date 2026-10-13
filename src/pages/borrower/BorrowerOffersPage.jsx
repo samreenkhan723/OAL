@@ -23,10 +23,10 @@ export const BorrowerOffersPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+            <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
               Lender Offers & Financing Proposals
             </h1>
-            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 uppercase">
+            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#002060]/10 text-[#002060] uppercase">
               Rule FR-10
             </span>
           </div>

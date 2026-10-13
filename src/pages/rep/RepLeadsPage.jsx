@@ -15,7 +15,7 @@ export const RepLeadsPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+        <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
           Representative Lead Pipeline
         </h1>
         <p className="text-xs text-slate-500 mt-1">
@@ -57,7 +57,7 @@ export const RepLeadsPage = () => {
                 </Link>
                 <Link
                   to="/rep/offers"
-                  className="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 text-center"
+                  className="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 text-center"
                 >
                   <span>Inspect File</span>
                 </Link>

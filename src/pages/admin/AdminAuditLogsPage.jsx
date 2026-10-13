@@ -61,7 +61,7 @@ export const AdminAuditLogsPage = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Platform Immutable Audit Trail
           </h1>
           <p className="text-xs text-slate-500 mt-1">
@@ -71,7 +71,7 @@ export const AdminAuditLogsPage = () => {
 
         <button
           onClick={handleExportJsonLd}
-          className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
+          className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-xs font-bold text-slate-700 transition-colors flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
         >
           <Download className="w-4 h-4" />
           <span>Export JSON-LD Audit Log</span>
@@ -85,7 +85,7 @@ export const AdminAuditLogsPage = () => {
           placeholder="Filter by actor, action, target, or keywords..."
           value={search}
           onChange={handleSearchChange}
-          className="w-full pl-9 pr-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none bg-white"
+          className="w-full pl-9 pr-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none bg-white"
         />
       </div>
 

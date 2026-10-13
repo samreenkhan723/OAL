@@ -79,7 +79,7 @@ export const AdminAdsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+            <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
               Platform Advertisements & Sponsored Banners
             </h1>
             <VerifyBadge note="Client confirmation pending for ad placement specs, pricing, and advertiser eligibility (PRD FR-15)" />
@@ -91,7 +91,7 @@ export const AdminAdsPage = () => {
 
         <button
           onClick={handleOpenCreate}
-          className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/20 flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
+          className="px-4 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>New Sponsor Placement</span>
@@ -127,7 +127,7 @@ export const AdminAdsPage = () => {
               </button>
               <button
                 onClick={() => handleOpenEdit(ad)}
-                className="px-4 py-2 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex-1 sm:flex-none text-center cursor-pointer"
+                className="px-4 py-2 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-xs font-bold text-slate-700 transition-colors flex-1 sm:flex-none text-center cursor-pointer"
               >
                 Edit Placement
               </button>
@@ -154,7 +154,7 @@ export const AdminAdsPage = () => {
                   type="text"
                   value={adForm.title}
                   onChange={(e) => setAdForm({ ...adForm, title: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -165,7 +165,7 @@ export const AdminAdsPage = () => {
                   type="text"
                   value={adForm.sponsor}
                   onChange={(e) => setAdForm({ ...adForm, sponsor: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -176,7 +176,7 @@ export const AdminAdsPage = () => {
                   type="text"
                   value={adForm.placement}
                   onChange={(e) => setAdForm({ ...adForm, placement: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -186,7 +186,7 @@ export const AdminAdsPage = () => {
                 <select
                   value={adForm.status}
                   onChange={(e) => setAdForm({ ...adForm, status: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 >
                   <option value="ACTIVE">ACTIVE (Running)</option>
                   <option value="PAUSED">PAUSED (Inactive)</option>
@@ -203,7 +203,7 @@ export const AdminAdsPage = () => {
                 </button>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 cursor-pointer text-center"
+                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md shadow-[#0070C0]/25 cursor-pointer text-center"
                 >
                   Save Placement
                 </button>
@@ -232,7 +232,7 @@ export const AdminAdsPage = () => {
                   value={newAdForm.title}
                   onChange={(e) => setNewAdForm({ ...newAdForm, title: e.target.value })}
                   placeholder="e.g. Commercial Fleet & Equipment Leasing Showcase"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -244,7 +244,7 @@ export const AdminAdsPage = () => {
                   value={newAdForm.sponsor}
                   onChange={(e) => setNewAdForm({ ...newAdForm, sponsor: e.target.value })}
                   placeholder="e.g. Penske Commercial Fleet Capital"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -256,7 +256,7 @@ export const AdminAdsPage = () => {
                   value={newAdForm.placement}
                   onChange={(e) => setNewAdForm({ ...newAdForm, placement: e.target.value })}
                   placeholder="e.g. Borrower Dashboard / Equipment Category"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -269,7 +269,7 @@ export const AdminAdsPage = () => {
                     value={newAdForm.cpc}
                     onChange={(e) => setNewAdForm({ ...newAdForm, cpc: e.target.value })}
                     placeholder="$4.00"
-                    className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   />
                 </div>
                 <div>
@@ -277,7 +277,7 @@ export const AdminAdsPage = () => {
                   <select
                     value={newAdForm.status}
                     onChange={(e) => setNewAdForm({ ...newAdForm, status: e.target.value })}
-                    className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   >
                     <option value="ACTIVE">ACTIVE (Running)</option>
                     <option value="PAUSED">PAUSED (Inactive)</option>
@@ -295,7 +295,7 @@ export const AdminAdsPage = () => {
                 </button>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 cursor-pointer text-center"
+                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md shadow-[#0070C0]/25 cursor-pointer text-center"
                 >
                   Create Sponsor Placement
                 </button>

@@ -47,7 +47,7 @@ export const AdminApplicationsPage = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Master Loan Applications Register
           </h1>
           <p className="text-xs text-slate-500 mt-1">
@@ -65,7 +65,7 @@ export const AdminApplicationsPage = () => {
             placeholder="Search by application ID, business name, or program..."
             value={search}
             onChange={handleSearchChange}
-            className="w-full pl-10 pr-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+            className="w-full pl-10 pr-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
           />
         </div>
       </div>
@@ -99,7 +99,7 @@ export const AdminApplicationsPage = () => {
                   <span>•</span>
                   <span>Borrower: <strong>{app.borrowerName}</strong></span>
                   <span>•</span>
-                  <span>Working Claims: <strong className="text-purple-700">{app.workingDeals?.claimedLendersCount || 0}/3</strong></span>
+                  <span>Working Claims: <strong className="text-[#002060]">{app.workingDeals?.claimedLendersCount || 0}/3</strong></span>
                 </div>
               </div>
 
@@ -110,7 +110,7 @@ export const AdminApplicationsPage = () => {
                   <select
                     value={app.status}
                     onChange={(e) => handleAdvance(app.id, e.target.value)}
-                    className="px-2 py-1 text-xs font-bold bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-900 flex-1 sm:flex-initial"
+                    className="px-2 py-1 text-xs font-bold bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#0070C0] text-slate-900 flex-1 sm:flex-initial"
                   >
                     {ALL_STATUSES.map(st => (
                       <option key={st} value={st}>{st.replace(/_/g, ' ')}</option>

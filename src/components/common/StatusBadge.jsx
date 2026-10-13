@@ -5,9 +5,9 @@ const STATUS_CONFIGS = {
   DRAFT: { label: 'Draft', bg: 'bg-slate-100', text: 'text-slate-700', border: 'border-slate-300' },
   SUBMITTED: { label: 'Submitted', bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
   KYC_REVIEW: { label: 'KYC / Doc Review', bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-300' },
-  SCORED: { label: 'IQ Scored', bg: 'bg-indigo-50', text: 'text-indigo-700', border: 'border-indigo-200' },
+  SCORED: { label: 'IQ Scored', bg: 'bg-sky-50', text: 'text-[#0070C0]', border: 'border-sky-200' },
   QUALIFIED: { label: 'Qualified Marketplace', bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
-  WORKING_DEAL: { label: 'Working Deal Active', bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200' },
+  WORKING_DEAL: { label: 'Working Deal Active', bg: 'bg-[#002060]/10', text: 'text-[#002060]', border: 'border-[#002060]/20' },
   OFFER_RECEIVED: { label: 'Offers Received', bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-300' },
   OFFER_ACCEPTED: { label: 'Offer Accepted', bg: 'bg-teal-50', text: 'text-teal-700', border: 'border-teal-300' },
   PROCESSING: { label: 'In Processing', bg: 'bg-amber-50', text: 'text-amber-800', border: 'border-amber-300' },
@@ -23,7 +23,7 @@ const STATUS_CONFIGS = {
   IN_REVIEW: { label: 'Under Review', bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-300' },
   VERIFIED: { label: 'Verified', bg: 'bg-teal-50', text: 'text-teal-700', border: 'border-teal-300' },
   REJECTED: { label: 'Rejected', bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-300' },
-  NEEDS_REPLACEMENT: { label: 'Needs Replacement', bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-300' },
+  NEEDS_REPLACEMENT: { label: 'Needs Replacement', bg: 'bg-amber-50', text: 'text-amber-800', border: 'border-amber-300' },
 
   // Offer statuses
   PENDING_BORROWER_REVIEW: { label: 'Pending Review', bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-300' },

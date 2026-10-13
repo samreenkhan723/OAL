@@ -11,7 +11,7 @@ export const LenderSavedLeadsPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+        <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
           Saved Marketplace Leads
         </h1>
         <p className="text-xs text-slate-500 mt-1">
@@ -34,7 +34,7 @@ export const LenderSavedLeadsPage = () => {
 
             <Link
               to={`/lender/leads/${lead.id}`}
-              className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-all self-start sm:self-center w-full sm:w-auto text-center"
+              className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-[#0070C0] text-white text-xs font-bold transition-all self-start sm:self-center w-full sm:w-auto text-center"
             >
               Open File
             </Link>

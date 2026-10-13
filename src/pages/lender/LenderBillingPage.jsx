@@ -92,7 +92,7 @@ THANK YOU FOR YOUR PARTNERSHIP WITH OAL NETWORK
     <div className="space-y-8">
       <div>
         <div className="flex items-center gap-2">
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Lender Subscriptions & Placement Billing
           </h1>
           <VerifyBadge note="Client confirmation pending for exact institutional tier pricing and success fee percentages" />
@@ -103,9 +103,9 @@ THANK YOU FOR YOUR PARTNERSHIP WITH OAL NETWORK
       </div>
 
       {/* Current Plan Card */}
-      <div className="bg-gradient-to-br from-[#0B1730] to-[#172B4D] rounded-3xl p-5 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-gradient-to-br from-[#001744] to-[#002060] rounded-3xl p-5 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-2">
-          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 uppercase">
+          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#FFD200] text-[#002060] uppercase">
             Active Institutional Tier
           </span>
           <h2 className="text-2xl font-bold font-heading text-white">
@@ -136,7 +136,7 @@ THANK YOU FOR YOUR PARTNERSHIP WITH OAL NETWORK
           <h3 className="text-sm font-bold text-slate-900">Recent Origination Fee Invoices</h3>
           <button
             onClick={handleDownloadAnnualStatement}
-            className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1 cursor-pointer"
+            className="text-xs font-bold text-[#0070C0] hover:text-[#002060] font-bold flex items-center gap-1 cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download Annual Statement</span>
@@ -160,7 +160,7 @@ THANK YOU FOR YOUR PARTNERSHIP WITH OAL NETWORK
                 </div>
                 <button
                   onClick={() => handleDownloadInvoice(inv)}
-                  className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer"
+                  className="p-2 text-slate-400 hover:text-[#0070C0] hover:bg-blue-50 rounded-lg transition-colors cursor-pointer"
                   title="Download Invoice"
                 >
                   <Download className="w-4 h-4" />
@@ -195,7 +195,7 @@ THANK YOU FOR YOUR PARTNERSHIP WITH OAL NETWORK
                     onClick={() => handleSelectTier(t)}
                     className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
                       isSelected
-                        ? 'border-blue-600 bg-blue-50/60'
+                        ? 'border-[#0070C0] bg-blue-50/60'
                         : 'border-slate-200 hover:border-slate-300 bg-white'
                     }`}
                   >

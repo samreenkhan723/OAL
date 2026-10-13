@@ -27,6 +27,13 @@ export const ApplicationWizard = () => {
   const programParam = searchParams.get('program');
 
   const [currentStep, setCurrentStep] = useState(1);
+  const [programFilter, setProgramFilter] = useState(() => {
+    if (programParam) {
+      const match = LOAN_PROGRAMS.find(p => p.id === programParam || p.slug === programParam);
+      if (match?.isIndustryProgram) return 'industry';
+    }
+    return 'all';
+  });
   const [formData, setFormData] = useState(() => {
     const matched = programParam
       ? LOAN_PROGRAMS.find(p => p.id === programParam || p.slug === programParam)
@@ -190,11 +197,11 @@ export const ApplicationWizard = () => {
   return (
     <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden max-w-4xl mx-auto">
       {/* Wizard Header & Stepper */}
-      <div className="p-6 bg-gradient-to-r from-[#0B1730] to-[#172B4D] text-white">
+      <div className="p-6 bg-gradient-to-r from-[#001744] to-[#002060] text-white">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 uppercase tracking-wider">
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FFD200] text-[#002060] uppercase tracking-wider">
                 Application Intake
               </span>
               <span className="text-xs text-slate-300 font-medium">
@@ -214,7 +221,7 @@ export const ApplicationWizard = () => {
             onClick={handleSaveDraft}
             className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors self-start sm:self-auto w-full sm:w-auto cursor-pointer"
           >
-            <Save className="w-3.5 h-3.5 text-[#D5B66A]" />
+            <Save className="w-3.5 h-3.5 text-[#FFD200]" />
             Save Draft
           </button>
         </div>
@@ -238,7 +245,7 @@ export const ApplicationWizard = () => {
                     isCompleted
                       ? 'bg-blue-400 group-hover:bg-blue-300'
                       : isCurrent
-                      ? 'bg-[#D5B66A] shadow-xs ring-1 ring-[#D5B66A]/50'
+                      ? 'bg-[#FFD200] shadow-xs ring-1 ring-[#FFD200]/50'
                       : 'bg-white/20 group-hover:bg-white/40'
                   }`}
                 />
@@ -302,7 +309,7 @@ export const ApplicationWizard = () => {
                   type="text"
                   value={formData.businessName}
                   onChange={(e) => handleInputChange('businessName', e.target.value)}
-                  className={`w-full px-3.5 py-2.5 text-xs border rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none ${
+                  className={`w-full px-3.5 py-2.5 text-xs border rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none ${
                     errors.businessName ? 'border-rose-400 bg-rose-50/50' : 'border-slate-200'
                   }`}
                   placeholder="e.g. Acme Hospitality LLC"
@@ -316,7 +323,7 @@ export const ApplicationWizard = () => {
                   type="text"
                   value={formData.dbaName}
                   onChange={(e) => handleInputChange('dbaName', e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   placeholder="e.g. Acme Bistro"
                 />
               </div>
@@ -327,7 +334,7 @@ export const ApplicationWizard = () => {
                   type="text"
                   value={formData.taxId}
                   onChange={(e) => handleInputChange('taxId', e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   placeholder="XX-XXXXXXX"
                 />
               </div>
@@ -338,7 +345,7 @@ export const ApplicationWizard = () => {
                   type="text"
                   value={formData.businessPhone}
                   onChange={(e) => handleInputChange('businessPhone', e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 />
               </div>
             </div>
@@ -356,7 +363,7 @@ export const ApplicationWizard = () => {
                     type="text"
                     value={formData.applicantName}
                     onChange={(e) => handleInputChange('applicantName', e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   />
                   {errors.applicantName && <p className="text-[11px] text-rose-500 mt-1">{errors.applicantName}</p>}
                 </div>
@@ -367,7 +374,7 @@ export const ApplicationWizard = () => {
                     type="text"
                     value={formData.applicantTitle}
                     onChange={(e) => handleInputChange('applicantTitle', e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   />
                 </div>
 
@@ -377,7 +384,7 @@ export const ApplicationWizard = () => {
                     type="number"
                     value={formData.ownershipPercentage}
                     onChange={(e) => handleInputChange('ownershipPercentage', e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   />
                 </div>
               </div>
@@ -391,29 +398,70 @@ export const ApplicationWizard = () => {
             <div>
               <h3 className="text-base font-bold text-slate-900">Step 2: Financing Request & Program Selection</h3>
               <p className="text-xs text-slate-500 mt-1">
-                Select your loan category from OAL's 8 specialized commercial debt programs.
+                Select your loan category from OAL's specialized commercial debt and industry loan programs.
               </p>
             </div>
 
-            {/* Loan Program Cards */}
+            {/* Loan Program Cards with Category Filters */}
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-2">Selected Loan Program</label>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {LOAN_PROGRAMS.map((prog) => {
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <label className="block text-xs font-bold text-slate-700">Selected Loan Program</label>
+                <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-lg text-[11px] font-semibold">
+                  <button
+                    type="button"
+                    onClick={() => setProgramFilter('all')}
+                    className={`px-2 py-0.5 rounded-md transition-colors cursor-pointer ${
+                      programFilter === 'all' ? 'bg-white text-blue-700 shadow-xs font-bold' : 'text-slate-600'
+                    }`}
+                  >
+                    All ({LOAN_PROGRAMS.length})
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setProgramFilter('industry')}
+                    className={`px-2 py-0.5 rounded-md transition-colors cursor-pointer ${
+                      programFilter === 'industry' ? 'bg-white text-blue-700 shadow-xs font-bold' : 'text-slate-600'
+                    }`}
+                  >
+                    By Industry (9)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setProgramFilter('specialty')}
+                    className={`px-2 py-0.5 rounded-md transition-colors cursor-pointer ${
+                      programFilter === 'specialty' ? 'bg-white text-blue-700 shadow-xs font-bold' : 'text-slate-600'
+                    }`}
+                  >
+                    Specialty Blueprint (8)
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-h-72 overflow-y-auto p-1.5 border border-slate-200/80 rounded-xl bg-slate-50/30">
+                {LOAN_PROGRAMS.filter(prog => {
+                  if (programFilter === 'industry') return prog.isIndustryProgram;
+                  if (programFilter === 'specialty') return !prog.isIndustryProgram;
+                  return true;
+                }).map((prog) => {
                   const isSelected = formData.loanType === prog.id;
                   return (
                     <button
                       key={prog.id}
                       type="button"
                       onClick={() => handleProgramSelect(prog.id)}
-                      className={`p-3 rounded-xl border text-left transition-all ${
+                      className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                         isSelected
-                          ? 'border-blue-600 bg-blue-50/80 ring-2 ring-blue-600/20'
+                          ? 'border-[#0070C0] bg-blue-50/80 ring-2 ring-[#0070C0]/25'
                           : 'border-slate-200 hover:border-slate-300 bg-white'
                       }`}
                     >
-                      <div className="text-xs font-bold text-slate-900">{prog.title}</div>
-                      <div className="text-[10px] text-slate-500 mt-0.5 truncate">{prog.typicalRate}</div>
+                      <div className="flex items-center justify-between gap-1 mb-0.5">
+                        <span className="text-xs font-bold text-slate-900 truncate">{prog.title}</span>
+                        {prog.isIndustryProgram && (
+                          <span className="text-[9px] font-bold text-blue-600 bg-blue-100/70 px-1 rounded">Industry</span>
+                        )}
+                      </div>
+                      <div className="text-[10px] text-slate-500 truncate">{prog.typicalRate}</div>
                     </button>
                   );
                 })}
@@ -431,7 +479,7 @@ export const ApplicationWizard = () => {
                     type="number"
                     value={formData.amount}
                     onChange={(e) => handleInputChange('amount', e.target.value)}
-                    className="w-full pl-8 pr-3.5 py-2.5 text-xs font-bold border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full pl-8 pr-3.5 py-2.5 text-xs font-bold border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   />
                 </div>
                 {errors.amount && <p className="text-[11px] text-rose-500 mt-1">{errors.amount}</p>}
@@ -448,7 +496,7 @@ export const ApplicationWizard = () => {
                   type="text"
                   value={formData.loanPurpose}
                   onChange={(e) => handleInputChange('loanPurpose', e.target.value)}
-                  className={`w-full px-3.5 py-2.5 text-xs border rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none ${
+                  className={`w-full px-3.5 py-2.5 text-xs border rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none ${
                     errors.loanPurpose ? 'border-rose-400 bg-rose-50/50' : 'border-slate-200'
                   }`}
                   placeholder="Concise commercial summary (<= 20 words)"
@@ -469,7 +517,7 @@ export const ApplicationWizard = () => {
                 rows={2}
                 value={formData.useOfFunds}
                 onChange={(e) => handleInputChange('useOfFunds', e.target.value)}
-                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 placeholder="Break down how loan proceeds will be allocated..."
               />
             </div>
@@ -495,7 +543,7 @@ export const ApplicationWizard = () => {
                   type="number"
                   value={formData.annualRevenue}
                   onChange={(e) => handleInputChange('annualRevenue', e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 />
                 {errors.annualRevenue && <p className="text-[11px] text-rose-500 mt-1">{errors.annualRevenue}</p>}
               </div>
@@ -508,7 +556,7 @@ export const ApplicationWizard = () => {
                   type="number"
                   value={formData.monthlyCashFlow}
                   onChange={(e) => handleInputChange('monthlyCashFlow', e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 />
               </div>
 
@@ -522,7 +570,7 @@ export const ApplicationWizard = () => {
                   max="850"
                   value={formData.creditScore}
                   onChange={(e) => handleInputChange('creditScore', e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 />
                 <span className="text-[10px] text-slate-400">Range: 500 – 850 (FICO)</span>
               </div>
@@ -534,7 +582,7 @@ export const ApplicationWizard = () => {
                   step="0.5"
                   value={formData.yearsInBusiness}
                   onChange={(e) => handleInputChange('yearsInBusiness', e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 />
               </div>
             </div>
@@ -547,7 +595,7 @@ export const ApplicationWizard = () => {
                 rows={3}
                 value={formData.businessSummary}
                 onChange={(e) => handleInputChange('businessSummary', e.target.value)}
-                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
               />
             </div>
           </div>
@@ -584,7 +632,7 @@ export const ApplicationWizard = () => {
                     type="text"
                     value={formData.collateralType}
                     onChange={(e) => handleInputChange('collateralType', e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   />
                 </div>
 
@@ -594,7 +642,7 @@ export const ApplicationWizard = () => {
                     type="number"
                     value={formData.collateralValue}
                     onChange={(e) => handleInputChange('collateralValue', e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   />
                 </div>
               </div>
@@ -750,7 +798,7 @@ export const ApplicationWizard = () => {
             onClick={handleSaveDraft}
             className="w-full sm:w-auto justify-center inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-white transition-colors cursor-pointer"
           >
-            <Save className="w-3.5 h-3.5 text-[#D5B66A]" />
+            <Save className="w-3.5 h-3.5 text-[#FFD200]" />
             Save Draft
           </button>
 
@@ -758,7 +806,7 @@ export const ApplicationWizard = () => {
             <button
               type="button"
               onClick={nextStep}
-              className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-md shadow-blue-600/20 transition-all cursor-pointer"
+              className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-[#0070C0] hover:bg-[#005a9e] active:bg-[#002060] shadow-md shadow-[#0070C0]/25 transition-all cursor-pointer"
             >
               <span>Continue to Step {currentStep + 1}</span>
               <ArrowRight className="w-4 h-4" />
@@ -767,7 +815,7 @@ export const ApplicationWizard = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-7 py-3 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 shadow-lg shadow-emerald-600/25 transition-all cursor-pointer"
+              className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-7 py-3 rounded-xl text-xs font-extrabold text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] border border-amber-300 shadow-md transition-all cursor-pointer"
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>Submit Loan Application</span>

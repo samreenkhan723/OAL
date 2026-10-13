@@ -24,7 +24,7 @@ export const RoleDemoSwitcher = () => {
       name: 'Apex Horizon Capital',
       sub: 'Institutional Fund',
       route: '/lender/dashboard',
-      icon: <Building className="w-4 h-4 text-purple-500" />
+      icon: <Building className="w-4 h-4 text-[#00B0F0]" />
     },
     {
       id: 'rep',
@@ -67,7 +67,7 @@ export const RoleDemoSwitcher = () => {
 
   return (
     <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 no-print">
-      <div className="bg-[#0B1730]/95 backdrop-blur-md border border-slate-700/80 rounded-2xl shadow-2xl text-white px-3 py-2 flex flex-col items-center">
+      <div className="bg-[#002060]/95 backdrop-blur-md border border-slate-700/80 rounded-2xl shadow-2xl text-white px-3 py-2 flex flex-col items-center">
         {/* Collapsed Bar */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 pr-2 border-r border-slate-700">

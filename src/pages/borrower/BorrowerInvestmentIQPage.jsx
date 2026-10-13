@@ -12,7 +12,7 @@ export const BorrowerInvestmentIQPage = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+        <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
           My Investment IQ™ Score
         </h1>
         <p className="text-xs text-slate-500 mt-1">

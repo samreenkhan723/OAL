@@ -30,7 +30,7 @@ export const AdminSubscriptionsPage = () => {
     <div className="space-y-6">
       <div>
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Subscription Plans & Lender Tiers
           </h1>
           <VerifyBadge note="Client confirmation pending for subscription price elasticity, seat limits, and cancellation policies (PRD FR-15)" />
@@ -48,7 +48,7 @@ export const AdminSubscriptionsPage = () => {
                 {p.status}
               </span>
               <h3 className="text-base font-bold text-slate-900 mt-2">{p.name}</h3>
-              <div className="text-2xl font-extrabold text-[#0B1730] mt-1 font-heading">{p.price}</div>
+              <div className="text-2xl font-extrabold text-[#002060] mt-1 font-heading">{p.price}</div>
 
               <div className="pt-4 border-t border-slate-100 text-xs text-slate-600 space-y-2">
                 <div className="flex items-center gap-1.5">
@@ -64,7 +64,7 @@ export const AdminSubscriptionsPage = () => {
 
             <button
               onClick={() => handleOpenConfig(p)}
-              className="w-full py-2.5 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+              className="w-full py-2.5 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
             >
               <Edit className="w-3.5 h-3.5" />
               <span>Configure Tier Limits</span>
@@ -91,7 +91,7 @@ export const AdminSubscriptionsPage = () => {
                   type="text"
                   value={tierForm.name}
                   onChange={(e) => setTierForm({ ...tierForm, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -102,7 +102,7 @@ export const AdminSubscriptionsPage = () => {
                   type="text"
                   value={tierForm.price}
                   onChange={(e) => setTierForm({ ...tierForm, price: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -115,7 +115,7 @@ export const AdminSubscriptionsPage = () => {
                   max="100"
                   value={tierForm.maxDeals}
                   onChange={(e) => setTierForm({ ...tierForm, maxDeals: Number(e.target.value), deals: `Up to ${e.target.value} Active Working Deals` })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -126,7 +126,7 @@ export const AdminSubscriptionsPage = () => {
                   type="text"
                   value={tierForm.alerts}
                   onChange={(e) => setTierForm({ ...tierForm, alerts: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   required
                 />
               </div>
@@ -141,7 +141,7 @@ export const AdminSubscriptionsPage = () => {
                 </button>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20 cursor-pointer text-center"
+                  className="w-full sm:w-auto px-5 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold shadow-md shadow-[#0070C0]/25 cursor-pointer text-center"
                 >
                   Save Tier Policy
                 </button>

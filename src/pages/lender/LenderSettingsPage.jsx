@@ -20,7 +20,7 @@ export const LenderSettingsPage = () => {
   return (
     <div className="max-w-4xl space-y-8">
       <div>
-        <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+        <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
           Lender Underwriting Criteria & Settings
         </h1>
         <p className="text-xs text-slate-500 mt-1">
@@ -31,7 +31,7 @@ export const LenderSettingsPage = () => {
       <form onSubmit={handleSave} className="space-y-6">
         <div className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4">
           <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-            <Filter className="w-4 h-4 text-purple-600" />
+            <Filter className="w-4 h-4 text-[#0070C0]" />
             Underwriting Buy-Box Filters
           </h3>
 
@@ -44,7 +44,7 @@ export const LenderSettingsPage = () => {
                 type="number"
                 value={criteria.minCreditScore}
                 onChange={(e) => setCriteria({ ...criteria, minCreditScore: Number(e.target.value) })}
-                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
               />
             </div>
 
@@ -56,7 +56,7 @@ export const LenderSettingsPage = () => {
                 type="number"
                 value={criteria.minIQScore}
                 onChange={(e) => setCriteria({ ...criteria, minIQScore: Number(e.target.value) })}
-                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
               />
             </div>
 
@@ -68,7 +68,7 @@ export const LenderSettingsPage = () => {
                 type="number"
                 value={criteria.minLoanAmount}
                 onChange={(e) => setCriteria({ ...criteria, minLoanAmount: Number(e.target.value) })}
-                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
               />
             </div>
 
@@ -80,7 +80,7 @@ export const LenderSettingsPage = () => {
                 type="number"
                 value={criteria.maxLoanAmount}
                 onChange={(e) => setCriteria({ ...criteria, maxLoanAmount: Number(e.target.value) })}
-                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
               />
             </div>
           </div>
@@ -89,7 +89,7 @@ export const LenderSettingsPage = () => {
         <div className="flex justify-end">
           <button
             type="submit"
-            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all text-center"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md shadow-[#0070C0]/25 transition-all text-center"
           >
             Save Underwriting Settings
           </button>

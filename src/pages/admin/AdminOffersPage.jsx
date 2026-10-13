@@ -11,7 +11,7 @@ export const AdminOffersPage = () => {
     <div className="space-y-6">
       <div>
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Master Offers & Term Sheets Oversight
           </h1>
           <VerifyBadge note="Client confirmation pending for admin authority to modify or cancel lender offers" />

@@ -12,6 +12,8 @@ import { HomePage } from './pages/public/HomePage';
 import { PublicApplyPage } from './pages/public/PublicApplyPage';
 import { LoanProgramsPage } from './pages/public/LoanProgramsPage';
 import { LoanProgramDetailPage } from './pages/public/LoanProgramDetailPage';
+import { IndustryDirectoryPage } from './pages/public/IndustryDirectoryPage';
+import { IndustryDetailPage } from './pages/public/IndustryDetailPage';
 import { HowItWorksPage } from './pages/public/HowItWorksPage';
 import { InvestmentIQExplainerPage } from './pages/public/InvestmentIQExplainerPage';
 import { InvestmentClubPage } from './pages/public/InvestmentClubPage';
@@ -111,7 +113,9 @@ export function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/apply" element={<PublicApplyPage />} />
             <Route path="/loan-programs" element={<LoanProgramsPage />} />
-            <Route path="/industries" element={<LoanProgramsPage />} />
+            <Route path="/industries" element={<IndustryDirectoryPage />} />
+            <Route path="/loans-by-industry" element={<IndustryDirectoryPage />} />
+            <Route path="/industries/:slug" element={<IndustryDetailPage />} />
             <Route path="/loan-programs/:slug" element={<LoanProgramDetailPage />} />
             <Route path="/how-it-works" element={<HowItWorksPage />} />
             <Route path="/investment-iq" element={<InvestmentIQExplainerPage />} />

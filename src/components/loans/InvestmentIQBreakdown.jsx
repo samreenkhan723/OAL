@@ -24,7 +24,7 @@ export const InvestmentIQBreakdown = ({ investmentIQ, showDetailedExplanations =
       label: 'Credit History',
       score: breakdown.creditHistory ?? 62,
       max: 70,
-      color: 'bg-blue-600',
+      color: 'bg-[#0070C0]',
       description: 'Historical credit profile, debt utilization, payment history, and public records.'
     },
     {
@@ -40,7 +40,7 @@ export const InvestmentIQBreakdown = ({ investmentIQ, showDetailedExplanations =
       label: 'Collateral & Assets',
       score: breakdown.collateral ?? 22,
       max: 30,
-      color: 'bg-purple-600',
+      color: 'bg-[#002060]',
       description: 'Real property equity, machinery invoices, inventory appraisal, and UCC lien positions.'
     },
     {
@@ -73,11 +73,11 @@ export const InvestmentIQBreakdown = ({ investmentIQ, showDetailedExplanations =
   return (
     <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
       {/* Header */}
-      <div className="p-6 bg-gradient-to-br from-[#0B1730] to-[#172B4D] text-white">
+      <div className="p-6 bg-gradient-to-br from-[#001744] to-[#002060] text-white">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#D5B66A] text-slate-950 uppercase tracking-wider">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#FFD200] text-[#002060] uppercase tracking-wider">
                 180-Point Assessment
               </span>
               <VerifyBadge note="Client confirmation pending for exact credit bands and mathematical weighting formulas" />
@@ -91,10 +91,10 @@ export const InvestmentIQBreakdown = ({ investmentIQ, showDetailedExplanations =
           {/* Big Score Dial */}
           <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/15 self-start sm:self-auto">
             <div className="text-right">
-              <div className="text-3xl font-extrabold text-[#D5B66A] tracking-tight">{total}</div>
+              <div className="text-3xl font-extrabold text-[#FFD200] tracking-tight">{total}</div>
               <div className="text-[11px] text-slate-300 font-medium">Out of {max} Max</div>
             </div>
-            <div className="w-12 h-12 rounded-full border-4 border-white/20 border-t-[#D5B66A] flex items-center justify-center font-bold text-xs text-white">
+            <div className="w-12 h-12 rounded-full border-4 border-white/20 border-t-[#FFD200] flex items-center justify-center font-bold text-xs text-white">
               {percentage}%
             </div>
           </div>

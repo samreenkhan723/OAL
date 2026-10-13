@@ -33,7 +33,7 @@ export const NotificationsPage = () => {
       read: false,
       priority: 'high',
       icon: DollarSign,
-      iconColor: 'text-blue-600 bg-blue-50 border-blue-200',
+      iconColor: 'text-[#0070C0] bg-sky-50 border-sky-200',
       description: 'Institutional Lender #9203 submitted an offer for $425,000 at 8.25% fixed with 60 months amortization.',
       actionLink: currentRole === 'lender' ? '/lender/offers' : '/borrower/offers',
       actionLabel: 'Review Offer Sheet'
@@ -46,7 +46,7 @@ export const NotificationsPage = () => {
       read: false,
       priority: 'normal',
       icon: Briefcase,
-      iconColor: 'text-purple-600 bg-purple-50 border-purple-200',
+      iconColor: 'text-[#0070C0] bg-sky-50 border-sky-200',
       description: 'Blue Harbor Seafood Bistro commercial file has reached 2 concurrent underwriting claims. 1 slot remaining.',
       actionLink: currentRole === 'lender' ? '/lender/working-deals' : '/borrower/applications/APP-2026-1082/tracker',
       actionLabel: 'View Deal Status'
@@ -72,7 +72,7 @@ export const NotificationsPage = () => {
       read: true,
       priority: 'normal',
       icon: MessageSquare,
-      iconColor: 'text-blue-600 bg-blue-50 border-blue-200',
+      iconColor: 'text-[#0070C0] bg-sky-50 border-sky-200',
       description: 'Underwriter requested clarification regarding 2025 Q3 seasonal payroll adjustments. Please review thread.',
       actionLink: `/${currentRole}/messages`,
       actionLabel: 'Open Chat Channel'
@@ -133,7 +133,7 @@ export const NotificationsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+            <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
               Notifications & Activity Feed
             </h1>
             {unreadCount > 0 && (
@@ -196,7 +196,7 @@ export const NotificationsPage = () => {
               type="checkbox"
               checked={showUnreadOnly}
               onChange={(e) => setShowUnreadOnly(e.target.checked)}
-              className="rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+              className="rounded border-slate-300 text-blue-600 focus:ring-[#0070C0]"
             />
             <span>Unread only</span>
           </label>
@@ -216,7 +216,7 @@ export const NotificationsPage = () => {
           {showUnreadOnly && (
             <button
               onClick={() => setShowUnreadOnly(false)}
-              className="text-xs font-bold text-blue-600 hover:underline"
+              className="text-xs font-bold text-[#0070C0] hover:text-[#002060] font-bold"
             >
               View all notifications
             </button>
@@ -263,7 +263,7 @@ export const NotificationsPage = () => {
                   {notif.actionLink && (
                     <Link
                       to={notif.actionLink}
-                      className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold flex items-center gap-1 transition-colors"
+                      className="px-3 py-1.5 bg-[#0070C0] hover:bg-[#005a9e] text-white rounded-xl text-xs font-bold flex items-center gap-1 transition-colors"
                     >
                       <span>{notif.actionLabel}</span>
                       <ExternalLink className="w-3 h-3" />

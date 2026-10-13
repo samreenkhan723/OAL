@@ -163,10 +163,10 @@ export const HelpDeskTicketsPage = () => {
         <div className="bg-white rounded-2xl border border-slate-200/90 p-3.5 sm:p-5 shadow-xs">
           <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
             <span className="font-semibold uppercase tracking-wider text-[10px] sm:text-[11px] truncate">Resolution Rate</span>
-            <ShieldCheck className="w-4 h-4 text-purple-600 shrink-0" />
+            <ShieldCheck className="w-4 h-4 text-[#0070C0] shrink-0" />
           </div>
-          <div className="text-2xl sm:text-3xl font-extrabold text-purple-700 font-heading">91.5%</div>
-          <span className="text-[10px] sm:text-[11px] text-purple-700 font-semibold mt-1 block truncate">
+          <div className="text-2xl sm:text-3xl font-extrabold text-[#002060] font-heading">91.5%</div>
+          <span className="text-[10px] sm:text-[11px] text-[#0070C0] font-semibold mt-1 block truncate">
             Knowledge Base
           </span>
         </div>
@@ -184,9 +184,9 @@ export const HelpDeskTicketsPage = () => {
       </div>
 
       {/* Proactive Application Abandonment Intervention Banner (Doc 2 Lines 10-12) */}
-      <div className="bg-gradient-to-r from-blue-900/5 via-indigo-900/5 to-slate-900/5 border border-blue-200/80 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-gradient-to-r from-[#002060]/5 via-[#0070C0]/5 to-slate-900/5 border border-sky-200/80 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-start gap-3 flex-1 min-w-0">
-          <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-10 h-10 rounded-xl bg-sky-100 text-[#0070C0] flex items-center justify-center shrink-0 mt-0.5">
             <LifeBuoy className="w-5 h-5 text-[#0070C0]" />
           </div>
           <div className="space-y-1 flex-1 min-w-0">
@@ -194,7 +194,7 @@ export const HelpDeskTicketsPage = () => {
               <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
                 Doc 2 Mandate: Reducing Application Abandonment & Proactive Guidance
               </h4>
-              <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200/80 whitespace-nowrap shrink-0">
+              <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-[#002060]/10 text-[#002060] border border-blue-200/80 whitespace-nowrap shrink-0">
                 Live Support Guard
               </span>
             </div>
@@ -295,7 +295,7 @@ export const HelpDeskTicketsPage = () => {
 
                       {/* Channel Badge (Doc 2) */}
                       <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
-                        {channel === 'Email' ? <Mail className="w-3 h-3 text-amber-600" /> : channel === 'SMS' ? <PhoneCall className="w-3 h-3 text-purple-600" /> : <MessageSquare className="w-3 h-3 text-[#0070C0]" />}
+                        {channel === 'Email' ? <Mail className="w-3 h-3 text-amber-600" /> : channel === 'SMS' ? <PhoneCall className="w-3 h-3 text-[#0070C0]" /> : <MessageSquare className="w-3 h-3 text-[#0070C0]" />}
                         <span>{channel}</span>
                       </span>
 
@@ -305,8 +305,8 @@ export const HelpDeskTicketsPage = () => {
                       </span>
 
                       {/* AI Auto-Routing Badge (Doc 2 Line 22) */}
-                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200 flex items-center gap-1">
-                        <Bot className="w-3 h-3 text-purple-600" />
+                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-sky-50 text-[#0070C0] border border-sky-200 flex items-center gap-1">
+                        <Bot className="w-3 h-3 text-[#0070C0]" />
                         <span>Auto-Routed to: {t.assignedTo}</span>
                       </span>
                     </div>
@@ -359,7 +359,7 @@ export const HelpDeskTicketsPage = () => {
                   placeholder="E.g., Assistance required with equipment invoice upload..."
                   value={newTicket.subject}
                   onChange={(e) => setNewTicket({ ...newTicket, subject: e.target.value })}
-                  className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 />
               </div>
 
@@ -369,7 +369,7 @@ export const HelpDeskTicketsPage = () => {
                   <select
                     value={newTicket.channel}
                     onChange={(e) => setNewTicket({ ...newTicket, channel: e.target.value })}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   >
                     <option value="In-App Chat">In-App Chat</option>
                     <option value="Email">Email</option>
@@ -383,7 +383,7 @@ export const HelpDeskTicketsPage = () => {
                   <select
                     value={newTicket.category}
                     onChange={(e) => setNewTicket({ ...newTicket, category: e.target.value })}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   >
                     <option value="General">General Inquiry</option>
                     <option value="Document Verification">Document Verification</option>
@@ -397,7 +397,7 @@ export const HelpDeskTicketsPage = () => {
                   <select
                     value={newTicket.priority}
                     onChange={(e) => setNewTicket({ ...newTicket, priority: e.target.value })}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                   >
                     <option value="Normal">Normal</option>
                     <option value="High">High</option>
@@ -414,13 +414,13 @@ export const HelpDeskTicketsPage = () => {
                   placeholder="Detail the issue or technical error encountered..."
                   value={newTicket.message}
                   onChange={(e) => setNewTicket({ ...newTicket, message: e.target.value })}
-                  className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
                 />
               </div>
 
               {/* Automated Routing Preview (Doc 2 Line 22) */}
-              <div className="p-3 bg-purple-50 rounded-xl border border-purple-200 text-[11px] text-purple-900 flex items-center gap-2">
-                <Bot className="w-4 h-4 text-purple-600 shrink-0" />
+              <div className="p-3 bg-sky-50 rounded-xl border border-sky-200 text-[11px] text-[#002060] flex items-center gap-2">
+                <Bot className="w-4 h-4 text-[#0070C0] shrink-0" />
                 <span>
                   <strong>AI Automated Routing:</strong> Tickets categorized under <em>{newTicket.category}</em> are routed to specialized tier agents automatically.
                 </span>

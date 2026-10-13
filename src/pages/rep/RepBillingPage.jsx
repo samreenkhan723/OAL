@@ -7,7 +7,7 @@ export const RepBillingPage = () => {
     <div className="space-y-6">
       <div>
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Representative Billing & Commission Ledger
           </h1>
           <VerifyBadge note="Client confirmation pending for representative commission structures and disbursement schedules" />
@@ -32,7 +32,7 @@ export const RepBillingPage = () => {
 
         <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs">
           <span className="text-xs text-slate-500 font-semibold uppercase">Commission Schedule</span>
-          <div className="text-3xl font-extrabold text-[#D5B66A] mt-1 font-heading">1.0% - 1.5%</div>
+          <div className="text-3xl font-extrabold text-[#FFD200] mt-1 font-heading">1.0% - 1.5%</div>
           <span className="text-[11px] text-slate-500 mt-1 block">Funded Volume Basis</span>
         </div>
       </div>

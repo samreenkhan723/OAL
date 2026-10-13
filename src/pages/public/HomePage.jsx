@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { LOAN_PROGRAMS } from '../../data/loanPrograms';
+import { SPECIALTY_PROGRAMS, LOAN_PROGRAMS } from '../../data/loanPrograms';
+import { INDUSTRY_LOANS } from '../../data/industryLoans';
 import {
   UtensilsCrossed,
   Truck,
@@ -46,6 +47,7 @@ export const HomePage = () => {
   // Category imagery and visual metadata mapping
   const getCategoryVisuals = (id) => {
     switch (id) {
+      // 8 Specialty Loan Programs
       case 'restaurant':
         return {
           image: '/images/loan_restaurant.jpg',
@@ -67,10 +69,10 @@ export const HomePage = () => {
       case 'franchise':
         return {
           image: '/images/loan_franchise.jpg',
-          badge: 'WE CAN HELP',
+          badge: 'FRANCHISE CAPITAL',
           badgeColor: 'bg-[#FFD200] text-[#002060] font-black border-amber-300',
-          scope: 'New & Existing Territories',
-          subtitle: 'Initial Fees & Standardized Buildouts',
+          scope: '$10,000 – $500M+ • Franchise Financing',
+          subtitle: 'Branded Outlets, Buildouts & Multi-Unit Scale',
           tags: ['Franchise Fees', 'Store Buildout']
         };
       case 'dental':
@@ -78,8 +80,8 @@ export const HomePage = () => {
           image: '/images/loan_dental.jpg',
           badge: 'SPECIAL FOR DOCTORS',
           badgeColor: 'bg-emerald-50 text-emerald-900 border-emerald-300 font-bold',
-          scope: 'Practice Expansion Capital',
-          subtitle: 'Operatories, 3D Imaging & Acquisitions',
+          scope: '$10,000 – $500M+ • Practice Capital',
+          subtitle: 'Operatories, 3D Imaging & Practice Buy-In',
           tags: ['Operatory Chairs', '3D Cone Beam']
         };
       case 'freight-trucking':
@@ -87,8 +89,8 @@ export const HomePage = () => {
           image: '/images/loan_trucking.jpg',
           badge: '2–24 HR APPROVAL',
           badgeColor: 'bg-sky-50 text-[#0070C0] font-black border-sky-300',
-          scope: 'Commercial Fleet & Freight',
-          subtitle: 'Semi-Trucks, Reefers & Dry Vans',
+          scope: '$10,000 – $500M+ • Fleet Capital',
+          subtitle: 'Commercial Fleet, Semis & Operating Lines',
           tags: ['Semi-Truck Purchases', 'Reefer Trailers']
         };
       case 'hospitality':
@@ -96,7 +98,7 @@ export const HomePage = () => {
           image: '/images/loan_hospitality.jpg',
           badge: 'HOTEL & AIRBNB',
           badgeColor: 'bg-white text-[#002060] border-slate-300',
-          scope: 'Motel, Hotel & Short-Term Stays',
+          scope: '$50,000 – $500M+ • Bridge & Perm',
           subtitle: 'PIP Remodels & Property Acquisitions',
           tags: ['PIP Renovations', 'Lobby Upgrades']
         };
@@ -105,7 +107,7 @@ export const HomePage = () => {
           image: '/images/loan_church.jpg',
           badge: 'FAITH COMMUNITY',
           badgeColor: 'bg-white text-[#002060] border-slate-300',
-          scope: 'Sanctuaries & Multi-Purpose',
+          scope: '$25,000 – $500M+ • Sanctuaries',
           subtitle: 'Worship Facilities & Capital Expansions',
           tags: ['Sanctuary Expansions', 'Sound & Media Gear']
         };
@@ -114,10 +116,94 @@ export const HomePage = () => {
           image: '/images/loan_fix_flip.jpg',
           badge: '2–24 HR APPROVAL',
           badgeColor: 'bg-[#FFD200] text-[#002060] font-black border-amber-300',
-          scope: 'Bridge & Rehab Capital',
+          scope: '$50,000 – $500M+ • Bridge Rehab',
           subtitle: 'Residential & Commercial Renovations',
           tags: ['100% Rehab Budget', 'Fast Closing Wire']
         };
+
+      // 9 Loans by Industry (Each assigned a unique, relevant local image asset)
+      case 'transportation':
+        return {
+          image: '/images/industry_transportation.jpg',
+          badge: 'TRANSPORT & FLEET',
+          badgeColor: 'bg-sky-50 text-[#0070C0] border-sky-300 font-bold',
+          scope: '$25,000 – $500M+ • 2–24 Hr Approval',
+          subtitle: 'Fleet Expansion, Equipment & Operating Liquidity',
+          tags: ['Fleet Acquisition', 'Fuel & Operating Lines']
+        };
+      case 'professional-services':
+        return {
+          image: '/images/industry_professional_services.jpg',
+          badge: 'PROFESSIONAL SERVICES',
+          badgeColor: 'bg-indigo-50 text-indigo-900 border-indigo-300 font-bold',
+          scope: '$15,000 – $500M+ • Working Capital',
+          subtitle: 'Practice Expansion, Technology & Billing Reserves',
+          tags: ['Practice Modernization', 'Software & Technology']
+        };
+      case 'real-estate':
+        return {
+          image: '/images/industry_real_estate.jpg',
+          badge: 'COMMERCIAL REAL ESTATE',
+          badgeColor: 'bg-emerald-50 text-emerald-900 border-emerald-300 font-bold',
+          scope: '$50,000 – $500M+ • Bridge & Perm',
+          subtitle: 'Acquisitions, Development & Renovation Draws',
+          tags: ['Commercial Acquisitions', 'Value-Add Renovations']
+        };
+      case 'logistics':
+        return {
+          image: '/images/industry_logistics.jpg',
+          badge: 'SUPPLY CHAIN & 3PL',
+          badgeColor: 'bg-amber-50 text-amber-900 border-amber-300 font-bold',
+          scope: '$20,000 – $500M+ • Supply Chain Liquidity',
+          subtitle: 'Warehousing, Sorting Systems & Receivables Lines',
+          tags: ['Warehouse Automation', 'Freight Receivables']
+        };
+      case 'telecom':
+        return {
+          image: '/images/industry_telecom.jpg',
+          badge: 'TELECOMMUNICATIONS',
+          badgeColor: 'bg-cyan-50 text-cyan-900 border-cyan-300 font-bold',
+          scope: '$30,000 – $500M+ • Infrastructure Debt',
+          subtitle: 'Cellular Towers, 5G Antennas & Fiber Infrastructure',
+          tags: ['5G Cell Towers', 'Fiber-Optic Deployment']
+        };
+      case 'manufacturing':
+        return {
+          image: '/images/industry_manufacturing.jpg',
+          badge: 'INDUSTRIAL MANUFACTURING',
+          badgeColor: 'bg-slate-100 text-slate-800 border-slate-300 font-bold',
+          scope: '$50,000 – $500M+ • Machinery Debt',
+          subtitle: 'Robotic Assembly, Production Lines & CNC Equipment',
+          tags: ['Industrial Machinery', 'Production Lines']
+        };
+      case 'nonprofit':
+        return {
+          image: '/images/industry_nonprofit.jpg',
+          badge: 'NONPROFIT & MISSION',
+          badgeColor: 'bg-teal-50 text-teal-900 border-teal-300 font-bold',
+          scope: '$10,000 – $500M+ • Grant Bridging',
+          subtitle: 'Facility Expansions, Programs & Bridge Liquidity',
+          tags: ['Grant Bridge Loans', 'Community Facilities']
+        };
+      case 'technology':
+        return {
+          image: '/images/industry_technology.jpg',
+          badge: 'TECH & IT ENTERPRISE',
+          badgeColor: 'bg-blue-50 text-[#002060] border-blue-300 font-bold',
+          scope: '$25,000 – $500M+ • Growth Capital',
+          subtitle: 'SaaS Expansion, Cloud Infrastructure & IT R&D',
+          tags: ['SaaS Scale-Up', 'IT Infrastructure']
+        };
+      case 'retail':
+        return {
+          image: '/images/industry_retail.jpg',
+          badge: 'RETAIL COMMERCE',
+          badgeColor: 'bg-rose-50 text-rose-900 border-rose-300 font-bold',
+          scope: '$15,000 – $500M+ • Retail Inventory Debt',
+          subtitle: 'Supermarkets, Storefront Buildouts & POS Inventory',
+          tags: ['Inventory Lines', 'Storefront Modernization']
+        };
+
       default:
         return {
           image: '/images/loan_franchise.jpg',
@@ -127,6 +213,31 @@ export const HomePage = () => {
           subtitle: 'Enterprise Working Capital',
           tags: ['Working Capital', 'Equipment']
         };
+    }
+  };
+
+  const getIndustryApplyLabel = (id) => {
+    switch (id) {
+      case 'transportation':
+        return 'Apply for Transportation Loans';
+      case 'professional-services':
+        return 'Apply for Professional Services Loans';
+      case 'real-estate':
+        return 'Apply for Real Estate Loans';
+      case 'logistics':
+        return 'Apply for Logistics Loans';
+      case 'telecom':
+        return 'Apply for Telecom Loans';
+      case 'manufacturing':
+        return 'Apply for Manufacturing Loans';
+      case 'nonprofit':
+        return 'Apply for Nonprofit Loans';
+      case 'technology':
+        return 'Apply for Technology Loans';
+      case 'retail':
+        return 'Apply for Retail Loans';
+      default:
+        return 'Apply for Commercial Loans';
     }
   };
 
@@ -281,63 +392,63 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 2. LOAN PROGRAMS SHOWCASE — BALANCED 160PX PHOTO CARDS WITH CLEAR TYPOGRAPHY */}
+      {/* 2A. SECTION A: SPECIALTY COMMERCIAL LOAN PROGRAMS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading & Introduction */}
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00B0F0]/15 text-[#0070C0] border border-[#00B0F0]/30 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 text-[#00B0F0]" />
-            <span>Commercial Loan Blueprint Catalog</span>
+            <span>Commercial Blueprint Programs &amp; Deal Syndicate</span>
           </div>
           
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-[#002060] tracking-tight">
-            Purpose-Built Commercial Lending Programs
+            Specialty Commercial Loan Programs
           </h2>
           
           <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
-            Institutional underwriting across 8 targeted commercial categories and our investor club. Nationwide coverage from $10,000 to $500 Million+ welcoming good and bad credit borrowers.
+            Institutional underwriting across our 8 targeted specialty commercial loan categories, alongside The Money Club private debt investor syndicate. Nationwide coverage from $10,000 to $500 Million+ welcoming good and bad credit borrowers.
           </p>
         </div>
 
-        {/* 3-Column Desktop Grid with Compact 160px Photography & Equal Card Heights */}
+        {/* 3-Column Desktop Grid with Compact Photography & Equal Card Heights */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           
           {/* CARD 1: THE MONEY CLUB FOR INVESTORS [POWERED BY LENDERS] */}
           <div className="bg-gradient-to-br from-[#001744] via-[#002060] to-[#003882] text-white rounded-2xl border-2 border-[#0070C0]/50 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5 overflow-hidden h-full">
             
-            {/* Top Visual Area: 160px Height */}
-            <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-slate-900 shrink-0">
+            {/* Top Visual Area: 176px Height with Contrast Gradient */}
+            <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-900 shrink-0">
               <img
                 src="/images/loan_money_club.jpg"
                 alt="The Money Club for Investors Syndicate"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#001744] via-[#001744]/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#001744] via-[#001744]/40 to-transparent pointer-events-none" />
               
               <div className="absolute top-3.5 left-3.5">
                 <span className="px-3 py-1 rounded-full bg-[#FFD200] text-[#002060] font-black text-xs uppercase tracking-wider shadow-sm border border-amber-300">
-                  FREE TO JOIN
+                  INVESTOR SYNDICATE
                 </span>
               </div>
             </div>
 
-            {/* Spacious Content Area (20–24px padding) */}
+            {/* Spacious Content Area */}
             <div className="p-5 sm:p-6 space-y-3.5 flex-1 flex flex-col justify-between">
               <div className="space-y-1.5">
                 <span className="text-xs font-bold text-[#00B0F0] uppercase tracking-wider block">
-                  [ Powered By Lenders ] • Deal Syndicate
+                  [ Powered By Lenders ] • Deal Syndicate (Investor Opportunity)
                 </span>
-                <h3 className="text-xl font-heading font-extrabold text-white group-hover:text-[#00B0F0] transition-colors leading-tight">
+                <h3 className="text-xl font-heading font-extrabold text-white group-hover:text-[#00B0F0] transition-colors leading-tight min-h-[3.25rem] flex items-center">
                   The Money Club for Investors
                 </h3>
-                <p className="text-sm text-slate-200 leading-relaxed font-normal line-clamp-2">
+                <p className="text-[13px] sm:text-sm text-slate-200 leading-relaxed font-normal line-clamp-2 min-h-[2.5rem]">
                   Gain priority access to qualified commercial loans and private debt syndications evaluated on the 180-Point Investment IQ standard.
                 </p>
               </div>
 
               {/* 2 Concise Membership Tags */}
-              <div className="flex flex-wrap gap-1.5 pt-0.5">
+              <div className="flex flex-wrap gap-1.5 min-h-[1.75rem] items-center">
                 <span className="text-xs font-semibold text-white bg-white/15 px-2.5 py-1 rounded-md border border-white/25">
                   VIP Diamond (175+)
                 </span>
@@ -347,10 +458,10 @@ export const HomePage = () => {
               </div>
 
               {/* Action Area */}
-              <div className="pt-3 border-t border-white/15 space-y-2">
+              <div className="mt-auto pt-3.5 border-t border-white/15 space-y-2">
                 <Link
                   to="/investment-club"
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] text-sm font-extrabold shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer border border-amber-300"
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] text-sm font-extrabold shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer border border-amber-300 active:scale-[0.99]"
                 >
                   <span>Click here to join || FREE ||</span>
                   <ArrowRight className="w-4 h-4 text-[#002060]" />
@@ -358,7 +469,7 @@ export const HomePage = () => {
 
                 <Link
                   to="/investment-club"
-                  className="w-full py-0.5 text-center text-xs font-bold text-slate-300 hover:text-white transition-colors flex items-center justify-center gap-1"
+                  className="w-full py-1.5 px-2 rounded-lg text-center text-xs font-bold text-slate-300 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-center gap-1"
                 >
                   <span>View Club Accreditation Details</span>
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -369,7 +480,7 @@ export const HomePage = () => {
           </div>
 
           {/* CARDS 2–9: THE 8 TARGETED COMMERCIAL LOAN PROGRAMS */}
-          {LOAN_PROGRAMS.map((prog) => {
+          {SPECIALTY_PROGRAMS.map((prog) => {
             const visual = getCategoryVisuals(prog.id);
 
             return (
@@ -377,13 +488,14 @@ export const HomePage = () => {
                 key={prog.id}
                 className="bg-white rounded-2xl border border-slate-200 hover:border-[#00B0F0] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5 overflow-hidden h-full"
               >
-                {/* Top Visual Area: 160px Height Clean Category Photo */}
-                <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-slate-100 shrink-0">
+                {/* Top Visual Area: 176px Height Clean Category Photo */}
+                <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-900 shrink-0">
                   <img
                     src={visual.image}
                     alt={prog.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
                   
                   {/* Category Badge in Top Corner (High Contrast) */}
                   <div className="absolute top-3.5 right-3.5">
@@ -393,23 +505,23 @@ export const HomePage = () => {
                   </div>
                 </div>
 
-                {/* Content Area (20–24px padding) */}
+                {/* Content Area */}
                 <div className="p-5 sm:p-6 space-y-3.5 flex-1 flex flex-col justify-between">
                   
                   <div className="space-y-1.5">
                     <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider block">
                       {visual.scope}
                     </span>
-                    <h3 className="text-xl font-heading font-extrabold text-[#002060] group-hover:text-[#0070C0] transition-colors leading-tight">
+                    <h3 className="text-xl font-heading font-extrabold text-[#002060] group-hover:text-[#0070C0] transition-colors leading-tight min-h-[3.25rem] flex items-center">
                       {prog.title}
                     </h3>
-                    <p className="text-sm text-slate-700 leading-relaxed font-normal line-clamp-2">
+                    <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed font-normal line-clamp-2 min-h-[2.5rem]">
                       {prog.description}
                     </p>
                   </div>
 
                   {/* 2 Concise Use-Case Tags */}
-                  <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  <div className="flex flex-wrap gap-1.5 min-h-[1.75rem] items-center">
                     {visual.tags.map((tag, idx) => (
                       <span
                         key={idx}
@@ -421,22 +533,22 @@ export const HomePage = () => {
                   </div>
 
                   {/* Action Area */}
-                  <div className="pt-3 border-t border-slate-100 space-y-2">
+                  <div className="mt-auto pt-3.5 border-t border-slate-100 space-y-2">
                     <button
                       type="button"
                       onClick={() => handleApplyClick(prog)}
-                      className="w-full py-2.5 px-4 rounded-xl bg-[#002060] hover:bg-[#0070C0] text-white text-sm font-bold shadow-xs hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95 group-hover:bg-[#0070C0]"
+                      className="w-full py-2.5 px-3 sm:px-4 rounded-xl bg-[#002060] hover:bg-[#0070C0] text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] group-hover:bg-[#0070C0] text-center"
                     >
                       <span>Apply for {prog.title}</span>
-                      <ArrowRight className="w-4 h-4 text-[#FFD200]" />
+                      <ArrowRight className="w-4 h-4 text-[#FFD200] shrink-0" />
                     </button>
 
                     <Link
                       to={`/loan-programs/${prog.slug}`}
-                      className="w-full py-0.5 text-center text-xs font-semibold text-slate-600 hover:text-[#0070C0] transition-colors flex items-center justify-center gap-1"
+                      className="w-full py-1.5 px-2 rounded-lg text-center text-xs font-semibold text-slate-600 hover:text-[#0070C0] hover:bg-slate-50 transition-colors flex items-center justify-center gap-1"
                     >
                       <span>View Program Requirements &amp; Checklist</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
+                      <ChevronRight className="w-3.5 h-3.5 shrink-0" />
                     </Link>
                   </div>
 
@@ -455,6 +567,119 @@ export const HomePage = () => {
             className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-white border-2 border-slate-200 hover:border-[#0070C0] text-sm font-bold text-[#002060] hover:text-[#0070C0] shadow-xs transition-all"
           >
             <span>Explore Complete Marketplace Catalog Across All 8 Programs</span>
+            <ArrowRight className="w-4 h-4 text-[#0070C0]" />
+          </Link>
+        </div>
+
+      </section>
+
+      {/* 2B. SECTION B: LOANS BY INDUSTRY */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Heading & Introduction */}
+        <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0070C0]/15 text-[#0070C0] border border-[#0070C0]/30 text-xs font-bold uppercase tracking-wider">
+            <Building className="w-3.5 h-3.5 text-[#0070C0]" />
+            <span>Sector-Specific Commercial Financing</span>
+          </div>
+          
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-[#002060] tracking-tight">
+            Loans by Industry
+          </h2>
+          
+          <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
+            Purpose-built commercial debt structures tailored to the unique business models, equipment needs, and cash flow cycles of 9 key industry sectors.
+          </p>
+        </div>
+
+        {/* 3-Column Desktop Grid with Distinct Visual Assets & Equal Card Heights */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+          {INDUSTRY_LOANS.map((ind) => {
+            const visual = getCategoryVisuals(ind.id);
+
+            return (
+              <div
+                key={ind.id}
+                className="bg-white rounded-2xl border border-slate-200 hover:border-[#00B0F0] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5 overflow-hidden h-full"
+              >
+                {/* Top Visual Area: 176px Height with Unique Image Asset */}
+                <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-900 shrink-0">
+                  <img
+                    src={visual.image}
+                    alt={ind.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+                  
+                  {/* Category Badge in Top Corner */}
+                  <div className="absolute top-3.5 right-3.5">
+                    <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm border ${visual.badgeColor}`}>
+                      {visual.badge}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content Area */}
+                <div className="p-5 sm:p-6 space-y-3.5 flex-1 flex flex-col justify-between">
+                  
+                  <div className="space-y-1.5">
+                    <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider block">
+                      {visual.scope}
+                    </span>
+                    <h3 className="text-xl font-heading font-extrabold text-[#002060] group-hover:text-[#0070C0] transition-colors leading-tight min-h-[3.25rem] flex items-center">
+                      {ind.title}
+                    </h3>
+                    <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed font-normal line-clamp-2 min-h-[2.5rem]">
+                      {ind.description}
+                    </p>
+                  </div>
+
+                  {/* 2 Concise Use-Case Tags */}
+                  <div className="flex flex-wrap gap-1.5 min-h-[1.75rem] items-center">
+                    {visual.tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="text-xs font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-300"
+                      >
+                        • {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action Area */}
+                  <div className="mt-auto pt-3.5 border-t border-slate-100 space-y-2">
+                    <button
+                      type="button"
+                      onClick={() => handleApplyClick(ind)}
+                      className="w-full py-2.5 px-3 sm:px-4 rounded-xl bg-[#002060] hover:bg-[#0070C0] text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] group-hover:bg-[#0070C0] text-center"
+                    >
+                      <span>{getIndustryApplyLabel(ind.id)}</span>
+                      <ArrowRight className="w-4 h-4 text-[#FFD200] shrink-0" />
+                    </button>
+
+                    <Link
+                      to={`/industries/${ind.slug}`}
+                      className="w-full py-1.5 px-2 rounded-lg text-center text-xs font-semibold text-slate-600 hover:text-[#0070C0] hover:bg-slate-50 transition-colors flex items-center justify-center gap-1"
+                    >
+                      <span>View Industry Details &amp; Requirements</span>
+                      <ChevronRight className="w-3.5 h-3.5 shrink-0" />
+                    </Link>
+                  </div>
+
+                </div>
+
+              </div>
+            );
+          })}
+        </div>
+
+        {/* View All Industries Link */}
+        <div className="mt-10 text-center">
+          <Link
+            to="/industries"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-white border-2 border-slate-200 hover:border-[#0070C0] text-sm font-bold text-[#002060] hover:text-[#0070C0] shadow-xs transition-all"
+          >
+            <span>Explore All 9 Industry Sectors Directory</span>
             <ArrowRight className="w-4 h-4 text-[#0070C0]" />
           </Link>
         </div>
@@ -861,7 +1086,7 @@ export const HomePage = () => {
             <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
               <span>Want to review requirements first?</span>
               <Link
-                to={`/loan-programs/${applyModalProg.slug}`}
+                to={SPECIALTY_PROGRAMS.some((p) => p.slug === applyModalProg.slug) ? `/loan-programs/${applyModalProg.slug}` : `/industries/${applyModalProg.slug}`}
                 onClick={() => setApplyModalProg(null)}
                 className="font-bold text-[#0070C0] hover:underline inline-flex items-center gap-1"
               >

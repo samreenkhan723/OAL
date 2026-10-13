@@ -28,7 +28,7 @@ export const AdminLendersPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+        <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
           Institutional Lenders Directory
         </h1>
         <p className="text-xs text-slate-500 mt-1">
@@ -39,7 +39,7 @@ export const AdminLendersPage = () => {
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
           <span>{lenders.length} Participating Underwriter Seats</span>
-          <span className="text-purple-700 font-bold">Rule FR-08 Cap Monitored</span>
+          <span className="text-[#002060] font-bold">Rule FR-08 Cap Monitored</span>
         </div>
 
         <div className="divide-y divide-slate-100">
@@ -55,14 +55,14 @@ export const AdminLendersPage = () => {
                   </span>
                 </div>
                 <div className="text-xs text-slate-600">{l.type} • {l.contact}</div>
-                <div className="text-xs text-purple-700 font-semibold pt-1">
+                <div className="text-xs text-[#002060] font-semibold pt-1">
                   Active Working Deals: {l.activeWorkingDeals} • Total Placed: {l.totalPlaced}
                 </div>
               </div>
 
               <button
                 onClick={() => setSelectedLender(l)}
-                className="px-4 py-2 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors w-full sm:w-auto text-center"
+                className="px-4 py-2 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-xs font-bold text-slate-700 transition-colors w-full sm:w-auto text-center"
               >
                 Review Accreditation
               </button>
@@ -120,7 +120,7 @@ export const AdminLendersPage = () => {
               <button
                 type="button"
                 onClick={() => handleToggleAccreditation(selectedLender.id)}
-                className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors w-full sm:w-auto"
+                className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white font-bold text-xs transition-colors w-full sm:w-auto"
               >
                 {selectedLender.status === 'ACCREDITED' ? 'Mark Provisional' : 'Confirm Accredited'}
               </button>

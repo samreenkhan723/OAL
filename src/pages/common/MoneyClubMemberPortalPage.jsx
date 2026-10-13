@@ -715,7 +715,7 @@ OAL Network Headquarters, New York, NY
               <select
                 value={selectedIndustry}
                 onChange={(e) => setSelectedIndustry(e.target.value)}
-                className="bg-slate-100 text-slate-700 text-xs font-bold rounded-xl px-3 py-2 border border-slate-200 focus:outline-none focus:border-blue-600 cursor-pointer"
+                className="bg-slate-100 text-slate-700 text-xs font-bold rounded-xl px-3 py-2 border border-slate-200 focus:outline-none focus:border-[#0070C0] cursor-pointer"
               >
                 <option value="ALL">All Industries</option>
                 <option value="Freight & Logistics">Freight & Logistics</option>
@@ -736,7 +736,7 @@ OAL Network Headquarters, New York, NY
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 uppercase">
+                      <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#002060]/10 text-[#002060] uppercase">
                         {deal.industry}
                       </span>
                       <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900">
@@ -795,7 +795,7 @@ OAL Network Headquarters, New York, NY
                         setPledgeAmount(deal.minTicket);
                         setShowPledgeModal(true);
                       }}
-                      className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/20 flex items-center justify-center gap-1.5 cursor-pointer"
+                      className="w-full py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center justify-center gap-1.5 cursor-pointer"
                     >
                       <DollarSign className="w-4 h-4" />
                       <span>Pledge Co-Investment</span>
@@ -853,7 +853,7 @@ OAL Network Headquarters, New York, NY
                   <span className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs">1</span>
                   Individual Net Worth & Income Criteria (Rule 501(a)(5))
                 </h3>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060]">
                   Doc 4 Line 147-156
                 </span>
               </div>
@@ -987,7 +987,7 @@ OAL Network Headquarters, New York, NY
                     type="text"
                     value={accreditationForm.crdNumber}
                     onChange={(e) => setAccreditationForm({ ...accreditationForm, crdNumber: e.target.value })}
-                    className="w-full p-2.5 rounded-xl border border-slate-300 font-mono text-xs focus:border-blue-600 focus:outline-none"
+                    className="w-full p-2.5 rounded-xl border border-slate-300 font-mono text-xs focus:border-[#0070C0] focus:outline-none"
                     placeholder="CRD-8821942"
                   />
                 </div>
@@ -997,7 +997,7 @@ OAL Network Headquarters, New York, NY
                   <select
                     value={accreditationForm.attestationType}
                     onChange={(e) => setAccreditationForm({ ...accreditationForm, attestationType: e.target.value })}
-                    className="w-full p-2.5 rounded-xl border border-slate-300 text-xs focus:border-blue-600 focus:outline-none cursor-pointer"
+                    className="w-full p-2.5 rounded-xl border border-slate-300 text-xs focus:border-[#0070C0] focus:outline-none cursor-pointer"
                   >
                     <option value="CPA_LETTER">Licensed CPA / Attorney Attestation Letter</option>
                     <option value="W2_TAX_RETURNS">IRS Form 1040 / W-2 Past 2 Years</option>
@@ -1058,7 +1058,7 @@ OAL Network Headquarters, New York, NY
             <div className="flex justify-end gap-3 pt-2">
               <button
                 type="submit"
-                className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/30 flex items-center gap-2 cursor-pointer"
+                className="px-6 py-3 rounded-xl bg-[#002060] hover:bg-[#001744] text-white text-xs font-bold transition-all shadow-md shadow-[#002060]/30 flex items-center gap-2 cursor-pointer"
               >
                 <ShieldCheck className="w-4 h-4" />
                 <span>Submit Verification & Claim Green Check Badge</span>
@@ -1086,7 +1086,7 @@ OAL Network Headquarters, New York, NY
             <button
               type="button"
               onClick={() => setActiveTab('syndicates')}
-              className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+              className="px-4 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
             >
               <TrendingUp className="w-4 h-4" />
               <span>Browse New Opportunities</span>
@@ -1139,10 +1139,10 @@ OAL Network Headquarters, New York, NY
           <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-200 space-y-5">
             <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
               <div className="space-y-1">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 uppercase">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060] uppercase">
                   Co-Investment Ticket Allocation
                 </span>
-                <h3 className="text-base font-heading font-extrabold text-[#0B1730]">
+                <h3 className="text-base font-heading font-extrabold text-[#002060]">
                   Pledge Capital into {selectedSyndicate.title}
                 </h3>
               </div>
@@ -1229,7 +1229,7 @@ OAL Network Headquarters, New York, NY
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-md cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#002060] hover:bg-[#001744] text-white font-bold shadow-md cursor-pointer transition-colors"
                 >
                   Confirm Allocation Pledge
                 </button>
@@ -1287,7 +1287,7 @@ OAL Network Headquarters, New York, NY
               <button
                 type="button"
                 onClick={handleDownloadAccreditationCertificate}
-                className="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+                className="flex-1 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Official Certificate</span>

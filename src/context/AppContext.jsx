@@ -12,8 +12,12 @@ import {
 } from '../data/initialData';
 import {
   MOCK_USERS,
+  authenticatePrototypeUser,
   authenticateMockUser,
-  findMockUserByEmail
+  findMockUserByEmail,
+  findRegisteredUserByEmail,
+  isEmailRegistered,
+  computeSimulatedAuthToken
 } from '../data/mockUsers';
 
 const AppContext = createContext();
@@ -28,7 +32,17 @@ const GUEST_USER = {
 };
 
 export const AppProvider = ({ children }) => {
-  // Authentication state (Mock frontend session via React state + localStorage)
+  // Prototype Registered Users stored in localStorage
+  const [registeredUsers, setRegisteredUsers] = useState(() => {
+    try {
+      const saved = localStorage.getItem('oal_registered_users');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
+  // Authentication state (Mock/Prototype frontend session via React state + localStorage)
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return localStorage.getItem('oal_is_authenticated') === 'true';
   });
@@ -38,7 +52,10 @@ export const AppProvider = ({ children }) => {
     if (!isAuth) return null;
     const saved = localStorage.getItem('oal_current_user');
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) { /* ignore */ }
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.id) return parsed;
+      } catch (e) { /* ignore */ }
     }
     const savedRole = localStorage.getItem('oal_active_role') || 'borrower';
     return MOCK_USERS.find(u => u.role === savedRole) || MOCK_USERS[0];
@@ -93,6 +110,15 @@ export const AppProvider = ({ children }) => {
   // In-app toasts
   const [toasts, setToasts] = useState([]);
 
+  // Sync registered users to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('oal_registered_users', JSON.stringify(registeredUsers));
+    } catch (e) {
+      console.error('Failed to sync registered users', e);
+    }
+  }, [registeredUsers]);
+
   // Sync to localStorage
   useEffect(() => {
     localStorage.setItem('oal_active_role', currentRole);
@@ -131,9 +157,71 @@ export const AppProvider = ({ children }) => {
     setToasts(prev => prev.filter(t => t.id !== id));
   };
 
-  // Login with mock credentials (FR-01 Frontend-only Mock Auth)
+  // Check if an email is available for new registration
+  const validateEmailAvailability = (email) => {
+    if (!email) return false;
+    return !isEmailRegistered(email, registeredUsers);
+  };
+
+  // Register new prototype user record (FR-01 Frontend-only Prototype Registration)
+  const registerPrototypeUser = (formData) => {
+    const emailNormalized = (formData.email || '').trim().toLowerCase();
+
+    // Check duplicate email against prototype accounts and demo aliases
+    if (isEmailRegistered(emailNormalized, registeredUsers)) {
+      addToast('Registration Notice', 'An account with this email address already exists. Please sign in.', 'error');
+      return { success: false, error: 'An account with this email address already exists.' };
+    }
+
+    // Role restrictions: public registration only permits 'borrower' or 'lender'
+    const allowedRoles = ['borrower', 'lender'];
+    const assignedRole = allowedRoles.includes(formData.role) ? formData.role : 'borrower';
+
+    const userId = formData.id || `usr_${assignedRole}_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+    const authToken = formData.simulatedAuthToken || computeSimulatedAuthToken(emailNormalized, formData.password || 'Password123!');
+
+    const newUser = {
+      id: userId,
+      name: (formData.name || formData.fullName || 'Registered User').trim(),
+      email: emailNormalized,
+      phone: (formData.phone || '').trim(),
+      company: (formData.company || formData.companyName || `${formData.name || formData.fullName || 'Member'} Holdings`).trim(),
+      role: assignedRole,
+      title: formData.title || (assignedRole === 'lender' ? 'Managing Partner / Underwriter' : 'Principal / Business Owner'),
+      avatar: formData.avatar || (assignedRole === 'lender'
+        ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80'
+        : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'),
+      verified: Boolean(formData.verified),
+      mfaEnabled: true,
+      mfaVerified: Boolean(formData.mfaVerified),
+      isPrototypeAccount: true,
+      createdAt: formData.createdAt || new Date().toISOString(),
+      simulatedAuthToken: authToken
+    };
+
+    const updatedList = [...registeredUsers, newUser];
+    setRegisteredUsers(updatedList);
+    try {
+      localStorage.setItem('oal_registered_users', JSON.stringify(updatedList));
+    } catch (e) {
+      console.error('Error saving registered users to localStorage', e);
+    }
+
+    // Establish active authenticated session for newly registered user
+    setIsAuthenticated(true);
+    setActiveUser(newUser);
+    setCurrentRole(newUser.role);
+    localStorage.setItem('oal_is_authenticated', 'true');
+    localStorage.setItem('oal_current_user', JSON.stringify(newUser));
+    localStorage.setItem('oal_active_role', newUser.role);
+
+    addToast('Account Registered', `Welcome, ${newUser.name}! Your ${newUser.role.toUpperCase()} profile is ready.`, 'success');
+    return { success: true, user: newUser };
+  };
+
+  // Login with credentials (Prototype lookup: registered users first, then demo accounts)
   const login = (email, password) => {
-    const res = authenticateMockUser(email, password);
+    const res = authenticatePrototypeUser(email, password, registeredUsers);
     if (res.success) {
       setIsAuthenticated(true);
       setActiveUser(res.user);
@@ -148,7 +236,7 @@ export const AppProvider = ({ children }) => {
     return { success: false, error: res.error };
   };
 
-  // Logout - Clears mock session & state
+  // Logout - Clears active session & state (preserves registered user records in localStorage)
   const logout = () => {
     setIsAuthenticated(false);
     setActiveUser(null);
@@ -159,7 +247,7 @@ export const AppProvider = ({ children }) => {
     addToast('Signed Out', 'You have been signed out of your session.', 'info');
   };
 
-  // Switch Active User / Role (Internal prototype helper)
+  // Switch Active User / Role (Strictly for Demo Role Switcher widget)
   const switchRole = (role) => {
     const matched = MOCK_USERS.find(u => u.role === role) || MOCK_USERS[0];
     setIsAuthenticated(true);
@@ -168,7 +256,7 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('oal_is_authenticated', 'true');
     localStorage.setItem('oal_current_user', JSON.stringify(matched));
     localStorage.setItem('oal_active_role', matched.role);
-    addToast('Role Switched', `Active profile: ${matched.name} (${matched.role.toUpperCase()})`, 'info');
+    addToast('Demo Perspective Switched', `Active demo profile: ${matched.name} (${matched.role.toUpperCase()})`, 'info');
   };
 
   // Active user object with safe guest fallback to prevent runtime crashes
@@ -656,7 +744,11 @@ export const AppProvider = ({ children }) => {
 
   // Reset Demo State
   const resetDemoData = () => {
+    const savedRegUsers = localStorage.getItem('oal_registered_users');
     localStorage.clear();
+    if (savedRegUsers) {
+      localStorage.setItem('oal_registered_users', savedRegUsers);
+    }
     setApplications(INITIAL_APPLICATIONS);
     setOffers(INITIAL_OFFERS);
     setDocuments(INITIAL_DOCUMENTS);
@@ -666,7 +758,7 @@ export const AppProvider = ({ children }) => {
     setAuditLogs(INITIAL_AUDIT_LOGS);
     setNetworkActivity(INITIAL_NETWORK_ACTIVITY);
     setCurrentRole('borrower');
-    addToast('Demo Reset', 'All data restored to factory defaults.', 'info');
+    addToast('Demo Reset', 'All demo data restored to factory defaults.', 'info');
   };
 
   return (
@@ -674,6 +766,10 @@ export const AppProvider = ({ children }) => {
       isAuthenticated,
       currentRole,
       currentUser,
+      activeUser,
+      registeredUsers,
+      registerPrototypeUser,
+      validateEmailAvailability,
       login,
       logout,
       switchRole,

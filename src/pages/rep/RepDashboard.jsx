@@ -162,10 +162,10 @@ export const RepDashboard = () => {
 
         <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs">
           <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Underwriter Working Deals</span>
-          <div className="text-3xl font-extrabold text-purple-700 mt-1 font-heading">
+          <div className="text-3xl font-extrabold text-[#002060] mt-1 font-heading">
             {assignedApps.reduce((acc, a) => acc + (a.workingDeals?.claimedLendersCount || 0), 0)}
           </div>
-          <span className="text-[11px] text-purple-700 font-semibold mt-1 block">
+          <span className="text-[11px] text-[#0070C0] font-semibold mt-1 block">
             Max 3 Claims/Deal Enforced (FR-08)
           </span>
         </div>
@@ -232,7 +232,7 @@ export const RepDashboard = () => {
                 </p>
               </div>
 
-              <Link to="/rep/leads" className="text-xs font-bold text-blue-600 hover:underline shrink-0">
+              <Link to="/rep/leads" className="text-xs font-bold text-[#0070C0] hover:text-[#002060] font-bold shrink-0">
                 View All Leads &rarr;
               </Link>
             </div>
@@ -255,7 +255,7 @@ export const RepDashboard = () => {
                           <Award className="w-3 h-3 text-[#002060] shrink-0" />
                           <span>IQ {app.investmentIQ?.total || '150'}/180</span>
                         </span>
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#002060]/10 text-[#002060]">
                           {claimsCount} of 3 Lenders Active
                         </span>
                       </div>
@@ -323,20 +323,20 @@ export const RepDashboard = () => {
                 <p className="text-blue-950/80 leading-relaxed text-[11px]">
                   <strong>Intake & Packaging Phase:</strong> Direct applications submitted by borrowers. As an OAL Representative, you review documentation, verify financials, and audit Investment IQ readiness before approving for exchange publication.
                 </p>
-                <Link to="/rep/loan-requests" className="text-blue-600 font-bold hover:underline block pt-1 text-[11px]">
+                <Link to="/rep/loan-requests" className="text-[#0070C0] font-bold hover:text-[#002060] block pt-1 text-[11px]">
                   Open Loan Requests Queue &rarr;
                 </Link>
               </div>
 
-              <div className="p-4 rounded-xl bg-purple-50/60 border border-purple-200 space-y-1.5">
-                <div className="flex items-center gap-2 font-bold text-purple-900">
-                  <Users className="w-4 h-4 text-purple-600" />
+              <div className="p-4 rounded-xl bg-sky-50/60 border border-sky-200 space-y-1.5">
+                <div className="flex items-center gap-2 font-bold text-[#002060]">
+                  <Users className="w-4 h-4 text-[#0070C0]" />
                   <span>2. Qualified Leads Tab</span>
                 </div>
-                <p className="text-purple-950/80 leading-relaxed text-[11px]">
+                <p className="text-slate-600 leading-relaxed text-[11px]">
                   <strong>Marketplace Underwriting Phase:</strong> Sanitized files published to verified institutional funds. Lenders claim working deals (up to 3 slots) and draft term sheets without direct borrower contact.
                 </p>
-                <Link to="/rep/leads" className="text-purple-700 font-bold hover:underline block pt-1 text-[11px]">
+                <Link to="/rep/leads" className="text-[#0070C0] font-bold hover:text-[#002060] block pt-1 text-[11px]">
                   Open Marketplace Qualified Pipeline &rarr;
                 </Link>
               </div>
@@ -388,7 +388,7 @@ export const RepDashboard = () => {
                 type="button"
                 onClick={() => setTriPartyTarget('lender')}
                 className={`flex-1 py-1.5 rounded-lg transition-all text-center cursor-pointer ${
-                  triPartyTarget === 'lender' ? 'bg-purple-600 text-white shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900'
+                  triPartyTarget === 'lender' ? 'bg-[#002060] text-white shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Lenders Only
@@ -407,7 +407,7 @@ export const RepDashboard = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">Target Recipient:</span>
-                <span className="font-bold text-blue-700">
+                <span className="font-bold text-[#0070C0]">
                   {triPartyTarget === 'both' ? 'Simultaneous Broadcast (Borrower & Lenders)' : triPartyTarget === 'borrower' ? 'Borrower Line (Marcus Vance)' : 'Underwriter Desk (Apex Horizon)'}
                 </span>
               </div>
@@ -453,7 +453,7 @@ export const RepDashboard = () => {
             <div className="space-y-2 text-xs">
               <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
                 <span className="flex items-center gap-1.5 text-slate-700">
-                  <MessageSquare className="w-3.5 h-3.5 text-blue-600" />
+                  <MessageSquare className="w-3.5 h-3.5 text-[#0070C0]" />
                   In-App Chat
                 </span>
                 <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Active</span>
@@ -464,15 +464,15 @@ export const RepDashboard = () => {
                   <Mail className="w-3.5 h-3.5 text-amber-600" />
                   Underwriter Email Desk
                 </span>
-                <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Connected</span>
+                <span className="text-[10px] font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded">Connected</span>
               </div>
 
               <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
                 <span className="flex items-center gap-1.5 text-slate-700">
-                  <PhoneCall className="w-3.5 h-3.5 text-purple-600" />
+                  <PhoneCall className="w-3.5 h-3.5 text-[#0070C0]" />
                   SMS Fast-Track Relay
                 </span>
-                <span className="text-[10px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded">Ready</span>
+                <span className="text-[10px] font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded">Ready</span>
               </div>
             </div>
 

@@ -17,7 +17,7 @@ export const AdminSuperAdminPage = () => {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center gap-2">
-        <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+        <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
           Super Admin Root Permissions Matrix
         </h1>
         <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-200">
@@ -57,7 +57,7 @@ export const AdminSuperAdminPage = () => {
                     ) : row.borrower === false ? (
                       <span className="text-slate-400">Restricted</span>
                     ) : (
-                      <span className={`font-semibold ${row.borrower === 'FORBIDDEN' ? 'text-rose-600 font-bold' : 'text-blue-700'}`}>{row.borrower}</span>
+                      <span className={`font-semibold ${row.borrower === 'FORBIDDEN' ? 'text-rose-600 font-bold' : 'text-[#0070C0]'}`}>{row.borrower}</span>
                     )}
                   </td>
 
@@ -67,7 +67,7 @@ export const AdminSuperAdminPage = () => {
                     ) : row.lender === false ? (
                       <span className="text-slate-400">Restricted</span>
                     ) : (
-                      <span className={`font-semibold ${row.lender === 'FORBIDDEN' ? 'text-rose-600 font-bold' : 'text-purple-700'}`}>{row.lender}</span>
+                      <span className={`font-semibold ${row.lender === 'FORBIDDEN' ? 'text-rose-600 font-bold' : 'text-[#002060]'}`}>{row.lender}</span>
                     )}
                   </td>
 

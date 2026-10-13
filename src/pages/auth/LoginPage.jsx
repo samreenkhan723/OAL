@@ -270,14 +270,14 @@ export const LoginPage = () => {
         <div className="w-full max-w-[460px] mx-auto my-auto py-2">
           <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl shadow-slate-200/60 p-7 sm:p-9 space-y-6">
             <div>
-              <div className="inline-block px-2.5 py-0.5 rounded-md bg-sky-50 text-[#0070C0] text-[11px] font-bold uppercase tracking-wider mb-2">
-                Authentication Portal
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-sky-50 text-[#0070C0] text-[11px] font-bold uppercase tracking-wider mb-2">
+                <span>Prototype Authentication Portal</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#002060] tracking-tight">
                 Sign In to Your Account
               </h2>
               <p className="text-sm text-slate-500 mt-1">
-                Secure access to your commercial debt underwriting &amp; lending exchange.
+                Access your registered prototype account or use a predefined demo profile.
               </p>
             </div>
 

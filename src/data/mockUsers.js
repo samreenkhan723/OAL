@@ -87,7 +87,65 @@ export const MOCK_USERS = [
 ];
 
 /**
- * Find mock user by email address or alias
+ * PROTOTYPE-ONLY SIMULATED AUTHENTICATION TOKEN GENERATOR
+ *
+ * NOTE: For frontend prototyping only. This does NOT provide cryptographically
+ * secure password hashing or production authentication security.
+ * Passwords are never sent to a backend; this token is used purely to simulate
+ * credential verification in client-side prototype sessions without storing
+ * plaintext passwords.
+ */
+export const computeSimulatedAuthToken = (email, password) => {
+  if (!email || !password) return '';
+  const cleanEmail = email.trim().toLowerCase();
+  const cleanPassword = password.trim();
+  let hash = 0;
+  const combined = `OAL_PROTOTYPE_SIMULATED_SALT:${cleanEmail}:${cleanPassword}`;
+  for (let i = 0; i < combined.length; i++) {
+    const char = combined.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash |= 0;
+  }
+  return `proto_sim_tok_${Math.abs(hash).toString(36)}_${cleanPassword.length}`;
+};
+
+/**
+ * Retrieve registered prototype users from browser localStorage
+ */
+export const getRegisteredUsersFromStorage = () => {
+  if (typeof window === 'undefined' || !window.localStorage) return [];
+  try {
+    const raw = localStorage.getItem('oal_registered_users');
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    return [];
+  }
+};
+
+/**
+ * Save registered prototype users to browser localStorage
+ */
+export const saveRegisteredUsersToStorage = (users) => {
+  if (typeof window === 'undefined' || !window.localStorage) return;
+  try {
+    localStorage.setItem('oal_registered_users', JSON.stringify(users));
+  } catch (e) {
+    console.error('Failed to save prototype users to localStorage', e);
+  }
+};
+
+/**
+ * Find registered prototype user by email
+ */
+export const findRegisteredUserByEmail = (email, customList = null) => {
+  if (!email) return null;
+  const normalized = email.trim().toLowerCase();
+  const list = customList !== null ? customList : getRegisteredUsersFromStorage();
+  return list.find(u => u.email && u.email.toLowerCase() === normalized) || null;
+};
+
+/**
+ * Find mock demo user by email address or alias
  */
 export const findMockUserByEmail = (email) => {
   if (!email) return null;
@@ -99,38 +157,79 @@ export const findMockUserByEmail = (email) => {
 };
 
 /**
- * Validate mock credentials
+ * Check whether an email is already registered (in prototype storage OR demo accounts)
+ */
+export const isEmailRegistered = (email, customList = null) => {
+  if (!email) return false;
+  const inRegistered = Boolean(findRegisteredUserByEmail(email, customList));
+  const inDemo = Boolean(findMockUserByEmail(email));
+  return inRegistered || inDemo;
+};
+
+/**
+ * Validate credentials for Prototype Registered Users and Predefined Demo Accounts
+ *
+ * Rules:
+ * 1. Check registered prototype users in localStorage first.
+ * 2. Retrieve actual registered role from the user record (NEVER infer from email).
+ * 3. Fall back to predefined demo accounts in MOCK_USERS.
+ * 4. Never guess roles from email keywords.
+ * 5. Never silently create an account for unknown emails.
+ */
+export const authenticatePrototypeUser = (email, password, customRegisteredUsers = null) => {
+  if (!email || !password) {
+    return { success: false, error: 'Please enter both your email address and password.' };
+  }
+
+  const normalized = email.trim().toLowerCase();
+
+  // 1. Check registered prototype users first
+  const registeredUser = findRegisteredUserByEmail(normalized, customRegisteredUsers);
+  if (registeredUser) {
+    const expectedToken = computeSimulatedAuthToken(normalized, password);
+    const isTokenMatch = registeredUser.simulatedAuthToken && registeredUser.simulatedAuthToken === expectedToken;
+    const isPassMatch = password.length >= 6; // Permissive fallback for prototype convenience
+
+    if (isTokenMatch || isPassMatch) {
+      return {
+        success: true,
+        user: registeredUser,
+        isDemo: false
+      };
+    }
+    return {
+      success: false,
+      error: 'Incorrect password for this registered prototype account. Please try again.'
+    };
+  }
+
+  // 2. Check predefined demo accounts
+  const demoUser = findMockUserByEmail(normalized);
+  if (demoUser) {
+    if (password === demoUser.password || password === 'Password123!' || password.length >= 4) {
+      return {
+        success: true,
+        user: demoUser,
+        isDemo: true
+      };
+    }
+    return {
+      success: false,
+      error: 'Incorrect password for demo account. Use Password123!'
+    };
+  }
+
+  // 3. Unknown account - DO NOT guess role, DO NOT silently create account
+  return {
+    success: false,
+    error: 'No account found for this email address. Please register a new account or select a demo profile.'
+  };
+};
+
+/**
+ * Backward compatibility alias for authenticateMockUser
  */
 export const authenticateMockUser = (email, password) => {
-  if (!email || !password) {
-    return { success: false, error: 'Please enter both email and password.' };
-  }
-
-  const user = findMockUserByEmail(email);
-  if (!user) {
-    // For demo convenience, if email contains a role keyword, map to that role
-    const normalized = email.trim().toLowerCase();
-    let inferredRole = 'borrower';
-    if (normalized.includes('lender')) inferredRole = 'lender';
-    else if (normalized.includes('rep') || normalized.includes('agent')) inferredRole = 'rep';
-    else if (normalized.includes('admin')) inferredRole = 'admin';
-    else if (normalized.includes('support')) inferredRole = 'support';
-
-    const fallbackTemplate = MOCK_USERS.find(u => u.role === inferredRole) || MOCK_USERS[0];
-    const generatedUser = {
-      ...fallbackTemplate,
-      id: `usr_${inferredRole}_${Date.now()}`,
-      email: normalized,
-      name: normalized.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) || fallbackTemplate.name
-    };
-
-    return { success: true, user: generatedUser };
-  }
-
-  // Accept correct password or mock password
-  if (password === user.password || password.length >= 4) {
-    return { success: true, user };
-  }
-
-  return { success: false, error: 'Incorrect password. Please try again.' };
+  return authenticatePrototypeUser(email, password);
 };
+

@@ -180,7 +180,7 @@ export const Topbar = ({ setIsOpen }) => {
             <img
               src={currentUser.avatar}
               alt={currentUser.name}
-              className="w-9 h-9 rounded-full object-cover ring-2 ring-blue-600/20"
+              className="w-9 h-9 rounded-full object-cover ring-2 ring-[#0070C0]/25"
             />
             <div className="text-left hidden sm:block">
               <div className="text-xs font-bold text-slate-900">{currentUser.name}</div>
@@ -195,7 +195,7 @@ export const Topbar = ({ setIsOpen }) => {
                 <div className="text-xs font-bold text-slate-900">{currentUser.name}</div>
                 <div className="text-[11px] text-slate-500 truncate">{currentUser.email}</div>
                 <div className="mt-1.5 flex items-center gap-1.5">
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800 uppercase tracking-wider">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#002060]/10 text-[#002060] uppercase tracking-wider">
                     {currentRole}
                   </span>
                   <span className="text-[10px] text-emerald-600 flex items-center gap-0.5">

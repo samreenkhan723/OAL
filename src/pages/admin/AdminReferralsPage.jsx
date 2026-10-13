@@ -76,7 +76,7 @@ export const AdminReferralsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-heading font-extrabold text-[#0B1730]">
+            <h1 className="text-xl sm:text-2xl font-heading font-extrabold text-[#002060]">
               Referrals & Affiliate Program Management
             </h1>
             <VerifyBadge note="Client confirmation pending for affiliate commission rules, tracking attribution, and payout limits (PRD FR-15)" />
@@ -88,7 +88,7 @@ export const AdminReferralsPage = () => {
 
         <button
           onClick={handleExportReferrals}
-          className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
+          className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-xs font-bold text-slate-700 transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto cursor-pointer"
         >
           <Download className="w-4 h-4" />
           <span>Export Commission Ledger</span>
@@ -98,7 +98,7 @@ export const AdminReferralsPage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5">
         <div className="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-xs">
           <span className="text-[11px] sm:text-xs text-slate-500 font-semibold uppercase">Total Affiliate Payouts</span>
-          <div className="text-2xl sm:text-3xl font-extrabold text-[#0B1730] mt-1 font-heading">
+          <div className="text-2xl sm:text-3xl font-extrabold text-[#002060] mt-1 font-heading">
             ${totalPaidAmount.toLocaleString()}
           </div>
           <span className="text-[11px] text-emerald-600 font-semibold mt-1 block">YTD Disbursed via ACH</span>
@@ -112,7 +112,7 @@ export const AdminReferralsPage = () => {
 
         <div className="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-xs">
           <span className="text-[11px] sm:text-xs text-slate-500 font-semibold uppercase">Active Affiliates</span>
-          <div className="text-2xl sm:text-3xl font-extrabold text-[#D5B66A] mt-1 font-heading">18 Partners</div>
+          <div className="text-2xl sm:text-3xl font-extrabold text-[#FFD200] mt-1 font-heading">18 Partners</div>
           <span className="text-[11px] text-slate-500 mt-1 block">Registered Influencers & Brokers</span>
         </div>
       </div>
@@ -155,7 +155,7 @@ export const AdminReferralsPage = () => {
                     type="button"
                     disabled={disbursingId === a.id}
                     onClick={() => handleDisburse(a.id)}
-                    className="w-full sm:w-auto px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-xs shadow-xs cursor-pointer flex items-center justify-center gap-1.5 transition-all disabled:opacity-50"
+                    className="w-full sm:w-auto px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] active:scale-95 text-white font-bold text-xs shadow-xs cursor-pointer flex items-center justify-center gap-1.5 transition-all disabled:opacity-50"
                   >
                     {disbursingId === a.id ? (
                       <>

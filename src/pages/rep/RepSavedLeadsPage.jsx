@@ -10,7 +10,7 @@ export const RepSavedLeadsPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+        <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
           Representative Saved Leads
         </h1>
         <p className="text-xs text-slate-500 mt-1">
@@ -33,7 +33,7 @@ export const RepSavedLeadsPage = () => {
 
             <Link
               to="/rep/offers"
-              className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-all w-full sm:w-auto text-center"
+              className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-[#0070C0] text-white text-xs font-bold transition-all w-full sm:w-auto text-center"
             >
               Examine
             </Link>

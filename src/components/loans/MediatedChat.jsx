@@ -65,7 +65,7 @@ export const MediatedChat = ({ applicationId = 'APP-2026-1082' }) => {
   return (
     <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden flex flex-col h-[520px]">
       {/* Header */}
-      <div className="p-3.5 sm:p-4 bg-gradient-to-r from-[#0B1730] to-[#172B4D] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="p-3.5 sm:p-4 bg-gradient-to-r from-[#001744] to-[#002060] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-start sm:items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white shrink-0 mt-0.5 sm:mt-0">
             <MessageSquare className="w-5 h-5" />
@@ -75,7 +75,7 @@ export const MediatedChat = ({ applicationId = 'APP-2026-1082' }) => {
               <h3 className="text-sm font-bold text-white">
                 Mediated Communication Channel
               </h3>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#D5B66A] text-slate-950 whitespace-nowrap shrink-0 shadow-xs">
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FFD200] text-[#002060] whitespace-nowrap shrink-0 shadow-xs">
                 Rule FR-09
               </span>
             </div>
@@ -92,7 +92,7 @@ export const MediatedChat = ({ applicationId = 'APP-2026-1082' }) => {
               type="button"
               onClick={() => setRepActiveThread('borrower')}
               className={`flex-1 sm:flex-none px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-colors text-center cursor-pointer ${
-                repActiveThread === 'borrower' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+                repActiveThread === 'borrower' ? 'bg-[#0070C0] text-white shadow-xs' : 'text-slate-400 hover:text-white'
               }`}
             >
               Borrower Thread
@@ -101,7 +101,7 @@ export const MediatedChat = ({ applicationId = 'APP-2026-1082' }) => {
               type="button"
               onClick={() => setRepActiveThread('lender')}
               className={`flex-1 sm:flex-none px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-colors text-center cursor-pointer ${
-                repActiveThread === 'lender' ? 'bg-purple-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+                repActiveThread === 'lender' ? 'bg-[#002060] text-white shadow-xs' : 'text-slate-400 hover:text-white'
               }`}
             >
               Lender Thread
@@ -138,9 +138,9 @@ export const MediatedChat = ({ applicationId = 'APP-2026-1082' }) => {
               <div
                 className={`p-3.5 rounded-2xl text-xs leading-relaxed shadow-xs ${
                   isMe
-                    ? 'bg-blue-600 text-white rounded-tr-none'
+                    ? 'bg-[#0070C0] text-white rounded-tr-none'
                     : msg.senderRole === 'rep'
-                    ? 'bg-[#0B1730] text-slate-100 rounded-tl-none border border-slate-700'
+                    ? 'bg-[#002060] text-slate-100 rounded-tl-none border border-slate-700'
                     : 'bg-white text-slate-800 rounded-tl-none border border-slate-200'
                 }`}
               >
@@ -162,11 +162,11 @@ export const MediatedChat = ({ applicationId = 'APP-2026-1082' }) => {
               ? `Message ${repActiveThread === 'borrower' ? 'Borrower (Marcus)' : 'Lender Underwriters'}...`
               : 'Type a message to your dedicated OAL Representative...'
           }
-          className="flex-1 px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
+          className="flex-1 px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0070C0]"
         />
         <button
           type="submit"
-          className="p-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl shadow-md shadow-blue-600/20 transition-all"
+          className="p-2.5 bg-[#0070C0] hover:bg-[#005a9e] active:bg-[#002060] text-white rounded-xl shadow-md shadow-[#0070C0]/25 transition-all"
         >
           <Send className="w-4 h-4" />
         </button>

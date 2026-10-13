@@ -45,7 +45,7 @@ export const LenderLeadsPage = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+          <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
             Qualified Marketplace Leads
           </h1>
           <p className="text-xs text-slate-500 mt-1">
@@ -63,7 +63,7 @@ export const LenderLeadsPage = () => {
             placeholder="Search leads by ID or industry..."
             value={search}
             onChange={handleSearchChange}
-            className="w-full pl-10 pr-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+            className="w-full pl-10 pr-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
           />
         </div>
 
@@ -71,7 +71,7 @@ export const LenderLeadsPage = () => {
           <select
             value={programFilter}
             onChange={handleProgramChange}
-            className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+            className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
           >
             <option value="ALL">All Commercial Programs (8)</option>
             {LOAN_PROGRAMS.map(p => (
@@ -84,7 +84,7 @@ export const LenderLeadsPage = () => {
           <select
             value={minIQ}
             onChange={handleIQChange}
-            className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"
+            className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
           >
             <option value={0}>Any Investment IQ Score</option>
             <option value={140}>&ge; 140 Investment IQ (Tier-2+)</option>
@@ -97,7 +97,7 @@ export const LenderLeadsPage = () => {
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-500">
           <span>Displaying {paginatedLeads.length} of {filteredLeads.length} Qualified Commercial Applications</span>
-          <span className="text-[11px] text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-200">
+          <span className="text-[11px] text-[#002060] bg-[#002060]/10 px-2 py-0.5 rounded-full border border-[#002060]/20">
             Rule FR-08 (Max 3 claims per deal)
           </span>
         </div>
@@ -149,7 +149,7 @@ export const LenderLeadsPage = () => {
                 <div className="flex items-center justify-between md:justify-end gap-3 md:gap-4 w-full md:w-auto self-start md:self-center">
                   <div className="text-left md:text-right">
                     <span className={`text-xs font-bold block ${
-                      isFull ? 'text-rose-600' : 'text-purple-700'
+                      isFull ? 'text-rose-600' : 'text-[#002060]'
                     }`}>
                       {claimsCount} of 3 Slots Filled
                     </span>
@@ -160,7 +160,7 @@ export const LenderLeadsPage = () => {
 
                   <Link
                     to={`/lender/leads/${lead.id}`}
-                    className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-1.5 shrink-0"
+                    className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md shadow-[#0070C0]/25 transition-all flex items-center justify-center gap-1.5 shrink-0"
                   >
                     <span>Underwrite</span>
                     <ArrowRight className="w-4 h-4" />

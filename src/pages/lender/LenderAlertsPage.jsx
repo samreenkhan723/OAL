@@ -44,7 +44,7 @@ export const LenderAlertsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+            <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
               AI Lead Alerts
             </h1>
             <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 uppercase">
@@ -86,7 +86,7 @@ export const LenderAlertsPage = () => {
 
             <Link
               to={`/lender/leads/${alt.appId}`}
-              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-1.5 self-stretch md:self-center w-full md:w-auto text-center shrink-0 whitespace-nowrap"
+              className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md shadow-[#0070C0]/25 transition-all flex items-center justify-center gap-1.5 self-stretch md:self-center w-full md:w-auto text-center shrink-0 whitespace-nowrap"
             >
               <span>Inspect Lead</span>
               <ArrowRight className="w-4 h-4 shrink-0" />

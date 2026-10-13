@@ -22,7 +22,7 @@ export const LenderRankingsPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-heading font-extrabold text-[#0B1730]">
+        <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
           Borrower Rankings & Investment IQ Standings
         </h1>
         <p className="text-xs text-slate-500 mt-1">
@@ -77,7 +77,7 @@ export const LenderRankingsPage = () => {
 
                   <Link
                     to={`/lender/leads/${app.id}`}
-                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all text-center shrink-0 shadow-xs whitespace-nowrap"
+                    className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all text-center shrink-0 shadow-xs whitespace-nowrap"
                   >
                     Examine
                   </Link>
