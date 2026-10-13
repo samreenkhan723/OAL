@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Layers, ShieldCheck, Check, Edit, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Layers, ShieldCheck, Check, Edit, X, CreditCard } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { VerifyBadge } from '../../components/common/VerifyBadge';
 
@@ -31,13 +32,31 @@ export const AdminSubscriptionsPage = () => {
       <div>
         <div className="flex flex-wrap items-center gap-2">
           <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
-            Subscription Plans & Lender Tiers
+            Payments & Subscriptions
           </h1>
           <VerifyBadge note="Client confirmation pending for subscription price elasticity, seat limits, and cancellation policies (PRD FR-15)" />
         </div>
         <p className="text-xs text-slate-500 mt-1">
           Configure institutional access tiers and monthly working-deal capacity limits.
         </p>
+      </div>
+
+      {/* Module Tabs (Combining Payments & Subscriptions) */}
+      <div className="flex items-center gap-2 border-b border-slate-200">
+        <Link
+          to="/admin/payments"
+          className="px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors flex items-center gap-1.5"
+        >
+          <CreditCard className="w-4 h-4" />
+          <span>Fee Ledger & Transactions</span>
+        </Link>
+        <Link
+          to="/admin/subscriptions"
+          className="px-4 py-2 text-xs font-bold border-b-2 border-[#0070C0] text-[#0070C0] flex items-center gap-1.5"
+        >
+          <Layers className="w-4 h-4" />
+          <span>Subscription Plans & Tiers</span>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

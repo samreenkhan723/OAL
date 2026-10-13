@@ -65,10 +65,12 @@ import { LenderSettingsPage } from './pages/lender/LenderSettingsPage';
 import { RepDashboard } from './pages/rep/RepDashboard';
 import { RepLeadsPage } from './pages/rep/RepLeadsPage';
 import { RepAlertsPage } from './pages/rep/RepAlertsPage';
+import { RepLeadDetailPage } from './pages/rep/RepLeadDetailPage';
 import { RepLoanRequestsPage } from './pages/rep/RepLoanRequestsPage';
 import { RepSavedLeadsPage } from './pages/rep/RepSavedLeadsPage';
 import { RepCommunicationPage } from './pages/rep/RepCommunicationPage';
 import { RepOffersPage } from './pages/rep/RepOffersPage';
+import { RepNetworkPanel } from './pages/rep/RepNetworkPanel';
 import { RepAnalyticsPage } from './pages/rep/RepAnalyticsPage';
 import { RepReportsPage } from './pages/rep/RepReportsPage';
 import { RepBillingPage } from './pages/rep/RepBillingPage';
@@ -167,16 +169,25 @@ export function App() {
           >
             <Route index element={<Navigate to="/borrower/dashboard" replace />} />
             <Route path="dashboard" element={<BorrowerDashboard />} />
+            {/* Wireframe: Loan Application & Aliases */}
+            <Route path="loan-application" element={<BorrowerApplicationsPage />} />
+            <Route path="loan-application/new" element={<NewApplicationPage />} />
+            <Route path="loan-application/:id" element={<BorrowerApplicationDetailPage />} />
             <Route path="applications" element={<BorrowerApplicationsPage />} />
             <Route path="applications/new" element={<NewApplicationPage />} />
             <Route path="applications/:id" element={<BorrowerApplicationDetailPage />} />
             <Route path="applications/:id/documents" element={<BorrowerDocumentsPage />} />
             <Route path="applications/:id/tracker" element={<BorrowerApplicationDetailPage />} />
             <Route path="documents" element={<BorrowerDocumentsPage />} />
+            {/* Wireframe: AI Borrower Score & Legacy */}
+            <Route path="ai-score" element={<BorrowerInvestmentIQPage />} />
             <Route path="investment-iq" element={<BorrowerInvestmentIQPage />} />
+            {/* Wireframe: Waiting Room / Offers */}
             <Route path="offers" element={<BorrowerOffersPage />} />
-            <Route path="messages" element={<BorrowerMessagesPage />} />
             <Route path="notifications" element={<NotificationsPage />} />
+            <Route path="messages" element={<BorrowerMessagesPage />} />
+            {/* Wireframe: Referral Program & Legacy */}
+            <Route path="referral" element={<BorrowerReferralsPage />} />
             <Route path="referrals" element={<BorrowerReferralsPage />} />
             <Route path="post-funding" element={<PostFundingDashboardPage />} />
             <Route path="money-club" element={<MoneyClubMemberPortalPage />} />
@@ -194,21 +205,31 @@ export function App() {
           >
             <Route index element={<Navigate to="/lender/dashboard" replace />} />
             <Route path="dashboard" element={<LenderDashboard />} />
-            <Route path="network" element={<LenderNetworkPanel />} />
+            {/* Wireframe: Marketplace / Qualified Leads & Legacy */}
+            <Route path="qualified-leads" element={<LenderLeadsPage />} />
+            <Route path="qualified-leads/:id" element={<LenderLeadDetailPage />} />
             <Route path="leads" element={<LenderLeadsPage />} />
             <Route path="leads/:id" element={<LenderLeadDetailPage />} />
+            <Route path="saved-leads" element={<LenderSavedLeadsPage />} />
+            {/* Wireframe: Active Offers */}
+            <Route path="offers" element={<LenderOfferManagementPage />} />
+            {/* Wireframe: Message Center & Legacy */}
+            <Route path="communication" element={<LenderMessagesPage />} />
+            <Route path="messages" element={<LenderMessagesPage />} />
+            {/* Wireframe: OAL Network Panel & Legacy */}
+            <Route path="network-panel" element={<LenderNetworkPanel />} />
+            <Route path="network" element={<LenderNetworkPanel />} />
             <Route path="alerts" element={<LenderAlertsPage />} />
             <Route path="rankings" element={<LenderRankingsPage />} />
             <Route path="loan-requests" element={<LenderLoanRequestsPage />} />
-            <Route path="saved-leads" element={<LenderSavedLeadsPage />} />
             <Route path="working-deals" element={<LenderWorkingDealsPage />} />
-            <Route path="offers" element={<LenderOfferManagementPage />} />
             <Route path="post-funding" element={<PostFundingDashboardPage />} />
             <Route path="money-club" element={<MoneyClubMemberPortalPage />} />
-            <Route path="messages" element={<LenderMessagesPage />} />
             <Route path="notifications" element={<NotificationsPage />} />
+            {/* Wireframe: Analytics & Reports */}
             <Route path="analytics" element={<LenderAnalyticsPage />} />
             <Route path="reports" element={<LenderReportsPage />} />
+            {/* Wireframe: Billing & Subscription */}
             <Route path="billing" element={<LenderBillingPage />} />
             <Route path="subscription" element={<LenderBillingPage />} />
             <Route path="settings" element={<LenderSettingsPage />} />
@@ -225,16 +246,32 @@ export function App() {
           >
             <Route index element={<Navigate to="/rep/dashboard" replace />} />
             <Route path="dashboard" element={<RepDashboard />} />
+            {/* Wireframe: Qualified Leads & Legacy */}
+            <Route path="qualified-leads" element={<RepLeadsPage />} />
             <Route path="leads" element={<RepLeadsPage />} />
+            {/* Wireframe: AI Lead Alerts & Legacy */}
+            <Route path="lead-alerts" element={<RepAlertsPage />} />
             <Route path="alerts" element={<RepAlertsPage />} />
+            {/* Wireframe: Lead Details */}
+            <Route path="lead-details" element={<RepLeadDetailPage />} />
+            <Route path="lead-details/:id" element={<RepLeadDetailPage />} />
+            {/* Wireframe: Loan Requests */}
             <Route path="loan-requests" element={<RepLoanRequestsPage />} />
+            {/* Wireframe: Saved Leads */}
             <Route path="saved-leads" element={<RepSavedLeadsPage />} />
-            <Route path="messages" element={<RepCommunicationPage />} />
+            {/* Wireframe: Communication (LetsWork) & Legacy */}
             <Route path="communication" element={<RepCommunicationPage />} />
+            <Route path="messages" element={<RepCommunicationPage />} />
+            {/* Wireframe: Offer Management */}
             <Route path="offers" element={<RepOffersPage />} />
+            {/* Wireframe: OAL Network Panel */}
+            <Route path="network-panel" element={<RepNetworkPanel />} />
+            <Route path="network" element={<RepNetworkPanel />} />
             <Route path="notifications" element={<NotificationsPage />} />
+            {/* Wireframe: Analytics & Reports */}
             <Route path="analytics" element={<RepAnalyticsPage />} />
             <Route path="reports" element={<RepReportsPage />} />
+            {/* Wireframe: Billing & Subscription */}
             <Route path="billing" element={<RepBillingPage />} />
             <Route path="subscription" element={<RepBillingPage />} />
             <Route path="settings" element={<RepSettingsPage />} />
@@ -251,27 +288,39 @@ export function App() {
           >
             <Route index element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="network" element={<AdminNetworkPanel />} />
             <Route path="borrowers" element={<AdminBorrowersPage />} />
             <Route path="lenders" element={<AdminLendersPage />} />
-            <Route path="representatives" element={<AdminRepPage />} />
+            {/* Wireframe: Loan Applications & Legacy */}
+            <Route path="loan-applications" element={<AdminApplicationsPage />} />
+            <Route path="loan-applications/:id" element={<AdminApplicationsPage />} />
             <Route path="applications" element={<AdminApplicationsPage />} />
-            <Route path="verification" element={<AdminVerificationPage />} />
-            <Route path="documents" element={<AdminDocumentsPage />} />
+            {/* Wireframe: AI Scoring Engine & Legacy */}
+            <Route path="ai-scoring" element={<AdminScoringPage />} />
             <Route path="scoring" element={<AdminScoringPage />} />
+            <Route path="verification" element={<AdminVerificationPage />} />
+            {/* Wireframe: Document Management & Legacy */}
+            <Route path="document-management" element={<AdminDocumentsPage />} />
+            <Route path="documents" element={<AdminDocumentsPage />} />
             <Route path="lead-distribution" element={<AdminLeadDistributionPage />} />
-            <Route path="offers" element={<AdminOffersPage />} />
+            {/* Wireframe: Notifications */}
+            <Route path="notifications" element={<NotificationsPage />} />
             <Route path="referrals" element={<AdminReferralsPage />} />
             <Route path="advertisements" element={<AdminAdsPage />} />
+            {/* Wireframe: Payments & Subscriptions */}
             <Route path="payments" element={<AdminPaymentsPage />} />
             <Route path="subscriptions" element={<AdminSubscriptionsPage />} />
             <Route path="cms" element={<AdminCmsPage />} />
             <Route path="reports" element={<AdminReportsPage />} />
+            {/* Wireframe: Support Tickets (Help Desk) & Legacy */}
+            <Route path="help-desk" element={<HelpDeskTicketsPage />} />
             <Route path="support" element={<HelpDeskTicketsPage />} />
-            <Route path="notifications" element={<NotificationsPage />} />
             <Route path="audit-logs" element={<AdminAuditLogsPage />} />
             <Route path="settings" element={<AdminSettingsPage />} />
             <Route path="super-admin" element={<AdminSuperAdminPage />} />
+            {/* Legacy/Contextual Accessible Routes */}
+            <Route path="network" element={<AdminNetworkPanel />} />
+            <Route path="representatives" element={<AdminRepPage />} />
+            <Route path="offers" element={<AdminOffersPage />} />
           </Route>
 
           {/* Help Desk Support Routes (Protected) */}

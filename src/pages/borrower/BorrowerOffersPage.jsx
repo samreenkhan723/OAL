@@ -35,12 +35,21 @@ export const BorrowerOffersPage = () => {
           </p>
         </div>
 
-        {hasAccepted && (
-          <div className="flex items-center gap-2 px-3.5 py-2 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-semibold w-full sm:w-auto">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span>Binding Offer Accepted — Processing In Progress</span>
-          </div>
-        )}
+        <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+          {hasAccepted && (
+            <div className="flex items-center gap-2 px-3.5 py-2 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-semibold">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>Binding Offer Accepted</span>
+            </div>
+          )}
+          <Link
+            to="/borrower/post-funding"
+            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#002060] text-xs font-bold transition-all border border-slate-200 flex items-center gap-1.5"
+          >
+            <span>Stage 13 Post-Funding Portal</span>
+            <span className="text-[10px] bg-blue-100 text-[#0070C0] px-1.5 py-0.2 rounded font-black">&rarr;</span>
+          </Link>
+        </div>
       </div>
 
       {/* Application Switcher (if multiple applications exist) */}

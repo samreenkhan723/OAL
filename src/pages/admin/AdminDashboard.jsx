@@ -24,7 +24,8 @@ import {
   X,
   Sparkles,
   Search,
-  ExternalLink
+  ExternalLink,
+  Radio
 } from 'lucide-react';
 import { StatusBadge } from '../../components/common/StatusBadge';
 
@@ -105,6 +106,14 @@ export const AdminDashboard = () => {
             <Award className="w-4 h-4 text-[#FFD200]" />
             <span>Special Investor Engine</span>
           </button>
+
+          <Link
+            to="/admin/network"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold bg-[#0070C0] hover:bg-[#005a9e] text-white shadow-md shadow-[#0070C0]/30 border border-[#00B0F0]/30 transition-all flex items-center justify-center gap-1.5 text-center"
+          >
+            <Radio className="w-4 h-4 text-[#FFD200]" />
+            <span>Live Feed</span>
+          </Link>
 
           <Link
             to="/admin/audit-logs"

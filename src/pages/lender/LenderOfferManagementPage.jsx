@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { DollarSign, CheckCircle2, Clock, Plus, ArrowRight } from 'lucide-react';
+import { DollarSign, CheckCircle2, Clock, Plus, ArrowRight, Award, History } from 'lucide-react';
 import { StatusBadge } from '../../components/common/StatusBadge';
 
 export const LenderOfferManagementPage = () => {
@@ -14,19 +14,35 @@ export const LenderOfferManagementPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
-            Offer Management
+            Active Offers & Term Sheets
           </h1>
           <p className="text-xs text-slate-500 mt-1">
             Track submitted commercial term sheets, borrower acceptance statuses, and conditions precedent.
           </p>
         </div>
 
-        <Link
-          to="/lender/working-deals"
-          className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md shadow-[#0070C0]/25 transition-all self-start sm:self-auto w-full sm:w-auto text-center"
-        >
-          Draft New Offer from Working Deals
-        </Link>
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            to="/lender/money-club"
+            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#002060] text-xs font-bold transition-all border border-slate-200 flex items-center gap-1.5"
+          >
+            <Award className="w-3.5 h-3.5 text-amber-500" />
+            <span>Money Club Syndicate</span>
+          </Link>
+          <Link
+            to="/lender/post-funding"
+            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#002060] text-xs font-bold transition-all border border-slate-200 flex items-center gap-1.5"
+          >
+            <History className="w-3.5 h-3.5 text-[#0070C0]" />
+            <span>Post-Funding Portfolio</span>
+          </Link>
+          <Link
+            to="/lender/working-deals"
+            className="px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold shadow-md shadow-[#0070C0]/25 transition-all"
+          >
+            Draft from Working Deals
+          </Link>
+        </div>
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">

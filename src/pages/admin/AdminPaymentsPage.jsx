@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { CreditCard, DollarSign, ArrowUpRight, Download, Filter, Plus } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { CreditCard, DollarSign, ArrowUpRight, Download, Filter, Plus, Layers } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { VerifyBadge } from '../../components/common/VerifyBadge';
 
@@ -50,7 +51,7 @@ export const AdminPaymentsPage = () => {
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
-              Payments & Commercial Fee Ledger
+              Payments & Subscriptions
             </h1>
             <VerifyBadge note="Client confirmation pending for automated payment gateway integrations and payout lifecycle (PRD FR-15)" />
           </div>
@@ -66,6 +67,24 @@ export const AdminPaymentsPage = () => {
           <Download className="w-4 h-4" />
           <span>Export Fee Ledger</span>
         </button>
+      </div>
+
+      {/* Module Tabs (Combining Payments & Subscriptions) */}
+      <div className="flex items-center gap-2 border-b border-slate-200">
+        <Link
+          to="/admin/payments"
+          className="px-4 py-2 text-xs font-bold border-b-2 border-[#0070C0] text-[#0070C0] flex items-center gap-1.5"
+        >
+          <CreditCard className="w-4 h-4" />
+          <span>Fee Ledger & Transactions</span>
+        </Link>
+        <Link
+          to="/admin/subscriptions"
+          className="px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors flex items-center gap-1.5"
+        >
+          <Layers className="w-4 h-4" />
+          <span>Subscription Plans & Tiers</span>
+        </Link>
       </div>
 
       {/* Filter Tabs */}

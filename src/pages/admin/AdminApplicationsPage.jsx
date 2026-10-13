@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { FileText, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Search, ShieldCheck, Award, UserCheck, UserX, X } from 'lucide-react';
+import { FileText, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Search, ShieldCheck, Award, UserCheck, UserX, X, DollarSign, Radio } from 'lucide-react';
 import { StatusBadge } from '../../components/common/StatusBadge';
 
 export const AdminApplicationsPage = () => {
@@ -71,11 +72,28 @@ export const AdminApplicationsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
-            Master Loan Applications Register
+            Loan Applications
           </h1>
           <p className="text-xs text-slate-500 mt-1">
             Supervise all active loan files, manage placement specialist assignments, and test lifecycle transitions.
           </p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            to="/admin/offers"
+            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#002060] text-xs font-bold transition-all border border-slate-200 flex items-center gap-1.5"
+          >
+            <DollarSign className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Offers Oversight</span>
+          </Link>
+          <Link
+            to="/admin/network"
+            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#002060] text-xs font-bold transition-all border border-slate-200 flex items-center gap-1.5"
+          >
+            <Radio className="w-3.5 h-3.5 text-[#0070C0]" />
+            <span>Live Network Stream</span>
+          </Link>
         </div>
       </div>
 

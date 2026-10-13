@@ -36,6 +36,7 @@ import {
   ChevronRight,
   LogOut,
   ExternalLink,
+  Clock,
   X
 } from 'lucide-react';
 
@@ -51,52 +52,23 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
   const pendingOffersCount = offers.filter(o => o.status === 'PENDING_BORROWER_REVIEW').length;
   const openTicketsCount = tickets.filter(t => t.status === 'OPEN').length;
 
-  // Sidebar navigation configuration by role
+  // Sidebar navigation configuration by role — strictly aligned with client wireframe PRD 13-10-26
   const getNavSections = () => {
     switch (currentRole) {
       case 'lender':
         return [
           {
-            title: 'Overview',
+            title: null,
             items: [
               { label: 'Dashboard', path: '/lender/dashboard', icon: LayoutDashboard },
-              { label: 'Network Panel', path: '/lender/network', icon: Radio, badge: 'Live' },
-            ]
-          },
-          {
-            title: 'Opportunities',
-            items: [
-              { label: 'Qualified Leads', path: '/lender/leads', icon: Users, badge: `${applications.filter(a => a.status === 'QUALIFIED' || a.status === 'WORKING_DEAL').length}` },
-              { label: 'AI Lead Alerts', path: '/lender/alerts', icon: Sparkles, badge: 'New' },
-              { label: 'Borrower Rankings', path: '/lender/rankings', icon: ListOrdered },
-              { label: 'Loan Requests', path: '/lender/loan-requests', icon: FileText },
+              { label: 'Marketplace / Qualified Leads', path: '/lender/qualified-leads', icon: Users, badge: `${applications.filter(a => a.status === 'QUALIFIED' || a.status === 'WORKING_DEAL').length}` },
               { label: 'Saved Leads', path: '/lender/saved-leads', icon: Bookmark },
-              { label: 'Working Deals', path: '/lender/working-deals', icon: Briefcase, badge: 'Max 3' },
-            ]
-          },
-          {
-            title: 'Transactions',
-            items: [
-              { label: 'Offer Management', path: '/lender/offers', icon: DollarSign, badge: `${offers.length}` },
-              { label: 'The Money Club Syndicate', path: '/lender/money-club', icon: Award, badge: 'VIP/MVP' },
-              { label: 'Post-Funding Portfolio', path: '/lender/post-funding', icon: History, badge: 'Stage 13' },
-            ]
-          },
-          {
-            title: 'Communication',
-            items: [
-              { label: 'Messages (Rep)', path: '/lender/messages', icon: MessageSquare },
-              { label: 'Notifications', path: '/lender/notifications', icon: Bell },
-            ]
-          },
-          {
-            title: 'Business & Settings',
-            items: [
-              { label: 'Analytics', path: '/lender/analytics', icon: TrendingUp },
-              { label: 'Reports', path: '/lender/reports', icon: FileSpreadsheet },
-              { label: 'Billing & Plans', path: '/lender/billing', icon: CreditCard },
-              { label: 'Settings', path: '/lender/settings', icon: Settings },
-              { label: 'Help Desk', path: '/support/tickets', icon: LifeBuoy },
+              { label: 'Active Offers', path: '/lender/offers', icon: DollarSign, badge: `${offers.length}` },
+              { label: 'Message Center', path: '/lender/communication', icon: MessageSquare },
+              { label: 'OAL Network Panel', path: '/lender/network-panel', icon: Radio, badge: 'Live' },
+              { label: 'Analytics & Reports', path: '/lender/analytics', icon: TrendingUp },
+              { label: 'Billing & Subscription', path: '/lender/billing', icon: CreditCard },
+              { label: 'Profile & Settings', path: '/lender/settings', icon: Settings },
             ]
           }
         ];
@@ -104,35 +76,20 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
       case 'rep':
         return [
           {
-            title: 'Overview',
+            title: null,
             items: [
               { label: 'Dashboard', path: '/rep/dashboard', icon: LayoutDashboard },
-            ]
-          },
-          {
-            title: 'Pipeline',
-            items: [
-              { label: 'Qualified Leads', path: '/rep/leads', icon: Users, badge: `${applications.length}` },
-              { label: 'AI Lead Alerts', path: '/rep/alerts', icon: Sparkles },
-              { label: 'Loan Requests', path: '/rep/loan-requests', icon: FileText },
+              { label: 'Qualified Leads', path: '/rep/qualified-leads', icon: Users, badge: `${applications.length}` },
+              { label: 'AI Lead Alerts', path: '/rep/lead-alerts', icon: Sparkles },
+              { label: 'Lead Details', path: '/rep/lead-details', icon: FileText },
+              { label: 'Loan Requests', path: '/rep/loan-requests', icon: Clock },
               { label: 'Saved Leads', path: '/rep/saved-leads', icon: Bookmark },
-            ]
-          },
-          {
-            title: 'Coordination',
-            items: [
-              { label: 'OAL LetsWork Portal', path: '/rep/messages', icon: MessageSquare, badge: 'Active' },
-              { label: 'Offers (Read-Only)', path: '/rep/offers', icon: DollarSign, badge: 'Audit' },
-            ]
-          },
-          {
-            title: 'Business & Support',
-            items: [
-              { label: 'Analytics', path: '/rep/analytics', icon: TrendingUp },
-              { label: 'Reports', path: '/rep/reports', icon: FileSpreadsheet },
-              { label: 'Billing', path: '/rep/billing', icon: CreditCard },
-              { label: 'Settings', path: '/rep/settings', icon: Settings },
-              { label: 'Help Desk', path: '/support/tickets', icon: LifeBuoy },
+              { label: 'Communication (LetsWork)', path: '/rep/communication', icon: MessageSquare, badge: 'Active' },
+              { label: 'Offer Management', path: '/rep/offers', icon: DollarSign, badge: 'Audit' },
+              { label: 'OAL Network Panel', path: '/rep/network-panel', icon: Radio, badge: 'Live' },
+              { label: 'Analytics & Reports', path: '/rep/analytics', icon: TrendingUp },
+              { label: 'Billing & Subscription', path: '/rep/billing', icon: CreditCard },
+              { label: 'Profile & Settings', path: '/rep/settings', icon: Settings },
             ]
           }
         ];
@@ -140,47 +97,24 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
       case 'admin':
         return [
           {
-            title: 'Governance',
+            title: null,
             items: [
               { label: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
-              { label: 'Network Panel', path: '/admin/network', icon: Radio, badge: 'Live Feed' },
-            ]
-          },
-          {
-            title: 'Loan Operations',
-            items: [
-              { label: 'Applications', path: '/admin/applications', icon: FileText, badge: `${applications.length}` },
-              { label: 'Verification Center', path: '/admin/verification', icon: CheckCircle, badge: 'KYC' },
-              { label: 'Document Mgmt', path: '/admin/documents', icon: FolderOpen },
-              { label: 'AI Scoring Engine', path: '/admin/scoring', icon: Cpu, badge: '180 Pt' },
-              { label: 'Lead Distribution', path: '/admin/lead-distribution', icon: Layers },
-              { label: 'Offers Oversight', path: '/admin/offers', icon: DollarSign },
-            ]
-          },
-          {
-            title: 'User Management',
-            items: [
               { label: 'Borrowers', path: '/admin/borrowers', icon: Users },
               { label: 'Lenders', path: '/admin/lenders', icon: Briefcase },
-              { label: 'Representatives', path: '/admin/representatives', icon: ShieldCheck },
-            ]
-          },
-          {
-            title: 'Finance & Growth',
-            items: [
+              { label: 'Loan Applications', path: '/admin/loan-applications', icon: FileText, badge: `${applications.length}` },
+              { label: 'AI Scoring Engine', path: '/admin/ai-scoring', icon: Cpu, badge: '180 Pt' },
+              { label: 'Verification Center', path: '/admin/verification', icon: CheckCircle, badge: 'KYC' },
+              { label: 'Document Management', path: '/admin/document-management', icon: FolderOpen },
+              { label: 'Lead Distribution', path: '/admin/lead-distribution', icon: Layers },
+              { label: 'Notifications', path: '/admin/notifications', icon: Bell },
               { label: 'Referrals & Affiliates', path: '/admin/referrals', icon: Share2 },
               { label: 'Advertisements', path: '/admin/advertisements', icon: Megaphone },
-              { label: 'Payments', path: '/admin/payments', icon: CreditCard },
-              { label: 'Subscription Plans', path: '/admin/subscriptions', icon: FileSpreadsheet },
-              { label: 'CMS Manager', path: '/admin/cms', icon: BookOpen },
-            ]
-          },
-          {
-            title: 'System Operations',
-            items: [
-              { label: 'Support Tickets', path: '/admin/support', icon: LifeBuoy, badge: `${openTicketsCount}` },
-              { label: 'Audit Logs', path: '/admin/audit-logs', icon: History },
+              { label: 'Payments & Subscriptions', path: '/admin/payments', icon: CreditCard },
+              { label: 'CMS', path: '/admin/cms', icon: BookOpen },
               { label: 'Reports & Analytics', path: '/admin/reports', icon: TrendingUp },
+              { label: 'Support Tickets', path: '/admin/help-desk', icon: LifeBuoy, badge: `${openTicketsCount}` },
+              { label: 'Audit Logs', path: '/admin/audit-logs', icon: History },
               { label: 'System Settings', path: '/admin/settings', icon: Settings },
               { label: 'Super Admin', path: '/admin/super-admin', icon: Lock, badge: 'Root' },
             ]
@@ -202,37 +136,17 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
       default: // Borrower (default)
         return [
           {
-            title: 'Overview',
+            title: null,
             items: [
               { label: 'Dashboard', path: '/borrower/dashboard', icon: LayoutDashboard },
-              { label: 'Loan Tracker', path: `/borrower/applications/${activeAppId}/tracker`, icon: GitBranch, badge: 'Active' },
-            ]
-          },
-          {
-            title: 'My Financing',
-            items: [
-              { label: 'My Applications', path: '/borrower/applications', icon: FileText, badge: `${userApps.length || 1}` },
-              { label: 'New Loan Request', path: '/borrower/applications/new', icon: FilePlus },
-              { label: 'Documents & KYC', path: '/borrower/documents', icon: FolderOpen },
-              { label: 'Investment IQ', path: '/borrower/investment-iq', icon: Award, badge: '154/180' },
-              { label: 'The Money Club Portal', path: '/borrower/money-club', icon: Sparkles, badge: 'MVP 154' },
-              { label: 'Lender Offers', path: '/borrower/offers', icon: DollarSign, badge: `${pendingOffersCount}` },
-              { label: 'Post-Funding Servicing', path: '/borrower/post-funding', icon: History, badge: 'Stage 13' },
-            ]
-          },
-          {
-            title: 'Communication',
-            items: [
-              { label: 'Messages (OAL Rep)', path: '/borrower/messages', icon: MessageSquare, badge: 'Elena' },
+              { label: 'Loan Application', path: '/borrower/loan-application', icon: FileText, badge: `${userApps.length || 1}` },
+              { label: 'Documents', path: '/borrower/documents', icon: FolderOpen },
+              { label: 'AI Borrower Score', path: '/borrower/ai-score', icon: Award, badge: '154/180' },
+              { label: 'Waiting Room / Offers', path: '/borrower/offers', icon: DollarSign, badge: `${pendingOffersCount}` },
               { label: 'Notifications', path: '/borrower/notifications', icon: Bell },
-            ]
-          },
-          {
-            title: 'Account',
-            items: [
-              { label: 'Referrals', path: '/borrower/referrals', icon: Share2, badge: '$1,750' },
+              { label: 'Messages', path: '/borrower/messages', icon: MessageSquare, badge: 'Elena' },
+              { label: 'Referral Program', path: '/borrower/referral', icon: Share2, badge: '$1,750' },
               { label: 'Profile & Settings', path: '/borrower/settings', icon: Settings },
-              { label: 'Help Desk / Support', path: '/support/tickets', icon: LifeBuoy },
             ]
           }
         ];
@@ -248,53 +162,99 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
     // Exact match is always active
     if (current === target) return true;
 
-    // Help desk / support active check
+    // --- Admin matches ---
+    if (target === '/admin/loan-applications') {
+      return (
+        current === '/admin/loan-applications' ||
+        current === '/admin/applications' ||
+        current.startsWith('/admin/loan-applications/') ||
+        current.startsWith('/admin/applications/')
+      );
+    }
+    if (target === '/admin/ai-scoring') {
+      return current === '/admin/ai-scoring' || current === '/admin/scoring';
+    }
+    if (target === '/admin/document-management') {
+      return current === '/admin/document-management' || current === '/admin/documents';
+    }
+    if (target === '/admin/payments') {
+      return current === '/admin/payments' || current === '/admin/subscriptions';
+    }
+    if (target === '/admin/help-desk') {
+      return current === '/admin/help-desk' || current === '/admin/support' || current.startsWith('/support');
+    }
+
+    // --- Borrower matches ---
+    if (target === '/borrower/loan-application') {
+      return (
+        current === '/borrower/loan-application' ||
+        current === '/borrower/applications' ||
+        (current.startsWith('/borrower/loan-application/') && !current.includes('/tracker') && !current.includes('/documents')) ||
+        (current.startsWith('/borrower/applications/') && !current.includes('/tracker') && !current.includes('/documents'))
+      );
+    }
+    if (target === '/borrower/documents') {
+      return current === '/borrower/documents' || current.includes('/documents');
+    }
+    if (target === '/borrower/ai-score') {
+      return current === '/borrower/ai-score' || current === '/borrower/investment-iq';
+    }
+    if (target === '/borrower/referral') {
+      return current === '/borrower/referral' || current === '/borrower/referrals';
+    }
+
+    // --- Lender matches ---
+    if (target === '/lender/qualified-leads') {
+      return (
+        current === '/lender/qualified-leads' ||
+        current === '/lender/leads' ||
+        current.startsWith('/lender/qualified-leads/') ||
+        current.startsWith('/lender/leads/')
+      );
+    }
+    if (target === '/lender/communication') {
+      return current === '/lender/communication' || current === '/lender/messages';
+    }
+    if (target === '/lender/network-panel') {
+      return current === '/lender/network-panel' || current === '/lender/network';
+    }
+    if (target === '/lender/analytics') {
+      return current === '/lender/analytics' || current === '/lender/reports';
+    }
+    if (target === '/lender/billing') {
+      return current === '/lender/billing' || current === '/lender/subscription';
+    }
+
+    // --- Rep matches ---
+    if (target === '/rep/qualified-leads') {
+      return current === '/rep/qualified-leads' || current === '/rep/leads';
+    }
+    if (target === '/rep/lead-alerts') {
+      return current === '/rep/lead-alerts' || current === '/rep/alerts';
+    }
+    if (target === '/rep/lead-details') {
+      return current === '/rep/lead-details' || current.startsWith('/rep/lead-details/');
+    }
+    if (target === '/rep/communication') {
+      return current === '/rep/communication' || current === '/rep/messages';
+    }
+    if (target === '/rep/network-panel') {
+      return current === '/rep/network-panel' || current === '/rep/network';
+    }
+    if (target === '/rep/analytics') {
+      return current === '/rep/analytics' || current === '/rep/reports';
+    }
+    if (target === '/rep/billing') {
+      return current === '/rep/billing' || current === '/rep/subscription';
+    }
+
+    // General nested route matching for other paths
+    if (target !== '/' && target !== `/${currentRole}/dashboard` && current.startsWith(target + '/')) {
+      return true;
+    }
+
+    // Help desk / support fallback check
     if (target === '/support/tickets' && current.startsWith('/support')) {
-      return true;
-    }
-
-    // Loan tracker active check (matches any /tracker path for Loan Tracker item)
-    if (item.label === 'Loan Tracker' || target.endsWith('/tracker')) {
-      return current.includes('/tracker');
-    }
-
-    // New Loan Request active check (only exact /borrower/applications/new)
-    if (target === '/borrower/applications/new') {
-      return current === '/borrower/applications/new';
-    }
-
-    // My Applications active check
-    if (target === '/borrower/applications') {
-      // Active if exactly /borrower/applications OR viewing an application detail (but not /new and not /tracker)
-      if (current === '/borrower/applications') return true;
-      if (current.startsWith('/borrower/applications/') && !current.includes('/new') && !current.includes('/tracker')) {
-        return true;
-      }
-      return false;
-    }
-
-    // Admin applications active check
-    if (target === '/admin/applications') {
-      return current === '/admin/applications' || (current.startsWith('/admin/applications/') && !current.includes('/new'));
-    }
-
-    // Lead detail active check
-    if (target === '/lender/leads' && current.startsWith('/lender/leads/')) {
-      return true;
-    }
-
-    // Rep lead detail active check
-    if (target === '/rep/leads' && current.startsWith('/rep/leads/')) {
-      return true;
-    }
-
-    // Post-Funding Dashboard active check
-    if (target.endsWith('/post-funding') && current.includes('/post-funding')) {
-      return true;
-    }
-
-    // Money Club Member Portal active check
-    if (target.endsWith('/money-club') && current.includes('/money-club')) {
       return true;
     }
 
@@ -349,9 +309,11 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
         <div className="flex-1 overflow-y-auto px-4 py-5 space-y-6">
           {sections.map((section, idx) => (
             <div key={idx} className="space-y-1">
-              <div className="px-3 text-[11px] font-bold text-sky-200/80 uppercase tracking-wider mb-2">
-                {section.title}
-              </div>
+              {section.title && (
+                <div className="px-3 text-[11px] font-bold text-sky-200/80 uppercase tracking-wider mb-2">
+                  {section.title}
+                </div>
+              )}
               {section.items.map((item) => {
                 const Icon = item.icon;
                 const active = checkIsActive(item);

@@ -23,6 +23,29 @@ export const BorrowerInvestmentIQPage = () => {
       {/* Main Breakdown Component */}
       <InvestmentIQBreakdown investmentIQ={activeApp?.investmentIQ} />
 
+      {/* The Money Club Syndicate Contextual Access */}
+      <div className="bg-gradient-to-r from-[#001744] via-[#002060] to-[#003882] rounded-2xl p-5 text-white shadow-md border border-[#003882] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-[#FFD200] text-[#002060]">
+              VIP / MVP Tier
+            </span>
+            <span className="text-xs text-sky-200 font-semibold">Tier 1 Syndicate Access</span>
+          </div>
+          <h4 className="text-base font-bold text-white">The Money Club Member Portal</h4>
+          <p className="text-xs text-sky-100 max-w-xl">
+            Borrowers scoring 150+ qualify for institutional syndicate pools, private debt vaults, and pre-underwritten term sheets.
+          </p>
+        </div>
+        <Link
+          to="/borrower/money-club"
+          className="px-4 py-2.5 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] font-extrabold text-xs shadow-md transition-all flex items-center gap-2 shrink-0"
+        >
+          <span>Enter Member Portal</span>
+          <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
+
       {/* Actionable Tips to Improve Score */}
       <div className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4">
         <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">

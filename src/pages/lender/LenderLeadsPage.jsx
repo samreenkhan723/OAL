@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { Search, Filter, Briefcase, Award, ShieldCheck, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, Filter, Briefcase, Award, ShieldCheck, ArrowRight, ChevronLeft, ChevronRight, Sparkles, ListOrdered, FileText } from 'lucide-react';
 import { LOAN_PROGRAMS } from '../../data/loanPrograms';
 import { StatusBadge } from '../../components/common/StatusBadge';
 
@@ -46,12 +46,50 @@ export const LenderLeadsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
-            Qualified Marketplace Leads
+            Marketplace / Qualified Leads
           </h1>
           <p className="text-xs text-slate-500 mt-1">
             Browse verified commercial applications ready for working-deal underwriting and term sheet creation.
           </p>
         </div>
+      </div>
+
+      {/* Contextual Sub-Navigation */}
+      <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
+        <Link
+          to="/lender/qualified-leads"
+          className="px-3 py-1.5 rounded-xl bg-[#0070C0] text-white text-xs font-bold shadow-xs flex items-center gap-1.5"
+        >
+          <span>Qualified Leads</span>
+        </Link>
+        <Link
+          to="/lender/alerts"
+          className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-all flex items-center gap-1.5"
+        >
+          <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+          <span>AI Lead Alerts</span>
+        </Link>
+        <Link
+          to="/lender/rankings"
+          className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-all flex items-center gap-1.5"
+        >
+          <ListOrdered className="w-3.5 h-3.5 text-[#0070C0]" />
+          <span>Borrower Rankings</span>
+        </Link>
+        <Link
+          to="/lender/loan-requests"
+          className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-all flex items-center gap-1.5"
+        >
+          <FileText className="w-3.5 h-3.5 text-slate-500" />
+          <span>Loan Requests</span>
+        </Link>
+        <Link
+          to="/lender/working-deals"
+          className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-all flex items-center gap-1.5"
+        >
+          <Briefcase className="w-3.5 h-3.5 text-emerald-600" />
+          <span>Working Deals (Max 3)</span>
+        </Link>
       </div>
 
       {/* Filter Toolbar */}

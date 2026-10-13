@@ -80,10 +80,10 @@ export const RepLeadsPage = () => {
                     <span>Message</span>
                   </Link>
                   <Link
-                    to="/rep/offers"
+                    to={`/rep/lead-details/${lead.id}`}
                     className="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 text-center"
                   >
-                    <span>Inspect File</span>
+                    <span>Lead Details</span>
                   </Link>
                 </div>
               </div>
