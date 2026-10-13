@@ -103,6 +103,9 @@ import { HelpDeskTicketsPage } from './pages/support/HelpDeskTicketsPage';
 import { HelpDeskTicketDetailPage } from './pages/support/HelpDeskTicketDetailPage';
 import { KnowledgeBasePage } from './pages/support/KnowledgeBasePage';
 import { SupportAnalyticsPage } from './pages/support/SupportAnalyticsPage';
+
+// OAL Network Panel (Client Wireframe Workspace)
+import { NetworkPanelPage } from './pages/network/NetworkPanelPage';
 import { ScrollToTop } from './components/common/ScrollToTop';
 
 export function App() {
@@ -337,6 +340,28 @@ export function App() {
             <Route path="tickets/:id" element={<HelpDeskTicketDetailPage />} />
             <Route path="knowledge-base" element={<KnowledgeBasePage />} />
             <Route path="analytics" element={<SupportAnalyticsPage />} />
+          </Route>
+
+          {/* OAL Network Panel Workspace Routes (Protected for Admin, Lender, Rep) */}
+          <Route
+            path="/network"
+            element={
+              <ProtectedRoute allowedRoles={['admin', 'lender', 'rep']}>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate to="/network/dashboard" replace />} />
+            <Route path="dashboard" element={<NetworkPanelPage section="dashboard" />} />
+            <Route path="live-stream" element={<NetworkPanelPage section="live-stream" />} />
+            <Route path="leads" element={<NetworkPanelPage section="leads" />} />
+            <Route path="details" element={<NetworkPanelPage section="details" />} />
+            <Route path="details/:id" element={<NetworkPanelPage section="details" />} />
+            <Route path="saved" element={<NetworkPanelPage section="saved" />} />
+            <Route path="offers" element={<NetworkPanelPage section="offers" />} />
+            <Route path="communication" element={<NetworkPanelPage section="communication" />} />
+            <Route path="timeline" element={<NetworkPanelPage section="timeline" />} />
+            <Route path="timeline/:id" element={<NetworkPanelPage section="timeline" />} />
           </Route>
 
           {/* Fallback to Home */}

@@ -216,7 +216,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
       return current === '/lender/communication' || current === '/lender/messages';
     }
     if (target === '/lender/network-panel') {
-      return current === '/lender/network-panel' || current === '/lender/network';
+      return current === '/lender/network-panel' || current === '/lender/network' || (currentRole === 'lender' && current.startsWith('/network'));
     }
     if (target === '/lender/analytics') {
       return current === '/lender/analytics' || current === '/lender/reports';
@@ -239,7 +239,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
       return current === '/rep/communication' || current === '/rep/messages';
     }
     if (target === '/rep/network-panel') {
-      return current === '/rep/network-panel' || current === '/rep/network';
+      return current === '/rep/network-panel' || current === '/rep/network' || (currentRole === 'rep' && current.startsWith('/network'));
     }
     if (target === '/rep/analytics') {
       return current === '/rep/analytics' || current === '/rep/reports';
