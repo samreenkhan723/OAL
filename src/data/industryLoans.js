@@ -1,5 +1,5 @@
 // Master Industry Loans Catalog strictly restored to exact client DOCX requirements in "new requirment"
-export const INDUSTRY_LOANS = [
+const RAW_INDUSTRY_LOANS = [
   {
     id: 'transportation',
     image: '/images/industry_transportation.jpg',
@@ -2673,6 +2673,9 @@ export const INDUSTRY_LOANS = [
     ]
   }
 ];
+
+// Master Industry Loans Catalog sorted alphabetically (A-Z)
+export const INDUSTRY_LOANS = [...RAW_INDUSTRY_LOANS].sort((a, b) => a.title.localeCompare(b.title));
 
 // Helper functions for easy access across the platform
 export const getIndustryBySlug = (slug) => {

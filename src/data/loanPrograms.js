@@ -5,6 +5,7 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
   {
     id: 'restaurant',
     slug: 'restaurant',
+    documentNotes: 'Essential Financing for Equipment, Cash Flow & Renovations (24 Hr – 7 Day Approval)',
     title: 'Full-Service Restaurants Loans',
     subtitle: 'Full-Service Restaurants — Essential Financing for Equipment, Cash Flow & Renovations',
     tagline: 'Secure financing to cover essential costs of new startup expenses, equipment purchases, operational cash flow, and renovations.',
@@ -16,7 +17,7 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
     maxAmount: 5000000,
     termMonths: 'Flexible Commercial Terms',
     typicalRate: 'Market Underwriting Rates',
-    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    rateDescription: 'Tailored terms based on lender underwriting criteria and transaction profile',
     description: 'OAL Network works with Full-Service Restaurants owners to secure financing to cover essential costs of new startup expenses, equipment purchases, operational cash flow, and renovations ensuring their business can thrive and grow. This funding is crucial for managing initial investments and maintaining stability during challenging financial periods. This funding helps restaurant owners manage various costs and ensure their business can thrive.',
     icon: 'UtensilsCrossed',
     image: '/images/loan_restaurant.jpg',
@@ -58,23 +59,23 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
       }
     ],
     eligiblePurposes: [
-      'Commercial kitchen equipment purchases & leasehold improvements',
-      'Dining room renovation, expansions, and outdoor seating',
-      'Inventory, food & beverage reserves, and seasonal working capital',
-      'Refinancing high-cost debt or vendor lines',
-      'Second location acquisition or lease deposits'
+      'New startup expenses and initial investments',
+      'Commercial kitchen and dining equipment purchases',
+      'Operational cash flow during challenging financial periods',
+      'Dining room renovations & expansions',
+      'Casual Dining, Fine Dining, Family Style, and Ethnic Restaurants'
     ],
     requiredDocuments: [
-      'Last 6 months business bank statements',
-      'Prior 2 years business tax returns (if operating > 2 years)',
-      'Food service / local health department license',
-      'Current commercial lease agreement',
-      'Equipment purchase invoice (for equipment funding)'
+      'Completed commercial loan application form',
+      'Recent 6 months business bank statements',
+      'Food service license and health permits',
+      'Equipment invoice or lease agreement'
     ]
   },
   {
     id: 'food-truck',
     slug: 'food-truck',
+    documentNotes: 'Essential Financing for Startup Expenses, Equipment Purchases, Cash Flow & Renovations',
     title: 'Food Truck Loans',
     subtitle: 'Food Truck & Mobile Dining Financing — Startup Expenses, Equipment & Operations',
     tagline: 'Secure financing to cover essential costs of new startup expenses, equipment purchases, operational cash flow, and renovations.',
@@ -86,7 +87,7 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
     maxAmount: 5000000,
     termMonths: 'Flexible Commercial Terms',
     typicalRate: 'Market Underwriting Rates',
-    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    rateDescription: 'Tailored terms based on lender underwriting criteria and transaction profile',
     description: 'OAL Network works with food truck and mobile dining owners to secure financing to cover essential costs of new startup expenses, equipment purchases, operational cash flow, and renovations ensuring their business can thrive and grow. This funding is crucial for managing initial investments and maintaining stability during challenging financial periods. This funding helps restaurant and food truck owners manage various costs and ensure their business can thrive.',
     icon: 'Truck',
     image: '/images/loan_food_truck.jpg',
@@ -128,35 +129,35 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
       }
     ],
     eligiblePurposes: [
-      'Food truck vehicle purchase / chassis down payment',
-      'Kitchen outfitting & certified fire suppression systems',
-      'Commissary kitchen access fees & deposits',
-      'Point-of-Sale (POS) & onboard commercial generator gear',
-      'Permits, vinyl wraps & mobile route marketing launch'
+      'New startup expenses and initial investments',
+      'Commercial kitchen and food service equipment purchases',
+      'Operational cash flow and maintaining financial stability',
+      'Facility, dining room, and mobile food truck renovations',
+      'Casual Dining, Fine Dining, Family Style, and Ethnic Food Concepts'
     ],
     requiredDocuments: [
-      'Last 4 months business bank statements (or personal for startups)',
-      'Vehicle title / build quote from certified builder',
-      'Mobile food vendor operating permit',
-      'Driver license and government-issued ID',
-      'Operating budget & estimated route forecast'
+      'Completed commercial loan application form',
+      'Recent business operating bank statements',
+      'Food service or mobile vendor license / permits',
+      'Equipment purchase invoice or buildout estimate'
     ]
   },
   {
     id: 'franchise',
     slug: 'franchise',
+    documentNotes: 'Financing Options for Startups & Franchises (24-48 Hr Approval)',
     title: 'Franchise Loans',
     subtitle: 'Start Up Business Financing — Financing Options for Startups & Franchisees',
     tagline: 'SBA Loans, Bank Loans, Microloans, Personal Funds, Investors, and Crowdfunding for launching businesses.',
     breadcrumbText: 'Financing Options for Startups',
-    creditRequirement: 'Startups & Franchise Operators • All Tiers',
+    creditRequirement: 'Startups, First-Time Founders & Established Franchises',
     approvalTime: '24 - 48 hours',
-    fundingScope: '$10,000 - $200,000',
+    fundingScope: '$10,000 - $200,000 (SBA often up to $5M)',
     minAmount: 10000,
     maxAmount: 200000,
-    termMonths: 'Flexible Commercial Terms',
+    termMonths: 'Flexible Startup & Small Business Terms',
     typicalRate: 'Market Underwriting Rates',
-    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    rateDescription: 'Tailored terms based on lender underwriting criteria and transaction profile',
     description: 'Starting a new business often requires capital. Common financing options available for startups and franchises include Small Business Loans (SBA, bank loans, microloans), Personal Funds, Investors (Angel, VC), and Crowdfunding. OAL Network helps entrepreneurs explore these options to find the right funding to launch and grow successfully.',
     icon: 'Store',
     image: '/images/loan_franchise.jpg',
@@ -216,23 +217,23 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
       }
     ],
     eligiblePurposes: [
-      'Initial franchise fee payment and territorial licensing',
-      'Standardized corporate store buildout & architectural packages',
-      'Approved equipment and POS packages per franchisor guidelines',
-      'Multi-territory rights acquisition',
-      'Mandatory corporate remodel & brand refresh compliance'
+      'SBA Loans: Government-backed startup financing often up to $5 Million',
+      'Traditional Bank Loans: For established entrepreneurs with business plan ($10,000+)',
+      'Microloans: Smaller financing up to $50,000 for initial startup needs',
+      'Angel Investors & Venture Capital: Growth equity capital ($25,000+)',
+      'Crowdfunding: Online public campaign fundraising'
     ],
     requiredDocuments: [
-      'Franchise Disclosure Document (FDD)',
-      'Signed Franchise Agreement or pre-approval certificate',
-      'Personal financial statement (PFS)',
-      '3-year financial projections and business plan',
-      'General contractor store buildout estimate'
+      'Startup business plan and executive summary',
+      'Franchise agreement or franchise disclosure document (FDD) if applicable',
+      'Personal financial statement (PFS) of business owners',
+      'Recent bank statements or proof of equity capital'
     ]
   },
   {
     id: 'dental',
     slug: 'dental-practice',
+    documentNotes: 'Tailored Financing for Doctors, Dentists, and Veterinarians (24-Hour Approval)',
     title: 'Dental Practice Loans',
     subtitle: 'Medical Practice Acquisition Financing for Doctors, Dentists and Veterinarians',
     tagline: 'Delivering tailored loans to cover costs associated with starting, buying, or expanding a dental practice.',
@@ -242,10 +243,10 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
     fundingScope: '$75,000 - $1 million',
     minAmount: 75000,
     maxAmount: 1000000,
-    termMonths: 'Flexible Commercial Terms',
+    termMonths: 'Tailored Dental Practice Terms',
     typicalRate: 'Market Underwriting Rates',
-    rateDescription: 'Tailored healthcare terms based on 180-point Investment IQ evaluation',
-    description: 'OPM Biz Lenders provides Medical practice acquisition financing for doctors, dentists, and veterinarians through various lending options, delivering tailored loans to cover costs associated with starting or expanding a practice. Healthcare professionals can use this financing program to fund projects, buy new equipment, start a new practice or buy an existing practice.',
+    rateDescription: 'Tailored healthcare financing terms based on practice production and credit profile',
+    description: 'OAL Network provides Medical practice acquisition financing for doctors, dentists, and veterinarians through various lending options, delivering tailored loans to cover costs associated with starting or expanding a practice. Healthcare professionals can use this financing program to fund projects, buy new equipment, start a new practice or buy an existing practice.',
     icon: 'Smile',
     image: '/images/loan_dental.jpg',
     badge: 'HEALTHCARE SPECIALIST',
@@ -255,7 +256,7 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
         sectionBadge: 'HEALTHCARE PRACTICE ACQUISITION',
         sectionTitle: 'Dental Practice Acquisition & Equipment Financing',
         introParagraphs: [
-          'OPM Biz Lenders provides Medical practice acquisition financing for doctors, dentists, and veterinarians through various lending options, delivering tailored loans to cover costs associated with starting or expanding a practice.',
+          'OAL Network provides Medical practice acquisition financing for doctors, dentists, and veterinarians through various lending options, delivering tailored loans to cover costs associated with starting or expanding a practice.',
           'Healthcare professionals can use this financing program to fund projects, buy new equipment, start a new practice or buy an existing practice.'
         ],
         subsections: [
@@ -270,22 +271,20 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
             ]
           }
         ],
-        concludingParagraph: 'OPM Biz Lenders delivers typical funding size from $75,000 to $1 Million with rapid 24-hour approval for qualified healthcare professionals.'
+        concludingParagraph: 'OAL Network delivers typical funding size from $75,000 to $1 Million with rapid 24-hour approval for qualified healthcare professionals.'
       }
     ],
     eligiblePurposes: [
-      'Purchases of existing dental practices or partner buyout',
-      'Startup clinic buildout and architectural retrofits',
-      '3D CBCT digital imaging, autoclave & operatory chair upgrades',
-      'Commercial real estate acquisition for private practice',
-      'Working capital during patient onboarding and insurance ramp-up'
+      'Fund healthcare and clinical dental projects',
+      'Buy new dental, diagnostic, and clinical equipment',
+      'Start a new dental practice or satellite clinic',
+      'Buy an existing practice or buyout partner equity'
     ],
     requiredDocuments: [
-      'Current state dental license verification',
-      'Prior 3 years practice tax returns or production history',
-      'Practice production / collections reports',
-      'Existing equipment valuation & liens list',
-      'Practice valuation appraisal or purchase contract'
+      'Commercial loan application for healthcare professionals',
+      'Dental license verification and credentials',
+      'Practice financial statements or bank operating statements',
+      'Equipment quote or practice purchase agreement'
     ]
   },
   {
@@ -301,7 +300,7 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
     maxAmount: 500000000,
     termMonths: 'Flexible Commercial Terms',
     typicalRate: 'Market Underwriting Rates',
-    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    rateDescription: 'Tailored terms based on lender underwriting criteria and transaction profile',
     description: 'Commercial transport debt financing for owner-operators and logistics fleets. Designed to handle diesel fuel volatility, Class 8 tractor purchases, maintenance overhauls, and freight factoring needs with fast 2-24 hour approvals.',
     icon: 'Container',
     image: '/images/loan_trucking.jpg',
@@ -334,7 +333,7 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
     maxAmount: 500000000,
     termMonths: 'Flexible Commercial Terms',
     typicalRate: 'Market Underwriting Rates',
-    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    rateDescription: 'Tailored terms based on lender underwriting criteria and transaction profile',
     description: 'Commercial debt for boutique hotels, flagged motels, and short-term rental (Airbnb / VRBO) portfolios. Covers new construction acquisitions, purchases of existing properties, and comprehensive repair, renovation, and remodeling programs (PIP).',
     icon: 'Building2',
     image: '/images/loan_hospitality.jpg',
@@ -357,16 +356,17 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
   {
     id: 'church',
     slug: 'church-facility',
+    documentNotes: 'Automatic Approval with 95% Approval Rate — Up to 60 Months to Repay',
     title: 'Church Financing Loans',
     subtitle: 'Church Financing — Automatic Approval! Low Rates & Up to 60 Months to Repay',
     tagline: 'Automatic Approval! 95% Approval Rate • Low rates and up to 60 months to repay for church equipment and facilities.',
     breadcrumbText: 'Church Financing',
-    creditRequirement: 'Religious & Faith Organizations • 95% Approval Rate',
+    creditRequirement: 'Automatic Approval! 95% Approval Rate',
     approvalTime: '24 hours',
     fundingScope: '$10,000 - $200,000',
     minAmount: 10000,
     maxAmount: 200000,
-    termMonths: 'Up to 60 Months',
+    termMonths: 'Up to 60 Months to Repay',
     typicalRate: 'Low Dedicated Faith Rates',
     rateDescription: 'Low rates with up to 60 months repayment terms and a 95% approval rate',
     description: 'Automatic Approval! Your church can be automatically approved for a loan to purchase the equipment you need now. We offer low rates and up to 60 months to repay with a 95% approval rate. We can finance pews, air-conditioning and heating systems, organs, sound and video equipment, pianos, computers, or just about any type of equipment your church needs.',
@@ -419,34 +419,34 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
     ],
     eligiblePurposes: [
       'Pews, sanctuary seating, and altar remodeling',
-      'Air-conditioning, heating, and facility HVAC replacements',
-      'Sound systems, video boards, lighting, and live streaming media',
+      'Air-conditioning and heating systems (HVAC)',
+      'Sound systems, video boards, lighting, and streaming media equipment',
       'Musical instruments including organs and pianos',
-      'Computers, software, and administrative ministry equipment'
+      'Computers, software, and ministry administrative equipment'
     ],
     requiredDocuments: [
-      'Church incorporation or 501(c)(3) religious nonprofit determination',
+      'Simple church equipment financing application',
+      'Equipment dealer invoice or vendor price quote',
       'Church leadership / board resolution approving financing',
-      'Equipment vendor invoice or estimate',
-      'Recent 3 months church bank operating statements',
-      'Membership roster or average attendance confirmation'
+      'Recent 3 months church operating bank statements'
     ]
   },
   {
     id: 'fix-and-flip',
     slug: 'fix-and-flip',
+    documentNotes: 'Finance 80-90% of Purchase Price + 100% of Rehab Costs (24-72 Hr Approval)',
     title: 'Fix & Flip Loans',
     subtitle: 'Fix & Flip Financing — Straight Acquisition, Rehab, Refinance & Ground-Up Construction',
     tagline: 'Loans from $75K to $3M+ for Straight Acquisition, Acquisition and Rehab, Refinance, and Cash-Out.',
     breadcrumbText: 'Fix & Flip Financing',
-    creditRequirement: 'GOOD & BAD CREDIT Welcome',
+    creditRequirement: 'Finance 80-90% Purchase + 100% Rehab Costs',
     approvalTime: '24-72 hours',
-    fundingScope: '$75,000 - $2.5 million',
+    fundingScope: '$75,000 - $2.5 million (Loans from $75K to $3M+)',
     minAmount: 75000,
     maxAmount: 2500000,
-    termMonths: 'Flexible Commercial Terms',
+    termMonths: 'Flexible Real Estate Investment Terms',
     typicalRate: 'Market Underwriting Rates',
-    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    rateDescription: 'Tailored terms based on lender underwriting criteria and transaction profile',
     description: 'We recognize that real estate investors might have a hard time obtaining financing for fix and flip or buy and hold deals, and so our goal is to help investors obtain capital to fund these deals. Loans from $75K to $3M+ can be used for Straight Acquisition, Acquisition and Rehab, Refinance, and Cash-Out.',
     icon: 'Hammer',
     image: '/images/loan_fix_flip.jpg',
@@ -522,18 +522,18 @@ export const BLUEPRINT_SPECIALTY_PROGRAMS = [
       }
     ],
     eligiblePurposes: [
-      'Straight Acquisition of residential (1-4 unit) or commercial real estate',
-      'Acquisition and 100% rehab renovation costs',
-      'Refinancing existing real estate projects',
-      'Cash-out equity extraction for new investments',
-      'Ground-up construction development'
+      'Straight Acquisition of residential (1-4 unit) or commercial investment properties',
+      'Acquisition and 100% Rehab for rapid renovation and flip',
+      'Refinance of existing investment properties to optimize terms',
+      'Cash-Out equity extraction to capitalize on new real estate deals',
+      'Fix-and-Hold rental property acquisitions for steady cash flow',
+      'Ground-Up Construction on undeveloped parcels'
     ],
     requiredDocuments: [
-      'Purchase and Sale Agreement (PSA)',
-      'Itemized Scope of Work (SOW) & contractor renovation budget',
-      'As-Is & After-Repair-Value (ARV) appraisal report',
-      'Investor track record of previously completed flip projects',
-      'Proof of liquidity for down payment, closing costs, and reserves'
+      'Real estate purchase agreement or property deed',
+      'Scope of Work (SOW) and contractor renovation budget',
+      'Property appraisal or As-Is / ARV valuation estimate',
+      'Proof of liquidity for down payment and reserves'
     ]
   }
 ];
@@ -567,16 +567,17 @@ export const CORE_CLIENT_LOAN_TYPES = [
   {
     id: 'sba-loans',
     slug: 'sba-loans',
+    documentNotes: 'SBA Preferred Lenders • Up to 25 Years to Repay • No Points & No Balloon Payments',
     title: 'SBA Loans – Financing',
     subtitle: 'SBA Loan Program — Preferred Financial Services & Long-Term Repayment',
     tagline: 'Terms up to 25 years to repay • No points and no balloon payments • Approvals in 4-6 weeks',
     breadcrumbText: 'SBA Loan Program',
-    creditRequirement: 'Satisfactory Personal Credit (No past bankruptcies or felony arrests)',
+    creditRequirement: 'SBA Preferred Lender Network • Terms Up to 25 Years to Repay',
     approvalTime: '4-6 weeks',
     fundingScope: '$200,000 - $15 million+',
     minAmount: 150000,
     maxAmount: 15000000,
-    termMonths: 'Up to 25 Years',
+    termMonths: 'Up to 25 Years (No Points, No Balloon Payments)',
     typicalRate: 'Prime-based SBA Underwriting Rates',
     rateDescription: 'Longer terms, no points, and no balloon payments with Preferred SBA Financial Service lenders',
     description: 'We work with SBA lenders who are Preferred Financial Service companies to have loans processed more quickly and efficiently than many others. There are a number of advantages to an SBA loan, including longer terms, no points and no balloon payments. We can serve any type of business with terms of up to 25 years to repay!',
@@ -628,24 +629,23 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Commercial real estate (purchases, construction, or refinance)',
-      'Leasehold improvements and business expansions',
-      'Machinery, equipment, furniture or fixtures',
-      'Business acquisition of existing companies',
-      'Working capital (offered in conjunction with core assets)',
-      'Start-ups (Franchises, Motels, Restaurants, Gas Stations and C-Stores)'
+      'Commercial real estate purchases, ground-up construction, or refinancing',
+      'Leasehold improvements and physical facility expansions',
+      'Machinery, equipment, furniture, and operating fixtures',
+      'Business acquisition and equity partner buyouts',
+      'Start-up funding (Franchises, Motels, Restaurants, Gas Stations, C-Stores)'
     ],
     requiredDocuments: [
-      'Last 3 years business and personal tax returns',
-      'Year-to-date Profit & Loss statement and balance sheet',
-      'Schedule of existing business debt',
       'SBA Form 1919 (Borrower Information Form)',
-      'Government-issued photo identification'
+      'Prior 3 years business and personal tax returns',
+      'Year-to-date Profit & Loss statement and balance sheet',
+      'Schedule of existing business liabilities and debt obligations'
     ]
   },
   {
     id: 'business-line-of-credit',
     slug: 'business-line-of-credit',
+    documentNotes: 'SBA Preferred Lenders • Terms Up to 25 Years to Repay',
     title: 'Business Line Of Credit',
     subtitle: 'Business Line of Credit — Preferred SBA & Revolving Credit Programs',
     tagline: 'We work with SBA lenders who are Preferred Financial Service companies to have loans processed more quickly and efficiently.',
@@ -655,7 +655,7 @@ export const CORE_CLIENT_LOAN_TYPES = [
     fundingScope: '$200,000 - $15 million',
     minAmount: 200000,
     maxAmount: 15000000,
-    termMonths: 'Up to 25 Years',
+    termMonths: 'Up to 25 Years to Repay',
     typicalRate: 'Market Underwriting Rates',
     rateDescription: 'Longer terms, no points, and no balloon payments through preferred institutional lender syndicates',
     description: 'We work with SBA lenders who are Preferred Financial Service companies to have loans processed more quickly and efficiently than many others. There are several advantages to an SBA loan, including longer terms, no points and no balloon payments. We can serve any type of business with terms of up to 25 years to repay!',
@@ -711,18 +711,16 @@ export const CORE_CLIENT_LOAN_TYPES = [
     ],
     eligiblePurposes: [
       'Commercial real estate (purchases, construction, or refinance)',
-      'Leasehold improvements & facility expansions',
-      'Machinery, equipment, furniture, and fixtures',
-      'Business acquisition and equity buyout',
-      'Ongoing working capital & revolving operating lines',
-      'Start-ups (Franchises, Motels, Restaurants, Gas Stations & C-Stores)'
+      'Leasehold improvements & business expansions',
+      'Machinery, equipment, furniture or fixtures',
+      'Business acquisition & working capital',
+      'Start-ups (ALL Franchises, Motels, Restaurants, Gas Stations and C-Stores)'
     ],
     requiredDocuments: [
-      'Last 3 years business and personal tax returns',
+      'Business credit line / SBA loan application form',
+      'Prior 3 years business and personal tax returns',
       'Year-to-date Profit & Loss statement and balance sheet',
-      'Schedule of existing business liabilities and debt obligations',
-      'Government-issued identification of all owners > 20%',
-      'Voided business check for direct draw wire configuration'
+      'Business debt schedule and accounts receivable aging'
     ]
   },
   {
@@ -760,16 +758,17 @@ export const CORE_CLIENT_LOAN_TYPES = [
   {
     id: 'equipment-leasing',
     slug: 'equipment-leasing',
+    documentNotes: 'Application Only up to $300,000 — No Financial Statements or Tax Returns Necessary (24-Hour Approval)',
     title: 'Equipment Leasing Loans',
     subtitle: 'Equipment Leasing — Application Only to $300,000, Middle Market to $2M, Large Ticket Over $2M',
     tagline: 'OAL Network typical loan funding size: $10,000–$500 million+, depending on the transaction and lender* • Approvals in 24-72 hours',
     breadcrumbText: 'Equipment Leasing',
-    creditRequirement: 'GOOD & BAD CREDIT (A, B, C & D Credits)',
+    creditRequirement: 'GOOD & BAD CREDIT (A, B, C & D Credits) • Startups Welcome',
     approvalTime: '24-72 hours',
     fundingScope: '$10,000–$500 million+, depending on the transaction and lender*',
     minAmount: 10000,
     maxAmount: 500000000,
-    termMonths: 'Up to 84 months',
+    termMonths: 'Up to 84 Months (Fixed Payments Through Term)',
     typicalRate: 'Excellent Market Underwriting Rates',
     rateDescription: 'Competitive rates determined by transaction size, municipality rating, and equipment equity',
     description: 'Leasing is the right choice! Leasing is one of the fastest growing ways of acquiring equipment in business today. Recent surveys found that 80% of U.S. businesses, from Fortune 500 to the local family business, lease some portion of their equipment. A growing business often faces the dilemma of limited cash flow and the need to add equipment. Leasing can put the equipment to work for you with real cash flow advantages and without major capital investment. We can lease virtually any type of equipment, including software and installation.',
@@ -830,33 +829,34 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Application-only equipment funding up to $300,000 without tax returns',
-      'Middle market equipment acquisitions up to $2,000,000',
-      'Large ticket asset financings over $2,000,000',
-      'Sale & Lease Back equity extraction from owned machinery',
-      'Startup company equipment financing (under 2 years in business)',
-      'Government and municipal entity equipment leases'
+      'Application-Only equipment leases up to $300,000 without tax returns',
+      'Middle Market equipment leases up to $2,000,000',
+      'Large Ticket commercial equipment financing over $2,000,000',
+      'Sale & Lease Back: Reinvest capital back into your business from owned equipment',
+      'Startup Company equipment leasing (under 2 years in business)',
+      'B, C and D Credits: Second chance program to help rebuild your company',
+      'Government and Municipal Leasing with guaranteed approval'
     ],
     requiredDocuments: [
-      'Simple application only (no financials/tax returns needed up to $300,000)',
+      'Simple 1-page application (no financial statements or tax returns needed up to $300,000)',
       'Equipment vendor quote or invoice',
-      'For middle/large market ($2M+): Prior 2 years financials/tax returns',
-      'Government agency or municipal lease authorization (if applicable)'
+      'For middle market & large ticket ($2M+): Prior 2 years financials/tax returns'
     ]
   },
   {
     id: 'real-estate-loan',
     slug: 'real-estate',
+    documentNotes: 'Financing for Income-Generating Properties • All Credit Tiers Welcome (24-72 Hr Approval)',
     title: 'Real Estate Loans',
     subtitle: 'Commercial Real Estate Financing — Flexible Payment Terms & Competitive Rates',
     tagline: 'When traditional banks say No, we are your alternative • Flexible payment terms and competitive interest rates',
     breadcrumbText: 'Real Estate Loans',
-    creditRequirement: 'All Types of Credit Welcome (Alternative Lending)',
+    creditRequirement: 'All Types of Credit Welcome • Alternative to Traditional Banks',
     approvalTime: '24-72 hours',
     fundingScope: '$250,000 - $50 million+',
     minAmount: 250000,
     maxAmount: 50000000,
-    termMonths: 'Flexible Commercial Amortization Terms',
+    termMonths: 'Flexible Commercial Real Estate Terms',
     typicalRate: 'Competitive Commercial Underwriting Rates',
     rateDescription: 'Flexible payment terms and competitive interest rates for income-generating properties',
     description: 'Commercial Real Estate Loans are financing options that help businesses purchase, refinance, or renovate commercial properties, offering flexible payment terms and competitive interest rates. These loans can be used for various property types, including office buildings, retail spaces, and multifamily housing. Most importantly, they provide flexible payment terms and competitive interest rates, making them an attractive choice for business owners. OAL Network works with Real Estate Investors in need of financing for income-generating properties such as multifamily, retail, office, self-storage, mixed-use, hotel, motel, warehouse and mobile home parks. We work with all types of credit. When traditional banks say No, we are your alternative.',
@@ -892,31 +892,32 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Purchasing commercial properties to expand business operations',
-      'Refinancing existing commercial real estate debt into competitive terms',
-      'Renovating and modernizing income-generating properties',
-      'Bridge and alternative financing when traditional banks say No'
+      'Purchasing income-generating commercial real estate',
+      'Refinancing maturing commercial mortgages with competitive rates',
+      'Commercial property renovations, tenant improvements, and expansions',
+      'Property types: Multifamily, Retail, Office, Industrial, Medical, Hospitality, Self-Storage, Mixed-Use'
     ],
     requiredDocuments: [
-      'Commercial property address, rent roll, and operating statements',
-      'Purchase and Sale Agreement or current mortgage statement',
-      'Last 6 months commercial bank statements',
-      'Government-issued ID of managing investors'
+      'Commercial real estate loan application',
+      'Purchase and sale contract or current title / deed for refinance',
+      'Rent roll and trailing 12-month Operating Statement (T12)',
+      'Borrower personal financial statement (PFS) and sponsor resume'
     ]
   },
   {
     id: 'merchant-cash-advance',
     slug: 'merchant-cash-advance',
+    documentNotes: 'No Physical Collateral Required • Lenient Eligibility • Quick 24-48 Hr Access',
     title: 'Merchant Cash Advance Loans',
     subtitle: 'Merchant Cash Advance Loans — Lump Sum Cash Against Future Credit Card Sales',
     tagline: 'Fast funding in 24 - 48 hours • No physical collateral required • Flexible daily or weekly deductions',
     breadcrumbText: 'Merchant Cash Advance Loans',
-    creditRequirement: 'GOOD & BAD CREDIT Welcome (Lenient Eligibility)',
+    creditRequirement: 'Lenient Eligibility • No Physical Collateral Required',
     approvalTime: '24 - 48 hours',
     fundingScope: '$20,000 - $1 million+',
     minAmount: 20000,
     maxAmount: 1000000,
-    termMonths: 'Flexible Daily/Weekly Remittance',
+    termMonths: 'Flexible Daily/Weekly Deductions from Card Sales',
     typicalRate: 'Factor Rate Underwriting',
     rateDescription: 'Repayments deducted daily or weekly from future credit card sales, providing flexibility',
     description: 'A merchant cash advance (MCA) is not a traditional loan; instead, it provides businesses with a lump sum of cash in exchange for a percentage of future credit card sales. This funding option is often used by businesses that need quick access to capital and may not qualify for conventional loans. Unlike traditional loans, MCAs do not require collateral, making them accessible to businesses that may struggle to qualify for conventional financing.',
@@ -981,31 +982,32 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Purchasing bulk inventory at supplier discounts',
-      'Emergency working capital and urgent liquidity needs',
-      'Storefront remodeling, equipment repairs, and marketing pushes',
-      'Seasonal cash flow stabilization for high-volume card processors'
+      'Immediate funding for bulk inventory purchases',
+      'Marketing, customer acquisition campaigns & promotions',
+      'Emergency working capital and cash flow shortfalls',
+      'Financing for businesses lacking collateral or with damaged credit'
     ],
     requiredDocuments: [
-      'Last 4 months business bank statements',
-      'Last 4 months merchant processing statements',
-      'Driver license and voided check',
-      'Government EIN tax confirmation letter'
+      'Simple 1-page MCA application form',
+      'Last 4 to 6 months credit card processing statements',
+      'Last 3 months business operating bank statements',
+      'Government-issued photo ID and voided business check'
     ]
   },
   {
     id: 'startup-loans',
     slug: 'startup-loans',
+    documentNotes: 'Comprehensive Financing Options for Startups & Small Businesses (24-48 Hr Approval)',
     title: 'Startup Loans',
     subtitle: 'Start Up Business Financing — Financing Options for Startups',
     tagline: 'SBA Loans, Bank Loans, Microloans, Personal Funds, Angel Investors, and Crowdfunding • Approvals in 24-48 hours',
     breadcrumbText: 'Financing Options for Startups',
-    creditRequirement: 'Startups & Early-Stage Founders',
+    creditRequirement: 'New & Early-Stage Businesses • Diverse Startup Options',
     approvalTime: '24 - 48 hours',
     fundingScope: '$10,000 - $200,000',
     minAmount: 10000,
     maxAmount: 200000,
-    termMonths: 'Flexible Startup Terms',
+    termMonths: 'Flexible Startup Repayment Terms',
     typicalRate: 'Competitive Startup Rates',
     rateDescription: 'Tailored terms across government-backed SBA, microloans, and institutional seed lenders',
     description: 'Starting a new business often requires capital. OAL Network helps entrepreneurs explore common financing options available for startups, including SBA loans, traditional bank loans, microloans, personal funds, angel investors, and crowdfunding to find the right funding to launch and grow successfully.',
@@ -1069,32 +1071,32 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Initial commercial lease security deposits and space buildout',
-      'Initial inventory purchases and wholesale vendor accounts',
-      'Core software development, marketing, and brand launch campaigns',
-      'Initial staff onboarding, licensing fees, and legal documentation',
-      'Working capital cushion while scaling toward positive cash flow'
+      'Initial operational capital and launch liquidity for new companies',
+      'SBA microloans (up to $50,000) and 7(a) government-backed startup loans',
+      'Commercial equipment, point-of-sale systems, and initial inventory',
+      'Facility deposits, leasehold improvements, and launch marketing'
     ],
     requiredDocuments: [
-      'Comprehensive business plan with 3-year revenue projections',
-      'Personal financial statement (PFS) of primary founders',
-      'Last 2 years personal tax returns for owners with > 20% equity',
-      'Personal credit report or consent for soft credit evaluation'
+      'Startup business plan with 2-year pro forma cash flow projections',
+      'Personal financial statement (PFS) of business owners',
+      'Entity formation documents (Articles of Organization / Incorporation)',
+      'Recent personal or business bank statements'
     ]
   },
   {
     id: 'asset-based',
     slug: 'asset-based',
+    documentNotes: 'Leverage Existing Assets as Collateral to Obtain Working Capital',
     title: 'Asset Based Loans',
     subtitle: 'Asset Based Lending — Leverage Existing Assets for Working Capital',
     tagline: 'Leverage inventory, equipment, accounts receivable, and real estate as collateral to obtain working capital.',
     breadcrumbText: 'Asset Based Lending',
-    creditRequirement: 'Asset & Collateral Backed',
+    creditRequirement: 'Secured by Collateral (Inventory, Equipment, A/R, Real Estate)',
     approvalTime: '4 - 8 months',
     fundingScope: '$2,000,000 - $200 million',
     minAmount: 2000000,
     maxAmount: 200000000,
-    termMonths: '12 to 36 Months Revolving',
+    termMonths: 'Revolving Asset-Based Terms',
     typicalRate: 'Market Underwriting Rates',
     rateDescription: 'Asset-secured liquidity structured on verified collateral liquidation values and appraisals',
     description: 'OAL Network works with business owners and companies to secure Asset-Based Lending financing primarily which allows them to leverage their existing assets as collateral to obtain working capital, especially when they may not qualify for traditional loans. This type of financing is often easier to access and provides greater flexibility in how the funds can be used.',
@@ -1156,32 +1158,32 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Unlocking working capital backed by commercial accounts receivable (A/R)',
-      'Leveraging manufacturing machinery, equipment, and rolling stock',
-      'Inventory financing for seasonal ramps and raw material procurement',
-      'Monetizing owned corporate real estate for enterprise expansion',
-      'Refinancing restrictive bank facilities into flexible asset lines'
+      'Inventory: Goods available for sale or production',
+      'Equipment: Machinery and tools used in business operations',
+      'Accounts Receivable: Money owed by customers for goods or services provided',
+      'Real Estate: Property owned by the business'
     ],
     requiredDocuments: [
-      'Detailed accounts receivable aging report',
-      'Current inventory valuation and perpetual ledger',
-      'Balance sheet and income statements for prior 2 fiscal years',
-      'Schedule of existing plant, property, and equipment (PP&E) with current appraisal'
+      'Accounts receivable aging schedule and customer debtor list',
+      'Inventory valuation report and machinery/equipment asset list',
+      'Recent 6 months business bank statements',
+      'Prior 2 years company financial statements or tax returns'
     ]
   },
   {
     id: 'bad-credit',
     slug: 'bad-credit',
+    documentNotes: 'SBA Preferred Lenders • Up to 25 Years to Repay • No Points, No Balloon Payments',
     title: 'Bad Credit Business Loans',
     subtitle: 'Bad Credit Business Loan Program — Preferred SBA & Revenue-Based Financing',
     tagline: 'We work with SBA lenders who are Preferred Financial Service companies to have loans processed more quickly and efficiently.',
     breadcrumbText: 'Bad Credit Business Loan Program',
-    creditRequirement: 'Challenged Credit Accepted • Up to 25 Years Repayment',
+    creditRequirement: 'Challenged Credit Accepted • Up to 25 Years to Repay',
     approvalTime: '4-6 weeks',
     fundingScope: '$200,000 - $15 million+',
     minAmount: 200000,
     maxAmount: 15000000,
-    termMonths: 'Up to 25 Years',
+    termMonths: 'Up to 25 Years to Repay',
     typicalRate: 'Market Underwriting Rates',
     rateDescription: 'Longer terms, no points, and no balloon payments under Preferred SBA underwriting standards',
     description: 'We work with SBA lenders who are Preferred Financial Service companies to have loans processed more quickly and efficiently than many others. There are several advantages to an SBA loan, including longer terms, no points and no balloon payments. We can serve any type of business with terms of up to 25 years to repay!',
@@ -1237,24 +1239,23 @@ export const CORE_CLIENT_LOAN_TYPES = [
     ],
     eligiblePurposes: [
       'Commercial real estate (purchases, construction, or refinance)',
-      'Leasehold improvements & facility buildouts',
-      'Business expansions & new revenue lines',
-      'Machinery, equipment, furniture, or fixtures',
-      'Business acquisition & buyout financing',
-      'Working capital & inventory stabilization',
-      'Start-ups (Franchises, Motels, Restaurants, Gas Stations & C-Stores)'
+      'Leasehold improvements & business expansions',
+      'Machinery, equipment, furniture or fixtures',
+      'Business acquisition',
+      'Working capital (offered in conjunction with above)',
+      'Start-ups (ALL Franchises, Motels, Restaurants, Gas Stations and C-Stores)'
     ],
     requiredDocuments: [
-      'Last 3 years business and personal tax returns',
-      'Current Year-to-Date Profit & Loss Statement and Balance Sheet',
-      'Schedule of existing business debts and liabilities',
-      'Government-issued photo identification for all 20%+ principals',
-      'Proof of commercial entity status and business registration'
+      'SBA loan application form',
+      'Prior 3 years business and personal tax returns',
+      'Year-to-date Profit & Loss statement and balance sheet',
+      'Schedule of existing business liabilities'
     ]
   },
   {
     id: 'alternative-energy',
     slug: 'alternative-energy',
+    documentNotes: 'Project Finance for Renewable Energy (Solar, Wind & Energy Storage)',
     title: 'Alternative Energy Loans',
     subtitle: 'Alternative Energy Financing for Investors — Solar Energy • Wind Energy • Energy Storage',
     tagline: 'Solar Energy • Wind Energy • Energy Storage • Project finance solutions for renewable developments.',
@@ -1264,9 +1265,9 @@ export const CORE_CLIENT_LOAN_TYPES = [
     fundingScope: '$1 million - $100 million+',
     minAmount: 1000000,
     maxAmount: 100000000,
-    termMonths: '5 to 20 Years',
+    termMonths: 'Structured Project Finance Terms',
     typicalRate: 'Market Underwriting Rates',
-    rateDescription: 'Structured green energy project finance underwritten via 180-Point Investment IQ evaluation',
+    rateDescription: 'Tailored green energy project finance based on project pro forma and equipment specifications',
     description: 'OAL Network works with investors to secure alternative energy financing to support the development and implementation of renewable energy projects, which often require significant upfront capital. This financing helps reduce costs, manage risks, and make clean energy investments more attractive and feasible.',
     icon: 'Zap',
     image: '/images/loan_alternative_energy.jpg',
@@ -1295,32 +1296,31 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Commercial solar farms and distributed photovoltaic installations',
-      'Utility-scale wind turbine farms and tower procurement',
-      'Battery energy storage systems (BESS) and microgrid infrastructure',
-      'Clean energy project development, engineering, and environmental permitting',
-      'Grid interconnection infrastructure and substation facilities'
+      'Solar Energy: Investments in solar farms and commercial installations',
+      'Wind Energy: Funding for utility-scale and commercial wind turbine projects',
+      'Energy Storage: Financing commercial battery storage solutions to enhance grid reliability'
     ],
     requiredDocuments: [
-      'Project engineering and interconnection feasibility study',
-      'Power Purchase Agreement (PPA) or creditworthy off-taker contract',
-      'Last 3 years audited commercial financials or sponsor balance sheet',
-      'Equipment procurement and EPC contractor agreements'
+      'Renewable energy project pro forma and financial model',
+      'Offtake agreements, Power Purchase Agreement (PPA), or interconnect study',
+      'Engineering, Procurement, and Construction (EPC) contract or equipment bids',
+      'Project sponsor track record and audited financial statements'
     ]
   },
   {
     id: 'business-acquisition',
     slug: 'business-acquisition',
+    documentNotes: 'Buy an Established Business with As Little as 10% Down',
     title: 'Business Acquisition Loans',
     subtitle: 'Business Acquisition Financing — As Little As 10% Down',
     tagline: 'Securing funds to purchase established businesses with as little as 10% down via SBA or seller financing.',
     breadcrumbText: 'Business Acquisition Financing',
-    creditRequirement: 'Deal Underwriting & Sponsor Resume',
+    creditRequirement: 'As Little as 10% Down with SBA or Seller Financing',
     approvalTime: '2 weeks',
     fundingScope: '$250,000 - $20 million+',
     minAmount: 250000,
     maxAmount: 20000000,
-    termMonths: '5 to 25 Years',
+    termMonths: 'Structured Acquisition Amortization Terms',
     typicalRate: 'Market Underwriting Rates',
     rateDescription: 'Underwritten on target company EBITDA, cash flow, valuation, and buyer management track record',
     description: 'Business Acquisition Financing involves securing funds to purchase an existing business. Key considerations include properly valuing the business, conducting thorough due diligence, and understanding repayment terms. These steps are critical to ensure the acquisition is financially sound and aligns with the buyer\'s goals. In many cases, it\'s possible to buy a business with as little as 10% down by leveraging options like SBA loans or through seller financing.',
@@ -1375,32 +1375,33 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Purchasing 100% equity or assets of an established cash-flowing company',
-      'Partner buyouts and minority shareholder restructuring',
-      'Strategic competitor acquisitions and regional market roll-ups',
-      'Post-acquisition working capital and transition stabilization funds',
-      'Covering closing costs, escrow legal fees, and transaction accounting'
+      'Business Acquisition Loans: Covering purchase price and related transition costs',
+      'SBA 7(a) Loans: Government-backed loans with longer terms & lower down payments',
+      'Traditional Bank Loans: For buyers with strong credit & financial history',
+      'Online and Alternative Lenders: Fast funding for urgent acquisition closing',
+      'Seller Financing: Seller finances a portion of the purchase price over time'
     ],
     requiredDocuments: [
-      'Signed Letter of Intent (LOI) or Asset Purchase Agreement (APA)',
-      'Target company 3-year historical financial statements & tax returns',
-      'Buyer resume detailing industry operating and managerial experience',
-      'Target company debt schedule, interim P&L, and receivables aging'
+      'Signed Letter of Intent (LOI) or Business Purchase Agreement',
+      'Prior 3 years tax returns & P&L statements of the target business',
+      'Buyer personal financial statement and resume',
+      'Valuation report or business appraisal'
     ]
   },
   {
     id: 'cash-advance',
     slug: 'cash-advance',
+    documentNotes: 'No Financials, Tax Returns or Asset Documentation Required',
     title: 'Cash Advance Loans',
     subtitle: 'Easy Pay Cash Advance — Quick & Easy Cash Up To $150,000 In Under 7 Days',
     tagline: 'No Financials, Tax Returns or Asset Documentation • Approvals in 24-48 Hours • Funding in 3 to 4 days.',
     breadcrumbText: 'Easy Pay Cash Advance',
     creditRequirement: 'Poor Credit, Late Payments, Bank Turndowns — NO PROBLEM',
     approvalTime: '24-48 hours',
-    fundingScope: '$20,000 - $1 million+',
+    fundingScope: 'Up to $150,000 (Typical: $20K - $1M+)',
     minAmount: 20000,
     maxAmount: 1000000,
-    termMonths: '3 to 18 Months',
+    termMonths: 'Re-borrow upon 50% repayment with simple phone call',
     typicalRate: 'Factor Rate 1.15 to 1.35',
     rateDescription: 'Automatic percentage remittance with easy 50% payoff re-borrow privilege',
     description: 'Get No Hassle Quick & Easy Cash Up To $150,000 For Any Use In Under 7 Days. No Financials, Tax Returns or Asset Documentation required. Approvals in 24-48 Hours, and funding in 3 to 4 days after approval. Poor credit? Late payments? Bank turndowns? NO PROBLEM. If you take credit cards in your business, you owe it to yourself to check out this cash advance solution.',
@@ -1452,22 +1453,21 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Immediate cash flow liquidity without tax returns or financial statements',
-      'Covering unexpected payroll or vendor payment shortfalls',
-      'Purchasing bulk inventory at substantial supplier discounts',
-      'Emergency equipment maintenance or replacement',
-      'Bridging receivables delays and marketing campaigns'
+      'Quick & easy cash up to $150,000 for any business use in under 7 days',
+      'Advance between 80% to 120% of average monthly credit card receipts',
+      'Re-borrow the paid amount once 50% is repaid with a simple phone call',
+      'Working capital for businesses with poor credit, late payments, or bank turndowns'
     ],
     requiredDocuments: [
-      'Last 6 months credit card processing statements',
-      'Last 4 months commercial business bank statements',
       'Simple 1-page application form',
-      'Driver\'s license of primary owner and voided check'
+      'Last 6 months credit card processing statements (or 4 months bank statements)',
+      'Driver license and voided business check (NO tax returns or financials needed)'
     ]
   },
   {
     id: 'commercial-bridge',
     slug: 'commercial-bridge',
+    documentNotes: 'Short-Term Bridge Financing While Awaiting Senior Loan Takeout (Close in 10 Days or Less)',
     title: 'Commercial Bridge Loans',
     subtitle: 'Commercial Bridge Loans — Short-Term Financing to Address Immediate Financial Needs',
     tagline: 'Short-term financing to address immediate financial needs while waiting for long-term financing to be secured.',
@@ -1521,35 +1521,35 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
+      'Bridge the 4-6 month waiting period while senior bank loans are closing',
       'Fast commercial real estate acquisition and auction purchases',
       'Property repositioning, renovations, and cosmetic repairs',
-      'Bridging 4-6 month bank approval delays until senior mortgage closes',
-      'Short-term collateralized commercial debt for time-sensitive deals',
-      'Refinancing maturing balloon mortgages during takeout underwriting'
+      'Seizing time-sensitive commercial opportunities before they are lost',
+      'Short-term collateralized loans with closing in as little as 10 days or less'
     ],
     requiredDocuments: [
-      'Commercial purchase contract or current property deed',
-      'Current property appraisal or broker price opinion (BPO)',
-      'Exit strategy documentation (e.g. permanent loan application or sale agreement)',
-      'Sponsor financial statement and commercial track record'
+      'Commercial property purchase contract, deed, or collateral details',
+      'Pending senior loan approval letter or takeout exit plan',
+      'Recent commercial bank statements and entity formation documents'
     ]
   },
   {
     id: 'construction-equipment',
     slug: 'construction-equipment',
+    documentNotes: 'No Financial Statements or Tax Returns Required on Transactions up to $300,000',
     title: 'Construction Equipment Loans',
     subtitle: 'Construction Equipment Financing — Financing Up to $300,000 with No Financials or Tax Returns',
     tagline: 'No Financial Statements or Tax Returns up to $300,000 • 24–48-hour approval • Up to $10M+ or more • Startups welcome!',
     breadcrumbText: 'Construction Equipment Financing',
     creditRequirement: 'Less Than Perfect Credit or Bank Turn-Downs • Startups Welcome',
     approvalTime: '24-48 hours',
-    fundingScope: '$10,000 - $10 million+',
+    fundingScope: '$10,000 - $10 million+ (Up to $300K App-Only)',
     minAmount: 10000,
     maxAmount: 10000000,
-    termMonths: 'Up to 60 Months',
+    termMonths: 'Up to 60 Months to Pay',
     typicalRate: 'Preferred Rates for Better Credits • Equity-Based',
     rateDescription: 'Loans based on the value of your equipment, not company profitability',
-    description: 'Financing Up to $300,000 with No Financial Statements or Tax Returns. 24–48-hour approval and up to 60 months to pay. We can do larger transactions up to $10M or more, and we can also do Startup Companies! OPM Biz Lenders is a specialist in funding all types of specialty trucks and construction equipment. We work directly with equipment dealers or end users. Our specialty is less than perfect credit or people who have been turned down by traditional sources.',
+    description: 'Financing Up to $300,000 with No Financial Statements or Tax Returns. 24–48-hour approval and up to 60 months to pay. We can do larger transactions up to $10M or more, and we can also do Startup Companies! OAL Network is a specialist in funding all types of specialty trucks and construction equipment. We work directly with equipment dealers or end users. Our specialty is less than perfect credit or people who have been turned down by traditional sources.',
     icon: 'Hammer',
     image: '/images/loan_construction_equipment.jpg',
     badge: 'NO TAX RETURNS UP TO $300K',
@@ -1560,13 +1560,13 @@ export const CORE_CLIENT_LOAN_TYPES = [
         sectionTitle: 'Construction Equipment Financing Highlights',
         introParagraphs: [
           'Financing Up to $300,000 — No Financial Statements or Tax Returns! 24–48-hour approval and up to 60 months to pay. We can do larger transactions up to $10M or more. We can also do Startup Companies!',
-          'OPM Biz Lenders is a specialist in funding all types of specialty trucks and construction equipment. We work directly with equipment dealers or end users. Our specialty is less than perfect credit or people who have been turned down by traditional sources. We can approve transactions in 24-48 hours or less. Normally, we do not require financial statements or tax returns on any transaction up to $300,000. We also have a preferred rate program for better credits. Our application is the easiest to fill out.',
-          'If you have been turned down for credit from any other company, OPM Market can help contact us.'
+          'OAL Network is a specialist in funding all types of specialty trucks and construction equipment. We work directly with equipment dealers or end users. Our specialty is less than perfect credit or people who have been turned down by traditional sources. We can approve transactions in 24-48 hours or less. Normally, we do not require financial statements or tax returns on any transaction up to $300,000. We also have a preferred rate program for better credits. Our application is the easiest to fill out.',
+          'If you have been turned down for credit from any other company, OAL Network can help contact us.'
         ],
         subsections: [
           {
             title: 'Working Capital Loans (Equipment Equity Loans)',
-            description: 'Need working capital? With an equipment equity loan from OPM Biz Lenders you can put cash in your company\'s pockets, take on more jobs, acquire new equipment or expand your business.',
+            description: 'Need working capital? With an equipment equity loan from OAL Network you can put cash in your company\'s pockets, take on more jobs, acquire new equipment or expand your business.',
             bullets: [
               'Our equity loans are not based on the profitability of your company but the value of your equipment.',
               'Even if your personal credit is badly damaged, we can get you the cash you need — Now! Call us today!'
@@ -1608,22 +1608,22 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Financing up to $300,000 with no tax returns or financial statements',
-      'Heavy earthmoving machinery (Bulldozers, Backhoes, Excavators, Cranes)',
-      'Specialty vocational trucks (Dump, Concrete Mixer, Tow, Garbage, Mechanic)',
-      'Equipment equity loans for working capital regardless of credit score',
-      'Same-day Accounts Receivable financing for 60/90/120-day billing cycles'
+      'Financing up to $300,000 app-only with no tax returns or financials (transactions to $10M+)',
+      'Heavy equipment: Bulldozers, Backhoes, Excavators, Cranes, Chippers, Concrete Mixers',
+      'Specialty trucks: Dump, Tow, Garbage, Flatbed, Mechanic, Roofing, Sewer & Septic',
+      'Working Capital Loans: Equipment equity loans based on machine value, not profitability',
+      'Accounts Receivable Financing: Same day funding on 60, 90, or 120-day billing cycles'
     ],
     requiredDocuments: [
-      'Equipment dealer invoice or private seller bill of sale',
-      'Simple 1-page application (no tax returns required up to $300K)',
-      'Machine specifications, serial number, and hour meter photo',
-      'Commercial driver\'s license or contractor entity registration'
+      'Simple 1-page application (NO tax returns or financial statements up to $300,000)',
+      'Equipment dealer quote, invoice, or private seller bill of sale',
+      'Equipment specification, serial number, or photo of hour meter'
     ]
   },
   {
     id: 'debt-restructuring',
     slug: 'debt-restructuring',
+    documentNotes: 'Refinance All Equipment Lenders into One Loan — Reduce Payments by 30% or More',
     title: 'Debt Restructuring Loans',
     subtitle: 'Debt Restructuring — Refinance Equipment & Debt into One Manageable Facility',
     tagline: 'Reduce monthly payments by 30% or more, greatly improving cash flow and bottom line.',
@@ -1633,7 +1633,7 @@ export const CORE_CLIENT_LOAN_TYPES = [
     fundingScope: '$100,000 - $5 million+',
     minAmount: 100000,
     maxAmount: 5000000,
-    termMonths: 'Custom Amortization Terms',
+    termMonths: 'Single Consolidated Loan with Reduced Monthly Payments',
     typicalRate: 'Market Underwriting Rates',
     rateDescription: 'Consolidated single facility terms structured to reduce monthly debt obligations by 30% or more',
     description: 'Growing companies enter into loan agreements to pay for equipment needed to expand their businesses. Loans have different maturities and, in most cases, the companies have built-in equity in the equipment. We will pay off all your lenders and refinance all your equipment into one loan. This can result in reduced payments of 30% or more, so your cash flow and bottom line are greatly improved.',
@@ -1664,21 +1664,21 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Refinancing and paying off multiple equipment lenders into one single loan',
-      'Capitalizing on built-in equity across owned machinery and equipment',
-      'Lowering monthly debt service payments by 30% or more',
-      'Freeing up net working capital to improve operational bottom line'
+      'Pay off all existing equipment lenders and refinance all equipment into one single loan',
+      'Reduce combined monthly payments by 30% or more to improve cash flow',
+      'Capitalize on built-in equity across owned machinery and equipment',
+      'Consolidate multiple debt maturities into one manageable payment schedule'
     ],
     requiredDocuments: [
-      'Current equipment loan statements and payoff quotes',
-      'List of equipment with serial numbers and estimated equity',
-      'Last 6 months commercial bank statements',
-      'Recent Profit & Loss statement showing debt burden'
+      'Current equipment loan statements and payoff quotes from existing lenders',
+      'Equipment inventory list with serial numbers and estimated current equity',
+      'Recent business bank statements showing debt service payments'
     ]
   },
   {
     id: 'doctors-loans',
     slug: 'doctors-loans',
+    documentNotes: 'Tailored Financing for Doctors, Dentists, and Veterinarians (24-Hour Approval)',
     title: 'Doctors Loans',
     subtitle: 'Medical Practice Acquisition Financing for Doctors, Dentists and Veterinarians',
     tagline: 'Tailored loans to cover costs associated with starting or expanding a practice • Approvals in 24 hours',
@@ -1688,7 +1688,7 @@ export const CORE_CLIENT_LOAN_TYPES = [
     fundingScope: '$75,000 - $1 million',
     minAmount: 75000,
     maxAmount: 1000000,
-    termMonths: 'Tailored Medical Terms',
+    termMonths: 'Tailored Medical Practice Financing Terms',
     typicalRate: 'Market Underwriting Rates',
     rateDescription: 'Preferred medical professional tiers underwritten across diverse lending options',
     description: 'OAL Network provides Medical practice acquisition financing for doctors, dentists, and veterinarians through various lending options, delivering tailored loans to cover costs associated with starting or expanding a practice. Healthcare professionals can use this financing program to fund projects, buy new equipment, start a new practice or buy an existing practice.',
@@ -1719,31 +1719,32 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Medical, dental, or veterinary practice acquisitions & partner buy-ins',
-      'Starting a new independent private clinical practice',
-      'Purchasing advanced medical, clinical, and diagnostic equipment',
-      'Clinical office facility renovations and project improvements'
+      'Fund medical and healthcare projects',
+      'Buy new clinical, surgical, and diagnostic equipment',
+      'Start a new medical practice or clinic',
+      'Buy an existing medical practice or partner buy-in'
     ],
     requiredDocuments: [
-      'Active medical / dental / veterinary license verification',
-      'Practice purchase agreement or letter of intent (if acquiring)',
-      'Last 6 months commercial or professional bank statements',
-      'Equipment vendor invoice or project cost estimate'
+      'Commercial loan application for medical practitioners',
+      'State medical license verification',
+      'Practice financial statements or recent commercial bank statements',
+      'Equipment quote or practice purchase agreement (if acquiring)'
     ]
   },
   {
     id: 'fleet-truck',
     slug: 'fleet-truck',
+    documentNotes: 'Flexible Loans, Leases & Lines of Credit for New and Used Trucks and Trailers',
     title: 'Fleet Truck Loans',
     subtitle: 'Fleet Truck Financing — Buy or Lease Commercial Trucks Without Draining Cash Reserves',
     tagline: 'Commercial truck & trailer financing via loans, leases, or lines of credit • Approvals in 24 hours to 1 week',
     breadcrumbText: 'Fleet Truck Financing',
-    creditRequirement: 'GOOD & BAD CREDIT Welcome',
+    creditRequirement: 'GOOD & BAD CREDIT Welcome • New & Pre-Owned Trucks',
     approvalTime: '24 hours – 1 week for large fleet',
     fundingScope: '$100,000 - $5 million',
     minAmount: 100000,
     maxAmount: 5000000,
-    termMonths: '3 to 7 Years (Flexible Fleet Terms)',
+    termMonths: 'Terms Typically Range from 3 to 7 Years',
     typicalRate: 'Market Underwriting Rates',
     rateDescription: 'Competitive rates structured through loans, leases, or lines of credit',
     description: 'OAL Network Fleet truck financing solutions helps businesses buy or lease commercial trucks without draining cash reserves, using options like loans, leases, or lines of credit. It can also support faster access to needed equipment (including new or used trucks and trailers) so you can keep operations running.',
@@ -1796,21 +1797,21 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Commercial truck and trailer acquisitions (new or used)',
-      'Multi-vehicle fleet expansion and replacement',
-      'Leasing commercial trailers, box trucks, and tractors with purchase options',
-      'Revolving fleet lines of credit for continuous equipment additions'
+      'Commercial trucks and trailers acquisition (new or pre-owned vehicles)',
+      'Commercial truck loans: Fixed or variable rates, terms from 3 to 7 years',
+      'Commercial truck leases: Lower upfront costs with option to purchase at lease end',
+      'Fleet lines of credit: Flexible revolving borrowing against a credit limit'
     ],
     requiredDocuments: [
-      'Commercial vehicle specifications, VIN, and dealer purchase quotes',
-      'Active DOT / MC operating authority certificate (if applicable)',
-      'Last 6 months commercial bank statements',
-      'Commercial fleet insurance quote or policy'
+      'Commercial truck dealer invoice, quote, or vehicle specifications',
+      'Commercial driver or fleet entity operating authority',
+      'Recent commercial bank statements'
     ]
   },
   {
     id: 'medical-equipment',
     slug: 'medical-equipment',
+    documentNotes: 'Tailored Medical Equipment & Practice Financing (24-Hour Approval)',
     title: 'Medical Equipment Loans',
     subtitle: 'Medical Practice Acquisition Financing for Doctors, Dentists and Veterinarians',
     tagline: 'Tailored healthcare loans to fund projects, buy new equipment, or acquire practices • 24 hour approval',
@@ -1853,29 +1854,30 @@ export const CORE_CLIENT_LOAN_TYPES = [
     eligiblePurposes: [
       'Purchasing advanced diagnostic, laboratory, surgical, and dental equipment',
       'Clinical office expansions, surgical suite buildouts, and facility renovations',
-      'Starting a new medical clinic or private practice',
+      'Starting a new medical clinic or private healthcare practice',
       'Acquisition of an existing healthcare or dental practice'
     ],
     requiredDocuments: [
+      'Commercial equipment financing application',
       'Medical equipment invoice or dealer specification sheet',
-      'Active medical, dental, or veterinary license credentials',
-      'Last 4 months commercial bank statements',
-      'Practice lease or purchase agreement'
+      'Healthcare provider license verification',
+      'Recent commercial bank statements'
     ]
   },
   {
     id: 'medical-working-capital',
     slug: 'medical-working-capital',
+    documentNotes: 'Credit Approval in 48 Hours • Wire Funding in 5 Days • Programs for Damaged Credit',
     title: 'Medical Working Capital Loans',
     subtitle: 'Medical Working Capital Loans — Loans Ranging from $25,000 to $500,000',
     tagline: 'Very Competitive Rates • Credit Approval in 48 Hours • Funding Within 5 Days • Programs for Damaged Credit',
     breadcrumbText: 'Medical Working Capital Loans',
-    creditRequirement: 'GOOD & BAD CREDIT (Programs for Damaged Credit)',
-    approvalTime: '3-5 days',
+    creditRequirement: 'Very Competitive Rates • Programs for Damaged Credit Available',
+    approvalTime: '3-5 days (48-Hr Approval, 5-Day Funding)',
     fundingScope: '$25,000 to $500,000',
     minAmount: 25000,
     maxAmount: 500000,
-    termMonths: 'Flexible Healthcare Terms',
+    termMonths: '48-Hour Approval • Wire Funding in 5 Days',
     typicalRate: 'Very Competitive Rates',
     rateDescription: 'Specialized underwriting with credit approval in 48 hours and funding within 5 days',
     description: 'Medical Working Capital Loans provide essential liquidity tailored for healthcare professionals. Offering loans ranging from $25,000 to $500,000 with very competitive rates, credit approval in 48 hours from application submission, and funding within 5 days of receipt of signed documents. We also offer programs for medical professionals with damaged credit.',
@@ -1916,27 +1918,28 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
+      'Working capital liquidity ranging from $25,000 to $500,000',
       'Operational cash flow and payroll reserves for healthcare practices',
-      'Bridging delayed insurance, Medicare, and patient billing cycles',
-      'Inventory, pharmaceuticals, and surgical supply purchases',
-      'Marketing and patient acquisition for medical practices',
-      'Working capital for medical practitioners with damaged credit'
+      'Inventory, pharmaceuticals, and surgical supplies',
+      'Practice marketing and new patient acquisition',
+      'Liquidity for medical practitioners with damaged credit'
     ],
     requiredDocuments: [
-      'Simple application for 48-hour credit approval',
-      'Last 4 months commercial or practice bank statements',
-      'Healthcare practitioner state board license verification',
-      'Signed funding agreement for rapid 5-day disbursement'
+      'Quick application for 48-hour credit approval',
+      'Recent healthcare practice bank statements',
+      'Medical / Professional license verification',
+      'Signed loan documents for 5-day wire disbursement'
     ]
   },
   {
     id: 'owner-operator-truck',
     slug: 'owner-operator-truck',
+    documentNotes: 'Truck Serves as Collateral • Fixed Monthly Payments over 36 to 72 Months (2-24 Hr Approval)',
     title: 'Owner-Operator Truck Loans',
     subtitle: 'Owner-Operator Truck Financing — Acquire Trucks Without Paying Full Price Upfront',
     tagline: 'Commercial vehicle loans with terms of 36 to 72 months • Options for those with less-than-perfect credit • Approvals in 2-24 hours',
     breadcrumbText: 'Owner-Operator Truck Financing',
-    creditRequirement: 'GOOD & BAD CREDIT Welcome (Options for Less-Than-Perfect Credit)',
+    creditRequirement: 'All Credit Profiles • Less-Than-Perfect Credit Welcome',
     approvalTime: '2-24 hours',
     fundingScope: '$10,000 - $60,000',
     minAmount: 10000,
@@ -1984,31 +1987,32 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Purchasing new or pre-owned semi-trucks without paying full upfront cost',
-      'Financing commercial tractor units with fixed monthly payments',
-      'Expanding independent trucking operations and preserving business liquidity',
-      'Options tailored for drivers with less-than-perfect credit profiles'
+      'Purchasing new or pre-owned semi-trucks without paying full price upfront',
+      'Commercial tractor, cab, and trailer acquisitions',
+      'Owner-operator equipment expansion while preserving operational liquidity',
+      'Financing options available for less-than-perfect credit profiles'
     ],
     requiredDocuments: [
-      'Valid Commercial Driver License (CDL)',
-      'Last 4 months commercial or personal bank statements',
-      'Truck bill of sale, dealer purchase quote, and vehicle VIN',
-      'Carrier lease agreement or active trucking authority verification'
+      'Owner-operator truck financing application',
+      'Commercial truck purchase quote, spec sheet, and VIN',
+      "Commercial driver's license (CDL) and DOT/MC credentials",
+      'Recent 3 months commercial bank statements'
     ]
   },
   {
     id: 'revenue-based',
     slug: 'revenue-based',
+    documentNotes: 'No Equity Dilution • Payments Fluctuate with Monthly Revenue (1 Week Approval)',
     title: 'Revenue-Based Loans',
     subtitle: 'Revenue-Based Financing — Flexible Repayment Tied to Revenue With No Equity Dilution',
     tagline: 'Smaller payments during slower revenue months, larger in stronger months • Approvals in 1 week',
     breadcrumbText: 'Revenue-Based Financing',
-    creditRequirement: 'Revenue $1MM+ & 12-18 Months in Business (Inclusive Ownership Programs)',
+    creditRequirement: 'Revenue $1MM+ & 12-18 Months in Business • No Equity Dilution',
     approvalTime: '1 week',
     fundingScope: '$100,000 - $5 million+',
     minAmount: 100000,
     maxAmount: 5000000,
-    termMonths: 'Flexible Revenue-Linked Terms',
+    termMonths: 'Percentage of Monthly Revenue (Flexible with Sales Cycles)',
     typicalRate: 'Percentage of Revenue',
     rateDescription: 'Flexible payments where a percentage of monthly revenue is taken, preserving equity',
     description: 'We realize the challenges faced by women, people of color, veterans and businesses in low to moderate income areas. Revenue-based financing allows more flexibility than traditional bank debt with no equity dilution. It’s similar to a term loan, but instead of a fixed payment every month, a percentage of revenue is taken. This allows for smaller payments during slower revenue months, and larger payments in stronger months.',
@@ -2047,26 +2051,27 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Growth working capital without giving up equity or board seats',
-      'Flexible inventory, operational hiring, and contract fulfillment funding',
-      'Inclusive financing for woman, minority, veteran, and LGBTQ+ owned enterprises',
-      'Scaling businesses located in low-to-moderate income communities'
+      'Growth capital for companies with $1MM+ in annual revenue without equity dilution',
+      'Bridging seasonal revenue fluctuations with flexible revenue-share payments',
+      'Expansion capital for women, POC, veteran, and LGBTQ+ owned enterprises',
+      'Funding for recurring contract and subscription revenue business models'
     ],
     requiredDocuments: [
-      'Last 6 months business bank statements',
-      'Year-to-date Profit & Loss and financial statements',
-      'Summary of recurring contracts or revenue streams',
-      'Ownership verification documents (if applying under diversity programs)'
+      'Revenue-based financing application',
+      'Last 12 months commercial bank statements showing revenue flow',
+      'Year-to-date Profit & Loss statement and balance sheet',
+      'Summary of recurring customer contracts or accounts receivable'
     ]
   },
   {
     id: 'sale-and-leaseback',
     slug: 'sale-and-leaseback',
+    documentNotes: 'Unlock 100% of Asset Value • 15 to 30 Year Triple-Net Rent Terms (24-48 Hr Approval)',
     title: 'Sale and Leaseback Loans',
     subtitle: 'Sales and Leaseback Programs — Unlock Cash Tied Up in Real Estate & Assets',
     tagline: 'Convert illiquid assets into liquid capital while maintaining full operational use • Approvals in 24 - 48 hours',
     breadcrumbText: 'Sale and Leaseback Programs',
-    creditRequirement: 'Asset Equity & Operating Cash Flow',
+    creditRequirement: 'Asset-Driven • Unlock 100% of Fair Market Value',
     approvalTime: '24 - 48 hours',
     fundingScope: '$25,000 - $10 million+',
     minAmount: 25000,
@@ -2124,31 +2129,32 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Unlocking liquid capital from owned commercial real estate or branch facilities',
-      'Leasing back mission-critical equipment and heavy machinery',
-      'Paying off high-cost corporate debt to strengthen the balance sheet',
-      'Reinvesting real estate capital directly into core growth initiatives'
+      'Unlocking cash tied up in owned real estate (office buildings, facilities, branches)',
+      'Equipment sale-leaseback for owned industrial machinery and vehicles',
+      'Converting illiquid fixed assets into liquid working capital without operational interruption',
+      'Retiring high-cost debt or funding corporate expansion initiatives'
     ],
     requiredDocuments: [
-      'Property title deed or equipment asset register with serial numbers',
-      'Recent property appraisal, broker price opinion, or equipment valuation',
-      'Last 3 years audited or reviewed financial statements of operating company',
-      'Proposed leaseback term preferences and operational overview'
+      'Sale-leaseback commercial property or equipment intake form',
+      'Current property appraisal or equipment schedule with historical cost basis',
+      'Prior 2 years company financial statements (P&L and Balance Sheet)',
+      'Commercial facility details or existing occupancy floor plans'
     ]
   },
   {
     id: 'securities-based',
     slug: 'securities-based',
+    documentNotes: "Nation's Only Non-Transfer of Title Loan • 70-90% LTV • Interest-Only • No Credit Checks",
     title: 'Securities-Based Loans',
     subtitle: 'Securities-Based Lending — Non-Transfer of Title Lines of Credit (70-90% LTV)',
     tagline: 'Interest only payments • Guaranteed approval regardless of credit • Approvals in 3-5 days',
     breadcrumbText: 'Securities-Based Lending',
-    creditRequirement: 'Guaranteed Approval (No Credit or Income Based)',
+    creditRequirement: 'Approval Guaranteed • No Personal Credit Checks • Non-Transfer of Title',
     approvalTime: '3-4 weeks',
     fundingScope: '$1 million - $100 million+',
     minAmount: 1000000,
     maxAmount: 100000000,
-    termMonths: 'Revolving Line of Credit (Interest Only)',
+    termMonths: 'Revolving Line of Credit (Interest-Only Payments)',
     typicalRate: 'Very Low Floating or Fixed Rates',
     rateDescription: 'Non-transfer of title credit line of 70-90% of portfolio value; interest only with no principal payments',
     description: "OAL Network offers the nation's only non-transfer of title Securities-based loans. If you have a portfolio of securities, we can set up a line of credit of 70-90% of the value of the portfolio. This line of credit is utilized as a true line of credit and you may borrow as much or as little as you want. You can utilize the money for any purpose with no restrictions. Repayment is interest only, with no principal payments. The rates are very low and approval is guaranteed, regardless of personal credit. We can usually approve your loan within 3-5 business days with no credit checks. There is no sale of your stock. You receive all dividends and keep complete control of your portfolio.",
@@ -2184,30 +2190,32 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Unrestricted capital liquidity for any personal or commercial business purpose',
-      'Real estate acquisitions, earnest money deposits, and bridge investments',
-      'Business expansions and investment opportunities without selling stocks',
-      'Avoiding capital gains tax by borrowing against stock portfolio equity'
+      'True revolving line of credit (70% - 90% LTV) against public securities portfolio',
+      'Borrow as much or as little as needed for ANY business or personal purpose without restriction',
+      'Preserve dividend stream and 100% portfolio capital appreciation',
+      'Liquidity without selling stock or triggering capital gains taxes'
     ],
     requiredDocuments: [
-      'Most recent custodian brokerage account statements (past 1-3 months)',
-      'Government-issued ID of portfolio owner',
-      'Securities-based loan application form (no tax returns or financials required)'
+      'Recent investment account or brokerage statement showing securities positions',
+      'Simple securities-based line of credit intake agreement',
+      'Government ID (Foreign nationals and international securities accepted)',
+      '(NO personal credit checks, NO tax returns, and NO income verification required)'
     ]
   },
   {
     id: 'solar-energy',
     slug: 'solar-energy',
+    documentNotes: 'Project Finance for Solar Farms, Wind Turbines & Commercial Energy Storage (3-4 Weeks)',
     title: 'Solar Energy Loans',
     subtitle: 'Alternative Energy Financing for Investors — Solar Energy, Wind Energy & Energy Storage',
     tagline: 'Project finance capital for renewable energy initiatives • $1M to $100M+ • Approvals in 3-4 weeks',
     breadcrumbText: 'Solar Energy',
-    creditRequirement: 'Project Cash Flows & SPV Structure',
+    creditRequirement: 'Renewable Energy Project Finance Underwriting',
     approvalTime: '3-4 weeks',
     fundingScope: '$1 million - $100 million+',
     minAmount: 1000000,
     maxAmount: 100000000,
-    termMonths: 'Long-Term Project Finance Terms',
+    termMonths: 'Structured Renewable Project Amortization',
     typicalRate: 'Project Underwriting Rates',
     rateDescription: 'Debt repaid from project cash flows, lowering investor equity requirements and cost of capital',
     description: "Alternative energy financing for investors typically involves funding renewable energy projects through mechanisms like project finance, which allows for capital-intensive projects to be funded primarily through loans repaid from the project's cash flows. This approach reduces the equity required and makes investments in solar, wind, and other renewable sources more financially viable.",
@@ -2252,26 +2260,27 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Commercial and utility-scale solar photovoltaic project finance',
-      'Wind turbine farm development and EPC construction financing',
-      'Battery energy storage solutions (BESS) for grid and commercial reliability',
-      'Capital-intensive alternative energy facilities funded via project cash flows'
+      'Utility-scale and commercial rooftop solar farm installations',
+      'Commercial solar battery storage systems to enhance grid reliability',
+      'Wind energy turbines and hybrid renewable generation facilities',
+      'Long-term structured project finance capital'
     ],
     requiredDocuments: [
-      'Renewable energy project financial model and cash flow projections',
-      'Power Purchase Agreement (PPA) or interconnection agreement',
-      'EPC contractor contracts, equipment warranties, and site leases',
-      'Special Purpose Vehicle (SPV) formation documents'
+      'Solar project pro forma, financial model, and engineering estimates',
+      'Power Purchase Agreement (PPA) or grid interconnection study',
+      'EPC (Engineering, Procurement, and Construction) contractor quotes',
+      'Project sponsor background and financial credentials'
     ]
   },
   {
     id: 'unsecured-business',
     slug: 'unsecured-business',
+    documentNotes: 'No Physical Collateral Required • $5K to $250K per Line of Credit (3-Day Approval)',
     title: 'Unsecured Business Loans',
     subtitle: 'Unsecured Business Loans — Expansion, Start-Up, Debt Consolidation & Working Capital',
     tagline: 'Over 8 years corporate banking experience • Funding when traditional banks say no • Approvals in 3 days',
     breadcrumbText: 'Unsecured Business Loans',
-    creditRequirement: 'GOOD & BAD CREDIT Welcome',
+    creditRequirement: 'No Physical Collateral Required • Unsecured Credit Lines',
     approvalTime: '3 days',
     fundingScope: '$5,000 - $250,000 per line of credit*',
     minAmount: 5000,
@@ -2316,31 +2325,32 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Expansion capital for growing enterprises adding new revenue streams',
-      'Start-up business funding without requiring personal property collateral',
-      'Consolidating high-interest commercial debt into a structured facility',
-      'Operational working capital and payroll liquidity'
+      'Expansion Capital: Funding new locations, hiring, and business scaling',
+      'Start-Up Capital: Early-stage liquidity without pledging physical collateral',
+      'Debt Consolidation: Consolidating high-interest short-term debt',
+      'Working Capital: Cash flow buffer for operational expenses and seasonal dips'
     ],
     requiredDocuments: [
-      'Simple corporate credit line application',
-      'Last 4 months commercial business bank statements',
-      'Government photo ID of majority business principal',
-      'Articles of incorporation or business entity registration'
+      'Unsecured commercial line of credit application',
+      'Last 3 to 6 months commercial bank operating statements',
+      'Personal credit report or owner personal financial statement',
+      'Business formation documents and proof of good standing'
     ]
   },
   {
     id: 'used-aircraft',
     slug: 'used-aircraft',
+    documentNotes: 'Financing for Older & Pre-Owned Airplanes • Logbook Evaluation (1 Week or Less Approval)',
     title: 'Used Aircraft Loans',
     subtitle: 'Used Aircraft Financing — Capital for Older Airplanes with Age & Maintenance Evaluation',
     tagline: 'Preserve capital and maintain liquidity for other investments • $150K to $5M • Approvals in 1 week or less',
     breadcrumbText: 'Used Aircraft Financing',
-    creditRequirement: 'Aircraft Condition & Logbook Maintenance Evaluation',
+    creditRequirement: 'Aircraft Asset & Logbook Maintenance Evaluation',
     approvalTime: '1 week or less',
     fundingScope: '$150,000 - $5,000,000',
     minAmount: 150000,
     maxAmount: 5000000,
-    termMonths: 'Flexible Aviation Amortization',
+    termMonths: 'Flexible Aviation Amortization Terms',
     typicalRate: 'Aviation Underwriting Rates',
     rateDescription: 'Structured financing based on aircraft age, condition, and maintenance logs',
     description: 'Used aircraft financing is available for older airplanes, but lenders closely review the aircraft’s age and condition as part of the approval process. They especially look at maintenance records to judge how well the plane has been kept up, since upkeep and market demand can strongly affect the aircraft’s value. People finance used aircraft to preserve capital, maintain liquidity for other investments, and manage the additional ownership costs associated with aircraft, such as maintenance and insurance.',
@@ -2392,31 +2402,32 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Purchasing pre-owned turboprops, piston twins, and corporate jets',
-      'Preserving investment liquidity rather than liquidating capital for cash purchase',
-      'Financing major airframe maintenance, engine overhauls, and avionics suites',
-      'Tax advantages and capital preservation for corporate flight departments'
+      'Acquisition of pre-owned, older piston, turboprop, and jet aircraft',
+      'Preserving liquid capital and avoiding liquidation of existing investments',
+      'Managing aviation ownership costs (maintenance, hangaring, insurance)',
+      'Capitalizing on aviation depreciation and tax benefits'
     ],
     requiredDocuments: [
-      'Aircraft specifications, FAA registration (N-Number), and serial number',
-      'Complete airframe, engine, and propeller maintenance logbooks',
-      'Aircraft Purchase and Sale Agreement with pre-buy inspection clause',
-      'Last 2 years business or borrower financial statements'
+      'Aviation financing application',
+      'Complete aircraft airframe, engine, and propeller maintenance logbooks',
+      'FAA aircraft registration certificate and airworthiness certificate',
+      'Aircraft purchase agreement or spec sheet with avionics list'
     ]
   },
   {
     id: 'veterinarians',
     slug: 'veterinarians',
+    documentNotes: 'Tailored Practice Acquisition & Equipment Financing for Veterinarians (24-Hour Approval)',
     title: 'Veterinarians Loans',
     subtitle: 'Medical Practice Acquisition Financing for Doctors, Dentists and Veterinarians',
     tagline: 'Tailored loans to cover costs associated with starting or expanding a veterinary practice • 24 hour approval',
     breadcrumbText: 'Real Estate Loans / Veterinarians',
-    creditRequirement: 'Veterinary Doctors & Practice Owners',
+    creditRequirement: 'Licensed Veterinary & Healthcare Professionals',
     approvalTime: '24 hours',
     fundingScope: '$75,000 - $1 million',
     minAmount: 75000,
     maxAmount: 1000000,
-    termMonths: 'Tailored Veterinary Practice Terms',
+    termMonths: 'Tailored Veterinary Practice Financing Terms',
     typicalRate: 'Market Underwriting Rates',
     rateDescription: 'Preferred healthcare tiers delivering tailored loans across diverse lending options',
     description: 'OAL Network provides medical practice acquisition financing for doctors, dentists, and veterinarians through various lending options, delivering tailored loans to cover costs associated with starting or expanding a practice. Healthcare professionals can use this financing program to fund projects, buy new equipment, start a new practice or buy an existing practice.',
@@ -2447,16 +2458,16 @@ export const CORE_CLIENT_LOAN_TYPES = [
       }
     ],
     eligiblePurposes: [
-      'Veterinary practice acquisition and animal hospital ownership buy-ins',
-      'Starting a new independent veterinary practice or emergency animal clinic',
-      'Purchasing advanced veterinary diagnostic, surgical, and radiology equipment',
-      'Veterinary clinic renovation, boarding kennels, and practice facility buildouts'
+      'Fund healthcare and veterinary clinical projects',
+      'Buy new veterinary diagnostic, surgical, and radiology equipment',
+      'Start a new veterinary clinic or animal hospital',
+      'Buy an existing veterinary practice or acquire partner equity'
     ],
     requiredDocuments: [
-      'Active Doctor of Veterinary Medicine (DVM) license verification',
-      'Practice purchase agreement or letter of intent (if acquiring)',
-      'Last 6 months commercial or professional bank statements',
-      'Equipment purchase invoice or project cost estimate'
+      'Commercial loan application for veterinary practitioners',
+      'Veterinary medicine license and credentials verification',
+      'Recent veterinary clinic bank operating statements',
+      'Equipment vendor quote or practice purchase agreement'
     ]
   },
   {

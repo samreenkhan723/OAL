@@ -119,7 +119,7 @@ export const IndustryDirectoryPage = () => {
       ind.subtitle.toLowerCase().includes(q) ||
       ind.description.toLowerCase().includes(q)
     );
-  });
+  }).sort((a, b) => a.title.localeCompare(b.title));
 
   const filteredSpecialty = SPECIALTY_PROGRAMS.filter(prog => {
     const q = search.toLowerCase().trim();
@@ -131,7 +131,7 @@ export const IndustryDirectoryPage = () => {
       prog.description.toLowerCase().includes(q) ||
       (prog.badge && prog.badge.toLowerCase().includes(q))
     );
-  });
+  }).sort((a, b) => a.title.localeCompare(b.title));
 
   const handleApplyClick = (slug) => {
     const targetSearch = `?program=${slug}`;
@@ -163,34 +163,70 @@ export const IndustryDirectoryPage = () => {
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#00B0F0]/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#FFD200]/15 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-sky-200">
-            <Sparkles className="w-3.5 h-3.5 text-[#FFD200]" />
-            <span>Commercial Lending Directory — All 50 States</span>
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          {/* Left Column (Content & Value Props) */}
+          <div className="lg:col-span-7 space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-sky-200">
+              <Sparkles className="w-3.5 h-3.5 text-[#FFD200]" />
+              <span>Commercial Lending Directory — All 50 States</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-white leading-tight">
+              Commercial Business Loans by Industry
+            </h1>
+
+            <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl">
+              Connect with specialized verified commercial lenders tailored to your specific industry sector. Explore core industry sectors supported by the OAL Network exchange with 24-72 hour funding timelines.
+            </p>
+
+            <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-200">
+              <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">
+                <CheckCircle2 className="w-4 h-4 text-[#FFD200]" />
+                <span>$10,000 to $500 Million+</span>
+              </div>
+              <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">
+                <CheckCircle2 className="w-4 h-4 text-[#FFD200]" />
+                <span>180-Point Investment IQ Rating</span>
+              </div>
+              <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">
+                <CheckCircle2 className="w-4 h-4 text-[#FFD200]" />
+                <span>No Initial Hard Credit Pull</span>
+              </div>
+            </div>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-heading font-black tracking-tight text-white">
-            Commercial Business Loans by Industry
-          </h1>
+          {/* Right Column (Showcase Image) */}
+          <div className="lg:col-span-5">
+            <div className="relative rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl bg-[#001744]/70 group">
+              <img
+                src="/images/hero_finance.jpg"
+                alt="Commercial Business Loans by Industry Underwriting"
+                className="w-full h-64 sm:h-72 lg:h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#001744]/95 via-[#002060]/30 to-transparent" />
+              
+              {/* Floating Stat Badge */}
+              <div className="absolute top-3.5 right-3.5 bg-white/15 backdrop-blur-md border border-white/25 px-3 py-1.5 rounded-xl text-right">
+                <span className="block text-[10px] font-extrabold uppercase tracking-wider text-[#00B0F0]">Marketplace Scope</span>
+                <span className="text-xs font-extrabold text-[#FFD200]">$10K to $500M+</span>
+              </div>
 
-          <p className="text-base sm:text-lg text-slate-200 leading-relaxed">
-            Connect with specialized verified commercial lenders tailored to your specific industry sector. Explore all 9 core industries supported by the OAL Network exchange with 24-72 hour funding timelines.
-          </p>
-
-          <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-200">
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-[#FFD200]" />
-              <span>$10,000 to $500 Million+</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-[#FFD200]" />
-              <span>180-Point Investment IQ Rating</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-[#FFD200]" />
-              <span>No Initial Hard Credit Pull</span>
+              {/* Bottom Card Overlay */}
+              <div className="absolute bottom-3.5 left-3.5 right-3.5 bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/20 space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-white">Commercial Industry Sectors</span>
+                  <span className="text-[10px] font-black uppercase text-[#FFD200] bg-[#FFD200]/20 px-2 py-0.5 rounded border border-[#FFD200]/30">
+                    All 50 States
+                  </span>
+                </div>
+                <p className="text-[11px] text-slate-200 leading-snug">
+                  Direct underwriting syndications across 20 key industry sectors.
+                </p>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -208,7 +244,7 @@ export const IndustryDirectoryPage = () => {
                 : 'text-slate-600 hover:text-[#002060]'
             }`}
           >
-            Loans by Industry (9 Core Sectors)
+            Loans by Industry (20 Core Sectors)
           </button>
           <button
             type="button"
@@ -230,7 +266,7 @@ export const IndustryDirectoryPage = () => {
             type="text"
             placeholder={
               activeTab === 'all-industries'
-                ? 'Search 9 industry loan sectors (e.g. Trucking, Telecom)...'
+                ? 'Search 20 industry loan sectors (e.g. Trucking, Telecom)...'
                 : 'Search 8 specialty programs (e.g. Restaurant, Dental)...'
             }
             value={search}
@@ -241,12 +277,12 @@ export const IndustryDirectoryPage = () => {
 
       </div>
 
-      {/* 3. Section: 9 Core Industry Pages Grid */}
+      {/* 3. Section: 20 Core Industry Pages Grid */}
       {activeTab === 'all-industries' && (
         <div className="space-y-8">
           <div>
             <h2 className="text-xl sm:text-2xl font-heading font-black text-[#002060]">
-              9 Core Commercial Industry Sectors
+              20 Core Commercial Industry Sectors
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Select your sector to review common business types, financing needs, and apply for loan capital:

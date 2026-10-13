@@ -28,19 +28,76 @@ export const LoanProgramsPage = () => {
       case 'dental':
       case 'dental-practice':
         return '/images/loan_dental.jpg';
-      case 'freight-trucking':
-      case 'trucking':
-        return '/images/loan_trucking.jpg';
-      case 'hospitality':
-      case 'hotel-motel-airbnb':
-      case 'hotel':
-        return '/images/loan_hospitality.jpg';
       case 'church':
       case 'church-facility':
         return '/images/loan_church.jpg';
       case 'fix-and-flip':
       case 'fix-flip':
         return '/images/loan_fix_flip.jpg';
+      case 'sba-loans':
+        return '/images/loan_sba.jpg';
+      case 'business-line-of-credit':
+        return '/images/loan_line_of_credit.jpg';
+      case 'working-capital':
+        return '/images/loan_working_capital.jpg';
+      case 'equipment-leasing':
+        return '/images/loan_equipment_leasing.jpg';
+      case 'real-estate':
+      case 'real-estate-loan':
+        return '/images/industry_real_estate.jpg';
+      case 'merchant-cash-advance':
+        return '/images/loan_merchant_cash_advance.jpg';
+      case 'startup-loans':
+        return '/images/loan_startup.jpg';
+      case 'asset-based':
+        return '/images/loan_asset_based.jpg';
+      case 'bad-credit':
+        return '/images/loan_bad_credit.jpg';
+      case 'alternative-energy':
+        return '/images/loan_alternative_energy.jpg';
+      case 'business-acquisition':
+        return '/images/loan_business_acquisition.jpg';
+      case 'cash-advance':
+        return '/images/loan_cash_advance.jpg';
+      case 'commercial-bridge':
+        return '/images/loan_commercial_bridge.jpg';
+      case 'construction-equipment':
+        return '/images/loan_construction_equipment.jpg';
+      case 'debt-restructuring':
+        return '/images/loan_debt_restructuring.jpg';
+      case 'doctors-loans':
+        return '/images/loan_doctors.jpg';
+      case 'fleet-truck':
+        return '/images/loan_fleet_truck.jpg';
+      case 'medical-equipment':
+        return '/images/loan_medical_equipment.jpg';
+      case 'medical-working-capital':
+        return '/images/loan_medical_working_capital.jpg';
+      case 'owner-operator-truck':
+        return '/images/loan_owner_operator_truck.jpg';
+      case 'revenue-based':
+        return '/images/loan_revenue_based.jpg';
+      case 'sale-and-leaseback':
+        return '/images/loan_sale_leaseback.jpg';
+      case 'securities-based':
+        return '/images/loan_securities_based.jpg';
+      case 'solar-energy':
+        return '/images/loan_solar_energy.jpg';
+      case 'unsecured-business':
+        return '/images/loan_unsecured_business.jpg';
+      case 'used-aircraft':
+        return '/images/loan_used_aircraft.jpg';
+      case 'veterinarians':
+        return '/images/loan_veterinarians.jpg';
+      case 'wind-energy':
+        return '/images/loan_wind_energy.jpg';
+      case 'freight-trucking':
+      case 'trucking':
+        return '/images/loan_trucking.jpg';
+      case 'hospitality':
+      case 'hotel':
+      case 'hotel-motel-airbnb':
+        return '/images/loan_hospitality.jpg';
       default:
         return '/images/hero_finance.jpg';
     }
@@ -53,7 +110,7 @@ export const LoanProgramsPage = () => {
       p.tagline.toLowerCase().includes(query) ||
       p.description.toLowerCase().includes(query)
     );
-  });
+  }).sort((a, b) => a.title.localeCompare(b.title));
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
@@ -147,7 +204,7 @@ export const LoanProgramsPage = () => {
                   </span>
                 </div>
                 <p className="text-[11px] text-slate-200 leading-snug">
-                  Direct underwriting syndications with 180-Point Investment IQ evaluation.
+                  Direct commercial lending syndications across verified loan programs.
                 </p>
               </div>
 
@@ -202,82 +259,109 @@ export const LoanProgramsPage = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {filteredPrograms.map((prog) => (
             <div
               key={prog.id}
-              className="bg-white rounded-2xl border border-slate-200/90 hover:border-[#00B0F0] shadow-xs hover:shadow-xl transition-all p-6 flex flex-col justify-between group hover:-translate-y-1"
+              className="bg-white rounded-2xl border border-slate-200/90 hover:border-[#00B0F0] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group hover:-translate-y-1"
             >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#00B0F0]/15 text-[#0070C0] border border-[#00B0F0]/30">
-                    {prog.badge}
-                  </span>
-                  <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
-                    <Clock className="w-3 h-3 text-emerald-600" />
-                    {prog.approvalTime}
-                  </span>
-                </div>
-
-                <h3 className="text-lg font-bold text-[#002060] group-hover:text-[#0070C0] transition-colors">
-                  {prog.title}
-                </h3>
-                <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                  {prog.description}
-                </p>
-
-                {/* Client Blueprint Specs */}
-                <div className="my-5 p-3.5 rounded-xl bg-slate-50 border border-[#00B0F0]/20 text-xs space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500 font-medium">Network Scope:</span>
-                    <span className="font-bold text-[#002060]">
-                      $10,000 – $500M+
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500 font-medium">Credit Evaluation:</span>
-                    <span className="font-bold text-[#0070C0]">
-                      {prog.creditRequirement}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500 font-medium">Terms & Rates:</span>
-                    <span className="font-medium text-slate-700 text-[11px]">
-                      180-Pt Investment IQ Evaluated
-                    </span>
-                  </div>
-                </div>
-
-                {/* Sample Eligible Purposes */}
-                <div>
-                  <span className="text-[11px] font-bold text-slate-700 uppercase tracking-wider block mb-2">
-                    Eligible Uses of Funds:
-                  </span>
-                  <ul className="text-[11px] text-slate-600 space-y-1.5">
-                    {prog.eligiblePurposes.slice(0, 3).map((use, i) => (
-                      <li key={i} className="flex items-start gap-1.5">
-                        <span className="text-[#00B0F0] font-bold">•</span>
-                        <span>{use}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              {/* Card Photography Banner (Clean Image, No Badges) */}
+              <div className="relative h-48 w-full overflow-hidden bg-slate-900 shrink-0">
+                <img
+                  src={prog.image || getProgramImage(prog.slug || prog.id)}
+                  alt={prog.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/images/hero_finance.jpg';
+                  }}
+                />
               </div>
 
-              <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between gap-3">
-                <Link
-                  to={`/loan-programs/${prog.slug}`}
-                  className="text-xs font-bold text-[#0070C0] hover:text-[#00B0F0] transition-colors"
-                >
-                  Full Details &rarr;
-                </Link>
+              {/* Card Content Body (Compact Spacing & Full Data) */}
+              <div className="p-4 sm:p-5 flex flex-col justify-between flex-1">
+                <div>
+                  <h3 className="text-base font-bold text-[#002060] group-hover:text-[#0070C0] transition-colors leading-tight">
+                    {prog.title}
+                  </h3>
+                  <p className="text-[11px] sm:text-xs text-slate-600 mt-1.5 leading-snug">
+                    {prog.description}
+                  </p>
 
-                <Link
-                  to={`/loan-programs/${prog.slug}`}
-                  className="px-4 py-2 rounded-xl text-xs font-bold text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] shadow-sm shadow-amber-300/40 hover:scale-105 active:scale-95 transition-all border border-amber-300"
-                >
-                  Apply Now
-                </Link>
+                  {/* Client Blueprint Specs */}
+                  <div className="my-3 p-3 rounded-xl bg-slate-50 border border-[#00B0F0]/20 text-xs space-y-1.5">
+                    <div className="flex justify-between items-center text-[11px] sm:text-xs">
+                      <span className="text-slate-500 font-medium">Typical Loan Size:</span>
+                      <span className="font-bold text-[#002060]">
+                        {prog.fundingScope || '$10,000 – $500M+'}
+                      </span>
+                    </div>
+                    {prog.approvalTime && (
+                      <div className="flex justify-between items-center text-[11px] sm:text-xs">
+                        <span className="text-slate-500 font-medium">Approval Speed:</span>
+                        <span className="font-bold text-[#0070C0] text-right truncate max-w-[65%]">
+                          {prog.approvalTime}
+                        </span>
+                      </div>
+                    )}
+                    {prog.creditRequirement && (
+                      <div className="flex justify-between items-center text-[11px] sm:text-xs">
+                        <span className="text-slate-500 font-medium">Credit Evaluation:</span>
+                        <span className="font-bold text-[#0070C0] text-right truncate max-w-[65%]">
+                          {prog.creditRequirement}
+                        </span>
+                      </div>
+                    )}
+                    {prog.termMonths && (
+                      <div className="flex justify-between items-center text-[11px] sm:text-xs">
+                        <span className="text-slate-500 font-medium">Repayment Terms:</span>
+                        <span className="font-medium text-slate-700 text-[11px] text-right truncate max-w-[65%]">
+                          {prog.termMonths}
+                        </span>
+                      </div>
+                    )}
+                    {prog.documentNotes && (
+                      <div className="pt-1.5 border-t border-slate-200/70 flex items-center gap-1.5 text-emerald-700 font-bold text-[11px]">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <span className="truncate">{prog.documentNotes}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Sample Eligible Purposes */}
+                  {prog.eligiblePurposes && prog.eligiblePurposes.length > 0 && (
+                    <div className="pt-0.5">
+                      <span className="text-[10px] font-bold text-slate-700 uppercase tracking-wider block mb-1">
+                        Eligible Uses of Funds:
+                      </span>
+                      <ul className="text-[11px] text-slate-600 space-y-1">
+                        {prog.eligiblePurposes.slice(0, 3).map((use, i) => (
+                          <li key={i} className="flex items-start gap-1.5 leading-snug">
+                            <span className="text-[#00B0F0] font-bold">•</span>
+                            <span>{use}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                <div className="pt-3.5 mt-3.5 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <Link
+                    to={`/loan-programs/${prog.slug}`}
+                    className="text-xs font-bold text-[#0070C0] hover:text-[#00B0F0] transition-colors"
+                  >
+                    Full Details &rarr;
+                  </Link>
+
+                  <Link
+                    to={`/loan-programs/${prog.slug}`}
+                    className="px-3.5 py-1.5 rounded-lg text-xs font-bold text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] shadow-sm shadow-amber-300/40 hover:scale-105 active:scale-95 transition-all border border-amber-300"
+                  >
+                    Apply Now
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

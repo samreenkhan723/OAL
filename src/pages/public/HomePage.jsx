@@ -382,7 +382,7 @@ export const HomePage = () => {
     <div className="bg-[#F8FAFC] text-slate-800 space-y-16 sm:space-y-24 pb-20 selection:bg-[#00B0F0]/25 selection:text-[#002060]">
 
       {/* 1. HERO SECTION — TWO-COLUMN EDITORIAL COMPOSITION WITH BALANCED PROPORTIONS */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#F0F9FF] via-white to-[#F8FAFC] pt-10 pb-16 sm:pt-16 sm:pb-20 border-b border-slate-200">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#F0F9FF] via-white to-[#F8FAFC] pt-10 pb-8 sm:pt-14 sm:pb-10 border-b border-slate-200">
         
         {/* Subtle background ambient accents */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#00B0F0]/10 rounded-full blur-3xl pointer-events-none" />
@@ -516,20 +516,20 @@ export const HomePage = () => {
       </section>
 
       {/* 2A. SECTION A: SPECIALTY COMMERCIAL LOAN PROGRAMS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 !mt-6 sm:!mt-8">
         
         {/* Section Heading & Introduction */}
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+        <div className="text-center max-w-2xl mx-auto mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00B0F0]/15 text-[#0070C0] border border-[#00B0F0]/30 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 text-[#00B0F0]" />
             <span>Commercial Blueprint Programs &amp; Deal Syndicate</span>
           </div>
           
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-[#002060] tracking-tight">
+          <h2 className="mt-3.5 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-[#002060] tracking-tight">
             Specialty Commercial Loan Programs
           </h2>
           
-          <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
+          <p className="mt-3 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
             Institutional underwriting across our 8 targeted specialty commercial loan categories, alongside The Money Club private debt investor syndicate. Nationwide coverage from $10,000 to $500 Million+ welcoming good and bad credit borrowers.
           </p>
         </div>
@@ -689,7 +689,7 @@ export const HomePage = () => {
             to="/loan-programs"
             className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-white border-2 border-slate-200 hover:border-[#0070C0] text-sm font-bold text-[#002060] hover:text-[#0070C0] shadow-xs transition-all"
           >
-            <span>Explore Complete Marketplace Catalog Across All 8 Programs</span>
+            <span>Explore Complete Marketplace Catalog Across All 34 Programs</span>
             <ArrowRight className="w-4 h-4 text-[#0070C0]" />
           </Link>
         </div>
@@ -697,27 +697,27 @@ export const HomePage = () => {
       </section>
 
       {/* 2B. SECTION B: LOANS BY INDUSTRY */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 !mt-10 sm:!mt-12">
         
         {/* Section Heading & Introduction */}
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+        <div className="text-center max-w-2xl mx-auto mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0070C0]/15 text-[#0070C0] border border-[#0070C0]/30 text-xs font-bold uppercase tracking-wider">
             <Building className="w-3.5 h-3.5 text-[#0070C0]" />
             <span>Sector-Specific Commercial Financing</span>
           </div>
           
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-[#002060] tracking-tight">
+          <h2 className="mt-3.5 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-[#002060] tracking-tight">
             Loans by Industry
           </h2>
           
-          <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
+          <p className="mt-3 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
             Purpose-built commercial debt structures tailored to the unique business models, equipment needs, and cash flow cycles of 20 key industry sectors.
           </p>
         </div>
 
         {/* 3-Column Desktop Grid with Distinct Visual Assets & Equal Card Heights */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-          {INDUSTRY_LOANS.map((ind) => {
+          {INDUSTRY_LOANS.slice(0, 6).map((ind) => {
             const visual = getCategoryVisuals(ind.id);
 
             return (

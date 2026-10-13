@@ -252,8 +252,8 @@ export const RegisterPage = () => {
               <span className="font-heading font-extrabold text-2xl tracking-tight text-white block leading-none">
                 OPM <span className="text-[#00B0F0]">ASAP</span>
               </span>
-              <span className="text-[11px] uppercase font-bold tracking-widest text-[#FFD200] block mt-1">
-                Commercial Lending NetWORK
+              <span className="text-[11px] font-bold tracking-wide text-[#FFD200] block mt-1">
+                Shop for Money, Get Approved
               </span>
             </div>
           </Link>

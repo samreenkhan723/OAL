@@ -344,11 +344,11 @@ export const LoanProgramDetailPage = () => {
             Approved Financing Purposes
           </h3>
           <p className="text-xs text-slate-500 leading-relaxed">
-            Institutional underwriters in the OAL Network support the following commercial uses of capital:
+            Key approved financing purposes and eligible use of funds:
           </p>
 
           <ul className="space-y-3 pt-2">
-            {program.eligiblePurposes.map((purpose, idx) => (
+            {program.eligiblePurposes && program.eligiblePurposes.map((purpose, idx) => (
               <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
                 <span className="w-2 h-2 rounded-full bg-[#00B0F0] mt-1.5 shrink-0" />
                 <span>{purpose}</span>
@@ -363,12 +363,18 @@ export const LoanProgramDetailPage = () => {
             <FileText className="w-5 h-5 text-[#0070C0]" />
             Required Underwriting Documents
           </h3>
+          {program.documentNotes && (
+            <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs font-bold text-emerald-800 flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>{program.documentNotes}</span>
+            </div>
+          )}
           <p className="text-xs text-slate-500 leading-relaxed">
-            Prepare these documentation files to complete identity verification and submit your deal to the marketplace:
+            {program.documentNotes ? 'Documentation guidelines for this program:' : 'Standard documentation files requested for this financing program:'}
           </p>
 
           <ul className="space-y-3 pt-2">
-            {program.requiredDocuments.map((doc, idx) => (
+            {program.requiredDocuments && program.requiredDocuments.map((doc, idx) => (
               <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
                 <CheckCircle2 className="w-4 h-4 text-[#0070C0] shrink-0 mt-0.5" />
                 <span>{doc}</span>
@@ -378,17 +384,6 @@ export const LoanProgramDetailPage = () => {
         </div>
       </div>
 
-      {/* Underwriting Architecture Note */}
-      <div className="p-6 rounded-2xl bg-sky-50/60 border border-[#00B0F0]/30 text-xs text-slate-700 space-y-2">
-        <h4 className="font-bold text-[#002060] flex items-center gap-1.5">
-          <Info className="w-4 h-4 text-[#0070C0]" />
-          OAL Underwriting Rules & Scoring Notice
-        </h4>
-        <p className="leading-relaxed text-slate-600">
-          Submitting an application initiates an automated 180-point Investment IQ evaluation based on 5 core categories (Credit 70 pts, Cash Flow 50 pts, Collateral 30 pts, Business Plan 20 pts, Risk 10 pts). After contact verification, your profile is anonymized for lenders. Rule FR-08 ensures a maximum of 3 concurrent institutional lenders work on any single deal, with all communications mediated through your dedicated OAL Representative.
-        </p>
-      </div>
-
       {/* Bottom Apply for This Program CTA Bar */}
       <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#002060] to-[#0070C0] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
         <div>
@@ -396,7 +391,7 @@ export const LoanProgramDetailPage = () => {
             Ready to apply for {program.title}?
           </h3>
           <p className="text-xs text-slate-200 mt-1">
-            Complete the secure intake wizard to generate your 180-point Investment IQ score and access institutional lenders.
+            Complete the quick application form to get pre-approved and connect directly with verified lenders for {program.title}.
           </p>
         </div>
         <button
