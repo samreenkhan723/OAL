@@ -20,6 +20,7 @@ export const MOCK_USERS = [
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
     verified: true,
     mfaEnabled: true,
+    verificationStatus: 'ACTIVE',
     referralCode: 'OAL-MARCUS-892',
     referralEarnings: 1750
   },
@@ -36,6 +37,7 @@ export const MOCK_USERS = [
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
     verified: true,
     mfaEnabled: true,
+    verificationStatus: 'ACTIVE',
     subscriptionTier: 'Enterprise Institutional',
     minCreditScore: 650,
     activeWorkingDeals: 2
@@ -53,7 +55,24 @@ export const MOCK_USERS = [
     avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
     verified: true,
     mfaEnabled: true,
+    verificationStatus: 'ACTIVE',
     assignedDealsCount: 14
+  },
+  {
+    id: 'usr_rep_02',
+    name: 'Jonathan Pierce',
+    email: 'j.pierce@oalnetwork.com',
+    aliases: ['jonathan@oal.com', 'pierce@oal.com', 'rep2@oal.com', 'rep2@oalnetwork.com'],
+    password: 'Password123!',
+    phone: '+1 (555) 301-4412',
+    role: 'rep',
+    company: 'OAL Network Brokerage Services',
+    title: 'Healthcare & Franchise Financing Agent',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+    verified: true,
+    mfaEnabled: true,
+    verificationStatus: 'ACTIVE',
+    assignedDealsCount: 1
   },
   {
     id: 'usr_admin_01',
@@ -68,6 +87,7 @@ export const MOCK_USERS = [
     avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
     verified: true,
     mfaEnabled: true,
+    verificationStatus: 'ACTIVE',
     isSuperAdmin: true
   },
   {
@@ -82,7 +102,8 @@ export const MOCK_USERS = [
     title: 'Senior Underwriting Support Specialist',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
     verified: true,
-    mfaEnabled: true
+    mfaEnabled: true,
+    verificationStatus: 'ACTIVE'
   }
 ];
 

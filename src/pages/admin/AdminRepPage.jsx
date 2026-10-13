@@ -4,24 +4,19 @@ import { useApp } from '../../context/AppContext';
 import { VerifyBadge } from '../../components/common/VerifyBadge';
 
 export const AdminRepPage = () => {
-  const { addToast } = useApp();
-  const [reps, setReps] = useState([
-    { id: 'usr_rep1', name: 'Elena Rostova', title: 'Senior Commercial Placement Specialist', email: 'elena.rostova@oalnetwork.com', phone: '+1 (555) 901-8321', activeBorrowers: 14, offersMediated: 28, status: 'ACTIVE', maxCapacity: 20 },
-    { id: 'usr_rep2', name: 'Jonathan Pierce', title: 'Healthcare & Franchise Financing Agent', email: 'j.pierce@oalnetwork.com', phone: '+1 (555) 301-4412', activeBorrowers: 9, offersMediated: 15, status: 'ACTIVE', maxCapacity: 15 },
-  ]);
+  const { reps, updateRepRouting, applications } = useApp();
 
   const [selectedRep, setSelectedRep] = useState(null);
   const [repForm, setRepForm] = useState({ maxCapacity: 20, status: 'ACTIVE' });
 
   const handleOpenRouting = (r) => {
     setSelectedRep(r);
-    setRepForm({ maxCapacity: r.maxCapacity, status: r.status });
+    setRepForm({ maxCapacity: r.maxCapacity || 20, status: r.status || 'ACTIVE' });
   };
 
   const handleSaveRouting = (e) => {
     e.preventDefault();
-    setReps(reps.map(r => r.id === selectedRep.id ? { ...r, ...repForm } : r));
-    addToast('Routing Rules Updated [SIMULATED]', `Updated caseload ceiling for ${selectedRep.name} to ${repForm.maxCapacity} files.`, 'success');
+    updateRepRouting(selectedRep.id, repForm);
     setSelectedRep(null);
   };
 
@@ -40,32 +35,49 @@ export const AdminRepPage = () => {
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs divide-y divide-slate-100">
-        {reps.map((r) => (
-          <div key={r.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
-            <div className="space-y-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <h3 className="text-sm font-bold text-slate-900">{r.name}</h3>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                  {r.status}
-                </span>
-              </div>
-              <div className="text-xs text-blue-600 font-semibold">{r.title}</div>
-              <div className="text-xs text-slate-400 break-all">
-                {r.email} • {r.phone}
-              </div>
-              <div className="text-xs text-slate-700 pt-1">
-                Active Borrower Load: <strong>{r.activeBorrowers} / {r.maxCapacity} files</strong> • Offers Mediated: <strong>{r.offersMediated}</strong>
-              </div>
-            </div>
+        {(reps || []).map((r) => {
+          const liveLoad = (applications || []).filter(a =>
+            a.assignedRep &&
+            (a.assignedRep.id === r.id ||
+             (a.assignedRep.email && r.email && a.assignedRep.email.toLowerCase() === r.email.toLowerCase()))
+          ).length;
 
-            <button
-              onClick={() => handleOpenRouting(r)}
-              className="px-4 py-2 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-xs font-bold text-slate-700 transition-colors w-full sm:w-auto text-center"
-            >
-              Manage Routing
-            </button>
-          </div>
-        ))}
+          const isPaused = r.status === 'PAUSED';
+          const isPending = r.verificationStatus && r.verificationStatus !== 'ACTIVE';
+
+          return (
+            <div key={r.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-sm font-bold text-slate-900">{r.name}</h3>
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                    isPending
+                      ? 'bg-amber-50 text-amber-700 border-amber-200'
+                      : isPaused
+                      ? 'bg-rose-50 text-rose-700 border-rose-200'
+                      : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                  }`}>
+                    {isPending ? `APPROVAL PENDING (${r.verificationStatus})` : r.status || 'ACTIVE'}
+                  </span>
+                </div>
+                <div className="text-xs text-blue-600 font-semibold">{r.title}</div>
+                <div className="text-xs text-slate-400 break-all">
+                  {r.email} • {r.phone}
+                </div>
+                <div className="text-xs text-slate-700 pt-1">
+                  Active Borrower Load: <strong>{liveLoad} / {r.maxCapacity || 20} files</strong> • Offers Mediated: <strong>{r.offersMediated || 0}</strong>
+                </div>
+              </div>
+
+              <button
+                onClick={() => handleOpenRouting(r)}
+                className="px-4 py-2 rounded-xl border border-slate-200 hover:border-[#0070C0] hover:text-[#0070C0] text-xs font-bold text-slate-700 transition-colors w-full sm:w-auto text-center cursor-pointer"
+              >
+                Manage Routing
+              </button>
+            </div>
+          );
+        })}
       </div>
 
       {/* Manage Routing Modal */}

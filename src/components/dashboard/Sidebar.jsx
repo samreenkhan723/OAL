@@ -121,7 +121,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
           {
             title: 'Coordination',
             items: [
-              { label: 'Communication Hub', path: '/rep/messages', icon: MessageSquare, badge: 'Active' },
+              { label: 'OAL LetsWork Portal', path: '/rep/messages', icon: MessageSquare, badge: 'Active' },
               { label: 'Offers (Read-Only)', path: '/rep/offers', icon: DollarSign, badge: 'Audit' },
             ]
           },

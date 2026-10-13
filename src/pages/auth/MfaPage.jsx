@@ -36,9 +36,12 @@ export const MfaPage = () => {
 
       addToast('Authentication Complete', `MFA verified. Welcome to OAL Network, ${pendingUser.name}!`, 'success');
 
-      // Navigate strictly to the registered user's role dashboard
-      if (pendingUser.role === 'lender') {
-        navigate('/lender/dashboard', { replace: true });
+      // Navigate Lenders and Reps to Pending Approval screen for compliance review
+      if (pendingUser.role === 'lender' || pendingUser.role === 'rep') {
+        navigate('/auth/pending-approval', {
+          replace: true,
+          state: { user: regResult.user }
+        });
         return;
       }
 
@@ -63,6 +66,11 @@ export const MfaPage = () => {
     // Existing session / demo navigation fallback
     addToast('Authentication Verified', 'MFA verified for active session.', 'success');
     const targetRole = currentRole || 'borrower';
+    if (currentUser && (targetRole === 'lender' || targetRole === 'rep') && currentUser.verificationStatus !== 'ACTIVE') {
+      navigate('/auth/pending-approval', { replace: true, state: { user: currentUser } });
+      return;
+    }
+
     if (targetRole === 'lender') {
       navigate('/lender/dashboard', { replace: true });
     } else if (targetRole === 'rep') {
@@ -85,7 +93,7 @@ export const MfaPage = () => {
         </h2>
         <p className="text-xs text-slate-500">
           {pendingUser ? (
-            <>Securing {pendingUser.role === 'lender' ? 'Institutional Lender' : 'Commercial Borrower'} account for <strong className="text-slate-800">{pendingUser.name}</strong></>
+            <>Securing {pendingUser.role === 'lender' ? 'Institutional Lender' : pendingUser.role === 'rep' ? 'OAL Representative' : 'Commercial Borrower'} account for <strong className="text-slate-800">{pendingUser.name}</strong></>
           ) : (
             'Enter the 6-digit security token from your Authenticator app.'
           )}
@@ -118,7 +126,13 @@ export const MfaPage = () => {
               type="submit"
               className="w-full py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
             >
-              <span>{program ? 'Verify & Begin Loan Application' : 'Verify & Launch Dashboard'}</span>
+              <span>
+                {pendingUser && (pendingUser.role === 'lender' || pendingUser.role === 'rep')
+                  ? 'Verify & Submit for Compliance Approval'
+                  : program
+                  ? 'Verify & Begin Loan Application'
+                  : 'Verify & Launch Dashboard'}
+              </span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>

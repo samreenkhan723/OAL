@@ -27,6 +27,7 @@ import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
 import { VerifyContactPage } from './pages/auth/VerifyContactPage';
 import { MfaPage } from './pages/auth/MfaPage';
+import { PendingApprovalPage } from './pages/auth/PendingApprovalPage';
 
 // Borrower Pages
 import { BorrowerDashboard } from './pages/borrower/BorrowerDashboard';
@@ -153,6 +154,7 @@ export function App() {
           <Route path="/auth/register" element={<RegisterPage />} />
           <Route path="/auth/verify" element={<VerifyContactPage />} />
           <Route path="/auth/mfa" element={<MfaPage />} />
+          <Route path="/auth/pending-approval" element={<PendingApprovalPage />} />
 
           {/* Borrower Workspace Routes (Protected) */}
           <Route
@@ -228,6 +230,7 @@ export function App() {
             <Route path="loan-requests" element={<RepLoanRequestsPage />} />
             <Route path="saved-leads" element={<RepSavedLeadsPage />} />
             <Route path="messages" element={<RepCommunicationPage />} />
+            <Route path="communication" element={<RepCommunicationPage />} />
             <Route path="offers" element={<RepOffersPage />} />
             <Route path="notifications" element={<NotificationsPage />} />
             <Route path="analytics" element={<RepAnalyticsPage />} />

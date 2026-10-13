@@ -8,7 +8,8 @@ import {
   INITIAL_TICKETS,
   INITIAL_KB_ARTICLES,
   INITIAL_AUDIT_LOGS,
-  INITIAL_NETWORK_ACTIVITY
+  INITIAL_NETWORK_ACTIVITY,
+  INITIAL_REPS
 } from '../data/initialData';
 import {
   MOCK_USERS,
@@ -31,14 +32,107 @@ const GUEST_USER = {
   avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'
 };
 
+// Seed sample pending applications for demonstration in Admin Verification Center
+const INITIAL_ACCOUNT_APPLICATIONS = [
+  {
+    id: 'usr_lender_pending_01',
+    name: 'David Vance',
+    company: 'Summit Commercial Debt Fund LLC',
+    email: 'dvance@summitcreditfund.com',
+    phone: '+1 (555) 782-9012',
+    role: 'lender',
+    title: 'Managing Partner / Underwriter',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+    verified: true,
+    mfaEnabled: true,
+    mfaVerified: true,
+    verificationStatus: 'PENDING_APPROVAL',
+    isPrototypeAccount: true,
+    createdAt: '2026-10-12T09:30:00.000Z',
+    businessInfo: {
+      entityType: 'Direct Commercial Credit Fund',
+      taxId: 'XX-XXX8921',
+      corporateStructure: 'Limited Liability Company (LLC)',
+      jurisdiction: 'Delaware, USA'
+    },
+    documents: [
+      {
+        id: 'DOC-LIC-01',
+        name: 'Articles_of_Incorporation_Summit_LLC.pdf',
+        category: 'Business License & Registration',
+        size: '2.4 MB',
+        uploadedAt: '2026-10-12T09:30:00.000Z'
+      },
+      {
+        id: 'DOC-TAX-01',
+        name: 'IRS_EIN_Confirmation_Letter_CP575.pdf',
+        category: 'Federal Tax ID Verification',
+        size: '1.1 MB',
+        uploadedAt: '2026-10-12T09:30:00.000Z'
+      }
+    ]
+  },
+  {
+    id: 'usr_rep_pending_01',
+    name: 'Robert C. Caldwell',
+    company: 'Caldwell Commercial Capital Brokerage',
+    email: 'r.caldwell@caldwellbrokers.com',
+    phone: '+1 (555) 341-8890',
+    role: 'rep',
+    title: 'Senior Commercial Placement Specialist',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+    verified: true,
+    mfaEnabled: true,
+    mfaVerified: true,
+    verificationStatus: 'PENDING_APPROVAL',
+    isPrototypeAccount: true,
+    createdAt: '2026-10-12T11:15:00.000Z',
+    repInfo: {
+      experienceYears: '8+ Years Commercial Lending & Brokerage',
+      specialty: 'Commercial Real Estate, SBA 7(a) & Equipment Leasing',
+      certifications: 'NMLS Licensed (#198204), Certified Commercial Finance Broker (CCFB)'
+    },
+    documents: [
+      {
+        id: 'DOC-REP-ID-01',
+        name: 'State_Drivers_License_Verification.pdf',
+        category: 'Identity Verification (Government ID)',
+        size: '1.8 MB',
+        uploadedAt: '2026-10-12T11:15:00.000Z'
+      },
+      {
+        id: 'DOC-REP-CERT-01',
+        name: 'NMLS_Certification_License_Copy.pdf',
+        category: 'Professional Brokerage Credential',
+        size: '950 KB',
+        uploadedAt: '2026-10-12T11:15:00.000Z'
+      }
+    ]
+  }
+];
+
 export const AppProvider = ({ children }) => {
-  // Prototype Registered Users stored in localStorage
+  // Prototype Registered Users stored in localStorage with backward-compatibility migration
   const [registeredUsers, setRegisteredUsers] = useState(() => {
     try {
       const saved = localStorage.getItem('oal_registered_users');
-      return saved ? JSON.parse(saved) : [];
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // Ensure all existing items have a verificationStatus
+          const normalized = parsed.map(u => ({
+            ...u,
+            verificationStatus: u.verificationStatus || 'ACTIVE'
+          }));
+          // Merge initial seed applications if not already present
+          const existingIds = new Set(normalized.map(u => u.id));
+          const toAdd = INITIAL_ACCOUNT_APPLICATIONS.filter(init => !existingIds.has(init.id));
+          return [...normalized, ...toAdd];
+        }
+      }
+      return INITIAL_ACCOUNT_APPLICATIONS;
     } catch (e) {
-      return [];
+      return INITIAL_ACCOUNT_APPLICATIONS;
     }
   });
 
@@ -54,11 +148,23 @@ export const AppProvider = ({ children }) => {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (parsed && parsed.id) return parsed;
+        if (parsed && parsed.id) {
+          const savedReg = localStorage.getItem('oal_registered_users');
+          const allReg = savedReg ? JSON.parse(savedReg) : [];
+          const live = allReg.find(u => u.id === parsed.id || (u.email && parsed.email && u.email.toLowerCase() === parsed.email.toLowerCase()));
+          if (live) {
+            return { ...parsed, ...live, verificationStatus: live.verificationStatus || parsed.verificationStatus || 'ACTIVE' };
+          }
+          return {
+            ...parsed,
+            verificationStatus: parsed.verificationStatus || 'ACTIVE'
+          };
+        }
       } catch (e) { /* ignore */ }
     }
     const savedRole = localStorage.getItem('oal_active_role') || 'borrower';
-    return MOCK_USERS.find(u => u.role === savedRole) || MOCK_USERS[0];
+    const fallback = MOCK_USERS.find(u => u.role === savedRole) || MOCK_USERS[0];
+    return { ...fallback, verificationStatus: fallback.verificationStatus || 'ACTIVE' };
   });
 
   // Active Role
@@ -107,6 +213,53 @@ export const AppProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : INITIAL_NETWORK_ACTIVITY;
   });
 
+  // Reps Roster state with localStorage persistence
+  const [reps, setReps] = useState(() => {
+    try {
+      const saved = localStorage.getItem('oal_reps');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+      return INITIAL_REPS;
+    } catch (e) {
+      return INITIAL_REPS;
+    }
+  });
+
+  // Lead Distribution Settings with localStorage persistence (AUTO | MANUAL)
+  const [distributionSettings, setDistributionSettings] = useState(() => {
+    try {
+      const saved = localStorage.getItem('oal_distribution_settings');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+      return {
+        mode: 'MANUAL', // 'AUTO' | 'MANUAL'
+        lastChangedAt: new Date().toISOString(),
+        changedBy: 'System Default'
+      };
+    } catch (e) {
+      return {
+        mode: 'MANUAL',
+        lastChangedAt: new Date().toISOString(),
+        changedBy: 'System Default'
+      };
+    }
+  });
+
+  // Persistent simulated notification records
+  const [notifications, setNotifications] = useState(() => {
+    try {
+      const saved = localStorage.getItem('oal_notifications');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
   // In-app toasts
   const [toasts, setToasts] = useState([]);
 
@@ -144,6 +297,34 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('oal_tickets', JSON.stringify(tickets));
   }, [tickets]);
 
+  useEffect(() => {
+    localStorage.setItem('oal_audit_logs', JSON.stringify(auditLogs));
+  }, [auditLogs]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('oal_reps', JSON.stringify(reps));
+    } catch (e) {
+      console.error('Failed to sync reps', e);
+    }
+  }, [reps]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('oal_distribution_settings', JSON.stringify(distributionSettings));
+    } catch (e) {
+      console.error('Failed to sync distribution settings', e);
+    }
+  }, [distributionSettings]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('oal_notifications', JSON.stringify(notifications));
+    } catch (e) {
+      console.error('Failed to sync notifications', e);
+    }
+  }, [notifications]);
+
   // Toast dispatch helper
   const addToast = (title, message, type = 'info') => {
     const id = Date.now().toString();
@@ -163,7 +344,7 @@ export const AppProvider = ({ children }) => {
     return !isEmailRegistered(email, registeredUsers);
   };
 
-  // Register new prototype user record (FR-01 Frontend-only Prototype Registration)
+  // Register new prototype user record (Supports Borrower, Lender, and OAL Representative)
   const registerPrototypeUser = (formData) => {
     const emailNormalized = (formData.email || '').trim().toLowerCase();
 
@@ -173,9 +354,13 @@ export const AppProvider = ({ children }) => {
       return { success: false, error: 'An account with this email address already exists.' };
     }
 
-    // Role restrictions: public registration only permits 'borrower' or 'lender'
-    const allowedRoles = ['borrower', 'lender'];
+    // Role support per PRD: 'borrower', 'lender', or 'rep'
+    const allowedRoles = ['borrower', 'lender', 'rep'];
     const assignedRole = allowedRoles.includes(formData.role) ? formData.role : 'borrower';
+    const isBorrower = assignedRole === 'borrower';
+
+    // Verification status model: Borrowers are ACTIVE; Lenders & Reps require Admin Compliance approval
+    const verificationStatus = isBorrower ? 'ACTIVE' : (formData.verificationStatus || 'PENDING_APPROVAL');
 
     const userId = formData.id || `usr_${assignedRole}_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
     const authToken = formData.simulatedAuthToken || computeSimulatedAuthToken(emailNormalized, formData.password || 'Password123!');
@@ -187,13 +372,28 @@ export const AppProvider = ({ children }) => {
       phone: (formData.phone || '').trim(),
       company: (formData.company || formData.companyName || `${formData.name || formData.fullName || 'Member'} Holdings`).trim(),
       role: assignedRole,
-      title: formData.title || (assignedRole === 'lender' ? 'Managing Partner / Underwriter' : 'Principal / Business Owner'),
-      avatar: formData.avatar || (assignedRole === 'lender'
-        ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80'
-        : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'),
+      title: formData.title || (
+        assignedRole === 'lender'
+          ? 'Managing Partner / Underwriter'
+          : assignedRole === 'rep'
+          ? 'Commercial Placement Specialist'
+          : 'Principal / Business Owner'
+      ),
+      avatar: formData.avatar || (
+        assignedRole === 'lender'
+          ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80'
+          : assignedRole === 'rep'
+          ? 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80'
+          : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'
+      ),
       verified: Boolean(formData.verified),
       mfaEnabled: true,
       mfaVerified: Boolean(formData.mfaVerified),
+      verificationStatus,
+      rejectionReason: null,
+      businessInfo: formData.businessInfo || null,
+      repInfo: formData.repInfo || null,
+      documents: formData.documents || [],
       isPrototypeAccount: true,
       createdAt: formData.createdAt || new Date().toISOString(),
       simulatedAuthToken: authToken
@@ -207,7 +407,7 @@ export const AppProvider = ({ children }) => {
       console.error('Error saving registered users to localStorage', e);
     }
 
-    // Establish active authenticated session for newly registered user
+    // Set session state
     setIsAuthenticated(true);
     setActiveUser(newUser);
     setCurrentRole(newUser.role);
@@ -215,22 +415,474 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('oal_current_user', JSON.stringify(newUser));
     localStorage.setItem('oal_active_role', newUser.role);
 
-    addToast('Account Registered', `Welcome, ${newUser.name}! Your ${newUser.role.toUpperCase()} profile is ready.`, 'success');
+    if (isBorrower) {
+      addToast('Account Registered', `Welcome, ${newUser.name}! Your Borrower profile is active.`, 'success');
+    } else {
+      addToast('Application Submitted', `Application received! Your ${newUser.role.toUpperCase()} credentials are awaiting compliance review.`, 'info');
+    }
+
     return { success: true, user: newUser };
+  };
+
+  // Approve pending applicant account (Admin Action)
+  const approveUserAccount = (userId) => {
+    let targetUserName = '';
+    let targetRole = '';
+    setRegisteredUsers(prev => prev.map(u => {
+      if (u.id === userId) {
+        targetUserName = u.name;
+        targetRole = u.role;
+        return {
+          ...u,
+          verificationStatus: 'ACTIVE',
+          rejectionReason: null,
+          approvedAt: new Date().toISOString(),
+          reviewedBy: activeUser?.name || 'Victoria Sterling (Compliance Officer)'
+        };
+      }
+      return u;
+    }));
+
+    // If currently logged-in user is the one being approved, update activeUser as well
+    if (activeUser?.id === userId) {
+      const updated = { ...activeUser, verificationStatus: 'ACTIVE', rejectionReason: null };
+      setActiveUser(updated);
+      localStorage.setItem('oal_current_user', JSON.stringify(updated));
+    }
+
+    // Sync Reps roster if approved user is a rep
+    setReps(prev => prev.map(r => {
+      if (r.id === userId || (r.aliases && r.aliases.includes(userId))) {
+        return { ...r, verificationStatus: 'ACTIVE', status: 'ACTIVE' };
+      }
+      return r;
+    }));
+
+    // Log in Audit Trail
+    const log = {
+      id: `AUD-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      actor: activeUser?.name || 'Compliance Officer',
+      action: 'USER_ACCOUNT_APPROVED',
+      target: userId,
+      details: `Approved ${targetRole.toUpperCase()} credentials for ${targetUserName || userId}. Account activated with full portal privileges.`,
+      severity: 'INFO'
+    };
+    setAuditLogs(prev => [log, ...prev]);
+
+    addToast('Account Approved', `Application for ${targetUserName || userId} approved. Portal access activated.`, 'success');
+  };
+
+  // Reject applicant account with reason (Admin Action)
+  const rejectUserAccount = (userId, reason) => {
+    let targetUserName = '';
+    let targetRole = '';
+    const rejectionNote = reason?.trim() || 'Incomplete credential documentation or compliance criteria not satisfied.';
+
+    setRegisteredUsers(prev => prev.map(u => {
+      if (u.id === userId) {
+        targetUserName = u.name;
+        targetRole = u.role;
+        return {
+          ...u,
+          verificationStatus: 'REJECTED',
+          rejectionReason: rejectionNote,
+          rejectedAt: new Date().toISOString(),
+          reviewedBy: activeUser?.name || 'Victoria Sterling (Compliance Officer)'
+        };
+      }
+      return u;
+    }));
+
+    if (activeUser?.id === userId) {
+      const updated = { ...activeUser, verificationStatus: 'REJECTED', rejectionReason: rejectionNote };
+      setActiveUser(updated);
+      localStorage.setItem('oal_current_user', JSON.stringify(updated));
+    }
+
+    // Sync Reps roster if rejected user is a rep
+    setReps(prev => prev.map(r => {
+      if (r.id === userId || (r.aliases && r.aliases.includes(userId))) {
+        return { ...r, verificationStatus: 'REJECTED', status: 'INACTIVE' };
+      }
+      return r;
+    }));
+
+    // Log in Audit Trail
+    const log = {
+      id: `AUD-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      actor: activeUser?.name || 'Compliance Officer',
+      action: 'USER_ACCOUNT_REJECTED',
+      target: userId,
+      details: `Rejected ${targetRole.toUpperCase()} application for ${targetUserName || userId}. Reason: "${rejectionNote}"`,
+      severity: 'WARNING'
+    };
+    setAuditLogs(prev => [log, ...prev]);
+
+    addToast('Application Rejected', `Registration for ${targetUserName || userId} declined with formal compliance note.`, 'warning');
+  };
+
+  // Phase 2.4A: Guarded Admin Lead Distribution Mode Action (AUTO | MANUAL)
+  const updateDistributionMode = (newMode) => {
+    if (currentRole !== 'admin') {
+      addToast('Access Denied', 'Only administrators are authorized to update lead distribution mode.', 'error');
+      return { success: false, message: 'Unauthorized: Admin role required.' };
+    }
+
+    const cleanMode = (newMode || '').toUpperCase().trim();
+    if (cleanMode !== 'AUTO' && cleanMode !== 'MANUAL') {
+      addToast('Invalid Mode', 'Lead distribution mode must be either AUTO or MANUAL.', 'warning');
+      return { success: false, message: 'Invalid distribution mode. Expected AUTO or MANUAL.' };
+    }
+
+    const previousMode = distributionSettings.mode || 'MANUAL';
+    if (previousMode === cleanMode) {
+      return { success: true, message: `Distribution mode is already ${cleanMode}.`, mode: cleanMode };
+    }
+
+    const updated = {
+      mode: cleanMode,
+      lastChangedAt: new Date().toISOString(),
+      changedBy: currentUser?.name || 'Victoria Sterling (Compliance Officer)'
+    };
+
+    setDistributionSettings(updated);
+
+    const log = {
+      id: `AUD-DIST-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      actor: `${currentUser?.name || 'Victoria Sterling'} (Admin)`,
+      action: 'DISTRIBUTION_MODE_UPDATED',
+      target: 'LEAD_DISTRIBUTION_ENGINE',
+      details: `Lead distribution routing mode changed from ${previousMode} to ${cleanMode}. No automatic reassignments executed per Phase 2.4A specification.`,
+      severity: 'INFO'
+    };
+    setAuditLogs(prev => [log, ...prev]);
+
+    addToast(
+      'Distribution Mode Updated',
+      `Lead distribution routing policy transitioned to ${cleanMode}.`,
+      'success'
+    );
+
+    return { success: true, mode: cleanMode, previousMode };
+  };
+
+  // Phase 2.4A: Guarded Admin Rep Routing & Caseload Policy Action
+  const updateRepRouting = (repId, repData) => {
+    if (currentRole !== 'admin') {
+      addToast('Access Denied', 'Only administrators can update representative caseload rules.', 'error');
+      return { success: false, message: 'Unauthorized: Admin role required.' };
+    }
+
+    let updatedRepName = '';
+    setReps(prev => prev.map(r => {
+      if (r.id === repId || r.email === repId || (r.aliases && r.aliases.includes(repId))) {
+        updatedRepName = r.name;
+        return {
+          ...r,
+          maxCapacity: repData.maxCapacity !== undefined ? Number(repData.maxCapacity) : r.maxCapacity,
+          status: repData.status || r.status
+        };
+      }
+      return r;
+    }));
+
+    const log = {
+      id: `AUD-REP-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      actor: `${currentUser?.name || 'Victoria Sterling'} (Admin)`,
+      action: 'REP_ROUTING_UPDATED',
+      target: repId,
+      details: `Updated routing policies for ${updatedRepName || repId}. Ceiling: ${repData.maxCapacity || 'unchanged'} files | Status: ${repData.status || 'unchanged'}.`,
+      severity: 'INFO'
+    };
+    setAuditLogs(prev => [log, ...prev]);
+
+    addToast('Routing Rules Saved', `Updated routing policies for ${updatedRepName || repId}.`, 'success');
+    return { success: true };
+  };
+
+  // Phase 2.4A: Lead Assignment State, Rep Access Control & Audit Integration
+  const assignOrReassignLead = (applicationId, repId, reason = '') => {
+    // 1. Guard: Only the active Admin role may execute through application UI and Context guard
+    if (currentRole !== 'admin') {
+      addToast('Access Denied', 'Only administrators can assign or reassign leads.', 'error');
+      return { success: false, message: 'Unauthorized: Only administrators can assign or reassign leads.' };
+    }
+
+    // 2. Verify the application exists
+    if (!applicationId || typeof applicationId !== 'string') {
+      return { success: false, message: 'Invalid or missing application ID.' };
+    }
+    const cleanAppId = applicationId.trim();
+    const app = (applications || []).find(a => a.id === cleanAppId);
+    if (!app) {
+      addToast('Assignment Error', `Application #${cleanAppId} does not exist.`, 'error');
+      return { success: false, message: `Application ${cleanAppId} not found.` };
+    }
+
+    // 3. Verify the selected Rep exists
+    if (!repId || typeof repId !== 'string') {
+      return { success: false, message: 'Invalid or missing representative ID.' };
+    }
+    const cleanRepId = repId.trim();
+
+    // Look up rep in centralized reps list, registeredUsers, or MOCK_USERS
+    const targetRep =
+      (reps || []).find(r =>
+        r.id === cleanRepId ||
+        r.email?.toLowerCase() === cleanRepId.toLowerCase() ||
+        (r.aliases && r.aliases.includes(cleanRepId))
+      ) ||
+      (registeredUsers || []).find(u =>
+        u.role === 'rep' &&
+        (u.id === cleanRepId || u.email?.toLowerCase() === cleanRepId.toLowerCase())
+      ) ||
+      (MOCK_USERS || []).find(u =>
+        u.role === 'rep' &&
+        (u.id === cleanRepId || u.email?.toLowerCase() === cleanRepId.toLowerCase() || (u.aliases && u.aliases.includes(cleanRepId)))
+      );
+
+    if (!targetRep) {
+      addToast('Assignment Error', `Representative '${cleanRepId}' was not found.`, 'error');
+      return { success: false, message: `Representative ${cleanRepId} not found.` };
+    }
+
+    // 4. Verify selected Rep has an approved, active account (reject pending, rejected, unapproved)
+    const repVerificationStatus = targetRep.verificationStatus || 'ACTIVE';
+    if (repVerificationStatus !== 'ACTIVE') {
+      addToast(
+        'Assignment Blocked',
+        `Cannot assign to ${targetRep.name}. Account compliance status is ${repVerificationStatus}.`,
+        'error'
+      );
+      return {
+        success: false,
+        message: `Representative ${targetRep.name} has not been approved by compliance (Status: ${repVerificationStatus}).`
+      };
+    }
+
+    // 5. Reject assignments to paused, pending, rejected or inactive Reps
+    const repStatus = targetRep.status || 'ACTIVE';
+    if (repStatus === 'PAUSED') {
+      addToast(
+        'Queue Paused',
+        `Representative ${targetRep.name}'s intake queue is currently PAUSED (caseload saturated).`,
+        'error'
+      );
+      return {
+        success: false,
+        message: `Representative ${targetRep.name} queue is currently PAUSED.`
+      };
+    }
+    if (repStatus !== 'ACTIVE') {
+      addToast(
+        'Inactive Representative',
+        `Representative ${targetRep.name} is currently ${repStatus} and cannot accept leads.`,
+        'error'
+      );
+      return {
+        success: false,
+        message: `Representative ${targetRep.name} status is ${repStatus}.`
+      };
+    }
+
+    // 6. Prevent duplicate or unnecessary assignments
+    const currentRep = app.assignedRep || null;
+    const isAlreadyAssignedToThisRep =
+      currentRep &&
+      (currentRep.id === targetRep.id ||
+       (currentRep.email && targetRep.email && currentRep.email.toLowerCase() === targetRep.email.toLowerCase()));
+
+    if (isAlreadyAssignedToThisRep) {
+      addToast(
+        'Duplicate Assignment',
+        `Application #${cleanAppId} is already assigned to ${targetRep.name}.`,
+        'info'
+      );
+      return {
+        success: false,
+        message: `Application ${cleanAppId} is already assigned to ${targetRep.name}.`
+      };
+    }
+
+    // 7. Respect existing Rep caseload limits & reject assignments exceeding available capacity
+    const maxCapacity = Number(targetRep.maxCapacity) || 20;
+    const currentCaseload = (applications || []).filter(a =>
+      a.id !== cleanAppId &&
+      a.assignedRep &&
+      (a.assignedRep.id === targetRep.id ||
+       (a.assignedRep.email && targetRep.email && a.assignedRep.email.toLowerCase() === targetRep.email.toLowerCase()))
+    ).length;
+
+    if (currentCaseload >= maxCapacity) {
+      addToast(
+        'Capacity Limit Reached',
+        `Representative ${targetRep.name} has reached maximum caseload limit (${currentCaseload}/${maxCapacity} files).`,
+        'error'
+      );
+      return {
+        success: false,
+        message: `Representative ${targetRep.name} has reached maximum capacity (${currentCaseload}/${maxCapacity} files).`
+      };
+    }
+
+    // 8. Determine assignment vs reassignment & record previous/new Rep identities
+    const isReassignment = Boolean(currentRep && currentRep.id);
+    const eventType = isReassignment ? 'LEAD_REASSIGNED' : 'LEAD_ASSIGNED';
+
+    const newAssignedRep = {
+      id: targetRep.id,
+      name: targetRep.name,
+      email: targetRep.email
+    };
+
+    // 9. Update the application's assignedRep information immutably, preserving every unrelated property
+    setApplications(prev => prev.map(a => {
+      if (a.id === cleanAppId) {
+        return {
+          ...a,
+          assignedRep: newAssignedRep,
+          updatedAt: new Date().toISOString()
+        };
+      }
+      return a;
+    }));
+
+    // 10. Update Reps roster active load
+    setReps(prev => prev.map(r => {
+      const isTarget = r.id === targetRep.id || (r.email && targetRep.email && r.email.toLowerCase() === targetRep.email.toLowerCase());
+      const isPrevious = currentRep && (r.id === currentRep.id || (r.email && currentRep.email && r.email.toLowerCase() === currentRep.email.toLowerCase()));
+
+      if (isTarget) {
+        return { ...r, activeBorrowers: (r.activeBorrowers || 0) + 1 };
+      }
+      if (isPrevious) {
+        return { ...r, activeBorrowers: Math.max(0, (r.activeBorrowers || 0) - 1) };
+      }
+      return r;
+    }));
+
+    // 11. Assignment Audit Trail (Event type: LEAD_ASSIGNED or LEAD_REASSIGNED)
+    const auditRecord = {
+      id: `AUD-ASSIGN-${Date.now()}-${Math.floor(100 + Math.random() * 900)}`,
+      timestamp: new Date().toISOString(),
+      actor: `${currentUser?.name || 'Victoria Sterling'} (Admin)`,
+      action: eventType,
+      target: cleanAppId,
+      details: isReassignment
+        ? `Application #${cleanAppId} reassigned from ${currentRep.name} (${currentRep.id}) to ${targetRep.name} (${targetRep.id}).${reason?.trim() ? ` Reason: "${reason.trim()}"` : ''}`
+        : `Application #${cleanAppId} assigned to ${targetRep.name} (${targetRep.id}).${reason?.trim() ? ` Reason: "${reason.trim()}"` : ''}`,
+      applicationId: cleanAppId,
+      previousRepId: currentRep?.id || null,
+      previousRepName: currentRep?.name || null,
+      newRepId: targetRep.id,
+      newRepName: targetRep.name,
+      actingAdminId: currentUser?.id || 'usr_admin_01',
+      reason: reason?.trim() || null,
+      severity: 'INFO'
+    };
+    setAuditLogs(prev => [auditRecord, ...(prev || [])]);
+
+    // 12. Frontend Notifications (Simulated notifications for target Rep and previous Rep)
+    const targetRepNotif = {
+      id: `notif-${Date.now()}-assign`,
+      title: isReassignment
+        ? `Lead Reassigned: ${app.businessName || cleanAppId}`
+        : `New Lead Assigned: ${app.businessName || cleanAppId}`,
+      category: 'deals',
+      timestamp: 'Just now',
+      read: false,
+      priority: 'high',
+      recipientId: targetRep.id,
+      recipientRole: 'rep',
+      description: `Placement #${cleanAppId} (${app.programName}, $${(app.amount || 0).toLocaleString()}) has been assigned to your placement desk by Admin.${reason?.trim() ? ` Note: "${reason.trim()}"` : ''}`,
+      actionLink: '/rep/messages',
+      actionLabel: 'Open Placement Chat'
+    };
+
+    setNotifications(prev => [targetRepNotif, ...(prev || [])]);
+
+    if (isReassignment && currentRep) {
+      const prevRepNotif = {
+        id: `notif-${Date.now()}-reassign-prev`,
+        title: `Lead Transferred: ${app.businessName || cleanAppId}`,
+        category: 'deals',
+        timestamp: 'Just now',
+        read: false,
+        priority: 'normal',
+        recipientId: currentRep.id,
+        recipientRole: 'rep',
+        description: `Placement #${cleanAppId} was reassigned to ${targetRep.name} by Admin.${reason?.trim() ? ` Note: "${reason.trim()}"` : ''}`,
+        actionLink: '/rep/leads',
+        actionLabel: 'View Pipeline'
+      };
+      setNotifications(prev => [prevRepNotif, ...(prev || [])]);
+    }
+
+    // 13. Clear Admin success message
+    addToast(
+      isReassignment ? 'Lead Reassigned' : 'Lead Assigned',
+      `Application #${cleanAppId} successfully ${isReassignment ? 'reassigned' : 'assigned'} to ${targetRep.name}.`,
+      'success'
+    );
+
+    // 14. Return clear success/failure result
+    return {
+      success: true,
+      message: `Application #${cleanAppId} successfully ${isReassignment ? 'reassigned' : 'assigned'} to ${targetRep.name}.`,
+      applicationId: cleanAppId,
+      previousRepId: currentRep?.id || null,
+      previousRepName: currentRep?.name || null,
+      newRepId: targetRep.id,
+      newRepName: targetRep.name,
+      auditId: auditRecord.id
+    };
+  };
+
+  // Retrieve verification status for a user
+  const getUserVerificationStatus = (userId) => {
+    if (!userId) return { status: 'PENDING_APPROVAL', rejectionReason: null, user: null };
+    const user = registeredUsers.find(u => u.id === userId || (u.email && activeUser && u.email.toLowerCase() === activeUser.email?.toLowerCase())) ||
+      MOCK_USERS.find(u => u.id === userId);
+    if (!user) {
+      return { status: 'PENDING_APPROVAL', rejectionReason: null, user: null };
+    }
+    const status = user.verificationStatus || 'ACTIVE';
+    return {
+      status,
+      rejectionReason: user.rejectionReason || null,
+      user
+    };
   };
 
   // Login with credentials (Prototype lookup: registered users first, then demo accounts)
   const login = (email, password) => {
     const res = authenticatePrototypeUser(email, password, registeredUsers);
     if (res.success) {
+      const enrichedUser = {
+        ...res.user,
+        verificationStatus: res.user.verificationStatus || 'ACTIVE'
+      };
+
       setIsAuthenticated(true);
-      setActiveUser(res.user);
-      setCurrentRole(res.user.role);
+      setActiveUser(enrichedUser);
+      setCurrentRole(enrichedUser.role);
       localStorage.setItem('oal_is_authenticated', 'true');
-      localStorage.setItem('oal_current_user', JSON.stringify(res.user));
-      localStorage.setItem('oal_active_role', res.user.role);
-      addToast('Welcome Back', `Signed in as ${res.user.name} (${res.user.role.toUpperCase()})`, 'success');
-      return { success: true, user: res.user };
+      localStorage.setItem('oal_current_user', JSON.stringify(enrichedUser));
+      localStorage.setItem('oal_active_role', enrichedUser.role);
+
+      if (enrichedUser.verificationStatus === 'PENDING_APPROVAL') {
+        addToast('Application Under Review', `Welcome back, ${enrichedUser.name}. Your account is awaiting compliance review.`, 'warning');
+      } else if (enrichedUser.verificationStatus === 'REJECTED') {
+        addToast('Application Declined', `Registration application for ${enrichedUser.name} was not approved.`, 'error');
+      } else {
+        addToast('Welcome Back', `Signed in as ${enrichedUser.name} (${enrichedUser.role.toUpperCase()})`, 'success');
+      }
+
+      return { success: true, user: enrichedUser };
     }
     addToast('Sign In Failed', res.error, 'error');
     return { success: false, error: res.error };
@@ -647,33 +1299,145 @@ export const AppProvider = ({ children }) => {
     addToast('KYC Decision Recorded', `Document status updated to ${newStatus}`, 'info');
   };
 
-  // 7. Mediated Messaging (Enforce Borrower <-> Rep and Lender <-> Rep ONLY)
-  const sendMessage = ({ conversationId, text, applicationId, receiverRole, receiverId, receiverName }) => {
-    // Invariant validation: direct Borrower <-> Lender chat is rejected per FR-09
+  // 7. Mediated Messaging & Multi-Channel Communications (Chat, Email, SMS)
+  const sendMessage = ({
+    conversationId,
+    text,
+    applicationId,
+    receiverRole,
+    receiverId,
+    receiverName,
+    type = 'chat',
+    subject = '',
+    metadata = {}
+  }) => {
+    // 1. Text validity check
+    if (!text || typeof text !== 'string' || !text.trim()) {
+      return { success: false, message: 'Message text cannot be empty' };
+    }
+
+    // 2. Authentication check - Sender identity MUST come strictly from authenticated state
+    if (!currentUser || !currentUser.id) {
+      addToast('Authentication Required', 'You must be logged in to send messages.', 'error');
+      return { success: false, message: 'Unauthenticated dispatch rejected' };
+    }
+
+    const cleanAppId = applicationId || 'APP-2026-1082';
+
+    // 3. Strict Role-based Destination & Invariant Enforcement
+    let targetReceiverRole = receiverRole;
+    let targetReceiverId = receiverId;
+    let targetReceiverName = receiverName;
+    let canonicalConvId = '';
+
+    if (currentRole === 'borrower') {
+      // Borrower can ONLY message an authorized Rep
+      if (receiverRole && receiverRole !== 'rep') {
+        addToast(
+          'Security Violation (FR-09)',
+          'Borrowers are restricted to communicating exclusively with their designated OAL Representative.',
+          'error'
+        );
+        return { success: false, message: 'Unauthorized recipient for borrower role' };
+      }
+      targetReceiverRole = 'rep';
+      targetReceiverId = receiverId || 'usr_rep_01';
+      targetReceiverName = receiverName || 'Elena Rostova (OAL Rep)';
+      canonicalConvId = conversationId || `CONV_BORROWER_REP_${cleanAppId}`;
+    } else if (currentRole === 'lender') {
+      // Lender can ONLY message an authorized Rep
+      if (receiverRole && receiverRole !== 'rep') {
+        addToast(
+          'Security Violation (FR-09)',
+          'Institutional Lenders are restricted to communicating exclusively with their designated OAL Representative.',
+          'error'
+        );
+        return { success: false, message: 'Unauthorized recipient for lender role' };
+      }
+      targetReceiverRole = 'rep';
+      targetReceiverId = receiverId || 'usr_rep_01';
+      targetReceiverName = receiverName || 'Elena Rostova (OAL Rep)';
+      canonicalConvId = conversationId || `CONV_LENDER_REP_${cleanAppId}_${currentUser.id}`;
+    } else if (currentRole === 'rep') {
+      // Rep can message authorized Borrower or authorized Lender
+      if (receiverRole === 'borrower') {
+        targetReceiverRole = 'borrower';
+        targetReceiverId = receiverId || 'usr_borrower_01';
+        targetReceiverName = receiverName || 'Marcus Vance';
+        canonicalConvId = conversationId || `CONV_BORROWER_REP_${cleanAppId}`;
+      } else if (receiverRole === 'lender') {
+        targetReceiverRole = 'lender';
+        targetReceiverId = receiverId || 'usr_lender_01';
+        targetReceiverName = receiverName || 'Apex Horizon Capital LLC';
+        canonicalConvId = conversationId || `CONV_LENDER_REP_${cleanAppId}_${targetReceiverId}`;
+      } else {
+        addToast('Invalid Recipient', 'OAL Representatives must select either Borrower or Lender recipient.', 'error');
+        return { success: false, message: 'Invalid recipient role for representative' };
+      }
+    } else if (currentRole === 'admin') {
+      // Admin supervisor can participate on either designated channel
+      if (receiverRole === 'lender') {
+        targetReceiverRole = 'lender';
+        targetReceiverId = receiverId || 'usr_lender_01';
+        targetReceiverName = receiverName || 'Apex Horizon Capital LLC';
+        canonicalConvId = conversationId || `CONV_LENDER_REP_${cleanAppId}_${targetReceiverId}`;
+      } else {
+        targetReceiverRole = 'borrower';
+        targetReceiverId = receiverId || 'usr_borrower_01';
+        targetReceiverName = receiverName || 'Marcus Vance';
+        canonicalConvId = conversationId || `CONV_BORROWER_REP_${cleanAppId}`;
+      }
+    } else {
+      addToast('Unauthorized Role', 'Current user role is not authorized to dispatch messages.', 'error');
+      return { success: false, message: 'Unauthorized role' };
+    }
+
+    // Direct Borrower <-> Lender chat invariant (FR-09)
     if (
-      (currentRole === 'borrower' && receiverRole === 'lender') ||
-      (currentRole === 'lender' && receiverRole === 'borrower')
+      (currentRole === 'borrower' && targetReceiverRole === 'lender') ||
+      (currentRole === 'lender' && targetReceiverRole === 'borrower')
     ) {
       addToast('Security Restriction', 'Direct Borrower ↔ Lender communication is strictly prohibited per OAL Network governance (FR-09). All communications must be mediated by an OAL Representative.', 'error');
       return { success: false, message: 'Direct communication prohibited' };
     }
 
+    // Create normalized message with authenticated sender identity
     const newMsg = {
-      id: `MSG-${Date.now()}`,
-      conversationId: conversationId || `CONV_${currentRole}_rep_${applicationId}`,
+      id: `MSG-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      conversationId: canonicalConvId,
       senderRole: currentRole,
       senderId: currentUser.id,
       senderName: currentUser.name,
-      receiverRole: receiverRole || 'rep',
-      receiverId: receiverId || 'usr_rep_01',
-      receiverName: receiverName || 'Elena Rostova (OAL Rep)',
-      applicationId: applicationId || 'APP-2026-1082',
-      text,
+      receiverRole: targetReceiverRole,
+      receiverId: targetReceiverId,
+      receiverName: targetReceiverName,
+      applicationId: cleanAppId,
+      type: type || 'chat',
+      subject: subject || '',
+      text: text.trim(),
+      metadata: metadata || {},
       timestamp: new Date().toISOString(),
       read: true
     };
 
     setMessages(prev => [...prev, newMsg]);
+
+    // Task 5: Non-sensitive Activity Audit Log (Chat, Email, or SMS)
+    let actionName = 'MESSAGE_DISPATCHED';
+    if (type === 'email') actionName = 'EMAIL_SIMULATED_DISPATCH';
+    if (type === 'sms') actionName = 'SMS_SIMULATED_DISPATCH';
+
+    const auditEntry = {
+      id: `AUD-MSG-${Date.now()}-${Math.floor(100 + Math.random() * 900)}`,
+      timestamp: new Date().toISOString(),
+      actor: `${currentUser.name} (${currentRole.toUpperCase()})`,
+      action: actionName,
+      target: cleanAppId,
+      details: `Role: ${currentRole.toUpperCase()} | Type: ${(type || 'chat').toUpperCase()} | Application: ${cleanAppId} | Conversation: ${canonicalConvId} | Recipient: ${targetReceiverRole} (${targetReceiverId})`,
+      severity: 'INFO'
+    };
+    setAuditLogs(prev => [auditEntry, ...(prev || [])]);
+
     return { success: true, message: newMsg };
   };
 
@@ -757,6 +1521,13 @@ export const AppProvider = ({ children }) => {
     setKbArticles(INITIAL_KB_ARTICLES);
     setAuditLogs(INITIAL_AUDIT_LOGS);
     setNetworkActivity(INITIAL_NETWORK_ACTIVITY);
+    setReps(INITIAL_REPS);
+    setDistributionSettings({
+      mode: 'MANUAL',
+      lastChangedAt: new Date().toISOString(),
+      changedBy: 'System Initializer'
+    });
+    setNotifications([]);
     setCurrentRole('borrower');
     addToast('Demo Reset', 'All demo data restored to factory defaults.', 'info');
   };
@@ -767,6 +1538,7 @@ export const AppProvider = ({ children }) => {
       currentRole,
       currentUser,
       activeUser,
+      setActiveUser,
       registeredUsers,
       registerPrototypeUser,
       validateEmailAvailability,
@@ -781,6 +1553,10 @@ export const AppProvider = ({ children }) => {
       kbArticles,
       auditLogs,
       networkActivity,
+      reps,
+      setReps,
+      distributionSettings,
+      notifications,
       toasts,
       addToast,
       removeToast,
@@ -792,10 +1568,16 @@ export const AppProvider = ({ children }) => {
       advanceApplicationStatus,
       uploadDocument,
       updateDocumentStatus,
+      approveUserAccount,
+      rejectUserAccount,
+      getUserVerificationStatus,
       sendMessage,
       createTicket,
       replyTicket,
       closeTicket,
+      updateDistributionMode,
+      updateRepRouting,
+      assignOrReassignLead,
       resetDemoData
     }}>
       {children}
