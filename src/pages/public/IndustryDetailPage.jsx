@@ -26,7 +26,17 @@ import {
   Cpu,
   ShoppingBag,
   HelpCircle,
-  Share2
+  Share2,
+  Hotel,
+  HeartPulse,
+  Clapperboard,
+  Car,
+  GraduationCap,
+  Sprout,
+  Hammer,
+  Zap,
+  Landmark,
+  UtensilsCrossed
 } from 'lucide-react';
 import { VerifyBadge } from '../../components/common/VerifyBadge';
 
@@ -49,6 +59,16 @@ export const IndustryDetailPage = () => {
       case 'Heart': return Heart;
       case 'Cpu': return Cpu;
       case 'ShoppingBag': return ShoppingBag;
+      case 'Hotel': return Hotel;
+      case 'HeartPulse': return HeartPulse;
+      case 'Clapperboard': return Clapperboard;
+      case 'Car': return Car;
+      case 'GraduationCap': return GraduationCap;
+      case 'Sprout': return Sprout;
+      case 'Hammer': return Hammer;
+      case 'Zap': return Zap;
+      case 'Landmark': return Landmark;
+      case 'UtensilsCrossed': return UtensilsCrossed;
       default: return Building2;
     }
   };

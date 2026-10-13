@@ -33,13 +33,31 @@ import {
   Factory,
   Heart,
   Cpu,
-  ShoppingBag
+  ShoppingBag,
+  CreditCard,
+  Banknote,
+  Wrench,
+  Zap,
+  Rocket,
+  CheckCircle2,
+  Sun,
+  Wind,
+  Plane,
+  Repeat,
+  FileText,
+  Layers,
+  Hotel,
+  HeartPulse,
+  Clapperboard,
+  Car,
+  GraduationCap,
+  Sprout
 } from 'lucide-react';
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null); // 'industries' | 'company' | null
-  const [mobileExpandedSection, setMobileExpandedSection] = useState(null); // 'industries' | 'company' | null
+  const [activeDropdown, setActiveDropdown] = useState(null); // 'loan-types' | 'industries' | 'company' | null
+  const [mobileExpandedSection, setMobileExpandedSection] = useState(null); // 'loan-types' | 'industries' | 'company' | null
 
   const location = useLocation();
   const { isAuthenticated, currentRole, logout } = useApp();
@@ -75,17 +93,66 @@ export const Navbar = () => {
     };
   }, []);
 
-  // 9 Loans by Industry strictly per new client requirement documents
+  // All 34 Loan Types strictly aligned with Client requirement doc: "Loan Types – Home Page - OAL website .docx"
+  const all34LoanTypes = [
+    { label: 'Alternative Energy Loans', path: '/loan-programs/alternative-energy', icon: Zap },
+    { label: 'Asset Based Loans', path: '/loan-programs/asset-based', icon: ShieldCheck },
+    { label: 'Bad Credit Business Loans', path: '/loan-programs/bad-credit', icon: CheckCircle2 },
+    { label: 'Business Acquisition Loans', path: '/loan-programs/business-acquisition', icon: Briefcase },
+    { label: 'Business Line Of Credit', path: '/loan-programs/business-line-of-credit', icon: CreditCard },
+    { label: 'Cash Advance Loans', path: '/loan-programs/cash-advance', icon: Coins },
+    { label: 'Church Financing Loans', path: '/loan-programs/church-facility', icon: Landmark },
+    { label: 'Commercial Bridge Loans', path: '/loan-programs/commercial-bridge', icon: TrendingUp },
+    { label: 'Construction Equipment Loans', path: '/loan-programs/construction-equipment', icon: Hammer },
+    { label: 'Debt Restructuring Loans', path: '/loan-programs/debt-restructuring', icon: FileText },
+    { label: 'Dental Practice Loans', path: '/loan-programs/dental-practice', icon: Smile },
+    { label: 'Doctors Loans', path: '/loan-programs/doctors-loans', icon: Heart },
+    { label: 'Equipment Leasing Loans', path: '/loan-programs/equipment-leasing', icon: Wrench },
+    { label: 'Fix & Flip Loans', path: '/loan-programs/fix-and-flip', icon: Building },
+    { label: 'Fleet Truck Loans', path: '/loan-programs/fleet-truck', icon: Truck },
+    { label: 'Food Truck Loans', path: '/loan-programs/food-truck', icon: Truck },
+    { label: 'Franchise Loans', path: '/loan-programs/franchise', icon: Store },
+    { label: 'Full-Service Restaurants Loans', path: '/loan-programs/restaurant', icon: UtensilsCrossed },
+    { label: 'Medical Equipment Loans', path: '/loan-programs/medical-equipment', icon: ShieldCheck },
+    { label: 'Medical Working Capital Loans', path: '/loan-programs/medical-working-capital', icon: Banknote },
+    { label: 'Merchant Cash Advance Loans', path: '/loan-programs/merchant-cash-advance', icon: Zap },
+    { label: 'Owner-Operator Truck Loans', path: '/loan-programs/owner-operator-truck', icon: Container },
+    { label: 'Real Estate Loans', path: '/loan-programs/real-estate', icon: Building2 },
+    { label: 'Revenue-Based Loans', path: '/loan-programs/revenue-based', icon: TrendingUp },
+    { label: 'Sale and Leaseback Loans', path: '/loan-programs/sale-and-leaseback', icon: Repeat },
+    { label: 'SBA Loans – Financing', path: '/loan-programs/sba-loans', icon: Landmark },
+    { label: 'Securities-Based Loans', path: '/loan-programs/securities-based', icon: Coins },
+    { label: 'Solar Energy Loans', path: '/loan-programs/solar-energy', icon: Sun },
+    { label: 'Startup Loans', path: '/loan-programs/startup-loans', icon: Rocket },
+    { label: 'Unsecured Business Loans', path: '/loan-programs/unsecured-business', icon: ShieldCheck },
+    { label: 'Used Aircraft Loans', path: '/loan-programs/used-aircraft', icon: Plane },
+    { label: 'Veterinarians Loans', path: '/loan-programs/veterinarians', icon: Heart },
+    { label: 'Wind Energy Loans', path: '/loan-programs/wind-energy', icon: Wind },
+    { label: 'Working Capital Loans', path: '/loan-programs/working-capital', icon: Banknote },
+  ];
+
+  // All 20 Commercial Loans by Industry strictly per Client Requirement Documents
   const coreIndustries = [
-    { label: 'Transportation', path: '/industries/transportation', icon: Truck },
-    { label: 'Professional Services', path: '/industries/professional-services', icon: Briefcase },
-    { label: 'Real Estate', path: '/industries/real-estate', icon: Building },
+    { label: 'Agriculture', path: '/industries/agriculture', icon: Sprout },
+    { label: 'Automotive', path: '/industries/automotive', icon: Car },
+    { label: 'Construction', path: '/industries/construction', icon: Hammer },
+    { label: 'E-commerce', path: '/industries/ecommerce', icon: ShoppingBag },
+    { label: 'Education', path: '/industries/education', icon: GraduationCap },
+    { label: 'Energy', path: '/industries/energy', icon: Zap },
+    { label: 'Entertainment', path: '/industries/entertainment', icon: Clapperboard },
+    { label: 'Financial Services', path: '/industries/financial-services', icon: Landmark },
+    { label: 'Food and Beverage', path: '/industries/food-beverage', icon: UtensilsCrossed },
+    { label: 'Healthcare', path: '/industries/healthcare', icon: HeartPulse },
+    { label: 'Hospitality', path: '/industries/hospitality', icon: Hotel },
     { label: 'Logistics', path: '/industries/logistics', icon: Boxes },
-    { label: 'Telecom', path: '/industries/telecom', icon: Radio },
     { label: 'Manufacturing', path: '/industries/manufacturing', icon: Factory },
     { label: 'Nonprofit', path: '/industries/nonprofit', icon: Heart },
-    { label: 'Technology', path: '/industries/technology', icon: Cpu },
+    { label: 'Professional Services', path: '/industries/professional-services', icon: Briefcase },
+    { label: 'Real Estate', path: '/industries/real-estate', icon: Building },
     { label: 'Retail', path: '/industries/retail', icon: ShoppingBag },
+    { label: 'Technology', path: '/industries/technology', icon: Cpu },
+    { label: 'Telecom', path: '/industries/telecom', icon: Radio },
+    { label: 'Transportation', path: '/industries/transportation', icon: Truck },
   ];
 
   // Company Section strictly per doc: "Sitemap – OAL Network website (1).docx"
@@ -197,7 +264,7 @@ export const Navbar = () => {
                 <span className="font-heading font-extrabold text-base sm:text-lg tracking-tight text-[#002060]">OAL</span>
                 <span className="font-heading font-semibold text-base sm:text-lg tracking-tight text-[#0070C0]">NETWORK</span>
               </div>
-              <p className="hidden sm:block text-[11px] font-bold tracking-wider text-[#0070C0] uppercase">Commercial Lending Exchange</p>
+              <p className="hidden sm:block text-[11px] font-bold tracking-wide text-[#0070C0]">Shop for Money, Get Approved</p>
             </div>
           </Link>
 
@@ -217,18 +284,88 @@ export const Navbar = () => {
               Home
             </Link>
 
-            {/* 2. Loan Types */}
-            <Link
-              to="/loan-programs"
-              onMouseEnter={() => setActiveDropdown(null)}
-              className={`h-16 flex items-center px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors ${
-                location.pathname === '/loan-programs' && !location.pathname.startsWith('/loan-programs/')
-                  ? 'text-[#0070C0] font-bold'
-                  : 'text-slate-700 hover:text-[#0070C0]'
-              }`}
+            {/* 2. Loan Types (Click to Toggle / Hover to Open Dropdown Window) */}
+            <div
+              className="relative h-16 flex items-center"
+              onMouseEnter={() => handleMouseEnter('loan-types')}
+              onMouseLeave={handleMouseLeave}
             >
-              Loan Types
-            </Link>
+              <button
+                type="button"
+                onClick={() => setActiveDropdown(activeDropdown === 'loan-types' ? null : 'loan-types')}
+                className={`h-16 flex items-center gap-1 px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer ${
+                  location.pathname === '/loan-programs' || location.pathname.startsWith('/loan-programs/')
+                    ? 'text-[#0070C0] font-bold'
+                    : 'text-slate-700 hover:text-[#0070C0]'
+                }`}
+              >
+                <span>Loan Types</span>
+                <ChevronDown className={`w-3.5 h-3.5 text-slate-500 transition-transform ${activeDropdown === 'loan-types' ? 'rotate-180 text-[#0070C0]' : ''}`} />
+              </button>
+
+              {/* Loan Types Dropdown Card strictly styled matching Industries */}
+              {activeDropdown === 'loan-types' && (
+                <div
+                  className="absolute top-full left-0 mt-1 bg-white rounded-2xl shadow-2xl border border-slate-200/90 py-3.5 px-3.5 z-50"
+                  style={{ width: '580px', minWidth: '540px' }}
+                  onMouseEnter={() => handleMouseEnter('loan-types')}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className="px-2 pb-2.5 mb-2 border-b border-slate-100 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-extrabold uppercase tracking-wider text-[#002060]">
+                        Commercial Loan Types
+                      </span>
+                      <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-[#00B0F0]/15 text-[#0070C0] border border-[#00B0F0]/30">
+                        34 Programs
+                      </span>
+                    </div>
+                    <Link
+                      to="/loan-programs"
+                      onClick={() => setActiveDropdown(null)}
+                      className="text-xs font-bold text-[#0070C0] hover:text-[#002060] transition-colors"
+                    >
+                      All 34 Loan Types &rarr;
+                    </Link>
+                  </div>
+
+                  {/* Scrollable 2-Column Grid of All 34 Loan Types strictly per Client Requirement Document */}
+                  <div className="max-h-[380px] overflow-y-auto pr-1.5" style={{ scrollbarWidth: 'thin' }}>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {all34LoanTypes.map((prog) => {
+                        const Icon = prog.icon;
+                        return (
+                          <Link
+                            key={prog.path}
+                            to={prog.path}
+                            onClick={() => setActiveDropdown(null)}
+                            className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-sky-50 text-slate-700 hover:text-[#002060] transition-colors group"
+                          >
+                            <div className="w-7 h-7 rounded-lg bg-sky-50 text-[#0070C0] group-hover:bg-[#002060] group-hover:text-[#FFD200] flex items-center justify-center shrink-0 transition-colors border border-[#00B0F0]/15">
+                              <Icon className="w-3.5 h-3.5" />
+                            </div>
+                            <span className="text-xs font-bold text-slate-800 group-hover:text-[#002060] truncate" title={prog.label}>
+                              {prog.label}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="mt-2.5 pt-2 border-t border-slate-100 px-2 flex items-center justify-between text-[11px]">
+                    <span className="text-slate-400 font-medium">$10K to $500M+ • 24–72 Hr Funding</span>
+                    <Link
+                      to="/loan-programs"
+                      onClick={() => setActiveDropdown(null)}
+                      className="text-[#0070C0] font-bold hover:underline"
+                    >
+                      Explore Directory & Matrix &rarr;
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* 3. Industries (Click to Toggle / Hover to Open) */}
             <div
@@ -240,7 +377,7 @@ export const Navbar = () => {
                 type="button"
                 onClick={() => setActiveDropdown(activeDropdown === 'industries' ? null : 'industries')}
                 className={`h-16 flex items-center gap-1 px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                  location.pathname === '/industries' || location.pathname.startsWith('/loan-programs/')
+                  location.pathname === '/industries' || location.pathname.startsWith('/industries/')
                     ? 'text-[#0070C0] font-bold'
                     : 'text-slate-700 hover:text-[#0070C0]'
                 }`}
@@ -253,52 +390,60 @@ export const Navbar = () => {
               {activeDropdown === 'industries' && (
                 <div
                   className="absolute top-full left-0 mt-1 bg-white rounded-2xl shadow-2xl border border-slate-200/90 py-3.5 px-3.5 z-50"
-                  style={{ width: '420px', minWidth: '400px' }}
+                  style={{ width: '540px', minWidth: '500px' }}
                   onMouseEnter={() => handleMouseEnter('industries')}
                   onMouseLeave={handleMouseLeave}
                 >
                   <div className="px-2 pb-2.5 mb-2 border-b border-slate-100 flex items-center justify-between">
-                    <span className="text-xs font-extrabold uppercase tracking-wider text-[#002060]">
-                      Commercial Loans by Industry
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-extrabold uppercase tracking-wider text-[#002060]">
+                        Commercial Loans by Industry
+                      </span>
+                      <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-[#00B0F0]/15 text-[#0070C0] border border-[#00B0F0]/30">
+                        20 Industries
+                      </span>
+                    </div>
                     <Link
                       to="/industries"
                       onClick={() => setActiveDropdown(null)}
                       className="text-xs font-bold text-[#0070C0] hover:text-[#002060] transition-colors"
                     >
-                      Directory & Matrix &rarr;
+                      All 20 Industries &rarr;
                     </Link>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-1.5">
-                    {coreIndustries.map((prog) => {
-                      const Icon = prog.icon;
-                      return (
-                        <Link
-                          key={prog.path}
-                          to={prog.path}
-                          onClick={() => setActiveDropdown(null)}
-                          className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-sky-50 text-slate-700 hover:text-[#002060] transition-colors group"
-                        >
-                          <div className="w-7 h-7 rounded-lg bg-sky-50 text-[#0070C0] group-hover:bg-[#002060] group-hover:text-[#FFD200] flex items-center justify-center shrink-0 transition-colors border border-[#00B0F0]/15">
-                            <Icon className="w-3.5 h-3.5" />
-                          </div>
-                          <span className="text-xs font-bold whitespace-nowrap text-slate-800 group-hover:text-[#002060]">
-                            {prog.label}
-                          </span>
-                        </Link>
-                      );
-                    })}
+                  {/* Scrollable 2-Column Grid of All 20 Industries */}
+                  <div className="max-h-[380px] overflow-y-auto pr-1.5" style={{ scrollbarWidth: 'thin' }}>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {coreIndustries.map((prog) => {
+                        const Icon = prog.icon;
+                        return (
+                          <Link
+                            key={prog.path}
+                            to={prog.path}
+                            onClick={() => setActiveDropdown(null)}
+                            className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-sky-50 text-slate-700 hover:text-[#002060] transition-colors group"
+                          >
+                            <div className="w-7 h-7 rounded-lg bg-sky-50 text-[#0070C0] group-hover:bg-[#002060] group-hover:text-[#FFD200] flex items-center justify-center shrink-0 transition-colors border border-[#00B0F0]/15">
+                              <Icon className="w-3.5 h-3.5" />
+                            </div>
+                            <span className="text-xs font-bold whitespace-nowrap text-slate-800 group-hover:text-[#002060] truncate" title={prog.label}>
+                              {prog.label}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
 
                   <div className="mt-2.5 pt-2 border-t border-slate-100 px-2 flex items-center justify-between text-[11px]">
-                    <span className="text-slate-400 font-medium">Specialty Programs:</span>
+                    <span className="text-slate-400 font-medium">$10K to $500M+ • Industry-Specific Debt</span>
                     <Link
-                      to="/loan-programs"
+                      to="/industries"
                       onClick={() => setActiveDropdown(null)}
                       className="text-[#0070C0] font-bold hover:underline"
                     >
-                      Restaurants, Churches, Franchises &rarr;
+                      Industry Directory & Matrix &rarr;
                     </Link>
                   </div>
                 </div>
@@ -466,14 +611,48 @@ export const Navbar = () => {
             Home
           </Link>
 
-          {/* Loan Types */}
-          <Link
-            to="/loan-programs"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-lg text-sm font-bold text-slate-800 hover:bg-sky-50 hover:text-[#0070C0] transition-colors"
-          >
-            Loan Types
-          </Link>
+          {/* Loan Types Accordion */}
+          <div className="border border-slate-100 rounded-xl overflow-hidden bg-slate-50/50">
+            <button
+              type="button"
+              onClick={() => setMobileExpandedSection(mobileExpandedSection === 'loan-types' ? null : 'loan-types')}
+              className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-bold text-slate-800 hover:text-[#0070C0] cursor-pointer"
+            >
+              <span>Loan Types</span>
+              <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${mobileExpandedSection === 'loan-types' ? 'rotate-180 text-[#0070C0]' : ''}`} />
+            </button>
+
+            {mobileExpandedSection === 'loan-types' && (
+              <div className="px-2 pt-1 pb-2 space-y-1 bg-white border-t border-slate-100">
+                <Link
+                  to="/loan-programs"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-2.5 py-1.5 text-xs font-extrabold text-[#0070C0] bg-sky-50/50 rounded-lg mb-1"
+                >
+                  All 34 Loan Types Directory &rarr;
+                </Link>
+                <div className="max-h-72 overflow-y-auto space-y-1 pr-1" style={{ scrollbarWidth: 'thin' }}>
+                  {all34LoanTypes.map((prog) => (
+                    <Link
+                      key={prog.path}
+                      to={prog.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:text-[#0070C0] hover:bg-sky-50 rounded-lg transition-colors"
+                    >
+                      {prog.label}
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  to="/loan-programs"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-2.5 py-1.5 text-xs font-semibold text-slate-500 hover:text-[#0070C0] border-t border-slate-100 pt-2"
+                >
+                  Specialty Programs (Restaurants, Churches...) &rarr;
+                </Link>
+              </div>
+            )}
+          </div>
 
           {/* Industries Accordion */}
           <div className="border border-slate-100 rounded-xl overflow-hidden bg-slate-50/50">
@@ -493,24 +672,26 @@ export const Navbar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block px-2.5 py-1.5 text-xs font-extrabold text-[#0070C0] bg-sky-50/50 rounded-lg mb-1"
                 >
-                  All 9 Industries Directory &rarr;
+                  All 20 Industries Directory &rarr;
                 </Link>
-                {coreIndustries.map((prog) => (
-                  <Link
-                    key={prog.path}
-                    to={prog.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:text-[#0070C0] hover:bg-sky-50 rounded-lg transition-colors"
-                  >
-                    {prog.label}
-                  </Link>
-                ))}
+                <div className="max-h-72 overflow-y-auto space-y-1 pr-1" style={{ scrollbarWidth: 'thin' }}>
+                  {coreIndustries.map((prog) => (
+                    <Link
+                      key={prog.path}
+                      to={prog.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:text-[#0070C0] hover:bg-sky-50 rounded-lg transition-colors"
+                    >
+                      {prog.label}
+                    </Link>
+                  ))}
+                </div>
                 <Link
-                  to="/loan-programs"
+                  to="/industries"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block px-2.5 py-1.5 text-xs font-semibold text-slate-500 hover:text-[#0070C0] border-t border-slate-100 pt-2"
                 >
-                  Specialty Programs (Restaurants, Churches...) &rarr;
+                  Explore Industry Matrix & Underwriting &rarr;
                 </Link>
               </div>
             )}

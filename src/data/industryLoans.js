@@ -1367,6 +1367,1311 @@ export const INDUSTRY_LOANS = [
       'Sample supplier purchase orders or seasonal vendor invoices'
     ]
   }
+,
+{
+    id: 'hospitality',
+    slug: 'hospitality',
+    image: '/images/industry_hospitality.jpg',
+    title: 'Hospitality Business Loans',
+    shortName: 'Hospitality',
+    subtitle: 'Renovations, working capital, equipment',
+    badge: 'Hotels, Dining & Guest Services',
+    iconName: 'Hotel',
+    heroTagline: 'Most hospitality businesses apply for business loans to finance the purchase of property, cover renovation costs, or secure working capital.',
+    description: 'The hospitality industry encompasses a variety of businesses that focus on providing services related to lodging, food and beverage, and guest experiences. Financing helps hoteliers, restaurateurs, and venue operators manage operations, fund property acquisitions, and complete renovations.',
+    fundingScope: '$10,000 to $500 Million+ (Network Scope)',
+    minAmount: 25000,
+    maxAmount: 500000000,
+    approvalTime: 'Typical approval: 2-24 hours',
+    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    primaryPurposes: [
+      'Managing Cash Flow & Operational Expenses',
+      'Property Purchase & Acquisition Financing',
+      'Facility Renovations & Guest Experience Upgrades',
+      'Kitchen, Furniture & Fixture Equipment Purchases',
+      'Seizing Seasonal Market Opportunities'
+    ],
+    contentSections: [
+      {
+        id: 'hosp-sec-1',
+        sectionBadge: 'Client Specification • Industry Categories',
+        sectionTitle: 'Common Types of Hospitality Businesses',
+        introParagraphs: [
+          'The hospitality industry encompasses a variety of businesses that focus on providing services related to lodging, food and beverage, and guest experiences.',
+          'These categories illustrate the diversity within the hospitality industry, highlighting how various businesses work together to enhance guest experiences:'
+        ],
+        subsections: [
+          {
+            title: '1. Accommodation Services',
+            description: 'Establishments focused on providing lodging and guest accommodation.',
+            bullets: [
+              { label: 'Hotels', text: 'Ranging from budget to luxury, hotels provide lodging and often include amenities like restaurants and conference facilities.' },
+              { label: 'Motels', text: 'Typically located along highways, motels offer basic accommodations for travelers.' },
+              { label: 'Bed and Breakfasts (B&Bs)', text: 'Smaller establishments that provide overnight stays and breakfast, often in a home-like setting.' },
+              { label: 'Hostels', text: 'Budget-friendly lodging options that offer shared accommodations, popular among backpackers and young travelers.' },
+              { label: 'Vacation Rentals', text: 'Properties rented out for short stays, such as those listed on platforms like Airbnb.' }
+            ]
+          },
+          {
+            title: '2. Food and Beverage Services',
+            description: 'Venues serving meals, drinks, and culinary hospitality.',
+            bullets: [
+              { label: 'Restaurants', text: 'Establishments that serve meals, ranging from fast food to fine dining.' },
+              { label: 'Cafés', text: 'Casual spots that serve coffee, snacks, and light meals.' },
+              { label: 'Bars and Pubs', text: 'Venues that primarily serve alcoholic beverages, often with a social atmosphere.' },
+              { label: 'Catering Services', text: 'Businesses that provide food and beverage services for events, such as weddings and corporate functions.' }
+            ]
+          },
+          {
+            title: '3. Travel and Tourism Services',
+            description: 'Assisting travelers with transportation and guided itineraries.',
+            bullets: [
+              { label: 'Travel Agencies', text: 'Companies that assist customers in planning and booking travel arrangements.' },
+              { label: 'Tour Operators', text: 'Businesses that organize and conduct tours for groups or individuals.' },
+              { label: 'Transportation Services', text: 'Includes airlines, car rentals, and cruise lines that facilitate travel.' }
+            ]
+          },
+          {
+            title: '4. Entertainment and Recreation',
+            description: 'Attractions and wellness venues catering to leisure.',
+            bullets: [
+              { label: 'Theme Parks', text: 'Attractions that offer rides, games, and entertainment for families and visitors.' },
+              { label: 'Casinos', text: 'Facilities that provide gambling and entertainment options.' },
+              { label: 'Spas and Wellness Centers', text: 'Establishments focused on relaxation and health services.' }
+            ]
+          },
+          {
+            title: '5. Events and Meetings',
+            description: 'Venues and management services for gatherings.',
+            bullets: [
+              { label: 'Conference Centers', text: 'Venues designed to host business meetings, conferences, and events.' },
+              { label: 'Event Planning Services', text: 'Companies that organize and manage events, from corporate gatherings to social celebrations.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These establishments focus on providing services related to lodging, food and beverage, and memorable guest experiences.'
+      },
+      {
+        id: 'hosp-sec-2',
+        sectionBadge: 'Client Specification • Financing Drivers',
+        sectionTitle: 'Popular Types of Hospitality Businesses Seeking Loans',
+        introParagraphs: [
+          'Hospitality businesses often require financing to support their operations, renovations, and equipment purchases.',
+          'Most hospitality businesses apply for business loans to finance the purchase of property or to cover renovation costs.'
+        ],
+        subsections: [
+          {
+            title: 'Core Loan Purposes for Hospitality Operators',
+            bullets: [
+              { label: 'Equipment Financing', text: 'Necessary for purchasing commercial kitchen equipment, furniture, and other essential items.' },
+              { label: 'Renovation Loans', text: 'Used for upgrading facilities to enhance guest experience and meet brand franchise PIP standards.' },
+              { label: 'Working Capital Loans', text: 'Help cover day-to-day operational expenses, such as payroll and seasonal inventory purchases.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These businesses leverage loans to ensure they can meet customer demands and maintain competitive operations in the hospitality industry.'
+      }
+    ],
+    clientTables: [
+      {
+        id: 'table-hosp-1',
+        title: 'Types of Hospitality Businesses Seeking Loans',
+        subtitle: 'Key business categories and their specific financing requirements:',
+        columns: ['Business Type', 'Description'],
+        rows: [
+          ['Hotels', 'Establishments providing lodging, often requiring loans for construction, renovations, or operational costs.'],
+          ['Restaurants', 'Food service businesses that may need financing for equipment, inventory, and operational expenses.'],
+          ['Food Service', 'Includes catering companies and food trucks, often seeking loans for equipment and working capital.'],
+          ['Bed and Breakfasts', 'Small lodging establishments that may require loans for property improvements and operational costs.'],
+          ['Resorts', 'Larger hospitality venues that often need significant financing for construction and amenities.']
+        ]
+      }
+    ],
+    loanTypes: [
+      { name: 'Hotel PIP & Renovation Term Loan', desc: 'Long-term financing to fund property improvement plans, lobby refreshes, and room modernizations.' },
+      { name: 'Commercial Kitchen Equipment Leasing', desc: 'Preserve capital with 100% equipment financing for stoves, refrigeration, point-of-sale systems, and HVAC.' },
+      { name: 'Hospitality Working Capital Line of Credit', desc: 'Revolving line to bridge off-peak seasons, manage hospitality payroll, and purchase bulk inventory.' }
+    ],
+    requiredDocuments: [
+      'Last 4-6 months business bank statements',
+      'Historical occupancy and RevPAR statements (for lodging businesses)',
+      'Merchant processing statements showing credit card volume',
+      'Property lease or commercial mortgage documentation',
+      'Year-to-date Profit & Loss and Balance Sheet'
+    ]
+  },
+  {
+    id: 'healthcare',
+    slug: 'healthcare',
+    image: '/images/industry_healthcare.jpg',
+    title: 'Healthcare Business Loans',
+    shortName: 'Healthcare',
+    subtitle: 'Facility upgrades, equipment, working capital',
+    badge: 'Medical, Dental & Clinical Practices',
+    iconName: 'HeartPulse',
+    heroTagline: 'Dental practices, urgent care clinics, and ambulatory surgery centers secure dedicated financing for diagnostic equipment, facility upgrades, and smooth cash flow.',
+    description: 'Healthcare businesses encompass a wide range of services and products that contribute to patient care and health management. Dental practices consistently rank among the highest-approved healthcare borrowers, followed by urgent care clinics and ambulatory surgery centers, leveraging predictable revenue streams from insurance reimbursements and patient payments.',
+    fundingScope: '$10,000 to $500 Million+ (Network Scope)',
+    minAmount: 25000,
+    maxAmount: 500000000,
+    approvalTime: 'Typical approval: 2-24 hours',
+    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    primaryPurposes: [
+      'Equipment Purchases (Diagnostic tools, surgical devices & imaging systems)',
+      'Facility Improvements & Renovations (Modernizing clinical suites & patient spaces)',
+      'Managing Cash Flow (Bridging delayed insurance reimbursements & claims)',
+      'Practice Expansion (Opening new clinical branches & adding operatory rooms)',
+      'Operational Costs (Staffing, specialized pharmaceuticals & licensing)'
+    ],
+    contentSections: [
+      {
+        id: 'hlth-sec-1',
+        sectionBadge: 'Client Specification • Operational Profile',
+        sectionTitle: 'Common Types of Healthcare Businesses',
+        introParagraphs: [
+          'Healthcare businesses encompass a wide range of services and products that contribute to patient care and health management.',
+          'Dental practices consistently rank among the highest-approved healthcare borrowers, followed by urgent care clinics and ambulatory surgery centers. These businesses often seek loans for expansion, equipment purchases, and managing cash flow.'
+        ],
+        subsections: [
+          {
+            title: 'High-Demand Medical Borrowers',
+            bullets: [
+              { label: 'Dental Practices', text: 'Consistently rank among the highest-approved healthcare borrowers, seeking funding for operatories, imaging, and buy-ins.' },
+              { label: 'Urgent Care Clinics', text: 'Require capital for facility expansion, diagnostic suites, and extended-hours operational expenses.' },
+              { label: 'Ambulatory Surgery Centers (ASCs)', text: 'Require high-capital financing for surgical equipment, sterilization systems, and facility growth.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These healthcare businesses often have higher approval rates for loans due to predictable revenue streams from insurance reimbursements and patient payments, making them attractive to lenders.'
+      },
+      {
+        id: 'hlth-sec-2',
+        sectionBadge: 'Client Specification • Capital Drivers',
+        sectionTitle: 'Reasons Healthcare Businesses Apply for Business Loans',
+        introParagraphs: [
+          'The most popular reason healthcare businesses apply for business loans is to finance equipment purchases and facility improvements, which are essential for maintaining modern practices and providing high-quality patient care.',
+          'Additionally, loans can help with operational costs and expansions to accommodate new patients and services.'
+        ],
+        subsections: [
+          {
+            title: 'Key Reasons for Seeking Financing',
+            bullets: [
+              { label: 'Expansion', text: 'Many practices look to open new locations or expand existing facilities to serve more patients.' },
+              { label: 'Equipment Purchases', text: 'Upgrading or acquiring new diagnostic, imaging, and surgical equipment is a primary driver.' },
+              { label: 'Cash Flow Management', text: 'Loans help manage cash flow, especially during periods of delayed commercial insurance and Medicare reimbursements.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These loans are essential for healthcare providers to invest in their practices and ensure they can meet the demands of their patients effectively.'
+      }
+    ],
+    clientTables: [
+      {
+        id: 'table-hlth-1',
+        title: 'Healthcare Business Categories',
+        subtitle: 'Key sectors and operational profiles across healthcare:',
+        columns: ['Category', 'Description'],
+        rows: [
+          ['Medical Billing Services', 'Companies that handle billing and coding for healthcare providers, ensuring accurate claims.'],
+          ['Telehealth Platforms', 'Digital services that allow patients to consult healthcare professionals remotely.'],
+          ['Medical Device Manufacturing', 'Firms that produce devices used in medical procedures, such as surgical instruments and imaging equipment.'],
+          ['Health Consulting Firms', 'Businesses that provide expert advice to healthcare organizations on management and operations.'],
+          ['Pharmaceuticals', 'Companies that develop and manufacture medications and vaccines for various health conditions.'],
+          ['Health Tech', 'Firms that create technology solutions to improve healthcare delivery, including software and apps.'],
+          ['Home Healthcare Services', 'Providers that offer medical and non-medical care to patients in their homes.'],
+          ['Health Insurance Companies', 'Organizations that provide coverage for medical expenses, managing claims and reimbursements.']
+        ]
+      },
+      {
+        id: 'table-hlth-2',
+        title: 'Popular Healthcare Businesses Seeking Loans',
+        subtitle: 'Specific loan purposes by healthcare clinical specialty:',
+        columns: ['Business Type', 'Loan Purpose'],
+        rows: [
+          ['Dental Practices', 'Expansion, equipment purchases, cash flow management'],
+          ['Urgent Care Clinics', 'Facility expansion, operational costs'],
+          ['Ambulatory Surgery Centers (ASCs)', 'Equipment, financing, practice growth'],
+          ['Primary Care Clinics', 'General operational funding, equipment upgrades'],
+          ['Specialty Practices', 'Large equipment purchases, multi-location expansion'],
+          ['Veterinary Clinics', 'Equipment financing, facility upgrades'],
+          ['Chiropractic Offices', 'Cash flow management, marketing expenses'],
+          ['Mental Health Practices', 'Staffing, facility expansion']
+        ]
+      },
+      {
+        id: 'table-hlth-3',
+        title: 'Summary of Key Reasons for Healthcare Loans',
+        subtitle: 'Core loan purposes and operational capital deployment:',
+        columns: ['Purpose', 'Description'],
+        rows: [
+          ['Equipment Purchases', 'Funding for diagnostic tools and treatment technologies.'],
+          ['Facility Improvements', 'Renovations and expansions to enhance patient experience.'],
+          ['Operational Costs', 'Supporting daily business expenses.'],
+          ['Expansion', 'Increasing capacity for new patients and services.']
+        ]
+      }
+    ],
+    loanTypes: [
+      { name: 'Medical Equipment Financing', desc: 'Acquire high-tech diagnostic scanners, dental chairs, laser surgical tools, and lab equipment with no large down payment.' },
+      { name: 'Practice Acquisition & Buy-In Loan', desc: 'Capital for doctors, dentists, and veterinarians purchasing an existing clinic or buying equity partnership.' },
+      { name: 'Medical Practice Working Capital Line', desc: 'Flexible lines to bridge slow insurance reimbursement turnaround and cover ongoing payroll.' }
+    ],
+    requiredDocuments: [
+      'Last 4-6 months business checking statements',
+      'Medical provider license and practice registration',
+      'Recent insurance reimbursement and billing production reports',
+      'Year-to-date Profit & Loss and Balance Sheet',
+      'Equipment vendor quote or facility lease agreement'
+    ]
+  },
+  {
+    id: 'financial-services',
+    slug: 'financial-services',
+    image: '/images/industry_financial_services.jpg',
+    title: 'Financial Services Business Loans',
+    shortName: 'Financial Services',
+    subtitle: 'Technology investments, operational costs',
+    badge: 'Fintech, Banking & Wealth Management',
+    iconName: 'Landmark',
+    heroTagline: 'Traditional banks, credit unions, online lenders, and fintech innovators leverage business loans to fund operations, expand digital platforms, and manage capital liquidity.',
+    description: 'The most popular types of financial services businesses seeking business loans include traditional banks, credit unions, online lenders, and fintech companies. These businesses apply for term loans, lines of credit, or SBA loans to fund operations, expand services, and seize growth opportunities.',
+    fundingScope: '$10,000 to $500 Million+ (Network Scope)',
+    minAmount: 25000,
+    maxAmount: 500000000,
+    approvalTime: 'Typical approval: 2-24 hours',
+    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    primaryPurposes: [
+      'Funding Growth and Expansion (Investing in new technology, hiring, and new branches)',
+      'Managing Cash Flow (Covering operating expenses during lean periods or market cycles)',
+      'Purchasing Technology & Systems (Cybersecurity, payment gateways, and core platforms)',
+      'Renovations and Branch Modernization (Upgrading digital facilities & customer locations)',
+      'Initial Capitalization & Regulatory Reserves'
+    ],
+    contentSections: [
+      {
+        id: 'fin-sec-1',
+        sectionBadge: 'Client Specification • Institutional Profiles',
+        sectionTitle: 'Types of Financial Services Businesses Seeking Loans',
+        introParagraphs: [
+          'Financial services businesses often require funding to support their operations, expand services, or manage cash flow.',
+          'The most popular types of financial services businesses seeking business loans include traditional banks, credit unions, online lenders, and fintech companies:'
+        ],
+        subsections: [
+          {
+            title: '1. Traditional Banks',
+            description: 'Provide a wide range of financial services, including loans, savings accounts, and investment products.',
+            bulletHeader: 'Common Loan Types:',
+            bullets: [
+              { label: 'Financing Needs', text: 'Typically apply for term loans and lines of credit to fund infrastructure expansion and technological updates.' }
+            ]
+          },
+          {
+            title: '2. Credit Unions',
+            description: 'Member-owned financial cooperatives that offer similar services to banks but often with lower fees and better rates.',
+            bulletHeader: 'Common Loan Types:',
+            bullets: [
+              { label: 'Financing Needs', text: 'Frequently seek term loans and lines of credit for operational needs and community lending growth.' }
+            ]
+          },
+          {
+            title: '3. Online Lenders',
+            description: 'Provide quick access to loans through digital platforms, often with less stringent requirements.',
+            bulletHeader: 'Common Loan Types:',
+            bullets: [
+              { label: 'Financing Needs', text: 'Commonly offer term loans and lines of credit, appealing to businesses needing fast funding.' }
+            ]
+          },
+          {
+            title: '4. Fintech Companies',
+            description: 'Use technology to enhance financial services, including payment processing, lending, and investment management.',
+            bulletHeader: 'Common Loan Types:',
+            bullets: [
+              { label: 'Financing Needs', text: 'Often utilize lines of credit and alternative financing options to support their innovative services.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These businesses leverage various loan types to ensure they can effectively manage their financial operations and growth strategies.'
+      },
+      {
+        id: 'fin-sec-2',
+        sectionBadge: 'Client Specification • Capital Drivers',
+        sectionTitle: 'Primary Reasons Financial Services Apply for Business Loans',
+        introParagraphs: [
+          'The most popular reason financial services apply for business loans is to fund growth and expansion.',
+          'Many businesses seek loans to invest in new equipment, hire employees, or open new locations:'
+        ],
+        subsections: [
+          {
+            title: 'Growth, Liquidity & Modernization',
+            bullets: [
+              { label: 'Growth and Expansion', text: 'Investing in advanced software, hiring financial analysts, and opening branch locations.' },
+              { label: 'Managing Cash Flow', text: 'Covering operating expenses during lean periods or seasonal market fluctuations.' },
+              { label: 'Purchasing Technology', text: 'Acquiring high-speed computing, compliance software, and encrypted financial infrastructure.' },
+              { label: 'Renovations & Improvements', text: 'Financing physical and technological renovations to business premises.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'Access to business loans is crucial for financial entrepreneurs looking to seize market opportunities and ensure their operations remain competitive.'
+      }
+    ],
+    clientTables: [
+      {
+        id: 'table-fin-1',
+        title: 'Summary of Loan Types by Financial Institution',
+        subtitle: 'Institutional categories and commonly utilized loan structures:',
+        columns: ['Business Type', 'Common Loan Types'],
+        rows: [
+          ['Traditional Banks', 'Term Loans, Lines of Credit'],
+          ['Credit Unions', 'Term Loans, Lines of Credit'],
+          ['Online Lenders', 'Term Loans, Lines of Credit'],
+          ['Fintech Companies', 'Lines of Credit, Alternative Financing']
+        ]
+      },
+      {
+        id: 'table-fin-2',
+        title: 'Summary of Business Loan Purposes',
+        subtitle: 'Key capital deployment objectives for financial service providers:',
+        columns: ['Purpose', 'Description'],
+        rows: [
+          ['Growth and Expansion', 'Funding for new equipment, hiring, and new locations'],
+          ['Cash Flow Management', 'Covering expenses during low revenue periods'],
+          ['Inventory Acquisition', 'Purchasing stock and assets for new business entities'],
+          ['Renovations', 'Financing improvements to business premises and security infrastructure']
+        ]
+      },
+      {
+        id: 'table-fin-3',
+        title: 'Major Categories of Financial Service Businesses',
+        subtitle: 'Overview of institutions driving the financial services ecosystem:',
+        columns: ['Type of Financial Service', 'Description'],
+        rows: [
+          ['Commercial Banks', 'Institutions that accept deposits and provide loans to individuals and businesses. They offer services like checking and savings accounts.'],
+          ['Investment Banks', 'Firms that assist companies in raising capital by underwriting and issuing securities. They also provide advisory services for mergers and acquisitions.'],
+          ['Insurance Companies', 'Providers of risk management through various types of insurance policies, including life, health, auto, and property insurance.'],
+          ['Brokerage Firms', 'Companies that facilitate the buying and selling of financial securities between buyers and sellers. They may also provide investment advice.'],
+          ['Wealth Management Firms', 'Firms that offer financial planning and investment management services to high-net-worth individuals.']
+        ]
+      }
+    ],
+    loanTypes: [
+      { name: 'Fintech Software & Technology Term Loan', desc: 'Fund proprietary financial software development, AI risk engines, and enterprise cloud migrations.' },
+      { name: 'Revolving Corporate Operating Facility', desc: 'Secure institutional credit lines to bridge market liquidity timing, operational payroll, and expansion.' },
+      { name: 'Regulatory Capital & Expansion Debt', desc: 'Structured subordinated debt and expansion financing for wealth management firms and lenders.' }
+    ],
+    requiredDocuments: [
+      'Last 6 months corporate bank and custodial statements',
+      'Audited balance sheet and income statements',
+      'Regulatory registration or licensing details (SEC, FINRA, State Banking)',
+      'Executive team resume and ownership breakdown',
+      'Two-year financial forecast and use-of-proceeds plan'
+    ]
+  },
+  {
+    id: 'entertainment',
+    slug: 'entertainment',
+    image: '/images/industry_entertainment.jpg',
+    title: 'Entertainment Business Loans',
+    shortName: 'Entertainment',
+    subtitle: 'Equipment, venue upgrades, working capital',
+    badge: 'Media, Production & Live Events',
+    iconName: 'Clapperboard',
+    heroTagline: 'Film production companies, music studios, event managers, and theaters access tailored capital for productions, talent acquisition, venue bookings, and marketing.',
+    description: 'The most popular types of entertainment businesses seeking loans include film production companies, music studios, event management firms, and theater companies. These businesses require funding for production costs, venue bookings, talent acquisition, and promotional campaigns.',
+    fundingScope: '$10,000 to $500 Million+ (Network Scope)',
+    minAmount: 25000,
+    maxAmount: 500000000,
+    approvalTime: 'Typical approval: 2-24 hours',
+    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    primaryPurposes: [
+      'Covering Production Costs (Set designs, special effects & sound engineering)',
+      'Hiring Talent (Securing actors, musicians, sound engineers & production crew)',
+      'Booking Venues (Financing upfront deposits for halls, stadiums & stages)',
+      'Funding Marketing Campaigns (Comprehensive theatrical, digital & PR promotion)',
+      'Upgrading Studio Gear & AV Equipment'
+    ],
+    contentSections: [
+      {
+        id: 'ent-sec-1',
+        sectionBadge: 'Client Specification • Industry Categories',
+        sectionTitle: 'Types of Entertainment Businesses Seeking Loans',
+        introParagraphs: [
+          'Entertainment businesses often require financial support to cover various operational costs.',
+          'The most popular types of these businesses seeking loans include:'
+        ],
+        subsections: [
+          {
+            title: 'Core Creative Sectors',
+            bullets: [
+              { label: 'Film Production Companies', text: 'Covering production costs, set designs, special effects, and distribution expenses.' },
+              { label: 'Music Studios', text: 'Securing recording sessions, hiring sound engineers, and promoting albums.' },
+              { label: 'Event Management Firms', text: 'Booking venues, arranging logistics, and ensuring smooth execution of events.' },
+              { label: 'Theater Companies', text: 'Funding for stage productions, marketing campaigns, and venue rentals.' },
+              { label: 'Digital Content Creators', text: 'Funding for high-end studio production and viral marketing of online content.' },
+              { label: 'Amusement Parks', text: 'Financing for maintenance, upgrades, and installing new attractions.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These businesses often face challenges in securing loans due to the high-risk perception of the entertainment industry, which makes OAL’s multi-lender network and Investment IQ matching especially valuable.'
+      },
+      {
+        id: 'ent-sec-2',
+        sectionBadge: 'Client Specification • Capital Drivers',
+        sectionTitle: 'Common Reasons Entertainment Businesses Apply for Loans',
+        introParagraphs: [
+          'Entertainment businesses most commonly apply for loans to cover production costs, hire talent, book venues, and fund marketing campaigns.',
+          'Timely access to funds is crucial for project success in this fast-paced industry.'
+        ],
+        subsections: [
+          {
+            title: '1. Covering Production Costs',
+            description: 'Film, television, and music require significant upfront capital before distribution revenues materialize.',
+            bullets: [
+              { label: 'Film and Television', text: 'Funding for set designs, cinematography, special effects, and distribution.' },
+              { label: 'Music Production', text: 'Financial backing for recording sessions, mastering, and hiring top audio engineers.' }
+            ]
+          },
+          {
+            title: '2. Talent, Venues & Marketing',
+            description: 'Securing critical assets and audiences for live and recorded media.',
+            bullets: [
+              { label: 'Hiring Talent', text: 'Securing actors, musicians, and essential specialized crew.' },
+              { label: 'Booking Venues', text: 'Financing venue rental costs and deposits for concerts, shows, and theatrical runs.' },
+              { label: 'Marketing Campaigns', text: 'Covering aggressive advertising and promotional campaigns to reach global audiences.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These reasons highlight the financial needs specific to the entertainment industry, where timely access to funds is critical to meeting release dates and tour schedules.'
+      }
+    ],
+    clientTables: [
+      {
+        id: 'table-ent-1',
+        title: 'Summary Table of Loan Purposes',
+        subtitle: 'Key capital deployment objectives for entertainment businesses:',
+        columns: ['Purpose', 'Description'],
+        rows: [
+          ['Production Costs', 'Funding for set designs, special effects, audio engineering, etc.'],
+          ['Hiring Talent', 'Securing necessary personnel, actors, musicians, and directors for projects.'],
+          ['Booking Venues', 'Financing venue rental costs and deposits for events and performances.'],
+          ['Marketing Campaigns', 'Covering advertising and promotional expenses across digital and media channels.']
+        ]
+      },
+      {
+        id: 'table-ent-2',
+        title: 'Overview of Popular Entertainment Business Sectors',
+        subtitle: 'Core industry sectors and creative operational activities:',
+        columns: ['Sector', 'Description'],
+        rows: [
+          ['Film', 'Involves the production, distribution, and exhibition of movies across theaters and streaming.'],
+          ['Television', 'Encompasses the creation and broadcasting of TV shows and scripted/unscripted series.'],
+          ['Music', 'Covers the production, distribution, and performance of music, including labels and live venues.'],
+          ['Video Games', 'Involves the development and publishing of interactive gaming experiences across console, PC, and mobile.'],
+          ['Live Events', 'Includes concerts, theater performances, festivals, and other live entertainment.']
+        ]
+      }
+    ],
+    loanTypes: [
+      { name: 'Media Production & Film Tax Credit Bridge', desc: 'Short-term debt secured by pre-sales, distributor contracts, or government film tax credits.' },
+      { name: 'Concert Tour & Venue Deposit Line', desc: 'Revolving line to lock arena venues, book headlining artists, and stage production before ticket rollouts.' },
+      { name: 'Studio & Broadcast Equipment Lease', desc: '100% equipment financing for cameras, mixing consoles, LED volume stages, and post-production editing suites.' }
+    ],
+    requiredDocuments: [
+      'Last 4-6 months business checking statements',
+      'Project budget and breakdown of production costs',
+      'Distribution agreements, artist contracts, or venue booking agreements',
+      'Entity documentation (LLC/Corp) and production insurance details',
+      'Executive producer track record and revenue history'
+    ]
+  },
+  {
+    id: 'food-beverage',
+    slug: 'food-beverage',
+    image: '/images/industry_food_beverage.jpg',
+    title: 'Food and Beverage Business Loans',
+    shortName: 'Food & Beverage',
+    subtitle: 'Inventory, equipment, renovations',
+    badge: 'Restaurants, Cafés & Food Service',
+    iconName: 'UtensilsCrossed',
+    heroTagline: 'Restaurants, cafés, bars, bakeries, and food trucks secure working capital, kitchen equipment financing, and renovation loans to expand dining operations.',
+    description: 'Restaurants, cafes, and bars are among the most popular types of food and beverage businesses seeking business loans. These establishments often require funding for expansion, purchasing commercial kitchen equipment, bulk inventory stocking, and meeting health and safety compliance.',
+    fundingScope: '$10,000 to $500 Million+ (Network Scope)',
+    minAmount: 25000,
+    maxAmount: 500000000,
+    approvalTime: 'Typical approval: 2-24 hours',
+    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    primaryPurposes: [
+      'Business Expansion (Moving into larger premises & opening new facilities)',
+      'Equipment Purchases (Commercial ovens, walk-in coolers & cooking suites)',
+      'Inventory Stocking (High-grade ingredients, craft beverages & seasonal stock)',
+      'Marketing & Sales Growth (Promotions, trade shows & branding campaigns)',
+      'Compliance & Health Standards (Sanitation upgrades, fire suppression & licensing)'
+    ],
+    contentSections: [
+      {
+        id: 'fb-sec-1',
+        sectionBadge: 'Client Specification • Industry Categories',
+        sectionTitle: 'Popular Types of Food and Beverage Businesses',
+        introParagraphs: [
+          'Many food and beverage businesses actively seek financing to support their operations.',
+          'Restaurants, cafes, and bars are among the most popular types seeking business loans for equipment, inventory, and operational costs:'
+        ],
+        subsections: [
+          {
+            title: 'Dining & Foodservice Categories',
+            bullets: [
+              { label: 'Restaurants', text: 'Full-service dining establishments offering a variety of cuisines.' },
+              { label: 'Cafes', text: 'Casual spots serving coffee, light meals, and pastries.' },
+              { label: 'Bars', text: 'Establishments focused on serving alcoholic beverages, often with a social atmosphere.' },
+              { label: 'Food Trucks', text: 'Mobile vendors offering a range of food options at diverse locations.' },
+              { label: 'Bakeries', text: 'Shops specializing in baked goods, including bread, pastries, and cakes.' },
+              { label: 'Catering Services', text: 'Businesses providing food services for weddings, corporate events, and gatherings.' },
+              { label: 'Quick Service Restaurants (QSR)', text: 'Fast-food outlets offering quick meals for on-the-go customers.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'Understanding the types of food and beverage businesses and their financing needs helps lenders tailor their offerings to meet these entrepreneurs’ specific requirements.'
+      },
+      {
+        id: 'fb-sec-2',
+        sectionBadge: 'Client Specification • Expansion Drivers',
+        sectionTitle: 'Popular Reasons for Business Loans in Food and Beverage',
+        introParagraphs: [
+          'The most common reason food and beverage businesses seek business loans is to expand their operations.',
+          'As demand for their products increases, businesses often need more space or new production facilities to accommodate growth:'
+        ],
+        subsections: [
+          {
+            title: 'Primary Motivation: Expansion & Scaling',
+            bullets: [
+              { label: 'Moving into larger premises', text: 'Accommodating larger dining rooms, increased seat count, and expanded kitchens.' },
+              { label: 'Opening new production facilities', text: 'Enhancing production capacity, commercial ghost kitchens, and food distribution hubs.' }
+            ]
+          },
+          {
+            title: 'Operational Needs',
+            bullets: [
+              { label: 'Equipment Purchase', text: 'Acquiring essential kitchen appliances, convection ovens, and refrigeration.' },
+              { label: 'Marketing & Sales Growth', text: 'Funding digital delivery promotions, influencer events, and trade shows.' },
+              { label: 'Compliance & Standards', text: 'Upgrading facilities to satisfy strict health, sanitation, and safety regulations.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These factors illustrate how crucial business loans are for food and beverage companies aiming to grow and adapt to market demands.'
+      }
+    ],
+    clientTables: [
+      {
+        id: 'table-fb-1',
+        title: 'Types of Food and Beverage Businesses Seeking Loans',
+        subtitle: 'Core dining models and their common operational profiles:',
+        columns: ['Business Type', 'Description'],
+        rows: [
+          ['Restaurants', 'Full-service dining establishments offering a variety of cuisines.'],
+          ['Cafes', 'Casual spots serving coffee, light meals, and pastries.'],
+          ['Bars', 'Establishments focused on serving alcoholic beverages, often with a social atmosphere.'],
+          ['Food Trucks', 'Mobile vendors offering a range of food options at various locations.'],
+          ['Bakeries', 'Shops specializing in baked goods, including bread, pastries, and cakes.'],
+          ['Catering Services', 'Businesses providing food services for events and gatherings.'],
+          ['Quick Service Restaurants (QSR)', 'Fast-food outlets offering quick meals for on-the-go customers.']
+        ]
+      },
+      {
+        id: 'table-fb-2',
+        title: 'Summary Table of Loan Uses in Food and Beverage',
+        subtitle: 'Primary financing objectives for food and beverage operators:',
+        columns: ['Reason for Loan', 'Description'],
+        rows: [
+          ['Expansion', 'Moving to larger premises or opening new production facilities.'],
+          ['Equipment Purchase', 'Buying commercial kitchen appliances and preparation tools.'],
+          ['Marketing', 'Funding advertising campaigns and trade show participation to boost visibility.'],
+          ['Compliance', 'Meeting health, fire safety, and sanitation regulations.']
+        ]
+      },
+      {
+        id: 'table-fb-3',
+        title: 'Food and Beverage Business Profiles in the USA',
+        subtitle: 'Service models, guest atmosphere, and pricing structures across the market:',
+        columns: ['Business Type', 'Service Type', 'Atmosphere', 'Price Point'],
+        rows: [
+          ['Fast Food', 'Quick service', 'Simple, casual', '$ (Inexpensive)'],
+          ['Casual Dining', 'Full service', 'Comfortable, relaxed', '$$ (Moderate)'],
+          ['Coffee Shops / Cafés', 'Counter service', 'Cozy, social', '$-$$ (Inexpensive to moderate)'],
+          ['Buffet', 'Self-service', 'Spacious, functional', '$-$$ (Inexpensive to moderate)'],
+          ['Fast Casual', 'Hybrid service', 'Contemporary, practical', '$-$$ (Inexpensive to moderate)']
+        ]
+      }
+    ],
+    loanTypes: [
+      { name: 'Commercial Kitchen & Appliance Lease', desc: 'Finance walk-in freezers, commercial ranges, espresso machines, and dining fixtures with minimal down payment.' },
+      { name: 'Restaurant Location Expansion Loan', desc: 'Multi-year term loan for tenant improvements, bar buildouts, grease trap installations, and second locations.' },
+      { name: 'Food & Beverage Merchant Line of Credit', desc: 'Revolving line against daily point-of-sale receipts to purchase bulk food inventories and meet payroll.' }
+    ],
+    requiredDocuments: [
+      'Last 4-6 months business checking statements',
+      'Point-of-sale (POS) merchant processing statements',
+      'Commercial kitchen lease or deed of property',
+      'Food service and liquor licenses (if applicable)',
+      'Year-to-date Profit & Loss statement'
+    ]
+  },
+  {
+    id: 'automotive',
+    slug: 'automotive',
+    image: '/images/industry_automotive.jpg',
+    title: 'Automotive Business Loans',
+    shortName: 'Automotive',
+    subtitle: 'Inventory, equipment, facility upgrades',
+    badge: 'Dealerships, Repair & Fleet Services',
+    iconName: 'Car',
+    heroTagline: 'Dealerships, auto repair centers, car washes, and tire retailers obtain floor plan financing, heavy diagnostic equipment loans, and facility expansion funds.',
+    description: 'The most popular types of automotive businesses include auto repair shops, car washes, mobile detailing services, tire shops, and car dealerships. Financing supports operations, vehicle floor plan inventory, and advanced diagnostic machinery.',
+    fundingScope: '$10,000 to $500 Million+ (Network Scope)',
+    minAmount: 25000,
+    maxAmount: 500000000,
+    approvalTime: 'Typical approval: 2-24 hours',
+    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    primaryPurposes: [
+      'Financing Expansion (Purchasing new machinery, upgrading service bays & lots)',
+      'Vehicle & Parts Inventory Acquisition (Stocking cars, tires & OEM parts)',
+      'Purchasing Diagnostic Equipment (Hydraulic lifts, wheel balancers & computer scanners)',
+      'Upgrading Facilities (Renovating customer lounges, wash tunnels & paint booths)',
+      'Improving Cash Flow (Managing receivables, hiring certified mechanics & local marketing)'
+    ],
+    contentSections: [
+      {
+        id: 'auto-sec-1',
+        sectionBadge: 'Client Specification • Business Profiles',
+        sectionTitle: 'Popular Types of Automotive Businesses Seeking Loans',
+        introParagraphs: [
+          'Automotive businesses often require financing to support their operations, inventory, and equipment needs.',
+          'These businesses cater to essential vehicle maintenance and cleaning needs, making them in consistently high demand:'
+        ],
+        subsections: [
+          {
+            title: 'Core Automotive Businesses',
+            bullets: [
+              { label: 'Car Dealerships', text: 'Financing for vehicle inventory, showroom upgrades, and marketing operations.' },
+              { label: 'Vehicle Repair Shops', text: 'Funding for diagnostic tools, hydraulic lifts, repair equipment, and inventory of parts.' },
+              { label: 'Car Wash Services', text: 'Financing for tunnel wash equipment, cleaning supplies, and facility maintenance.' },
+              { label: 'Tire Stores', text: 'Funding for stocking bulk tires, installation equipment, and alignment systems.' },
+              { label: 'Automotive Parts Retailers', text: 'Financing for parts inventory and store operations across diverse vehicle makes.' },
+              { label: 'Fleet Management Services', text: 'Vehicle acquisition for leasing/rental and advanced fleet management telematics.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'Automotive businesses leverage commercial loans to keep pace with changing automotive technologies, including electric vehicle servicing.'
+      },
+      {
+        id: 'auto-sec-2',
+        sectionBadge: 'Client Specification • Capital Drivers',
+        sectionTitle: 'Reasons Automotive Businesses Apply for Business Loans',
+        introParagraphs: [
+          'The most popular reason automotive businesses apply for business loans is to finance expansion, such as purchasing new equipment, upgrading facilities, or increasing inventory to meet customer demand.',
+          'This financial support helps them grow and improve their daily service capacity:'
+        ],
+        subsections: [
+          {
+            title: 'Primary Purpose: Financing Expansion',
+            bullets: [
+              { label: 'Purchasing New Equipment', text: 'Upgrading diagnostic computers, lifts, and specialty tools to enhance productivity.' },
+              { label: 'Upgrading Facilities', text: 'Renovating service bays, waiting areas, or expanding physical lots to accommodate more vehicles.' },
+              { label: 'Increasing Inventory', text: 'Acquiring more replacement parts, tires, and vehicles to meet customer demand.' }
+            ]
+          },
+          {
+            title: 'Additional Operational Needs',
+            bullets: [
+              { label: 'Improving Cash Flow', text: 'Ensuring sufficient liquidity to manage day-to-day operations and unforeseen costs.' },
+              { label: 'Marketing Campaigns', text: 'Funding local digital advertising and promotional campaigns to drive service lane visits.' },
+              { label: 'Hiring Staff', text: 'Bringing on master ASE-certified technicians and service advisors.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'Access to business loans allows automotive owners to keep their service bays fully equipped and competitive.'
+      }
+    ],
+    clientTables: [
+      {
+        id: 'table-auto-1',
+        title: 'Summary Table of Automotive Businesses Seeking Loans',
+        subtitle: 'Key business categories, loan purposes, and financing needs:',
+        columns: ['Business Type', 'Purpose of Loan', 'Common Loan Needs'],
+        rows: [
+          ['Car Dealerships', 'Vehicle inventory and operations', 'New/used vehicles, showroom upgrades'],
+          ['Vehicle Repair Shops', 'Tools and equipment', 'Diagnostic tools, repair equipment'],
+          ['Car Wash Services', 'Equipment and facility setup', 'Washing equipment, cleaning supplies'],
+          ['Tire Stores', 'Inventory and equipment', 'Stocking tires, installation tools'],
+          ['Automotive Parts Retailers', 'Inventory and operations', 'Parts and accessories'],
+          ['Fleet Management Services', 'Vehicle acquisition and management', 'Vehicles for leasing, management software']
+        ]
+      }
+    ],
+    loanTypes: [
+      { name: 'Automotive Equipment Financing', desc: '100% financing for hydraulic vehicle lifts, diagnostic computers, tire mounting machines, and paint booths.' },
+      { name: 'Dealership Floor Plan Line of Credit', desc: 'Revolving lines specifically structured for independent and franchise vehicle inventory stocking.' },
+      { name: 'Auto Repair Working Capital Loan', desc: 'Fast capital to cover parts vendor invoices, technician payroll, and customer repair receivables.' }
+    ],
+    requiredDocuments: [
+      'Last 4-6 months business checking statements',
+      'Automotive shop or dealership commercial lease / facility deed',
+      'Equipment quote for diagnostic tools or machinery',
+      'Business license and ASE certifications',
+      'Year-to-date Profit & Loss statement'
+    ]
+  },
+  {
+    id: 'energy',
+    slug: 'energy',
+    image: '/images/industry_energy.jpg',
+    title: 'Energy Business Loans',
+    shortName: 'Energy',
+    subtitle: 'Equipment, project financing, operational costs',
+    badge: 'Renewables, Grid & Power Infrastructure',
+    iconName: 'Zap',
+    heroTagline: 'Solar, wind, hydroelectric, and traditional energy enterprises access large-scale project financing, infrastructure modernization capital, and technology investment.',
+    description: 'Energy businesses commonly seeking loans include those in renewable energy, such as solar and wind power, as well as traditional sectors like oil and gas. These companies require financing for infrastructure upgrades, project expansions, and technology innovations.',
+    fundingScope: '$10,000 to $500 Million+ (Network Scope)',
+    minAmount: 50000,
+    maxAmount: 500000000,
+    approvalTime: 'Typical approval: 2-24 hours',
+    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    primaryPurposes: [
+      'Project Financing (Solar panel installations, wind farms & power generation)',
+      'Infrastructure Upgrades (Modernizing power grids, substations & pipelines)',
+      'Energy Storage Solutions (Battery storage development & grid reserves)',
+      'Traditional Exploration & Refining (Drilling, safety upgrades & compliance)',
+      'Energy Efficiency Technology (Audits, smart grid IoT & operational improvements)'
+    ],
+    contentSections: [
+      {
+        id: 'nrg-sec-1',
+        sectionBadge: 'Client Specification • Energy Sectors',
+        sectionTitle: 'Types of Energy Businesses Seeking Loans',
+        introParagraphs: [
+          'Energy businesses span a variety of sectors, each with unique financing needs.',
+          'Renewable energy firms, including solar and wind, alongside traditional energy producers, continually require project capital:'
+        ],
+        subsections: [
+          {
+            title: '1. Renewable Energy Companies',
+            bullets: [
+              { label: 'Solar Power', text: 'Companies involved in solar panel manufacturing, commercial rooftop installation, and maintenance often seek loans for project financing and infrastructure upgrades.' },
+              { label: 'Wind Power', text: 'Wind energy firms require funding for turbine installation, transmission interconnects, and operational capacity expansions.' },
+              { label: 'Hydroelectric Power', text: 'Businesses in this sector seek loans for dam construction, turbine maintenance, and technological improvements.' }
+            ]
+          },
+          {
+            title: '2. Traditional Energy Companies',
+            bullets: [
+              { label: 'Oil and Gas', text: 'These companies require financing for exploration, drilling, pipeline maintenance, and refining operations.' },
+              { label: 'Nuclear Energy', text: 'Financing is needed for plant maintenance, safety upgrades, and regulatory compliance.' }
+            ]
+          },
+          {
+            title: '3. Other Energy-Related Sectors',
+            bullets: [
+              { label: 'Energy Storage', text: 'Companies focusing on utility-scale battery storage solutions seek loans to develop and scale their technologies.' },
+              { label: 'Energy Efficiency Services', text: 'Businesses providing energy audits and commercial efficiency retrofits require funding for specialized operations and smart tech.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These businesses are increasingly looking for loans to enhance their capabilities, meet regulatory requirements, and invest in sustainable practices.'
+      }
+    ],
+    clientTables: [
+      {
+        id: 'table-nrg-1',
+        title: 'Summary Table of Energy Business Types',
+        subtitle: 'Key industry sectors and common financing needs:',
+        columns: ['Energy Sector', 'Common Financing Needs'],
+        rows: [
+          ['Renewable Energy (Solar, Wind, Hydro)', 'Project financing, infrastructure upgrades, turbine and panel installation'],
+          ['Traditional Energy (Oil, Gas, Nuclear)', 'Exploration, drilling, refining, technology, plant safety upgrades'],
+          ['Energy Storage', 'Development and expansion of battery storage solutions and grid reserves'],
+          ['Energy Efficiency', 'Operational support, energy audits, technology advancements']
+        ]
+      }
+    ],
+    loanTypes: [
+      { name: 'Renewable Project Debt Financing', desc: 'Long-term debt for solar array buildouts, commercial wind turbines, and battery storage installations.' },
+      { name: 'Energy Infrastructure Term Loan', desc: 'Capital expenditure loans for drilling equipment, substation upgrades, and transmission interconnects.' },
+      { name: 'Energy Operating Working Capital Line', desc: 'Revolving line to manage seasonal power generation cycles and bridge utility power purchase agreements.' }
+    ],
+    requiredDocuments: [
+      'Last 6 months commercial bank statements',
+      'Power Purchase Agreements (PPAs) or utility interconnection contracts',
+      'Project engineering plans and equipment procurement bids',
+      'Two years audited business financial statements',
+      'Environmental and regulatory compliance permits'
+    ]
+  },
+  {
+    id: 'education',
+    slug: 'education',
+    image: '/images/industry_education.jpg',
+    title: 'Education Business Loans',
+    shortName: 'Education',
+    subtitle: 'Facility upgrades, technology, operational costs',
+    badge: 'Schools, EdTech & Training Academies',
+    iconName: 'GraduationCap',
+    heroTagline: 'Private schools, learning centers, vocational institutes, and EdTech startups secure funding for campus expansions, digital classrooms, and operational excellence.',
+    description: 'The most popular reason education businesses apply for business loans is to fund expansion, such as opening new locations or enhancing facilities to accommodate more students. Additionally, loans help cover operational costs and improve educational resources.',
+    fundingScope: '$10,000 to $500 Million+ (Network Scope)',
+    minAmount: 25000,
+    maxAmount: 500000000,
+    approvalTime: 'Typical approval: 2-24 hours',
+    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    primaryPurposes: [
+      'Funding Expansion (Opening new campus locations & additional branches)',
+      'Enhancing Facilities (Upgrading classrooms, laboratories & learning centers)',
+      'Classroom Technology & Tools (Smartboards, student computers & STEM lab kits)',
+      'Covering Operational Costs (Managing day-to-day administrative & faculty expenses)',
+      'Managing Cash Flow (Bridging semester tuition cycles & grant disbursements)'
+    ],
+    contentSections: [
+      {
+        id: 'edu-sec-1',
+        sectionBadge: 'Client Specification • Capital Drivers',
+        sectionTitle: 'Popular Reasons Education Businesses Apply for Loans',
+        introParagraphs: [
+          'The most popular reason education businesses apply for business loans is to fund expansion, such as opening new locations or enhancing facilities to accommodate more students.',
+          'Additionally, loans can help cover operational costs and improve resources for better educational services:'
+        ],
+        subsections: [
+          {
+            title: '1. Primary Purpose: Funding Expansion',
+            bullets: [
+              { label: 'Opening New Locations', text: 'Establishing additional campuses, tutoring branches, or vocational centers to reach more students.' },
+              { label: 'Enhancing Facilities', text: 'Upgrading existing buildings, athletic facilities, and laboratories to provide superior learning environments.' }
+            ]
+          },
+          {
+            title: '2. Additional Uses of Business Loans',
+            bullets: [
+              { label: 'Covering Operational Costs', text: 'Managing day-to-day expenses to ensure smooth academic operations across school years.' },
+              { label: 'Improving Resources', text: 'Investing in better educational software, laboratory equipment, and specialized learning materials.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These loans play a crucial role in helping education businesses grow and improve their services, ultimately benefiting their students and communities.'
+      }
+    ],
+    clientTables: [
+      {
+        id: 'table-edu-1',
+        title: 'Common Loan Types for Education Businesses',
+        subtitle: 'Loan structures and key features tailored to educational institutions:',
+        columns: ['Loan Type', 'Description', 'Key Features'],
+        rows: [
+          ['SBA Loans', 'Government-backed loans offering competitive rates for qualified educational providers.', 'Lower down payments, flexible repayment terms'],
+          ['Traditional Term Loans', 'Provide a lump sum to be repaid over a set period for large facility or campus capital.', 'Fixed repayment schedule, larger amounts available'],
+          ['Microloans', 'Smaller loans typically for early-stage learning centers or specialized tutoring startups.', 'Amounts up to $50,000, easier qualification'],
+          ['Lines of Credit', 'Flexible funding that allows borrowing as needed to bridge semester tuition collections.', 'Pay interest only on amount used, quick access to funds']
+        ]
+      }
+    ],
+    loanTypes: [
+      { name: 'Campus Facility Expansion Loan', desc: 'Long-term financing to acquire school property, build classrooms, and upgrade student amenities.' },
+      { name: 'EdTech & Digital Classroom Financing', desc: 'Equipment financing for campus networks, smartboards, student computing devices, and administrative software.' },
+      { name: 'Semester Working Capital Line of Credit', desc: 'Flexible lines to bridge tuition and fee collection schedules and maintain faculty payroll.' }
+    ],
+    requiredDocuments: [
+      'Last 4-6 months business bank statements',
+      'School or training academy educational license / accreditation proof',
+      'Enrollment records and historical tuition revenue data',
+      'Facility lease or commercial property deed',
+      'Year-to-date Profit & Loss statement'
+    ]
+  },
+  {
+    id: 'construction',
+    slug: 'construction',
+    image: '/images/industry_construction.jpg',
+    title: 'Construction Business Loans',
+    shortName: 'Construction',
+    subtitle: 'Project financing, equipment, working capital',
+    badge: 'General Contractors & Infrastructure',
+    iconName: 'Hammer',
+    heroTagline: 'General contractors, specialty trades, civil builders, and developers finance heavy machinery, upfront building materials, and bridge project draw schedules.',
+    description: 'The construction industry comprises various businesses, each specializing in different aspects of construction projects. Companies range from residential and commercial builders to specialty trade contractors, requiring financing for equipment, materials, payroll, and bridging invoice payment terms.',
+    fundingScope: '$10,000 to $500 Million+ (Network Scope)',
+    minAmount: 50000,
+    maxAmount: 500000000,
+    approvalTime: 'Typical approval: 2-24 hours',
+    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    primaryPurposes: [
+      'Covering Weekly Payroll (Keeping skilled crews paid while waiting on progress draws)',
+      'Purchasing Building Materials (Acquiring bulk lumber, steel & concrete upfront)',
+      'Equipment Financing (Buying or leasing excavators, cranes & heavy work vehicles)',
+      'Cash Flow Management & Retainage (Bridging retainage holdbacks & slow invoice turnaround)',
+      'Project Mobilization & Bonding Capital'
+    ],
+    contentSections: [
+      {
+        id: 'const-sec-1',
+        sectionBadge: 'Client Specification • Industry Sectors',
+        sectionTitle: 'Top Types of Construction Businesses',
+        introParagraphs: [
+          'The construction industry comprises various types of businesses, each specializing in different aspects of building and infrastructure development.',
+          'From small specialty firms to multi-million dollar builders, construction businesses operate across diverse project types:'
+        ],
+        subsections: [
+          {
+            title: '1. Residential & Commercial Builders',
+            bullets: [
+              { label: 'Residential construction', text: 'Build homes, from single-family houses and townhouses to multi-unit apartments and master-planned residential communities.' },
+              { label: 'Commercial construction', text: 'Build spaces for business use, ranging from retail stores, cafes, and offices to corporate headquarters, hotels, and malls.' }
+            ]
+          },
+          {
+            title: '2. Industrial & Public Works',
+            bullets: [
+              { label: 'Industrial construction', text: 'Manufacturing plants, warehouses, distribution centers, refineries, and power generation facilities.' },
+              { label: 'Public works construction', text: 'Infrastructure and institutional buildings including roads, bridges, tunnels, airports, schools, and hospitals funded publicly or via P3 partnerships.' }
+            ]
+          },
+          {
+            title: '3. Contracting & Specialty Builders',
+            bullets: [
+              { label: 'Renovation and Remodeling', text: 'Improving, updating, or restoring existing structures, from kitchen upgrades to commercial tenant fit-outs and historical restorations.' },
+              { label: 'General Contractors', text: 'Oversee entire construction projects across all phases, sourcing materials, managing subcontractors, and ensuring safety.' },
+              { label: 'Specialty Contractors', text: 'Focus on specific trades such as plumbing, roofing, HVAC installations, electrical work, and concrete framing.' },
+              { label: 'Green & Sustainable Construction', text: 'Design and build projects minimizing environmental impact using LEED standards, solar panels, and energy-efficient HVAC.' },
+              { label: 'Modular & Pre-fabricated Construction', text: 'Manufacture building components in factory settings and assemble finished modules on-site.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These businesses drive the built environment and frequently require tailored credit to mobilize large jobs.'
+      },
+      {
+        id: 'const-sec-2',
+        sectionBadge: 'Client Specification • Capital Drivers',
+        sectionTitle: 'Financing Needs of Construction Businesses',
+        introParagraphs: [
+          'Construction businesses face distinct cash flow dynamics due to milestone billing cycles and retainage holdbacks.',
+          'Contractors commonly seek financing for payroll, materials, and heavy equipment:'
+        ],
+        subsections: [
+          {
+            title: 'Financing Drivers',
+            bullets: [
+              { label: 'Covering Payroll', text: 'Ensuring trade workers and subcontractors are paid while waiting for project milestones and owner draws.' },
+              { label: 'Purchasing Materials', text: 'Acquiring necessary bulk supplies and raw materials to start jobs promptly.' },
+              { label: 'Equipment Financing', text: 'Buying or leasing heavy machinery essential for grading, digging, and framing.' },
+              { label: 'Cash Flow Management', text: 'Bridging gaps between project completion costs and client receivables.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These financing options help construction businesses manage their operations effectively and scale to take on larger contracts.'
+      }
+    ],
+    clientTables: [
+      {
+        id: 'table-const-1',
+        title: 'Main Types of Construction Businesses',
+        subtitle: 'Core construction industry segments and operational specializations:',
+        columns: ['Type of Business', 'Description'],
+        rows: [
+          ['General Contractors', 'Manage overall construction projects, coordinating between various subcontractors and suppliers.'],
+          ['Specialty Contractors', 'Focus on specific trades such as plumbing, electrical work, or HVAC systems.'],
+          ['Real Estate Developers', 'Buy and sell properties, secure financing, and oversee project development.'],
+          ['Architecture/Design Firms', 'Create designs and plans for construction projects, often involved in project management.'],
+          ['Construction Management Companies', 'Oversee project execution, ensuring timelines and budgets are met.'],
+          ['Engineering Firms', 'Provide technical expertise and ensure compliance with building codes.'],
+          ['Material Suppliers', 'Supply essential materials like concrete, steel, and wood for construction projects.'],
+          ['Equipment Lessors', 'Lease heavy machinery and equipment to construction companies.'],
+          ['Renovation Companies', 'Specialize in upgrading or remodeling existing structures.']
+        ]
+      },
+      {
+        id: 'table-const-2',
+        title: 'Popular Loan Options for Construction Companies',
+        subtitle: 'Specialized loan structures designed for builders and contractors:',
+        columns: ['Loan Type', 'Purpose'],
+        rows: [
+          ['SBA 7(a) Loans', 'General business financing with favorable terms and lower interest rates.'],
+          ['Business Lines of Credit', 'Flexible access to funds for various operational needs and weekly payroll.'],
+          ['Equipment Financing', 'Spreads the cost of purchasing heavy machinery over time.'],
+          ['Invoice Factoring', 'Converts unpaid invoices into immediate cash flow.'],
+          ['Merchant Cash Advances', 'Provides quick cash based on future sales for urgent mobilization.']
+        ]
+      }
+    ],
+    loanTypes: [
+      { name: 'Heavy Construction Equipment Financing', desc: 'Spread the cost of excavators, bulldozers, cranes, and concrete mixers over multi-year terms.' },
+      { name: 'Contractor Mobilization Revolving Credit Line', desc: 'Draw funds as needed to purchase job site materials and pay trade crews before owner progress payments.' },
+      { name: 'Commercial Invoice Factoring', desc: 'Accelerate cash flow by factoring verified AIA progress billings and commercial construction invoices.' }
+    ],
+    requiredDocuments: [
+      'Last 4-6 months business checking statements',
+      'Contractor license, bond info, and commercial general liability insurance',
+      'Work-in-progress (WIP) schedule and project contracts',
+      'Accounts receivable aging report showing billing milestones',
+      'Year-to-date Profit & Loss and Balance Sheet'
+    ]
+  },
+  {
+    id: 'ecommerce',
+    slug: 'ecommerce',
+    image: '/images/industry_ecommerce.jpg',
+    title: 'E-commerce Business Loans',
+    shortName: 'E-commerce',
+    subtitle: 'Inventory, store expansion, working capital',
+    badge: 'Online Retail, DTC & Marketplaces',
+    iconName: 'ShoppingBag',
+    heroTagline: 'B2C stores, DTC brands, Amazon sellers, and B2B platforms secure upfront inventory financing, digital ad-spend working capital, and logistics automation.',
+    description: 'The most popular reason e-commerce businesses apply for business loans is to manage cash flow, particularly during periods of growth or when purchasing inventory upfront. Financing helps online merchants seize market trends, fund digital advertising, and scale their stores.',
+    fundingScope: '$10,000 to $500 Million+ (Network Scope)',
+    minAmount: 15000,
+    maxAmount: 500000000,
+    approvalTime: 'Typical approval: 2-24 hours',
+    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    primaryPurposes: [
+      'Managing Cash Flow (Handling rapid growth surges & seasonal inventory demands)',
+      'Upfront Inventory Purchases (Bulk supplier orders & manufacturer volume discounts)',
+      'Seizing Market Trends (Capitalizing swiftly on viral products & consumer shifts)',
+      'Operational Ad-Spend (Financing high-ROI PPC, social ads & marketing campaigns)',
+      'Technology & Platform Upgrades (Investing in 3PL automation, apps & warehouse tech)'
+    ],
+    contentSections: [
+      {
+        id: 'ecom-sec-1',
+        sectionBadge: 'Client Specification • Capital Drivers',
+        sectionTitle: 'Popular Reasons E-Commerce Businesses Apply for Loans',
+        introParagraphs: [
+          'The most popular reason e-commerce businesses apply for business loans is to manage cash flow, particularly during periods of growth or when purchasing inventory upfront.',
+          'This financing helps online entrepreneurs seize opportunities and maintain operations effectively:'
+        ],
+        subsections: [
+          {
+            title: '1. Managing Cash Flow & Inventory',
+            bullets: [
+              { label: 'Growth Periods', text: 'Businesses frequently need additional funds to manage cash flow during expansion phases.' },
+              { label: 'Inventory Purchases', text: 'Many e-commerce companies require upfront capital to purchase inventory, especially when taking advantage of bulk deals.' }
+            ]
+          },
+          {
+            title: '2. Seizing Opportunities & Operations',
+            bullets: [
+              { label: 'Market Trends', text: 'Quick access to funds allows businesses to capitalize on emerging market trends or viral product demands.' },
+              { label: 'Competitive Edge', text: 'Cash on hand helps businesses act swiftly to secure advantageous supplier deals or competitor customer lists.' },
+              { label: 'Marketing Initiatives', text: 'Financing supports costly marketing campaigns that are essential for continuous customer acquisition.' },
+              { label: 'Technology Upgrades', text: 'Funds are invested in software that enhances fulfillment, checkout speed, and operational efficiency.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'These reasons highlight the strategic importance of business loans in maintaining and scaling e-commerce operations.'
+      },
+      {
+        id: 'ecom-sec-2',
+        sectionBadge: 'Client Specification • Business Models',
+        sectionTitle: 'E-Commerce Business Models & Channel Profiles',
+        introParagraphs: [
+          'E-commerce spans multiple business architectures, from direct consumer retail to wholesale B2B platforms and subscription boxes.',
+          'Here are the most popular business models seeking funding across the digital economy:'
+        ],
+        subsections: [
+          {
+            title: 'B2C and Direct-to-Consumer (DTC)',
+            bullets: [
+              { label: 'Online Retailers', text: 'Selling products through marketplace platforms like Amazon, eBay, and Walmart.' },
+              { label: 'Direct-to-Consumer (DTC) Brands', text: 'Manufacturing their own branded products and selling directly to consumers, bypassing traditional retailers.' },
+              { label: 'Subscription Services', text: 'Providing consumable products or digital services on recurring subscription intervals.' }
+            ]
+          },
+          {
+            title: 'B2B & Alternative E-Commerce',
+            bullets: [
+              { label: 'Wholesale Distributors', text: 'Purchasing in bulk from manufacturers and distributing to commercial retailers online.' },
+              { label: 'Software & Technology Solutions', text: 'Providing CRM, ERP, and e-commerce infrastructure tools.' },
+              { label: 'C2C Marketplaces', text: 'Connecting individual buyers and sellers (e.g., Etsy, P2P platforms).' }
+            ]
+          }
+        ],
+        concludingParagraph: 'Online businesses leverage tailored financing to bridge merchant payout lag and sustain advertising momentum.'
+      }
+    ],
+    clientTables: [
+      {
+        id: 'table-ecom-1',
+        title: 'Summary Table of Reasons for Business Loans',
+        subtitle: 'Key capital deployment objectives for e-commerce companies:',
+        columns: ['Reason', 'Description'],
+        rows: [
+          ['Managing Cash Flow', 'Essential for growth phases and purchasing inventory in bulk.'],
+          ['Seizing Opportunities', 'Enables quick action on sudden market trends and competitive advantages.'],
+          ['Operational Expenses', 'Supports marketing campaigns and software technology upgrades.'],
+          ['Business Expansion', 'Facilitates entry into new markets and physical popup locations.']
+        ]
+      },
+      {
+        id: 'table-ecom-2',
+        title: 'Common B2C Business Types',
+        subtitle: 'Direct consumer business structures operating online:',
+        columns: ['Type', 'Description'],
+        rows: [
+          ['Online Retailers', 'Businesses that sell products through e-commerce platforms, such as Amazon and eBay.'],
+          ['Grocery Stores', 'Online grocery delivery services providing food and household essentials directly to consumers.'],
+          ['Service Providers', 'Companies offering services directly to individual consumers online.'],
+          ['Direct-to-Consumer (DTC) Brands', 'Brands that manufacture their own products and sell them directly to consumers, bypassing retailers.'],
+          ['Subscription Services', 'Businesses that provide products or services on a recurring basis, such as meal kits or streaming.']
+        ]
+      },
+      {
+        id: 'table-ecom-3',
+        title: 'Key B2B Models',
+        subtitle: 'Business-to-business commerce structures and transactions:',
+        columns: ['B2B Model Type', 'Description'],
+        rows: [
+          ['Supplier and Manufacturer', 'Involves businesses sourcing materials or products from suppliers for production needs.'],
+          ['Wholesale Distributors', 'Act as intermediaries, purchasing goods in bulk from manufacturers and selling to businesses.'],
+          ['Service Providers', 'Offer specialized services such as consulting, IT support, or marketing to other businesses.'],
+          ['Software and Technology Solutions', 'Provide tools and software that help businesses operate more efficiently, such as CRM or ERP systems.']
+        ]
+      }
+    ],
+    loanTypes: [
+      { name: 'E-Commerce Inventory Revolving Line', desc: 'Revolving line to place bulk manufacturing orders and pay down balances as orders ship.' },
+      { name: 'Revenue-Based Working Capital Advance', desc: 'Funding tied to daily marketplace sales volume with automated percentage-based repayments.' },
+      { name: 'Digital Marketing & Growth Term Loan', desc: 'Dedicated capital to ramp up Meta, Google, and Amazon advertising campaigns without tapping cash reserves.' }
+    ],
+    requiredDocuments: [
+      'Last 4-6 months business checking statements',
+      'E-commerce dashboard integrations or sales summary reports (Shopify, Amazon, Stripe)',
+      'Supplier purchase orders or inventory invoices',
+      'Digital ad spend accounts summary (Google Ads, Meta Ads)',
+      'Year-to-date Profit & Loss statement'
+    ]
+  },
+  {
+    id: 'agriculture',
+    slug: 'agriculture',
+    image: '/images/industry_agriculture.jpg',
+    title: 'Agriculture Business Loans',
+    shortName: 'Agriculture',
+    subtitle: 'Inventory, store expansion, working capital',
+    badge: 'Farming, Crops & Agribusiness',
+    iconName: 'Sprout',
+    heroTagline: 'Crop farms, livestock producers, dairy operations, and agribusinesses secure seasonal operating credit, land acquisition loans, and heavy farm equipment financing.',
+    description: 'Agricultural businesses often require financing to support their operations, seasonal crop inputs, livestock acquisition, and land development. Loans help farmers manage seasonal cash flow gaps between planting and harvest while investing in modern farming technologies.',
+    fundingScope: '$10,000 to $500 Million+ (Network Scope)',
+    minAmount: 25000,
+    maxAmount: 500000000,
+    approvalTime: 'Typical approval: 2-24 hours',
+    rateDescription: 'Tailored terms based on 180-point Investment IQ evaluation and competitive lender offers',
+    primaryPurposes: [
+      'Operating Expenses (Seeds, fertilizers, fuel & crop protection inputs)',
+      'Farm Equipment Financing (Tractors, combines, harvesters & irrigation systems)',
+      'Managing Seasonal Cash Flow Gaps (Covering pre-harvest labor & utilities)',
+      'Acquiring Livestock & Feed (Breeding cattle, poultry, feed & veterinary care)',
+      'Expansion and Farmland Acquisition (Purchasing acreage & building grain storage)'
+    ],
+    contentSections: [
+      {
+        id: 'ag-sec-1',
+        sectionBadge: 'Client Specification • Agricultural Profiles',
+        sectionTitle: 'Common Types of Agriculture Businesses Seeking Loans',
+        introParagraphs: [
+          'Agriculture encompasses a variety of business types that contribute to food production and distribution.',
+          'Agricultural businesses often require financing to support various operational needs:'
+        ],
+        subsections: [
+          {
+            title: 'Core Agricultural Producers',
+            bullets: [
+              { label: 'Crop Farming', text: 'Funding for seeds, fertilizers, fuel, and specialized planting/harvesting equipment.' },
+              { label: 'Livestock Farming', text: 'Purchasing livestock, feed rations, fencing, and veterinary care.' },
+              { label: 'Dairy Farming', text: 'Investment in automated milking equipment, cooling tanks, and dairy barn facilities.' },
+              { label: 'Agribusiness Ventures', text: 'Expanding operations, purchasing agricultural technology, or improving processing infrastructure.' },
+              { label: 'Organic Farming', text: 'Transitioning to certified organic practices and purchasing non-GMO/organic inputs.' },
+              { label: 'Specialty Crop Production', text: 'Funding for unique high-value crops like herbs, flowers, or exotic fruits.' },
+              { label: 'Agricultural Technology Startups', text: 'Developing new robotics, drone sensing, and precision irrigation technologies.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'Agricultural businesses utilize these loans to enhance productivity, manage seasonal cycles, and invest in sustainable growth opportunities.'
+      },
+      {
+        id: 'ag-sec-2',
+        sectionBadge: 'Client Specification • Operations & Enterprise Categories',
+        sectionTitle: 'Agricultural Operations and Enterprise Categories',
+        introParagraphs: [
+          'From primary crop and livestock production to downstream processing and distribution, agricultural enterprises encompass several major categories:'
+        ],
+        subsections: [
+          {
+            title: '1. Crop & Livestock Production',
+            bullets: [
+              { label: 'Crop Production', text: 'Growing staple grains, fruits, and vegetables, organic produce, and high-value specialty crops.' },
+              { label: 'Livestock Farming', text: 'Dairy cattle, poultry operations, and pig breeding with high market demand.' }
+            ]
+          },
+          {
+            title: '2. Agribusiness & Value-Add Processing',
+            bullets: [
+              { label: 'Agribusiness Services', text: 'Seed and fertilizer supply, equipment leasing, and agricultural consulting.' },
+              { label: 'Food Processing & Distribution', text: 'Transforming raw harvest into consumable goods, temperature-controlled transportation, and marketing.' },
+              { label: 'Additional Ventures', text: 'Agritourism, hydroponics, and indoor vertical farming in controlled environments.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'Modern agribusinesses require flexible capital structures that align with harvest timing and commodity market cycles.'
+      },
+      {
+        id: 'ag-sec-3',
+        sectionBadge: 'Client Specification • Capital Drivers',
+        sectionTitle: 'Common Reasons Agricultural Businesses Apply for Loans',
+        introParagraphs: [
+          'Agricultural businesses seek loans primarily to support their operations, manage seasonal volatility, and invest in development:',
+          'Popular loan reasons include purchasing equipment, acquiring livestock, buying land, and financing pre-harvest operational costs.'
+        ],
+        subsections: [
+          {
+            title: '1. Operating Expenses & Input Costs',
+            bullets: [
+              { label: 'Purchasing Seeds and Fertilizers', text: 'Essential inputs for planting and maintaining healthy crop yields.' },
+              { label: 'Buying Equipment', text: 'Necessary for efficient farming operations, including tractors, balers, and irrigation.' }
+            ]
+          },
+          {
+            title: '2. Seasonal Cash Flow & Expansion',
+            bullets: [
+              { label: 'Managing Seasonal Gaps', text: 'Covering labor and utility expenses that occur months before harvest revenue is collected.' },
+              { label: 'Acquiring Farmland', text: 'Purchasing adjacent acreage to increase overall production capacity.' },
+              { label: 'Upgrading Facilities', text: 'Building modern grain silos, cold storage, and value-added processing plants.' }
+            ]
+          }
+        ],
+        concludingParagraph: 'Agricultural loans provide the necessary financial foundation to sustain farming operations through all seasonal cycles.'
+      }
+    ],
+    clientTables: [
+      {
+        id: 'table-ag-1',
+        title: 'Summary of Loan Types for Agriculture Businesses',
+        subtitle: 'Key agricultural loan structures and operational purposes:',
+        columns: ['Loan Type', 'Purpose'],
+        rows: [
+          ['Operating Loans', 'Cover seasonal expenses, seeds, fertilizers, and daily operations.'],
+          ['Equipment Financing', 'Purchase or lease farming equipment, tractors, and irrigation.'],
+          ['Real Estate Loans', 'Acquire land or expand existing farm facilities and acreage.'],
+          ['Business Loans', 'Fund capital investments, AgTech innovations, and processing infrastructure.']
+        ]
+      }
+    ],
+    loanTypes: [
+      { name: 'Seasonal Agricultural Operating Line', desc: 'Revolving line structured to draw funds during planting season and repay upon harvest sales.' },
+      { name: 'Farm Equipment Financing & Leasing', desc: 'Up to 100% financing for tractors, combines, grain trailers, and precision GPS guidance tools.' },
+      { name: 'Farmland Acquisition & Development Loan', desc: 'Long-term commercial real estate financing to purchase acreage, build grain bins, and install irrigation.' }
+    ],
+    requiredDocuments: [
+      'Last 4-6 months business/farm bank statements',
+      'Farm crop acreage report or livestock inventory summary',
+      'Past 2-3 years farm tax returns (Schedule F)',
+      'Equipment quote or purchase agreement for land/machinery',
+      'Crop insurance and FSA records (if applicable)'
+    ]
+  }
 ];
 
 // Helper functions for easy access across the platform

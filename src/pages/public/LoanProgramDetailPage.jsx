@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { LOAN_PROGRAMS } from '../../data/loanPrograms';
+import { LOAN_PROGRAMS, ALL_LOAN_PROGRAMS } from '../../data/loanPrograms';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -27,13 +27,14 @@ export const LoanProgramDetailPage = () => {
   const navigate = useNavigate();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
-  const program = LOAN_PROGRAMS.find(p => p.slug === slug || p.id === slug) || LOAN_PROGRAMS[0];
+  const program = (ALL_LOAN_PROGRAMS || LOAN_PROGRAMS).find(p => p.slug === slug || p.id === slug) || LOAN_PROGRAMS[0];
 
   if (program?.isIndustryProgram) {
     return <IndustryDetailPage />;
   }
 
   const getProgramImage = (idOrSlug) => {
+    if (program?.image) return program.image;
     switch (idOrSlug) {
       case 'restaurant':
         return '/images/loan_restaurant.jpg';
