@@ -225,9 +225,9 @@ export const INITIAL_APPLICATIONS = [
       ]
     },
     assignedRep: {
-      id: 'usr_rep_01',
-      name: 'Elena Rostova',
-      email: 'elena.rostova@oalnetwork.com'
+      id: 'usr_rep_02',
+      name: 'Jonathan Pierce',
+      email: 'j.pierce@oalnetwork.com'
     },
     creditScore: 730,
     annualRevenue: 1250000,
@@ -266,11 +266,7 @@ export const INITIAL_APPLICATIONS = [
       maxSlots: 3,
       claims: []
     },
-    assignedRep: {
-      id: 'usr_rep_01',
-      name: 'Elena Rostova',
-      email: 'elena.rostova@oalnetwork.com'
-    },
+    assignedRep: null,
     creditScore: 685,
     annualRevenue: 290000,
     monthlyCashFlow: 9200,
@@ -583,7 +579,7 @@ export const INITIAL_DOCUMENTS = [
 export const INITIAL_MESSAGES = [
   {
     id: 'MSG-301',
-    conversationId: 'CONV_BORROWER_REP_1082',
+    conversationId: 'CONV_BORROWER_REP_APP-2026-1082',
     senderRole: 'borrower',
     senderId: 'usr_borrower_01',
     senderName: 'Marcus Vance',
@@ -591,13 +587,14 @@ export const INITIAL_MESSAGES = [
     receiverId: 'usr_rep_01',
     receiverName: 'Elena Rostova (OAL Rep)',
     applicationId: 'APP-2026-1082',
+    type: 'chat',
     text: 'Hi Elena, I see two lender offers on my dashboard today. Is the first offer from Lender #4812 able to waive the 12-month prepayment fee if we pay down early?',
     timestamp: '2026-10-06T10:14:00Z',
     read: true
   },
   {
     id: 'MSG-302',
-    conversationId: 'CONV_BORROWER_REP_1082',
+    conversationId: 'CONV_BORROWER_REP_APP-2026-1082',
     senderRole: 'rep',
     senderId: 'usr_rep_01',
     senderName: 'Elena Rostova (OAL Rep)',
@@ -605,13 +602,14 @@ export const INITIAL_MESSAGES = [
     receiverId: 'usr_borrower_01',
     receiverName: 'Marcus Vance',
     applicationId: 'APP-2026-1082',
+    type: 'chat',
     text: 'Good morning Marcus! Let me coordinate directly with the underwriting team at Lender #4812 through our secure representative bridge. I will check their prepayment flexibility and post their update right here.',
     timestamp: '2026-10-06T10:35:00Z',
     read: true
   },
   {
     id: 'MSG-303',
-    conversationId: 'CONV_LENDER_REP_1082',
+    conversationId: 'CONV_LENDER_REP_APP-2026-1082_usr_lender_01',
     senderRole: 'rep',
     senderId: 'usr_rep_01',
     senderName: 'Elena Rostova (OAL Rep)',
@@ -619,13 +617,14 @@ export const INITIAL_MESSAGES = [
     receiverId: 'usr_lender_01',
     receiverName: 'Apex Horizon Capital LLC',
     applicationId: 'APP-2026-1082',
+    type: 'chat',
     text: 'Hello Apex Underwriting. The borrower for deal APP-2026-1082 is reviewing your offer #OFFER-8801. They asked if the 12-month prepayment restriction could be shortened to 6 months. Can your committee grant this flexibility?',
     timestamp: '2026-10-06T11:02:00Z',
     read: true
   },
   {
     id: 'MSG-304',
-    conversationId: 'CONV_LENDER_REP_1082',
+    conversationId: 'CONV_LENDER_REP_APP-2026-1082_usr_lender_01',
     senderRole: 'lender',
     senderId: 'usr_lender_01',
     senderName: 'Apex Horizon Capital LLC',
@@ -633,8 +632,55 @@ export const INITIAL_MESSAGES = [
     receiverId: 'usr_rep_01',
     receiverName: 'Elena Rostova (OAL Rep)',
     applicationId: 'APP-2026-1082',
+    type: 'chat',
     text: 'Hi Elena. We reviewed the file: because their Investment IQ is 154 with clean cash flow, our risk committee can approve a 6-month prepayment clause if they close before the 19th.',
     timestamp: '2026-10-06T13:40:00Z',
+    read: true
+  },
+  {
+    id: 'MSG-305',
+    conversationId: 'CONV_BORROWER_REP_APP-2026-1082',
+    senderRole: 'rep',
+    senderId: 'usr_rep_01',
+    senderName: 'Elena Rostova (OAL Rep)',
+    receiverRole: 'borrower',
+    receiverId: 'usr_borrower_01',
+    receiverName: 'Marcus Vance',
+    applicationId: 'APP-2026-1082',
+    type: 'email',
+    subject: 'Formal Underwriting Status & Offer Review [Deal APP-2026-1082]',
+    text: 'Dear Marcus,\n\nWe are pleased to inform you that two participating institutional underwriters have completed initial cash flow scoring on your commercial placement. Both term sheets have been audited and posted to your secure portal for review.\n\nPlease review the prepayment terms and advise if you would like to proceed with formal closing documentation.\n\nBest regards,\nElena Rostova\nSenior Commercial Placement Specialist\nOAL Network Brokerage',
+    timestamp: '2026-10-06T14:15:00Z',
+    read: true
+  },
+  {
+    id: 'MSG-306',
+    conversationId: 'CONV_LENDER_REP_APP-2026-1082_usr_lender_01',
+    senderRole: 'rep',
+    senderId: 'usr_rep_01',
+    senderName: 'Elena Rostova (OAL Rep)',
+    receiverRole: 'lender',
+    receiverId: 'usr_lender_01',
+    receiverName: 'Apex Horizon Capital LLC',
+    applicationId: 'APP-2026-1082',
+    type: 'sms',
+    text: 'OAL Placement Alert: Deal APP-2026-1082 verified tax returns uploaded. Underwriter response requested within 24h SLA window.',
+    timestamp: '2026-10-06T15:20:00Z',
+    read: true
+  },
+  {
+    id: 'MSG-307',
+    conversationId: 'CONV_LENDER_REP_APP-2026-1082_usr_lender_02',
+    senderRole: 'lender',
+    senderId: 'usr_lender_02',
+    senderName: 'Lender #9203 (Hospitality Capital Partners)',
+    receiverRole: 'rep',
+    receiverId: 'usr_rep_01',
+    receiverName: 'Elena Rostova (OAL Rep)',
+    applicationId: 'APP-2026-1082',
+    type: 'chat',
+    text: 'Hello Elena, Hospitality Capital has reviewed deal APP-2026-1082. Our credit memo approves 60-month terms under condition of 2 months escrow deposit. We issued term sheet #OFFER-8802.',
+    timestamp: '2026-10-06T09:35:00Z',
     read: true
   }
 ];
@@ -826,3 +872,46 @@ export const INITIAL_NETWORK_ACTIVITY = [
     badge: 'Funded'
   }
 ];
+
+export const INITIAL_REPS = [
+  {
+    id: 'usr_rep_01',
+    aliases: ['usr_rep1', 'elena.rostova@oalnetwork.com'],
+    name: 'Elena Rostova',
+    title: 'Senior Commercial Placement Specialist',
+    email: 'elena.rostova@oalnetwork.com',
+    phone: '+1 (555) 901-8321',
+    activeBorrowers: 6,
+    offersMediated: 28,
+    status: 'ACTIVE',
+    verificationStatus: 'ACTIVE',
+    maxCapacity: 20
+  },
+  {
+    id: 'usr_rep_02',
+    aliases: ['usr_rep2', 'j.pierce@oalnetwork.com'],
+    name: 'Jonathan Pierce',
+    title: 'Healthcare & Franchise Financing Agent',
+    email: 'j.pierce@oalnetwork.com',
+    phone: '+1 (555) 301-4412',
+    activeBorrowers: 1,
+    offersMediated: 15,
+    status: 'ACTIVE',
+    verificationStatus: 'ACTIVE',
+    maxCapacity: 15
+  },
+  {
+    id: 'usr_rep_pending_01',
+    aliases: ['r.caldwell@caldwellbrokers.com'],
+    name: 'Robert C. Caldwell',
+    title: 'Senior Commercial Placement Specialist',
+    email: 'r.caldwell@caldwellbrokers.com',
+    phone: '+1 (555) 341-8890',
+    activeBorrowers: 0,
+    offersMediated: 0,
+    status: 'ACTIVE',
+    verificationStatus: 'PENDING_APPROVAL',
+    maxCapacity: 15
+  }
+];
+

@@ -4,7 +4,7 @@ import { useApp } from '../../context/AppContext';
 import { VerifyBadge } from '../../components/common/VerifyBadge';
 
 export const AdminLeadDistributionPage = () => {
-  const { addToast, applications } = useApp();
+  const { addToast, applications, distributionSettings, updateDistributionMode } = useApp();
   const [isRunningSim, setIsRunningSim] = useState(false);
   const [rules, setRules] = useState({
     minIQForMarketplace: 130,
@@ -40,14 +40,42 @@ export const AdminLeadDistributionPage = () => {
           </p>
         </div>
 
-        <button
-          onClick={handleRunSimulation}
-          disabled={isRunningSim}
-          className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
-        >
-          {isRunningSim ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
-          <span>{isRunningSim ? 'Simulating Matches...' : 'Run Simulation Test'}</span>
-        </button>
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Phase 2.4A Distribution Mode Control */}
+          <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-bold">
+            <button
+              type="button"
+              onClick={() => updateDistributionMode('AUTO')}
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                distributionSettings?.mode === 'AUTO'
+                  ? 'bg-[#002060] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              AUTO
+            </button>
+            <button
+              type="button"
+              onClick={() => updateDistributionMode('MANUAL')}
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                distributionSettings?.mode === 'MANUAL'
+                  ? 'bg-[#002060] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              MANUAL
+            </button>
+          </div>
+
+          <button
+            onClick={handleRunSimulation}
+            disabled={isRunningSim}
+            className="px-5 py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
+          >
+            {isRunningSim ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
+            <span>{isRunningSim ? 'Simulating Matches...' : 'Run Simulation Test'}</span>
+          </button>
+        </div>
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4">

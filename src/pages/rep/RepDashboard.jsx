@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import {
@@ -28,20 +28,32 @@ import { StatusBadge } from '../../components/common/StatusBadge';
 export const RepDashboard = () => {
   const { applications, offers, messages, currentUser, sendMessage, addToast } = useApp();
 
-  const assignedApps = applications; // In prototype context, Elena oversees these files
-  const activeOffers = offers;
+  const assignedApps = useMemo(() => {
+    if (currentUser?.role === 'admin') return applications || [];
+    return (applications || []).filter(
+      (a) =>
+        a.assignedRep &&
+        (a.assignedRep.id === currentUser?.id ||
+         (a.assignedRep.email && currentUser?.email && a.assignedRep.email.toLowerCase() === currentUser?.email.toLowerCase()))
+    );
+  }, [applications, currentUser]);
+
+  const activeOffers = useMemo(() => {
+    const assignedIds = new Set(assignedApps.map((a) => a.id));
+    return (offers || []).filter((o) => assignedIds.has(o.applicationId));
+  }, [offers, assignedApps]);
 
   // Tri-party communication state (Doc 1 - Line 61: OAL LetsWork Portal)
   const [triPartyTarget, setTriPartyTarget] = useState('both'); // 'both' | 'borrower' | 'lender'
   const [triPartyInput, setTriPartyInput] = useState('');
-  const [activeChatLead, setActiveChatLead] = useState(assignedApps[0]?.id || 'APP-2026-1082');
+  const [activeChatLead, setActiveChatLead] = useState(assignedApps[0]?.id || null);
 
-  const selectedApp = assignedApps.find(a => a.id === activeChatLead) || assignedApps[0];
+  const selectedApp = assignedApps.find(a => a.id === activeChatLead) || assignedApps[0] || null;
 
   // Tri-Party Send Handler
   const handleSendTriPartyMessage = (e) => {
     e.preventDefault();
-    if (!triPartyInput.trim()) return;
+    if (!triPartyInput.trim() || !selectedApp) return;
 
     if (triPartyTarget === 'both') {
       sendMessage({
@@ -238,9 +250,14 @@ export const RepDashboard = () => {
             </div>
 
             <div className="divide-y divide-slate-100">
-              {assignedApps.slice(0, 3).map((app) => {
-                const claimsCount = app.workingDeals?.claimedLendersCount || 0;
-                const appOfferList = offers.filter(o => o.applicationId === app.id);
+              {assignedApps.length === 0 ? (
+                <div className="p-8 text-center text-xs text-slate-500">
+                  No assigned placement files currently active on your desk.
+                </div>
+              ) : (
+                assignedApps.slice(0, 3).map((app) => {
+                  const claimsCount = app.workingDeals?.claimedLendersCount || 0;
+                  const appOfferList = offers.filter(o => o.applicationId === app.id);
 
                 return (
                   <div
@@ -298,7 +315,7 @@ export const RepDashboard = () => {
                     </div>
                   </div>
                 );
-              })}
+              }))}
             </div>
           </div>
 
@@ -396,48 +413,56 @@ export const RepDashboard = () => {
             </div>
 
             {/* Current Active File Context */}
-            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs space-y-1">
-              <div className="flex justify-between">
-                <span className="text-slate-500">Active File:</span>
-                <span className="font-bold text-slate-900">{selectedApp.id}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Borrower:</span>
-                <span className="font-semibold text-slate-800">{selectedApp.borrowerName}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Target Recipient:</span>
-                <span className="font-bold text-[#0070C0]">
-                  {triPartyTarget === 'both' ? 'Simultaneous Broadcast (Borrower & Lenders)' : triPartyTarget === 'borrower' ? 'Borrower Line (Marcus Vance)' : 'Underwriter Desk (Apex Horizon)'}
-                </span>
-              </div>
-            </div>
+            {selectedApp ? (
+              <>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs space-y-1">
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Active File:</span>
+                    <span className="font-bold text-slate-900">{selectedApp.id}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Borrower:</span>
+                    <span className="font-semibold text-slate-800">{selectedApp.borrowerName}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Target Recipient:</span>
+                    <span className="font-bold text-[#0070C0]">
+                      {triPartyTarget === 'both' ? 'Simultaneous Broadcast (Borrower & Lenders)' : triPartyTarget === 'borrower' ? `Borrower Line (${selectedApp.borrowerName})` : 'Underwriter Desk (Apex Horizon)'}
+                    </span>
+                  </div>
+                </div>
 
-            {/* Message Input Form */}
-            <form onSubmit={handleSendTriPartyMessage} className="space-y-2">
-              <textarea
-                rows={3}
-                value={triPartyInput}
-                onChange={(e) => setTriPartyInput(e.target.value)}
-                placeholder={
-                  triPartyTarget === 'both'
-                    ? 'Enter tri-party message to broadcast to both borrower & lenders...'
-                    : triPartyTarget === 'borrower'
-                    ? 'Message borrower regarding document requirements or term sheets...'
-                    : 'Message participating underwriters regarding stipulations or closing date...'
-                }
-                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="w-full py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center justify-center gap-1.5 cursor-pointer"
-              >
-                <Send className="w-3.5 h-3.5" />
-                <span>
-                  {triPartyTarget === 'both' ? 'Broadcast to Both Parties' : 'Dispatch Message'}
-                </span>
-              </button>
-            </form>
+                {/* Message Input Form */}
+                <form onSubmit={handleSendTriPartyMessage} className="space-y-2">
+                  <textarea
+                    rows={3}
+                    value={triPartyInput}
+                    onChange={(e) => setTriPartyInput(e.target.value)}
+                    placeholder={
+                      triPartyTarget === 'both'
+                        ? 'Enter tri-party message to broadcast to both borrower & lenders...'
+                        : triPartyTarget === 'borrower'
+                        ? 'Message borrower regarding document requirements or term sheets...'
+                        : 'Message participating underwriters regarding stipulations or closing date...'
+                    }
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0070C0] focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    className="w-full py-2.5 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs font-bold transition-all shadow-md shadow-[#0070C0]/25 flex items-center justify-center gap-1.5 cursor-pointer"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>
+                      {triPartyTarget === 'both' ? 'Broadcast to Both Parties' : 'Dispatch Message'}
+                    </span>
+                  </button>
+                </form>
+              </>
+            ) : (
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center text-xs text-slate-500">
+                No active placement files assigned to this desk.
+              </div>
+            )}
           </div>
 
           {/* Multi-Channel Console (Chat, Email, SMS) (Doc 1 Lines 50-53) */}

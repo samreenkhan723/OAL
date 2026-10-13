@@ -104,6 +104,13 @@ export const LoginPage = () => {
 
       if (result.success) {
         const userRole = result.user?.role;
+        const verificationStatus = result.user?.verificationStatus;
+
+        // Prevent unapproved Lenders and Reps from accessing workspaces
+        if ((userRole === 'lender' || userRole === 'rep') && verificationStatus !== 'ACTIVE') {
+          navigate('/auth/pending-approval', { replace: true, state: { user: result.user } });
+          return;
+        }
 
         // Redirect logic preserving intended destination
         if (userRole === 'borrower') {

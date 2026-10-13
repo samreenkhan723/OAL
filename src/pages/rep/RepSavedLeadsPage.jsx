@@ -5,7 +5,16 @@ import { Bookmark, ArrowRight } from 'lucide-react';
 import { StatusBadge } from '../../components/common/StatusBadge';
 
 export const RepSavedLeadsPage = () => {
-  const { applications } = useApp();
+  const { applications, currentUser } = useApp();
+
+  const assignedSavedLeads = (applications || []).filter((a) => {
+    if (currentUser?.role === 'admin') return true;
+    return (
+      a.assignedRep &&
+      (a.assignedRep.id === currentUser?.id ||
+       (a.assignedRep.email && currentUser?.email && a.assignedRep.email.toLowerCase() === currentUser?.email.toLowerCase()))
+    );
+  });
 
   return (
     <div className="space-y-6">
@@ -18,27 +27,33 @@ export const RepSavedLeadsPage = () => {
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs divide-y divide-slate-100">
-        {applications.slice(0, 3).map((lead) => (
-          <div key={lead.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
-            <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <Bookmark className="w-4 h-4 text-amber-500 fill-amber-500" />
-                <span className="text-xs font-mono font-bold text-slate-400">{lead.id}</span>
-                <StatusBadge status={lead.status} />
-              </div>
-              <h3 className="text-sm font-bold text-slate-900 mt-1">{lead.businessName}</h3>
-              <p className="text-xs text-slate-500">{lead.programName} • ${lead.amount.toLocaleString()}</p>
-            </div>
-
-            <Link
-              to="/rep/offers"
-              className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-[#0070C0] text-white text-xs font-bold transition-all w-full sm:w-auto text-center"
-            >
-              Examine
-            </Link>
+      <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs divide-y divide-slate-100 overflow-hidden">
+        {assignedSavedLeads.length === 0 ? (
+          <div className="p-12 text-center text-xs text-slate-500">
+            No saved borrower leads currently assigned to your placement desk.
           </div>
-        ))}
+        ) : (
+          assignedSavedLeads.slice(0, 5).map((lead) => (
+            <div key={lead.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Bookmark className="w-4 h-4 text-amber-500 fill-amber-500" />
+                  <span className="text-xs font-mono font-bold text-slate-400">{lead.id}</span>
+                  <StatusBadge status={lead.status} />
+                </div>
+                <h3 className="text-sm font-bold text-slate-900 mt-1">{lead.businessName}</h3>
+                <p className="text-xs text-slate-500">{lead.programName} • ${lead.amount.toLocaleString()}</p>
+              </div>
+
+              <Link
+                to="/rep/offers"
+                className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-[#0070C0] text-white text-xs font-bold transition-all w-full sm:w-auto text-center cursor-pointer"
+              >
+                Examine
+              </Link>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

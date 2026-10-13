@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Lock, DollarSign, ShieldAlert, CheckCircle2, Clock, Eye, Share2, X, Check, Download, AlertTriangle } from 'lucide-react';
 import { StatusBadge } from '../../components/common/StatusBadge';
 
 export const RepOffersPage = () => {
-  const { offers, applications, addToast } = useApp();
+  const { offers, applications, currentUser, addToast } = useApp();
   const [selectedOffer, setSelectedOffer] = useState(null);
   const [showShareModal, setShowShareModal] = useState(false);
   const [offerToShare, setOfferToShare] = useState(null);
+
+  const assignedAppIds = useMemo(() => {
+    if (currentUser?.role === 'admin') return null;
+    return new Set(
+      (applications || [])
+        .filter(
+          (a) =>
+            a.assignedRep &&
+            (a.assignedRep.id === currentUser?.id ||
+             (a.assignedRep.email && currentUser?.email && a.assignedRep.email.toLowerCase() === currentUser?.email.toLowerCase()))
+        )
+        .map((a) => a.id)
+    );
+  }, [applications, currentUser]);
+
+  const visibleOffers = useMemo(() => {
+    if (!assignedAppIds) return offers || [];
+    return (offers || []).filter((o) => assignedAppIds.has(o.applicationId));
+  }, [offers, assignedAppIds]);
 
   // Read-only inspect modal
   const handleInspectOffer = (offer) => {
@@ -75,12 +94,17 @@ export const RepOffersPage = () => {
       {/* Offers Table */}
       <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
-          <span>Active Commercial Term Sheets ({offers.length})</span>
+          <span>Active Commercial Term Sheets ({visibleOffers.length})</span>
           <span className="text-[11px] text-blue-600 font-bold">Read-Only Audit & Share Mode</span>
         </div>
 
         <div className="divide-y divide-slate-100">
-          {offers.map((offer) => {
+          {visibleOffers.length === 0 ? (
+            <div className="p-12 text-center text-xs text-slate-500">
+              No commercial term sheets currently issued for your assigned placements.
+            </div>
+          ) : (
+            visibleOffers.map((offer) => {
             const linkedApp = applications.find(a => a.id === offer.applicationId);
             return (
               <div key={offer.id} className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
@@ -143,7 +167,7 @@ export const RepOffersPage = () => {
                 </div>
               </div>
             );
-          })}
+          }))}
         </div>
       </div>
 
