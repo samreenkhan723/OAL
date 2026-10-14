@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { LOAN_PROGRAMS } from '../../data/loanPrograms';
+import { LOAN_PROGRAMS, ALL_LOAN_PROGRAMS } from '../../data/loanPrograms';
 import { computeSimulatedAuthToken } from '../../data/mockUsers';
 import {
   ShieldCheck,
@@ -35,10 +35,10 @@ export const RegisterPage = () => {
 
   const fromLocation = location.state?.from;
   const searchParams = new URLSearchParams(location.search);
-  const programSlug = location.state?.program || searchParams.get('program');
+  const programSlug = location.state?.program || searchParams.get('program') || location.state?.industry || searchParams.get('industry');
   const programTitle =
     location.state?.programTitle ||
-    LOAN_PROGRAMS.find((p) => p.id === programSlug || p.slug === programSlug)?.title;
+    (ALL_LOAN_PROGRAMS || LOAN_PROGRAMS).find((p) => p.id === programSlug || p.slug === programSlug)?.title;
 
   const [form, setForm] = useState({
     role: 'borrower', // 'borrower' | 'lender' | 'rep'

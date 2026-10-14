@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { BookOpen, Search, ArrowRight, Eye, Clock } from 'lucide-react';
+import { BookOpen, Search, ArrowRight, Eye, Clock, ChevronLeft } from 'lucide-react';
 
 export const KnowledgeBasePage = () => {
   const { kbArticles } = useApp();
@@ -15,6 +16,13 @@ export const KnowledgeBasePage = () => {
   return (
     <div className="space-y-6">
       <div>
+        <Link
+          to="/admin/help-desk"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0070C0] hover:text-[#002060] mb-3 transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4" />
+          <span>Back to Support Tickets</span>
+        </Link>
         <h1 className="text-2xl font-heading font-extrabold text-[#002060]">
           Help Desk Knowledge Base
         </h1>

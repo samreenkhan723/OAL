@@ -119,7 +119,7 @@ export const HelpDeskTicketsPage = () => {
           </button>
 
           <Link
-            to="/support/knowledge-base"
+            to="/admin/help-desk/knowledge-base"
             className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-xs font-bold transition-all flex items-center justify-center gap-1.5 text-center"
           >
             <HelpCircle className="w-4 h-4 text-[#FFD200]" />
@@ -127,7 +127,7 @@ export const HelpDeskTicketsPage = () => {
           </Link>
 
           <Link
-            to="/support/analytics"
+            to="/admin/help-desk/analytics"
             className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-xs font-bold transition-all flex items-center justify-center gap-1.5 text-center"
           >
             <TrendingUp className="w-4 h-4 text-emerald-400" />

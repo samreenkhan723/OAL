@@ -8,9 +8,10 @@ export const PublicApplyPage = () => {
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const program = searchParams.get('program');
+  const industry = searchParams.get('industry');
 
   useEffect(() => {
-    const searchString = location.search || (program ? `?program=${program}` : '');
+    const searchString = location.search || (program ? `?program=${program}` : industry ? `?industry=${industry}` : '');
     const destination = `/borrower/applications/new${searchString}`;
 
     if (isAuthenticated && currentRole === 'borrower') {
@@ -20,8 +21,7 @@ export const PublicApplyPage = () => {
       const roleDashboards = {
         lender: '/lender/dashboard',
         rep: '/rep/dashboard',
-        admin: '/admin/dashboard',
-        support: '/support/tickets'
+        admin: '/admin/dashboard'
       };
       navigate(roleDashboards[currentRole] || '/borrower/dashboard', { replace: true });
     } else {
@@ -31,11 +31,12 @@ export const PublicApplyPage = () => {
         state: {
           from: { pathname: '/borrower/applications/new', search: searchString },
           program: program,
+          industry: industry,
           message: 'Please create an account or sign in to start your commercial loan application.'
         }
       });
     }
-  }, [isAuthenticated, currentRole, navigate, location.search, program]);
+  }, [isAuthenticated, currentRole, navigate, location.search, program, industry]);
 
   return (
     <div className="min-h-[50vh] flex items-center justify-center p-6">

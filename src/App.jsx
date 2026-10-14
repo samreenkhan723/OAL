@@ -129,6 +129,7 @@ export function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/apply" element={<PublicApplyPage />} />
             <Route path="/loan-programs" element={<LoanProgramsPage />} />
+            <Route path="/loan-types" element={<Navigate to="/loan-programs" replace />} />
             <Route path="/industries" element={<IndustryDirectoryPage />} />
             <Route path="/loans-by-industry" element={<IndustryDirectoryPage />} />
             <Route path="/industries/:slug" element={<IndustryDetailPage />} />
@@ -137,6 +138,7 @@ export function App() {
             <Route path="/investment-iq" element={<InvestmentIQExplainerPage />} />
             <Route path="/investment-club" element={<InvestmentClubPage />} />
             <Route path="/help" element={<PublicHelpDeskPage />} />
+            <Route path="/help-desk" element={<Navigate to="/help" replace />} />
             <Route path="/faqs" element={<PublicHelpDeskPage initialTab="faqs" />} />
             <Route path="/faq" element={<PublicHelpDeskPage initialTab="faqs" />} />
             <Route path="/company" element={<CompanyPage />} />
@@ -326,8 +328,12 @@ export function App() {
             <Route path="reports" element={<AdminReportsPage />} />
             {/* Wireframe: Support Tickets (Help Desk) & Detail */}
             <Route path="help-desk" element={<HelpDeskTicketsPage />} />
+            <Route path="help-desk/knowledge-base" element={<KnowledgeBasePage />} />
+            <Route path="help-desk/analytics" element={<SupportAnalyticsPage />} />
             <Route path="help-desk/:id" element={<HelpDeskTicketDetailPage />} />
             <Route path="support" element={<HelpDeskTicketsPage />} />
+            <Route path="support/knowledge-base" element={<KnowledgeBasePage />} />
+            <Route path="support/analytics" element={<SupportAnalyticsPage />} />
             <Route path="support/:id" element={<HelpDeskTicketDetailPage />} />
             <Route path="audit-logs" element={<AdminAuditLogsPage />} />
             <Route path="settings" element={<AdminSettingsPage />} />

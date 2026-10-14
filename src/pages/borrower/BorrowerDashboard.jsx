@@ -567,7 +567,7 @@ Post-Funding Servicing Help Desk: 1-800-555-OAL-NET | support@oalnetwork.com
                   Have questions regarding equipment invoices, UCC subordination, or 24h closing timelines?
                 </p>
                 <Link
-                  to="/help-desk"
+                  to="/help"
                   className="text-xs font-bold text-[#0070C0] hover:text-[#002060] font-bold block pt-1"
                 >
                   Visit AI Help Desk & Knowledge Base &rarr;

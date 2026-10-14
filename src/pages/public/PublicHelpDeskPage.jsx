@@ -256,33 +256,41 @@ export const PublicHelpDeskPage = ({ initialTab = 'kb' }) => {
                 title: 'Module 1: Commercial Underwriting Fundamentals',
                 level: 'Foundational',
                 duration: '45 mins',
-                desc: 'Understand how institutional underwriters evaluate bank statements, debt-service coverage, and tax returns.'
+                desc: 'Understand how institutional underwriters evaluate bank statements, debt-service coverage, and tax returns.',
+                link: '/how-it-works'
               },
               {
                 title: 'Module 2: Maximizing Your 180-Point Investment IQ',
                 level: 'Intermediate',
                 duration: '60 mins',
-                desc: 'Practical strategies to improve credit lines, business plan mission statements, and collateral valuations.'
+                desc: 'Practical strategies to improve credit lines, business plan mission statements, and collateral valuations.',
+                link: '/investment-iq'
               },
               {
                 title: 'Module 3: Term Sheet Comparison & Negotiation',
                 level: 'Advanced',
                 duration: '35 mins',
-                desc: 'Learn how to compare APR, origination fees, prepayment penalties, and balloon amortization structures.'
+                desc: 'Learn how to compare APR, origination fees, prepayment penalties, and balloon amortization structures.',
+                link: '/how-it-works'
               }
             ].map((mod, idx) => (
-              <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 font-bold border border-amber-200 text-[10px]">
-                    {mod.level}
-                  </span>
-                  <span className="text-slate-400 font-mono">{mod.duration}</span>
+              <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-4 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 font-bold border border-amber-200 text-[10px]">
+                      {mod.level}
+                    </span>
+                    <span className="text-slate-400 font-mono">{mod.duration}</span>
+                  </div>
+                  <h3 className="text-base font-bold text-[#002060]">{mod.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{mod.desc}</p>
                 </div>
-                <h3 className="text-base font-bold text-[#002060]">{mod.title}</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">{mod.desc}</p>
-                <button className="w-full py-2 bg-sky-50 hover:bg-sky-100 text-[#0070C0] font-bold text-xs rounded-xl transition-colors cursor-pointer">
+                <Link
+                  to={mod.link}
+                  className="w-full py-2 bg-sky-50 hover:bg-sky-100 text-[#0070C0] hover:text-[#002060] font-bold text-xs rounded-xl transition-colors cursor-pointer text-center block"
+                >
                   Start Learning Module &rarr;
-                </button>
+                </Link>
               </div>
             ))}
           </div>

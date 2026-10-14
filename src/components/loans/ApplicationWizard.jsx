@@ -24,7 +24,7 @@ export const ApplicationWizard = () => {
   const { createApplication, addToast, currentUser, isAuthenticated } = useApp();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const programParam = searchParams.get('program');
+  const programParam = searchParams.get('program') || searchParams.get('industry') || searchParams.get('loanType');
 
   const availablePrograms = ALL_LOAN_PROGRAMS || LOAN_PROGRAMS;
 
@@ -104,7 +104,7 @@ export const ApplicationWizard = () => {
 
   // Automatically select chosen loan program without touching borrower or business information
   const handleProgramSelect = (programId) => {
-    const prog = LOAN_PROGRAMS.find(p => p.id === programId || p.slug === programId);
+    const prog = availablePrograms.find(p => p.id === programId || p.slug === programId);
     if (!prog) return;
     setFormData(prev => ({
       ...prev,
@@ -117,9 +117,12 @@ export const ApplicationWizard = () => {
 
   useEffect(() => {
     if (programParam) {
-      const prog = LOAN_PROGRAMS.find(p => p.id === programParam || p.slug === programParam);
+      const prog = availablePrograms.find(p => p.id === programParam || p.slug === programParam);
       if (prog) {
         handleProgramSelect(prog.id);
+        if (prog.isIndustryProgram) {
+          setProgramFilter('industry');
+        }
       }
     }
   }, [programParam]);
@@ -425,7 +428,7 @@ export const ApplicationWizard = () => {
                       programFilter === 'industry' ? 'bg-white text-blue-700 shadow-xs font-bold' : 'text-slate-600'
                     }`}
                   >
-                    By Industry (9)
+                    By Industry ({availablePrograms.filter(p => p.isIndustryProgram).length})
                   </button>
                   <button
                     type="button"

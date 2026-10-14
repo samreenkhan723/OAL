@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { LOAN_PROGRAMS } from '../../data/loanPrograms';
+import { LOAN_PROGRAMS, ALL_LOAN_PROGRAMS } from '../../data/loanPrograms';
 import {
   ShieldCheck,
   Lock,
@@ -29,10 +29,16 @@ export const LoginPage = () => {
   // Destination intended before redirect
   const fromLocation = location.state?.from;
   const searchParams = new URLSearchParams(location.search);
-  const programSlug = location.state?.program || searchParams.get('program');
+  const programSlug =
+    location.state?.program ||
+    searchParams.get('program') ||
+    location.state?.industry ||
+    searchParams.get('industry') ||
+    location.state?.loanType ||
+    searchParams.get('loanType');
   const programTitle =
     location.state?.programTitle ||
-    LOAN_PROGRAMS.find((p) => p.id === programSlug || p.slug === programSlug)?.title;
+    (ALL_LOAN_PROGRAMS || LOAN_PROGRAMS).find((p) => p.id === programSlug || p.slug === programSlug)?.title;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
