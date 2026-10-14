@@ -295,7 +295,8 @@ export const IndustryDirectoryPage = () => {
               return (
                 <div
                   key={ind.id}
-                  className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#0070C0] transition-all flex flex-col justify-between overflow-hidden group hover:-translate-y-0.5"
+                  onClick={() => navigate(`/industries/${ind.slug}`)}
+                  className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#0070C0] transition-all flex flex-col justify-between overflow-hidden group hover:-translate-y-0.5 cursor-pointer"
                 >
                   {/* Top Image Banner */}
                   <div className="relative h-40 w-full overflow-hidden bg-slate-100 shrink-0">
@@ -361,6 +362,7 @@ export const IndustryDirectoryPage = () => {
                   <div className="p-4 bg-slate-50/70 border-t border-slate-100 flex items-center justify-between gap-2">
                     <Link
                       to={`/industries/${ind.slug}`}
+                      onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-[#0070C0] hover:text-[#002060] hover:bg-sky-50 transition-colors"
                     >
                       <span>View Details</span>
@@ -369,7 +371,10 @@ export const IndustryDirectoryPage = () => {
 
                     <button
                       type="button"
-                      onClick={() => handleApplyClick(ind.slug)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleApplyClick(ind.slug);
+                      }}
                       className="inline-flex items-center gap-1 px-4 py-2 rounded-xl text-xs font-black text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] shadow-sm active:scale-95 transition-all cursor-pointer border border-amber-300"
                     >
                       <span>Apply Now</span>
@@ -415,7 +420,8 @@ export const IndustryDirectoryPage = () => {
               return (
                 <div
                   key={prog.id}
-                  className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#0070C0] transition-all flex flex-col justify-between overflow-hidden group hover:-translate-y-0.5"
+                  onClick={() => navigate(`/loan-programs/${prog.slug}`)}
+                  className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#0070C0] transition-all flex flex-col justify-between overflow-hidden group hover:-translate-y-0.5 cursor-pointer"
                 >
                   {/* Top Image Banner */}
                   <div className="relative h-40 w-full overflow-hidden bg-slate-100 shrink-0">
@@ -481,6 +487,7 @@ export const IndustryDirectoryPage = () => {
                   <div className="p-4 bg-slate-50/70 border-t border-slate-100 flex items-center justify-between gap-2">
                     <Link
                       to={`/loan-programs/${prog.slug}`}
+                      onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-[#0070C0] hover:text-[#002060] hover:bg-sky-50 transition-colors"
                     >
                       <span>View Details</span>
@@ -489,7 +496,10 @@ export const IndustryDirectoryPage = () => {
 
                     <button
                       type="button"
-                      onClick={() => handleApplyClick(prog.slug)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleApplyClick(prog.slug);
+                      }}
                       className="inline-flex items-center gap-1 px-4 py-2 rounded-xl text-xs font-black text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] shadow-sm active:scale-95 transition-all cursor-pointer border border-amber-300"
                     >
                       <span>Apply Now</span>
