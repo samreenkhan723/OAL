@@ -121,18 +121,6 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
           }
         ];
 
-      case 'support':
-        return [
-          {
-            title: 'Help Desk Center',
-            items: [
-              { label: 'Ticket Inbox', path: '/support/tickets', icon: LifeBuoy, badge: `${openTicketsCount}` },
-              { label: 'Knowledge Base', path: '/support/knowledge-base', icon: BookOpen },
-              { label: 'Support Analytics', path: '/support/analytics', icon: TrendingUp },
-            ]
-          }
-        ];
-
       default: // Borrower (default)
         return [
           {
@@ -250,11 +238,6 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
 
     // General nested route matching for other paths
     if (target !== '/' && target !== `/${currentRole}/dashboard` && current.startsWith(target + '/')) {
-      return true;
-    }
-
-    // Help desk / support fallback check
-    if (target === '/support/tickets' && current.startsWith('/support')) {
       return true;
     }
 

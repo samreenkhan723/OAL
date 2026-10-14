@@ -227,6 +227,13 @@ export const authenticatePrototypeUser = (email, password, customRegisteredUsers
   // 2. Check predefined demo accounts
   const demoUser = findMockUserByEmail(normalized);
   if (demoUser) {
+    if (demoUser.role === 'support') {
+      return {
+        success: false,
+        error: 'Support role cannot authenticate as a primary role. Please log in as Admin to access Support Tickets.'
+      };
+    }
+
     if (password === demoUser.password || password === 'Password123!' || password.length >= 4) {
       return {
         success: true,

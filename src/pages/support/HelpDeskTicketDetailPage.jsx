@@ -39,7 +39,7 @@ export const HelpDeskTicketDetailPage = () => {
     return (
       <div className="p-12 text-center">
         <h2 className="text-base font-bold">Ticket not found</h2>
-        <Link to="/support/tickets" className="text-blue-600 text-xs font-bold mt-2 inline-block">
+        <Link to="/admin/help-desk" className="text-blue-600 text-xs font-bold mt-2 inline-block">
           &larr; Back to queue
         </Link>
       </div>
@@ -112,7 +112,7 @@ export const HelpDeskTicketDetailPage = () => {
     <div className="space-y-6 max-w-4xl">
       <div>
         <Link
-          to="/support/tickets"
+          to="/admin/help-desk"
           className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#0070C0] transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />

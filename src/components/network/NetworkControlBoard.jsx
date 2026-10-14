@@ -47,14 +47,14 @@ import { StatusBadge } from '../common/StatusBadge';
 
 // The exact 8 client-defined sections in mandated order per client wireframes
 const NETWORK_SECTIONS = [
-  { id: 'dashboard', path: '/network/dashboard', label: '1. Dashboard', icon: TrendingUp },
-  { id: 'live-stream', path: '/network/live-stream', label: '2. Live Marketplace View', icon: Radio, badge: 'Live Stream' },
-  { id: 'leads', path: '/network/leads', label: '3. Qualified Leads & Alerts', icon: Users, badge: 'AI Matched' },
-  { id: 'details', path: '/network/details', label: '4. Lead Details & Requests', icon: FileText },
-  { id: 'saved', path: '/network/saved', label: '5. Saved Leads', icon: Bookmark },
-  { id: 'offers', path: '/network/offers', label: '6. Offer Management', icon: DollarSign },
-  { id: 'communication', path: '/network/communication', label: '7. Communication', icon: MessageSquare, badge: 'Broker Mediated' },
-  { id: 'timeline', path: '/network/timeline', label: '8. Timeline Tracking', icon: Clock, badge: 'SLA Audit' },
+  { id: 'dashboard', path: '/network/dashboard', label: 'Dashboard', icon: TrendingUp },
+  { id: 'live-stream', path: '/network/live-stream', label: 'Live Marketplace View', icon: Radio, badge: 'Live Stream' },
+  { id: 'leads', path: '/network/leads', label: 'Qualified Leads & Alerts', icon: Users, badge: 'AI Matched' },
+  { id: 'details', path: '/network/details', label: 'Lead Details & Requests', icon: FileText },
+  { id: 'saved', path: '/network/saved', label: 'Saved Leads', icon: Bookmark },
+  { id: 'offers', path: '/network/offers', label: 'Offer Management', icon: DollarSign },
+  { id: 'communication', path: '/network/communication', label: 'Communication', icon: MessageSquare, badge: 'Broker Mediated' },
+  { id: 'timeline', path: '/network/timeline', label: 'Timeline Tracking', icon: Clock, badge: 'SLA Audit' },
 ];
 
 export const NetworkControlBoard = ({

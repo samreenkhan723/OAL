@@ -27,10 +27,9 @@ export const ProtectedRoute = ({ children, allowedRoles }) => {
       borrower: '/borrower/dashboard',
       lender: '/lender/dashboard',
       rep: '/rep/dashboard',
-      admin: '/admin/dashboard',
-      support: '/support/tickets'
+      admin: '/admin/dashboard'
     };
-    return <Navigate to={roleDashboards[currentRole] || '/borrower/dashboard'} replace />;
+    return <Navigate to={roleDashboards[currentRole] || '/auth/login'} replace />;
   }
 
   return children;

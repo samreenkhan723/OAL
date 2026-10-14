@@ -319,7 +319,7 @@ export const HelpDeskTicketsPage = () => {
                   </div>
 
                   <Link
-                    to={`/support/tickets/${t.id}`}
+                    to={`/admin/help-desk/${t.id}`}
                     className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#002060] hover:bg-[#0070C0] text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 self-stretch sm:self-center shadow-xs text-center"
                   >
                     <span>Inspect & Reply</span>

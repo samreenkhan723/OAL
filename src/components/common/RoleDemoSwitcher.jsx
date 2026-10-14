@@ -43,14 +43,6 @@ export const RoleDemoSwitcher = () => {
       icon: <ShieldCheck className="w-4 h-4 text-rose-500" />
     },
     {
-      id: 'support',
-      label: 'Help Desk',
-      name: 'David Kim',
-      sub: 'Support Team Lead',
-      route: '/support/tickets',
-      icon: <LifeBuoy className="w-4 h-4 text-teal-500" />
-    },
-    {
       id: 'public',
       label: 'Public Visitor',
       name: 'Prospective Client',

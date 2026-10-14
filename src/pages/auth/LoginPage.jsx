@@ -48,22 +48,10 @@ export const LoginPage = () => {
 
   const demoAccounts = [
     {
-      role: 'Admin',
-      name: 'Victoria Sterling',
-      email: 'v.sterling@oalnetwork.com',
-      description: 'Compliance & super operations'
-    },
-    {
-      role: 'OAL Rep',
-      name: 'Elena Rostova',
-      email: 'elena.rostova@oalnetwork.com',
-      description: 'Fiduciary placement agent'
-    },
-    {
-      role: 'Support',
-      name: 'Alex Chen',
-      email: 'support@oalnetwork.com',
-      description: 'Help Desk ticket specialist'
+      role: 'Borrower',
+      name: 'Marcus Vance',
+      email: 'marcus@blueharborseafood.com',
+      description: 'Commercial loan applicant'
     },
     {
       role: 'Lender',
@@ -72,10 +60,16 @@ export const LoginPage = () => {
       description: 'Institutional capital partner'
     },
     {
-      role: 'Borrower',
-      name: 'Marcus Vance',
-      email: 'marcus@blueharborseafood.com',
-      description: 'Commercial loan applicant'
+      role: 'OAL Rep',
+      name: 'Elena Rostova',
+      email: 'elena.rostova@oalnetwork.com',
+      description: 'Fiduciary placement agent'
+    },
+    {
+      role: 'Admin',
+      name: 'Victoria Sterling',
+      email: 'v.sterling@oalnetwork.com',
+      description: 'Compliance & super operations'
     }
   ];
 
@@ -106,6 +100,12 @@ export const LoginPage = () => {
         const userRole = result.user?.role;
         const verificationStatus = result.user?.verificationStatus;
 
+        // Support role is deprecated and cannot access as a primary role
+        if (userRole === 'support') {
+          setError('Support role cannot authenticate as a primary role. Please log in as Admin to access Support Tickets.');
+          return;
+        }
+
         // Prevent unapproved Lenders and Reps from accessing workspaces
         if ((userRole === 'lender' || userRole === 'rep') && verificationStatus !== 'ACTIVE') {
           navigate('/auth/pending-approval', { replace: true, state: { user: result.user } });
@@ -135,8 +135,6 @@ export const LoginPage = () => {
           navigate('/rep/dashboard', { replace: true });
         } else if (userRole === 'admin') {
           navigate('/admin/dashboard', { replace: true });
-        } else if (userRole === 'support') {
-          navigate('/support/tickets', { replace: true });
         } else {
           navigate('/borrower/dashboard', { replace: true });
         }

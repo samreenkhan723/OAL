@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AppProvider } from './context/AppContext';
+import { AppProvider, useApp } from './context/AppContext';
 
 // Layouts & Route Protection
 import { PublicLayout } from './layouts/PublicLayout';
@@ -108,6 +108,15 @@ import { SupportAnalyticsPage } from './pages/support/SupportAnalyticsPage';
 // OAL Network Panel (Client Wireframe Workspace)
 import { NetworkPanelPage } from './pages/network/NetworkPanelPage';
 import { ScrollToTop } from './components/common/ScrollToTop';
+
+// Legacy /support URL handler: strictly authorized Admin redirected to /admin/help-desk, all others to /auth/login
+function LegacySupportRedirect() {
+  const { isAuthenticated, currentRole } = useApp();
+  if (isAuthenticated && currentRole === 'admin') {
+    return <Navigate to="/admin/help-desk" replace />;
+  }
+  return <Navigate to="/auth/login" replace />;
+}
 
 export function App() {
   return (
@@ -315,9 +324,11 @@ export function App() {
             <Route path="subscriptions" element={<AdminSubscriptionsPage />} />
             <Route path="cms" element={<AdminCmsPage />} />
             <Route path="reports" element={<AdminReportsPage />} />
-            {/* Wireframe: Support Tickets (Help Desk) & Legacy */}
+            {/* Wireframe: Support Tickets (Help Desk) & Detail */}
             <Route path="help-desk" element={<HelpDeskTicketsPage />} />
+            <Route path="help-desk/:id" element={<HelpDeskTicketDetailPage />} />
             <Route path="support" element={<HelpDeskTicketsPage />} />
+            <Route path="support/:id" element={<HelpDeskTicketDetailPage />} />
             <Route path="audit-logs" element={<AdminAuditLogsPage />} />
             <Route path="settings" element={<AdminSettingsPage />} />
             <Route path="super-admin" element={<AdminSuperAdminPage />} />
@@ -327,21 +338,9 @@ export function App() {
             <Route path="offers" element={<AdminOffersPage />} />
           </Route>
 
-          {/* Help Desk Support Routes (Protected) */}
-          <Route
-            path="/support"
-            element={
-              <ProtectedRoute allowedRoles={['support', 'admin', 'rep', 'borrower', 'lender']}>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<Navigate to="/support/tickets" replace />} />
-            <Route path="tickets" element={<HelpDeskTicketsPage />} />
-            <Route path="tickets/:id" element={<HelpDeskTicketDetailPage />} />
-            <Route path="knowledge-base" element={<KnowledgeBasePage />} />
-            <Route path="analytics" element={<SupportAnalyticsPage />} />
-          </Route>
+          {/* Legacy Support URL Redirection (Admin redirected to /admin/help-desk, all others to /auth/login) */}
+          <Route path="/support" element={<LegacySupportRedirect />} />
+          <Route path="/support/*" element={<LegacySupportRedirect />} />
 
           {/* OAL Network Panel Workspace Routes (Protected for Admin, Lender, Rep) */}
           <Route

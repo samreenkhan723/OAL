@@ -217,7 +217,7 @@ export const Topbar = ({ setIsOpen }) => {
                 </Link>
 
                 <Link
-                  to="/support/tickets"
+                  to={currentRole === 'admin' ? '/admin/help-desk' : '/help-desk'}
                   onClick={() => setShowUserMenu(false)}
                   className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 rounded-xl"
                 >
