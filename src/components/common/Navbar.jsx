@@ -531,15 +531,6 @@ export const Navbar = () => {
               <span>Apply</span>
               <ArrowRight className="w-3.5 h-3.5 text-[#002060]" />
             </Link>
-            {isAuthenticated && (
-              <Link
-                to={getDashboardRoute()}
-                className="p-1.5 text-slate-600 hover:text-[#0070C0] rounded-lg"
-                title="Dashboard"
-              >
-                <User className="w-5 h-5 text-[#0070C0]" />
-              </Link>
-            )}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer"

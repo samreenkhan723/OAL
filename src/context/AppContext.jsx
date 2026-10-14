@@ -178,43 +178,75 @@ export const AppProvider = ({ children }) => {
 
   // Data collections with localStorage persistence
   const [applications, setApplications] = useState(() => {
-    const saved = localStorage.getItem('oal_applications');
-    return saved ? JSON.parse(saved) : INITIAL_APPLICATIONS;
+    try {
+      const saved = localStorage.getItem('oal_applications');
+      return saved ? JSON.parse(saved) : INITIAL_APPLICATIONS;
+    } catch (e) {
+      return INITIAL_APPLICATIONS;
+    }
   });
 
   const [offers, setOffers] = useState(() => {
-    const saved = localStorage.getItem('oal_offers');
-    return saved ? JSON.parse(saved) : INITIAL_OFFERS;
+    try {
+      const saved = localStorage.getItem('oal_offers');
+      return saved ? JSON.parse(saved) : INITIAL_OFFERS;
+    } catch (e) {
+      return INITIAL_OFFERS;
+    }
   });
 
   const [documents, setDocuments] = useState(() => {
-    const saved = localStorage.getItem('oal_documents');
-    return saved ? JSON.parse(saved) : INITIAL_DOCUMENTS;
+    try {
+      const saved = localStorage.getItem('oal_documents');
+      return saved ? JSON.parse(saved) : INITIAL_DOCUMENTS;
+    } catch (e) {
+      return INITIAL_DOCUMENTS;
+    }
   });
 
   const [messages, setMessages] = useState(() => {
-    const saved = localStorage.getItem('oal_messages');
-    return saved ? JSON.parse(saved) : INITIAL_MESSAGES;
+    try {
+      const saved = localStorage.getItem('oal_messages');
+      return saved ? JSON.parse(saved) : INITIAL_MESSAGES;
+    } catch (e) {
+      return INITIAL_MESSAGES;
+    }
   });
 
   const [tickets, setTickets] = useState(() => {
-    const saved = localStorage.getItem('oal_tickets');
-    return saved ? JSON.parse(saved) : INITIAL_TICKETS;
+    try {
+      const saved = localStorage.getItem('oal_tickets');
+      return saved ? JSON.parse(saved) : INITIAL_TICKETS;
+    } catch (e) {
+      return INITIAL_TICKETS;
+    }
   });
 
   const [kbArticles, setKbArticles] = useState(() => {
-    const saved = localStorage.getItem('oal_kb_articles');
-    return saved ? JSON.parse(saved) : INITIAL_KB_ARTICLES;
+    try {
+      const saved = localStorage.getItem('oal_kb_articles');
+      return saved ? JSON.parse(saved) : INITIAL_KB_ARTICLES;
+    } catch (e) {
+      return INITIAL_KB_ARTICLES;
+    }
   });
 
   const [auditLogs, setAuditLogs] = useState(() => {
-    const saved = localStorage.getItem('oal_audit_logs');
-    return saved ? JSON.parse(saved) : INITIAL_AUDIT_LOGS;
+    try {
+      const saved = localStorage.getItem('oal_audit_logs');
+      return saved ? JSON.parse(saved) : INITIAL_AUDIT_LOGS;
+    } catch (e) {
+      return INITIAL_AUDIT_LOGS;
+    }
   });
 
   const [networkActivity, setNetworkActivity] = useState(() => {
-    const saved = localStorage.getItem('oal_network_activity');
-    return saved ? JSON.parse(saved) : INITIAL_NETWORK_ACTIVITY;
+    try {
+      const saved = localStorage.getItem('oal_network_activity');
+      return saved ? JSON.parse(saved) : INITIAL_NETWORK_ACTIVITY;
+    } catch (e) {
+      return INITIAL_NETWORK_ACTIVITY;
+    }
   });
 
   // Reps Roster state with localStorage persistence
