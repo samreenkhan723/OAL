@@ -156,6 +156,8 @@ export function App() {
             <Route path="/reviews" element={<ToolsAndResourcesPage initialTab="reviews" />} />
             <Route path="/testimonials" element={<ToolsAndResourcesPage initialTab="reviews" />} />
             <Route path="/partners" element={<ToolsAndResourcesPage initialTab="partners" />} />
+            <Route path="/referral-program" element={<ToolsAndResourcesPage initialTab="partners" />} />
+            <Route path="/referrals" element={<ToolsAndResourcesPage initialTab="partners" />} />
             <Route path="/iso-program" element={<IsoProgramPage />} />
             <Route path="/partners/iso" element={<IsoProgramPage />} />
             <Route path="/definitions" element={<PublicHelpDeskPage initialTab="definitions" />} />
