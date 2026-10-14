@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LOAN_PROGRAMS } from '../../data/loanPrograms';
 import {
   Search,
@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 
 export const LoanProgramsPage = () => {
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
 
   // Industry Photography image mapper matching the master catalog
@@ -37,7 +38,7 @@ export const LoanProgramsPage = () => {
       case 'sba-loans':
         return '/images/loan_sba.jpg';
       case 'business-line-of-credit':
-        return '/images/loan_line_of_credit.jpg';
+        return '/images/loan_line_of_credit_v2.jpg';
       case 'working-capital':
         return '/images/loan_working_capital.jpg';
       case 'equipment-leasing':
@@ -56,7 +57,7 @@ export const LoanProgramsPage = () => {
       case 'alternative-energy':
         return '/images/loan_alternative_energy.jpg';
       case 'business-acquisition':
-        return '/images/loan_business_acquisition.jpg';
+        return '/images/loan_business_acquisition_v2.jpg';
       case 'cash-advance':
         return '/images/loan_cash_advance.jpg';
       case 'commercial-bridge':
@@ -68,13 +69,13 @@ export const LoanProgramsPage = () => {
       case 'doctors-loans':
         return '/images/loan_doctors.jpg';
       case 'fleet-truck':
-        return '/images/loan_fleet_truck.jpg';
+        return '/images/loan_fleet_truck_v2.jpg';
       case 'medical-equipment':
         return '/images/loan_medical_equipment.jpg';
       case 'medical-working-capital':
         return '/images/loan_medical_working_capital.jpg';
       case 'owner-operator-truck':
-        return '/images/loan_owner_operator_truck.jpg';
+        return '/images/loan_owner_operator_truck_v2.jpg';
       case 'revenue-based':
         return '/images/loan_revenue_based.jpg';
       case 'sale-and-leaseback':
@@ -84,7 +85,7 @@ export const LoanProgramsPage = () => {
       case 'solar-energy':
         return '/images/loan_solar_energy.jpg';
       case 'unsecured-business':
-        return '/images/loan_unsecured_business.jpg';
+        return '/images/loan_unsecured_business_v2.jpg';
       case 'used-aircraft':
         return '/images/loan_used_aircraft.jpg';
       case 'veterinarians':
@@ -263,7 +264,8 @@ export const LoanProgramsPage = () => {
           {filteredPrograms.map((prog) => (
             <div
               key={prog.id}
-              className="bg-white rounded-2xl border border-slate-200/90 hover:border-[#00B0F0] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group hover:-translate-y-1"
+              onClick={() => navigate(`/loan-programs/${prog.slug}`)}
+              className="bg-white rounded-2xl border border-slate-200/90 hover:border-[#00B0F0] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group hover:-translate-y-1 cursor-pointer"
             >
               {/* Card Photography Banner (Clean Image, No Badges) */}
               <div className="relative h-48 w-full overflow-hidden bg-slate-900 shrink-0">
@@ -350,6 +352,7 @@ export const LoanProgramsPage = () => {
                 <div className="pt-3.5 mt-3.5 border-t border-slate-100 flex items-center justify-between gap-3">
                   <Link
                     to={`/loan-programs/${prog.slug}`}
+                    onClick={(e) => e.stopPropagation()}
                     className="text-xs font-bold text-[#0070C0] hover:text-[#00B0F0] transition-colors"
                   >
                     Full Details &rarr;
@@ -357,6 +360,7 @@ export const LoanProgramsPage = () => {
 
                   <Link
                     to={`/loan-programs/${prog.slug}`}
+                    onClick={(e) => e.stopPropagation()}
                     className="px-3.5 py-1.5 rounded-lg text-xs font-bold text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] shadow-sm shadow-amber-300/40 hover:scale-105 active:scale-95 transition-all border border-amber-300"
                   >
                     Apply Now

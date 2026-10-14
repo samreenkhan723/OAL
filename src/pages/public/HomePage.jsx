@@ -538,7 +538,10 @@ export const HomePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           
           {/* CARD 1: THE MONEY CLUB FOR INVESTORS [POWERED BY LENDERS] */}
-          <div className="bg-gradient-to-br from-[#001744] via-[#002060] to-[#003882] text-white rounded-2xl border-2 border-[#0070C0]/50 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5 overflow-hidden h-full">
+          <div
+            onClick={() => navigate('/investment-club')}
+            className="bg-gradient-to-br from-[#001744] via-[#002060] to-[#003882] text-white rounded-2xl border-2 border-[#0070C0]/50 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5 overflow-hidden h-full cursor-pointer"
+          >
             
             {/* Top Visual Area: 176px Height with Contrast Gradient */}
             <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-900 shrink-0">
@@ -584,6 +587,7 @@ export const HomePage = () => {
               <div className="mt-auto pt-3.5 border-t border-white/15 space-y-2">
                 <Link
                   to="/investment-club"
+                  onClick={(e) => e.stopPropagation()}
                   className="w-full py-2.5 px-4 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] text-sm font-extrabold shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer border border-amber-300 active:scale-[0.99]"
                 >
                   <span>Click here to join || FREE ||</span>
@@ -592,6 +596,7 @@ export const HomePage = () => {
 
                 <Link
                   to="/investment-club"
+                  onClick={(e) => e.stopPropagation()}
                   className="w-full py-1.5 px-2 rounded-lg text-center text-xs font-bold text-slate-300 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-center gap-1"
                 >
                   <span>View Club Accreditation Details</span>
@@ -609,7 +614,8 @@ export const HomePage = () => {
             return (
               <div
                 key={prog.id}
-                className="bg-white rounded-2xl border border-slate-200 hover:border-[#00B0F0] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5 overflow-hidden h-full"
+                onClick={() => navigate(`/loan-programs/${prog.slug}`)}
+                className="bg-white rounded-2xl border border-slate-200 hover:border-[#00B0F0] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5 overflow-hidden h-full cursor-pointer"
               >
                 {/* Top Visual Area: 176px Height Clean Category Photo */}
                 <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-900 shrink-0">
@@ -659,7 +665,10 @@ export const HomePage = () => {
                   <div className="mt-auto pt-3.5 border-t border-slate-100 space-y-2">
                     <button
                       type="button"
-                      onClick={() => handleApplyClick(prog)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleApplyClick(prog);
+                      }}
                       className="w-full py-2.5 px-3 sm:px-4 rounded-xl bg-[#002060] hover:bg-[#0070C0] text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] group-hover:bg-[#0070C0] text-center"
                     >
                       <span>Apply for {prog.title}</span>
@@ -668,6 +677,7 @@ export const HomePage = () => {
 
                     <Link
                       to={`/loan-programs/${prog.slug}`}
+                      onClick={(e) => e.stopPropagation()}
                       className="w-full py-1.5 px-2 rounded-lg text-center text-xs font-semibold text-slate-600 hover:text-[#0070C0] hover:bg-slate-50 transition-colors flex items-center justify-center gap-1"
                     >
                       <span>View Program Requirements &amp; Checklist</span>
@@ -723,7 +733,8 @@ export const HomePage = () => {
             return (
               <div
                 key={ind.id}
-                className="bg-white rounded-2xl border border-slate-200 hover:border-[#00B0F0] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5 overflow-hidden h-full"
+                onClick={() => navigate(`/industries/${ind.slug}`)}
+                className="bg-white rounded-2xl border border-slate-200 hover:border-[#00B0F0] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5 overflow-hidden h-full cursor-pointer"
               >
                 {/* Top Visual Area: 176px Height with Unique Image Asset */}
                 <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-900 shrink-0">
@@ -773,7 +784,10 @@ export const HomePage = () => {
                   <div className="mt-auto pt-3.5 border-t border-slate-100 space-y-2">
                     <button
                       type="button"
-                      onClick={() => handleApplyClick(ind)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleApplyClick(ind);
+                      }}
                       className="w-full py-2.5 px-3 sm:px-4 rounded-xl bg-[#002060] hover:bg-[#0070C0] text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] group-hover:bg-[#0070C0] text-center"
                     >
                       <span>{getIndustryApplyLabel(ind.id)}</span>
@@ -782,6 +796,7 @@ export const HomePage = () => {
 
                     <Link
                       to={`/industries/${ind.slug}`}
+                      onClick={(e) => e.stopPropagation()}
                       className="w-full py-1.5 px-2 rounded-lg text-center text-xs font-semibold text-slate-600 hover:text-[#0070C0] hover:bg-slate-50 transition-colors flex items-center justify-center gap-1"
                     >
                       <span>View Industry Details &amp; Requirements</span>

@@ -660,7 +660,7 @@ export const CORE_CLIENT_LOAN_TYPES = [
     rateDescription: 'Longer terms, no points, and no balloon payments through preferred institutional lender syndicates',
     description: 'We work with SBA lenders who are Preferred Financial Service companies to have loans processed more quickly and efficiently than many others. There are several advantages to an SBA loan, including longer terms, no points and no balloon payments. We can serve any type of business with terms of up to 25 years to repay!',
     icon: 'CreditCard',
-    image: '/images/loan_line_of_credit.jpg',
+    image: '/images/loan_line_of_credit_v2.jpg',
     badge: 'REVOLVING & SBA CREDIT',
     contentSections: [
       {
@@ -1325,7 +1325,7 @@ export const CORE_CLIENT_LOAN_TYPES = [
     rateDescription: 'Underwritten on target company EBITDA, cash flow, valuation, and buyer management track record',
     description: 'Business Acquisition Financing involves securing funds to purchase an existing business. Key considerations include properly valuing the business, conducting thorough due diligence, and understanding repayment terms. These steps are critical to ensure the acquisition is financially sound and aligns with the buyer\'s goals. In many cases, it\'s possible to buy a business with as little as 10% down by leveraging options like SBA loans or through seller financing.',
     icon: 'Briefcase',
-    image: '/images/loan_business_acquisition.jpg',
+    image: '/images/loan_business_acquisition_v2.jpg',
     badge: 'M&A FINANCING',
     contentSections: [
       {
@@ -1749,7 +1749,7 @@ export const CORE_CLIENT_LOAN_TYPES = [
     rateDescription: 'Competitive rates structured through loans, leases, or lines of credit',
     description: 'OAL Network Fleet truck financing solutions helps businesses buy or lease commercial trucks without draining cash reserves, using options like loans, leases, or lines of credit. It can also support faster access to needed equipment (including new or used trucks and trailers) so you can keep operations running.',
     icon: 'Truck',
-    image: '/images/loan_fleet_truck.jpg',
+    image: '/images/loan_fleet_truck_v2.jpg',
     badge: 'FLEET FINANCING',
     contentSections: [
       {
@@ -1949,7 +1949,7 @@ export const CORE_CLIENT_LOAN_TYPES = [
     rateDescription: 'Fixed payments made over 36 to 72 months with the truck itself serving as collateral',
     description: 'OAL Network helps Businesses use Owner-Operator Truck Financing to acquire trucks without paying the full price upfront, allowing them to manage cash flow effectively while still investing in essential equipment. This financing option helps owner-operators and fleet owners expand their operations and maintain liquidity for other businesses. Owner-operator truck financing is a specialized type of commercial vehicle loan designed for individuals looking to purchase a semi-truck, typically requiring fixed monthly payments over a term of 36 to 72 months.',
     icon: 'Container',
-    image: '/images/loan_owner_operator_truck.jpg',
+    image: '/images/loan_owner_operator_truck_v2.jpg',
     badge: '2-24 HR APPROVAL',
     contentSections: [
       {
@@ -2290,7 +2290,7 @@ export const CORE_CLIENT_LOAN_TYPES = [
     rateDescription: 'Custom unsecured lines of credit structured without pledging physical collateral',
     description: "Funding for small businesses has changed. In the current economic climate, banks are no longer able to provide loans to businesses as they once did. Banks are overwhelmed with applications while facing unprecedented defaults. Applicants who were previously qualified are now being rejected immediately. Fortunately, we can help. With over 8 years of corporate banking experience and thousands of satisfied clients, we know EXACTLY what lenders are looking for to secure your unsecured expansion, startup, debt consolidation, or working capital.",
     icon: 'ShieldCheck',
-    image: '/images/loan_unsecured_business.jpg',
+    image: '/images/loan_unsecured_business_v2.jpg',
     badge: 'NO COLLATERAL',
     contentSections: [
       {
