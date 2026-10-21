@@ -438,10 +438,10 @@ export const CompanyPage = ({ initialTab = 'about' }) => {
                   Calculate Investment IQ
                 </Link>
                 <Link
-                  to="/loan-programs"
+                  to="/loantypes"
                   className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs text-center transition-all"
                 >
-                  View Loan Programs
+                  Explore Loan Types
                 </Link>
               </div>
             </div>

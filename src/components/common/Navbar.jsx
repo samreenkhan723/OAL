@@ -92,40 +92,40 @@ export const Navbar = () => {
 
   // All 34 Loan Types strictly aligned with Client requirement doc: "Loan Types – Home Page - OAL website .docx"
   const all34LoanTypes = [
-    { label: 'Alternative Energy Loans', path: '/loan-programs/alternative-energy', icon: Zap },
-    { label: 'Asset Based Loans', path: '/loan-programs/asset-based', icon: ShieldCheck },
-    { label: 'Bad Credit Business Loans', path: '/loan-programs/bad-credit', icon: CheckCircle2 },
-    { label: 'Business Acquisition Loans', path: '/loan-programs/business-acquisition', icon: Briefcase },
-    { label: 'Business Line Of Credit', path: '/loan-programs/business-line-of-credit', icon: CreditCard },
-    { label: 'Cash Advance Loans', path: '/loan-programs/cash-advance', icon: Coins },
-    { label: 'Church Financing Loans', path: '/loan-programs/church-facility', icon: Landmark },
-    { label: 'Commercial Bridge Loans', path: '/loan-programs/commercial-bridge', icon: TrendingUp },
-    { label: 'Construction Equipment Loans', path: '/loan-programs/construction-equipment', icon: Hammer },
-    { label: 'Debt Restructuring Loans', path: '/loan-programs/debt-restructuring', icon: FileText },
-    { label: 'Dental Practice Loans', path: '/loan-programs/dental-practice', icon: Smile },
-    { label: 'Doctors Loans', path: '/loan-programs/doctors-loans', icon: Heart },
-    { label: 'Equipment Leasing Loans', path: '/loan-programs/equipment-leasing', icon: Wrench },
-    { label: 'Fix & Flip Loans', path: '/loan-programs/fix-and-flip', icon: Building },
-    { label: 'Fleet Truck Loans', path: '/loan-programs/fleet-truck', icon: Truck },
-    { label: 'Food Truck Loans', path: '/loan-programs/food-truck', icon: Truck },
-    { label: 'Franchise Loans', path: '/loan-programs/franchise', icon: Store },
-    { label: 'Full-Service Restaurants Loans', path: '/loan-programs/restaurant', icon: UtensilsCrossed },
-    { label: 'Medical Equipment Loans', path: '/loan-programs/medical-equipment', icon: ShieldCheck },
-    { label: 'Medical Working Capital Loans', path: '/loan-programs/medical-working-capital', icon: Banknote },
-    { label: 'Merchant Cash Advance Loans', path: '/loan-programs/merchant-cash-advance', icon: Zap },
-    { label: 'Owner-Operator Truck Loans', path: '/loan-programs/owner-operator-truck', icon: Container },
-    { label: 'Real Estate Loans', path: '/loan-programs/real-estate', icon: Building2 },
-    { label: 'Revenue-Based Loans', path: '/loan-programs/revenue-based', icon: TrendingUp },
-    { label: 'Sale and Leaseback Loans', path: '/loan-programs/sale-and-leaseback', icon: Repeat },
-    { label: 'SBA Loans – Financing', path: '/loan-programs/sba-loans', icon: Landmark },
-    { label: 'Securities-Based Loans', path: '/loan-programs/securities-based', icon: Coins },
-    { label: 'Solar Energy Loans', path: '/loan-programs/solar-energy', icon: Sun },
-    { label: 'Startup Loans', path: '/loan-programs/startup-loans', icon: Rocket },
-    { label: 'Unsecured Business Loans', path: '/loan-programs/unsecured-business', icon: ShieldCheck },
-    { label: 'Used Aircraft Loans', path: '/loan-programs/used-aircraft', icon: Plane },
-    { label: 'Veterinarians Loans', path: '/loan-programs/veterinarians', icon: Heart },
-    { label: 'Wind Energy Loans', path: '/loan-programs/wind-energy', icon: Wind },
-    { label: 'Working Capital Loans', path: '/loan-programs/working-capital', icon: Banknote },
+    { label: 'Alternative Energy Loans', path: '/loantypes/alternative-energy', icon: Zap },
+    { label: 'Asset Based Loans', path: '/loantypes/asset-based', icon: ShieldCheck },
+    { label: 'Bad Credit Business Loans', path: '/loantypes/bad-credit', icon: CheckCircle2 },
+    { label: 'Business Acquisition Loans', path: '/loantypes/business-acquisition', icon: Briefcase },
+    { label: 'Business Line Of Credit', path: '/loantypes/business-line-of-credit', icon: CreditCard },
+    { label: 'Cash Advance Loans', path: '/loantypes/cash-advance', icon: Coins },
+    { label: 'Church Financing Loans', path: '/loantypes/church-facility', icon: Landmark },
+    { label: 'Commercial Bridge Loans', path: '/loantypes/commercial-bridge', icon: TrendingUp },
+    { label: 'Construction Equipment Loans', path: '/loantypes/construction-equipment', icon: Hammer },
+    { label: 'Debt Restructuring Loans', path: '/loantypes/debt-restructuring', icon: FileText },
+    { label: 'Dental Practice Loans', path: '/loantypes/dental-practice', icon: Smile },
+    { label: 'Doctors Loans', path: '/loantypes/doctors-loans', icon: Heart },
+    { label: 'Equipment Leasing Loans', path: '/loantypes/equipment-leasing', icon: Wrench },
+    { label: 'Fix & Flip Loans', path: '/loantypes/fix-and-flip', icon: Building },
+    { label: 'Fleet Truck Loans', path: '/loantypes/fleet-truck', icon: Truck },
+    { label: 'Food Truck Loans', path: '/loantypes/food-truck', icon: Truck },
+    { label: 'Franchise Loans', path: '/loantypes/franchise', icon: Store },
+    { label: 'Full-Service Restaurants Loans', path: '/loantypes/restaurant', icon: UtensilsCrossed },
+    { label: 'Medical Equipment Loans', path: '/loantypes/medical-equipment', icon: ShieldCheck },
+    { label: 'Medical Working Capital Loans', path: '/loantypes/medical-working-capital', icon: Banknote },
+    { label: 'Merchant Cash Advance Loans', path: '/loantypes/merchant-cash-advance', icon: Zap },
+    { label: 'Owner-Operator Truck Loans', path: '/loantypes/owner-operator-truck', icon: Container },
+    { label: 'Real Estate Loans', path: '/loantypes/real-estate', icon: Building2 },
+    { label: 'Revenue-Based Loans', path: '/loantypes/revenue-based', icon: TrendingUp },
+    { label: 'Sale and Leaseback Loans', path: '/loantypes/sale-and-leaseback', icon: Repeat },
+    { label: 'SBA Loans – Financing', path: '/loantypes/sba-loans', icon: Landmark },
+    { label: 'Securities-Based Loans', path: '/loantypes/securities-based', icon: Coins },
+    { label: 'Solar Energy Loans', path: '/loantypes/solar-energy', icon: Sun },
+    { label: 'Startup Loans', path: '/loantypes/startup-loans', icon: Rocket },
+    { label: 'Unsecured Business Loans', path: '/loantypes/unsecured-business', icon: ShieldCheck },
+    { label: 'Used Aircraft Loans', path: '/loantypes/used-aircraft', icon: Plane },
+    { label: 'Veterinarians Loans', path: '/loantypes/veterinarians', icon: Heart },
+    { label: 'Wind Energy Loans', path: '/loantypes/wind-energy', icon: Wind },
+    { label: 'Working Capital Loans', path: '/loantypes/working-capital', icon: Banknote },
   ];
 
   // All 20 Commercial Loans by Industry strictly per Client Requirement Documents
@@ -197,7 +197,7 @@ export const Navbar = () => {
           <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             <Link
               to="/auth/login"
-              className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-black text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] transition-all shadow-xs border border-amber-300"
+              className="inline-flex items-center gap-1 px-2.5 py-1 sm:py-0.5 rounded-md text-[11px] font-black text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] transition-all shadow-xs border border-amber-300"
             >
               <LogIn className="w-3 h-3 text-[#002060] shrink-0" />
               <span>Login</span>
@@ -205,7 +205,7 @@ export const Navbar = () => {
 
             <Link
               to="/auth/register"
-              className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-black text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] transition-all shadow-xs border border-amber-300"
+              className="inline-flex items-center gap-1 px-2.5 py-1 sm:py-0.5 rounded-md text-[11px] font-black text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] transition-all shadow-xs border border-amber-300"
             >
               <UserPlus className="w-3 h-3 text-[#002060] shrink-0" />
               <span>Create Account</span>
@@ -217,7 +217,7 @@ export const Navbar = () => {
       {/* 2. Main Navbar Row strictly per client blueprint & sitemap */}
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          
+
           {/* Logo */}
           <Link to="/" className="shrink-0 flex items-center gap-2 sm:gap-2.5 group">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#002060] via-[#0070C0] to-[#00B0F0] flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform shrink-0 border border-[#00B0F0]/30">
@@ -234,16 +234,15 @@ export const Navbar = () => {
 
           {/* Desktop Navigation Row: HOME | Loan Types | Industries | On the Money | FAQs | COMPANY */}
           <nav className="hidden lg:flex items-center h-16 gap-0.5 xl:gap-1.5">
-            
+
             {/* 1. HOME */}
             <Link
               to="/"
               onMouseEnter={() => setActiveDropdown(null)}
-              className={`h-16 flex items-center px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors ${
-                location.pathname === '/'
+              className={`h-16 flex items-center px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors ${location.pathname === '/'
                   ? 'text-[#0070C0] font-bold'
                   : 'text-slate-700 hover:text-[#0070C0]'
-              }`}
+                }`}
             >
               Home
             </Link>
@@ -257,11 +256,10 @@ export const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setActiveDropdown(activeDropdown === 'loan-types' ? null : 'loan-types')}
-                className={`h-16 flex items-center gap-1 px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                  location.pathname === '/loan-programs' || location.pathname.startsWith('/loan-programs/')
+                className={`h-16 flex items-center gap-1 px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer ${location.pathname === '/loantypes' || location.pathname === '/loan-types' || location.pathname === '/loan-programs' || location.pathname.startsWith('/loan-programs/') || location.pathname.startsWith('/loantypes/')
                     ? 'text-[#0070C0] font-bold'
                     : 'text-slate-700 hover:text-[#0070C0]'
-                }`}
+                  }`}
               >
                 <span>Loan Types</span>
                 <ChevronDown className={`w-3.5 h-3.5 text-slate-500 transition-transform ${activeDropdown === 'loan-types' ? 'rotate-180 text-[#0070C0]' : ''}`} />
@@ -285,7 +283,7 @@ export const Navbar = () => {
                       </span>
                     </div>
                     <Link
-                      to="/loan-programs"
+                      to="/loantypes"
                       onClick={() => setActiveDropdown(null)}
                       className="text-xs font-bold text-[#0070C0] hover:text-[#002060] transition-colors"
                     >
@@ -320,7 +318,7 @@ export const Navbar = () => {
                   <div className="mt-2.5 pt-2 border-t border-slate-100 px-2 flex items-center justify-between text-[11px]">
                     <span className="text-slate-400 font-medium">$10K to $500M+ • 24–72 Hr Funding</span>
                     <Link
-                      to="/loan-programs"
+                      to="/loantypes"
                       onClick={() => setActiveDropdown(null)}
                       className="text-[#0070C0] font-bold hover:underline"
                     >
@@ -340,11 +338,10 @@ export const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setActiveDropdown(activeDropdown === 'industries' ? null : 'industries')}
-                className={`h-16 flex items-center gap-1 px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                  location.pathname === '/industries' || location.pathname.startsWith('/industries/')
+                className={`h-16 flex items-center gap-1 px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer ${location.pathname === '/industries' || location.pathname.startsWith('/industries/')
                     ? 'text-[#0070C0] font-bold'
                     : 'text-slate-700 hover:text-[#0070C0]'
-                }`}
+                  }`}
               >
                 <span>Industries</span>
                 <ChevronDown className={`w-3.5 h-3.5 text-slate-500 transition-transform ${activeDropdown === 'industries' ? 'rotate-180 text-[#0070C0]' : ''}`} />
@@ -418,11 +415,10 @@ export const Navbar = () => {
             <Link
               to="/investment-club"
               onMouseEnter={() => setActiveDropdown(null)}
-              className={`h-16 flex items-center gap-1.5 px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors ${
-                location.pathname === '/investment-club'
+              className={`h-16 flex items-center gap-1.5 px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors ${location.pathname === '/investment-club'
                   ? 'text-[#0070C0] font-bold'
                   : 'text-slate-700 hover:text-[#0070C0]'
-              }`}
+                }`}
             >
               <Coins className="w-3.5 h-3.5 text-[#00B0F0]" />
               <span>The Money Club</span>
@@ -432,11 +428,10 @@ export const Navbar = () => {
             <Link
               to="/faqs"
               onMouseEnter={() => setActiveDropdown(null)}
-              className={`h-16 flex items-center px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors ${
-                location.pathname === '/faqs' || location.pathname === '/faq' || (location.pathname === '/help' && location.search.includes('tab=faqs'))
+              className={`h-16 flex items-center px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors ${location.pathname === '/faqs' || location.pathname === '/faq' || (location.pathname === '/help' && location.search.includes('tab=faqs'))
                   ? 'text-[#0070C0] font-bold'
                   : 'text-slate-700 hover:text-[#0070C0]'
-              }`}
+                }`}
             >
               FAQs
             </Link>
@@ -451,11 +446,10 @@ export const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setActiveDropdown(activeDropdown === 'company' ? null : 'company')}
-                className={`h-16 flex items-center gap-1 px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                  location.pathname === '/company' || location.pathname === '/how-it-works' || location.pathname === '/about' || location.pathname === '/leadership'
+                className={`h-16 flex items-center gap-1 px-2.5 xl:px-3 text-xs xl:text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer ${location.pathname === '/company' || location.pathname === '/how-it-works' || location.pathname === '/about' || location.pathname === '/leadership'
                     ? 'text-[#0070C0] font-bold'
                     : 'text-slate-700 hover:text-[#0070C0]'
-                }`}
+                  }`}
               >
                 <span>COMPANY</span>
                 <ChevronDown className={`w-3.5 h-3.5 text-slate-500 transition-transform ${activeDropdown === 'company' ? 'rotate-180 text-[#0070C0]' : ''}`} />
@@ -464,7 +458,7 @@ export const Navbar = () => {
               {/* COMPANY Dropdown Card: 9 items strictly per doc */}
               {activeDropdown === 'company' && (
                 <div
-                  className="absolute top-full left-0 mt-1 bg-white rounded-2xl shadow-2xl border border-slate-200/90 py-3.5 px-3.5 z-50"
+                  className="absolute top-full right-0 xl:right-auto xl:left-0 mt-1 bg-white rounded-2xl shadow-2xl border border-slate-200/90 py-3.5 px-3.5 z-50"
                   style={{ width: '420px', minWidth: '400px' }}
                   onMouseEnter={() => handleMouseEnter('company')}
                   onMouseLeave={handleMouseLeave}
@@ -546,7 +540,7 @@ export const Navbar = () => {
       {/* 3. Mobile Navigation Drawer strictly aligned */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-2 shadow-lg max-h-[calc(100vh-5rem)] overflow-y-auto">
-          
+
           {/* Home */}
           <Link
             to="/"
@@ -570,7 +564,7 @@ export const Navbar = () => {
             {mobileExpandedSection === 'loan-types' && (
               <div className="px-2 pt-1 pb-2 space-y-1 bg-white border-t border-slate-100">
                 <Link
-                  to="/loan-programs"
+                  to="/loantypes"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block px-2.5 py-1.5 text-xs font-extrabold text-[#0070C0] bg-sky-50/50 rounded-lg mb-1"
                 >
@@ -589,7 +583,7 @@ export const Navbar = () => {
                   ))}
                 </div>
                 <Link
-                  to="/loan-programs"
+                  to="/loantypes"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block px-2.5 py-1.5 text-xs font-semibold text-slate-500 hover:text-[#0070C0] border-t border-slate-100 pt-2"
                 >

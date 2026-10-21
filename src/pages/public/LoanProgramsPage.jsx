@@ -115,14 +115,14 @@ export const LoanProgramsPage = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
-      
+
       {/* 1. Attractive Premium Hero Section */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#001744] via-[#002060] to-[#0070C0] text-white shadow-2xl p-6 sm:p-10 lg:p-12">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#00B0F0]/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#FFD200]/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-          
+
           {/* Left Column (Content, Badges, Search & Value Props) */}
           <div className="lg:col-span-7 space-y-5">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white border border-[#00B0F0]/40 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
@@ -133,7 +133,7 @@ export const LoanProgramsPage = () => {
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold text-white tracking-tight leading-tight">
-              Commercial Loan Programs
+              Loan Types
             </h1>
 
             <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl">
@@ -189,7 +189,7 @@ export const LoanProgramsPage = () => {
                 className="w-full h-64 sm:h-72 lg:h-80 object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#001744]/95 via-[#002060]/30 to-transparent" />
-              
+
               {/* Floating Stat Badge */}
               <div className="absolute top-3.5 right-3.5 bg-white/15 backdrop-blur-md border border-white/25 px-3 py-1.5 rounded-xl text-right">
                 <span className="block text-[10px] font-extrabold uppercase tracking-wider text-[#00B0F0]">Marketplace Scope</span>
@@ -244,10 +244,10 @@ export const LoanProgramsPage = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <h2 className="text-xl sm:text-2xl font-heading font-black text-[#002060]">
-              Commercial Loan Programs Catalog
+              Loan Types
             </h2>
             <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#00B0F0]/15 text-[#0070C0] border border-[#00B0F0]/30">
-              {filteredPrograms.length} Programs
+              {filteredPrograms.length} Loan Types
             </span>
           </div>
 
@@ -264,7 +264,7 @@ export const LoanProgramsPage = () => {
           {filteredPrograms.map((prog) => (
             <div
               key={prog.id}
-              onClick={() => navigate(`/loan-programs/${prog.slug}`)}
+              onClick={() => navigate(`/loantypes/${prog.slug}`)}
               className="bg-white rounded-2xl border border-slate-200/90 hover:border-[#00B0F0] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group hover:-translate-y-1 cursor-pointer"
             >
               {/* Card Photography Banner (Clean Image, No Badges) */}
@@ -351,7 +351,7 @@ export const LoanProgramsPage = () => {
 
                 <div className="pt-3.5 mt-3.5 border-t border-slate-100 flex items-center justify-between gap-3">
                   <Link
-                    to={`/loan-programs/${prog.slug}`}
+                    to={`/loantypes/${prog.slug}`}
                     onClick={(e) => e.stopPropagation()}
                     className="text-xs font-bold text-[#0070C0] hover:text-[#00B0F0] transition-colors"
                   >
@@ -359,7 +359,7 @@ export const LoanProgramsPage = () => {
                   </Link>
 
                   <Link
-                    to={`/loan-programs/${prog.slug}`}
+                    to={`/loantypes/${prog.slug}`}
                     onClick={(e) => e.stopPropagation()}
                     className="px-3.5 py-1.5 rounded-lg text-xs font-bold text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] shadow-sm shadow-amber-300/40 hover:scale-105 active:scale-95 transition-all border border-amber-300"
                   >

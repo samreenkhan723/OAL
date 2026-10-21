@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, Navigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { LOAN_PROGRAMS, ALL_LOAN_PROGRAMS } from '../../data/loanPrograms';
 import {
@@ -28,7 +28,11 @@ export const LoanProgramDetailPage = () => {
   const navigate = useNavigate();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
-  const program = (ALL_LOAN_PROGRAMS || LOAN_PROGRAMS).find(p => p.slug === slug || p.id === slug) || LOAN_PROGRAMS[0];
+  const program = (ALL_LOAN_PROGRAMS || LOAN_PROGRAMS).find(p => p.slug === slug || p.id === slug);
+
+  if (!program) {
+    return <Navigate to="/loantypes" replace />;
+  }
 
   if (program?.isIndustryProgram) {
     return <IndustryDetailPage />;
@@ -102,17 +106,17 @@ export const LoanProgramDetailPage = () => {
         <div className="flex items-center gap-2 text-slate-500 font-medium">
           <Link to="/" className="hover:text-[#0070C0] transition-colors">Home</Link>
           <span>/</span>
-          <Link to="/loan-programs" className="hover:text-[#0070C0] transition-colors">Types of Financing</Link>
+          <Link to="/loantypes" className="hover:text-[#0070C0] transition-colors">Loan Types</Link>
           <span>/</span>
           <span className="text-[#002060] font-bold">{program.breadcrumbText || program.title}</span>
         </div>
 
         <Link
-          to="/loan-programs"
+          to="/loantypes"
           className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#0070C0] transition-colors"
         >
           <ChevronLeft className="w-4 h-4 text-[#00B0F0]" />
-          <span>Back to Commercial Loan Catalog</span>
+          <span>Back to Loan Types</span>
         </Link>
       </div>
 

@@ -263,7 +263,7 @@ export const InvestmentIQExplainerPage = () => {
             </div>
 
             <Link
-              to="/loan-programs"
+              to="/loantypes"
               className="w-full py-2.5 rounded-xl bg-[#FFD200] hover:bg-[#ffe040] text-[#002060] text-xs font-extrabold text-center transition-colors"
             >
               Choose a Loan Category & Apply &rarr;

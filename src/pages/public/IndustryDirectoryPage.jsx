@@ -157,14 +157,14 @@ export const IndustryDirectoryPage = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
-      
+
       {/* 1. Hero Section */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#001744] via-[#002060] to-[#0070C0] text-white shadow-2xl p-6 sm:p-10 lg:p-12">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#00B0F0]/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#FFD200]/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-          
+
           {/* Left Column (Content & Value Props) */}
           <div className="lg:col-span-7 space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-sky-200">
@@ -205,7 +205,7 @@ export const IndustryDirectoryPage = () => {
                 className="w-full h-64 sm:h-72 lg:h-80 object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#001744]/95 via-[#002060]/30 to-transparent" />
-              
+
               {/* Floating Stat Badge */}
               <div className="absolute top-3.5 right-3.5 bg-white/15 backdrop-blur-md border border-white/25 px-3 py-1.5 rounded-xl text-right">
                 <span className="block text-[10px] font-extrabold uppercase tracking-wider text-[#00B0F0]">Marketplace Scope</span>
@@ -232,35 +232,33 @@ export const IndustryDirectoryPage = () => {
 
       {/* 2. Directory Navigation Tabs & Search Bar */}
       <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
-        
+
         {/* Toggle between All 9 Industries and Specialty Programs */}
-        <div className="flex items-center gap-2 p-1 bg-slate-100 rounded-2xl w-fit">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 p-1 bg-slate-100 rounded-2xl w-full sm:w-fit">
           <button
             type="button"
             onClick={() => handleTabChange('all-industries')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-              activeTab === 'all-industries'
+            className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-center transition-all cursor-pointer ${activeTab === 'all-industries'
                 ? 'bg-white text-[#002060] shadow-sm'
                 : 'text-slate-600 hover:text-[#002060]'
-            }`}
+              }`}
           >
             Loans by Industry (20 Core Sectors)
           </button>
           <button
             type="button"
             onClick={() => handleTabChange('specialty')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-              activeTab === 'specialty'
+            className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-center transition-all cursor-pointer ${activeTab === 'specialty'
                 ? 'bg-white text-[#002060] shadow-sm'
                 : 'text-slate-600 hover:text-[#002060]'
-            }`}
+              }`}
           >
             Specialty Blueprint Programs (8 Programs)
           </button>
         </div>
 
         {/* Live Search with Context-Aware Placeholder */}
-        <div className="relative min-w-[260px] sm:min-w-[340px]">
+        <div className="relative w-full md:w-auto min-w-0 sm:min-w-[340px]">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
@@ -313,7 +311,7 @@ export const IndustryDirectoryPage = () => {
                   </div>
 
                   <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                    
+
                     {/* Header Row */}
                     <div className="flex items-start justify-between gap-3">
                       <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0070C0] group-hover:bg-[#002060] group-hover:text-[#FFD200] flex items-center justify-center shrink-0 transition-colors border border-sky-100 shadow-xs">
@@ -420,7 +418,7 @@ export const IndustryDirectoryPage = () => {
               return (
                 <div
                   key={prog.id}
-                  onClick={() => navigate(`/loan-programs/${prog.slug}`)}
+                  onClick={() => navigate(`/loantypes/${prog.slug}`)}
                   className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#0070C0] transition-all flex flex-col justify-between overflow-hidden group hover:-translate-y-0.5 cursor-pointer"
                 >
                   {/* Top Image Banner */}
@@ -438,7 +436,7 @@ export const IndustryDirectoryPage = () => {
                   </div>
 
                   <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                    
+
                     {/* Header Row */}
                     <div className="flex items-start justify-between gap-3">
                       <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0070C0] group-hover:bg-[#002060] group-hover:text-[#FFD200] flex items-center justify-center shrink-0 transition-colors border border-sky-100 shadow-xs">
@@ -486,7 +484,7 @@ export const IndustryDirectoryPage = () => {
                   {/* Action Buttons Footer */}
                   <div className="p-4 bg-slate-50/70 border-t border-slate-100 flex items-center justify-between gap-2">
                     <Link
-                      to={`/loan-programs/${prog.slug}`}
+                      to={`/loantypes/${prog.slug}`}
                       onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-[#0070C0] hover:text-[#002060] hover:bg-sky-50 transition-colors"
                     >

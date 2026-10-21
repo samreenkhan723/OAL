@@ -161,10 +161,10 @@ export const HowItWorksPage = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Link
-              to="/loan-programs"
+              to="/loantypes"
               className="px-7 py-3 rounded-xl text-xs font-extrabold text-[#002060] bg-[#FFD200] hover:bg-[#ffe040] shadow-md shadow-amber-300/40 hover:scale-105 active:scale-95 transition-all"
             >
-              Explore Loan Programs &rarr;
+              Explore Loan Types &rarr;
             </Link>
             <Link
               to="/investment-iq"

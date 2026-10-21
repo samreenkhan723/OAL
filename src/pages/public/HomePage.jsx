@@ -383,17 +383,17 @@ export const HomePage = () => {
 
       {/* 1. HERO SECTION — TWO-COLUMN EDITORIAL COMPOSITION WITH BALANCED PROPORTIONS */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#F0F9FF] via-white to-[#F8FAFC] pt-10 pb-8 sm:pt-14 sm:pb-10 border-b border-slate-200">
-        
+
         {/* Subtle background ambient accents */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#00B0F0]/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#FFD200]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-            
+
             {/* Left Column (55%): Clear Value Proposition & High Contrast Typography */}
             <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
-              
+
               {/* Nationwide Eyebrow Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#00B0F0]/40 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#FFD200] ring-4 ring-[#FFD200]/25" />
@@ -479,7 +479,7 @@ export const HomePage = () => {
             {/* Right Column (45%): Balanced Commercial Finance Photograph */}
             <div className="lg:col-span-5">
               <div className="relative mx-auto max-w-md lg:max-w-none">
-                
+
                 {/* Clean container without excessive decorative clutter */}
                 <div className="bg-white p-2 rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
                   <img
@@ -517,18 +517,18 @@ export const HomePage = () => {
 
       {/* 2A. SECTION A: SPECIALTY COMMERCIAL LOAN PROGRAMS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 !mt-6 sm:!mt-8">
-        
+
         {/* Section Heading & Introduction */}
         <div className="text-center max-w-2xl mx-auto mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00B0F0]/15 text-[#0070C0] border border-[#00B0F0]/30 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 text-[#00B0F0]" />
             <span>Commercial Blueprint Programs &amp; Deal Syndicate</span>
           </div>
-          
+
           <h2 className="mt-3.5 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-[#002060] tracking-tight">
             Specialty Commercial Loan Programs
           </h2>
-          
+
           <p className="mt-3 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
             Institutional underwriting across our 8 targeted specialty commercial loan categories, alongside The Money Club private debt investor syndicate. Nationwide coverage from $10,000 to $500 Million+ welcoming good and bad credit borrowers.
           </p>
@@ -536,13 +536,13 @@ export const HomePage = () => {
 
         {/* 3-Column Desktop Grid with Compact Photography & Equal Card Heights */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-          
+
           {/* CARD 1: THE MONEY CLUB FOR INVESTORS [POWERED BY LENDERS] */}
           <div
             onClick={() => navigate('/investment-club')}
             className="bg-gradient-to-br from-[#001744] via-[#002060] to-[#003882] text-white rounded-2xl border-2 border-[#0070C0]/50 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5 overflow-hidden h-full cursor-pointer"
           >
-            
+
             {/* Top Visual Area: 176px Height with Contrast Gradient */}
             <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-900 shrink-0">
               <img
@@ -551,7 +551,7 @@ export const HomePage = () => {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#001744] via-[#001744]/40 to-transparent pointer-events-none" />
-              
+
               <div className="absolute top-3.5 left-3.5">
                 <span className="px-3 py-1 rounded-full bg-[#FFD200] text-[#002060] font-black text-xs uppercase tracking-wider shadow-sm border border-amber-300">
                   INVESTOR SYNDICATE
@@ -614,7 +614,7 @@ export const HomePage = () => {
             return (
               <div
                 key={prog.id}
-                onClick={() => navigate(`/loan-programs/${prog.slug}`)}
+                onClick={() => navigate(`/loantypes/${prog.slug}`)}
                 className="bg-white rounded-2xl border border-slate-200 hover:border-[#00B0F0] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5 overflow-hidden h-full cursor-pointer"
               >
                 {/* Top Visual Area: 176px Height Clean Category Photo */}
@@ -625,7 +625,7 @@ export const HomePage = () => {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
-                  
+
                   {/* Category Badge in Top Corner (High Contrast) */}
                   <div className="absolute top-3.5 right-3.5">
                     <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm border ${visual.badgeColor}`}>
@@ -636,7 +636,7 @@ export const HomePage = () => {
 
                 {/* Content Area */}
                 <div className="p-5 sm:p-6 space-y-3.5 flex-1 flex flex-col justify-between">
-                  
+
                   <div className="space-y-1.5">
                     <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider block">
                       {visual.scope}
@@ -676,7 +676,7 @@ export const HomePage = () => {
                     </button>
 
                     <Link
-                      to={`/loan-programs/${prog.slug}`}
+                      to={`/loantypes/${prog.slug}`}
                       onClick={(e) => e.stopPropagation()}
                       className="w-full py-1.5 px-2 rounded-lg text-center text-xs font-semibold text-slate-600 hover:text-[#0070C0] hover:bg-slate-50 transition-colors flex items-center justify-center gap-1"
                     >
@@ -696,10 +696,10 @@ export const HomePage = () => {
         {/* View All Programs Link */}
         <div className="mt-10 text-center">
           <Link
-            to="/loan-programs"
+            to="/loantypes"
             className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-white border-2 border-slate-200 hover:border-[#0070C0] text-sm font-bold text-[#002060] hover:text-[#0070C0] shadow-xs transition-all"
           >
-            <span>Explore Complete Marketplace Catalog Across All 34 Programs</span>
+            <span>Explore Complete Marketplace Catalog Across All 34 Loan Types</span>
             <ArrowRight className="w-4 h-4 text-[#0070C0]" />
           </Link>
         </div>
@@ -708,18 +708,18 @@ export const HomePage = () => {
 
       {/* 2B. SECTION B: LOANS BY INDUSTRY */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 !mt-10 sm:!mt-12">
-        
+
         {/* Section Heading & Introduction */}
         <div className="text-center max-w-2xl mx-auto mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0070C0]/15 text-[#0070C0] border border-[#0070C0]/30 text-xs font-bold uppercase tracking-wider">
             <Building className="w-3.5 h-3.5 text-[#0070C0]" />
             <span>Sector-Specific Commercial Financing</span>
           </div>
-          
+
           <h2 className="mt-3.5 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-[#002060] tracking-tight">
             Loans by Industry
           </h2>
-          
+
           <p className="mt-3 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
             Purpose-built commercial debt structures tailored to the unique business models, equipment needs, and cash flow cycles of 20 key industry sectors.
           </p>
@@ -744,7 +744,7 @@ export const HomePage = () => {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
-                  
+
                   {/* Category Badge in Top Corner */}
                   <div className="absolute top-3.5 right-3.5">
                     <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm border ${visual.badgeColor}`}>
@@ -755,7 +755,7 @@ export const HomePage = () => {
 
                 {/* Content Area */}
                 <div className="p-5 sm:p-6 space-y-3.5 flex-1 flex flex-col justify-between">
-                  
+
                   <div className="space-y-1.5">
                     <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider block">
                       {visual.scope}
@@ -827,16 +827,16 @@ export const HomePage = () => {
       {/* 2C. BAD CREDIT LOAN APPROVAL PROGRAMS & SMALL BUSINESS CAPITAL — STRICTLY PER CLIENT DOC */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#001744] via-[#002060] to-[#003882] text-white p-6 sm:p-10 lg:p-12 shadow-2xl border-2 border-[#0070C0]/50">
-          
+
           {/* Ambient Lighting */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#00B0F0]/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#FFD200]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
+
             {/* Left Content Area (8 Columns) */}
             <div className="lg:col-span-8 space-y-4 sm:space-y-5 text-center lg:text-left">
-              
+
               {/* Highlight Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFD200] text-[#002060] font-black text-xs uppercase tracking-wider shadow-sm border border-amber-300">
                 <Sparkles className="w-3.5 h-3.5 text-[#002060]" />
@@ -896,7 +896,7 @@ export const HomePage = () => {
                 </Link>
 
                 <Link
-                  to="/loan-programs/bad-credit"
+                  to="/loantypes/bad-credit"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all"
                 >
                   <span>View Program Requirements</span>
@@ -980,7 +980,7 @@ export const HomePage = () => {
       {/* 4. THE 6-STEP WORKFLOW — CONNECTED VISUALLY GUIDED PROCESS */}
       <section className="bg-white py-16 sm:py-20 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
             <span className="text-xs font-bold text-[#0070C0] uppercase tracking-wider">
               End-to-End Underwriting Journey
@@ -1068,7 +1068,7 @@ export const HomePage = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-3xl border border-slate-200 shadow-lg p-6 sm:p-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
+
             <div className="lg:col-span-7 space-y-4">
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#00B0F0]/15 text-[#0070C0] uppercase tracking-wider inline-block border border-[#00B0F0]/30">
                 Audited Underwriting Standard
@@ -1189,7 +1189,7 @@ export const HomePage = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-gradient-to-br from-[#001438] via-[#002060] to-[#0070C0] rounded-3xl p-6 sm:p-10 text-white shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
+
             <div className="lg:col-span-8 space-y-3.5">
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FFD200] text-[#002060] uppercase tracking-wider inline-block">
                 Marketplace Governance &amp; Integrity
@@ -1349,7 +1349,7 @@ export const HomePage = () => {
             <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
               <span>Want to review requirements first?</span>
               <Link
-                to={SPECIALTY_PROGRAMS.some((p) => p.slug === applyModalProg.slug) ? `/loan-programs/${applyModalProg.slug}` : `/industries/${applyModalProg.slug}`}
+                to={SPECIALTY_PROGRAMS.some((p) => p.slug === applyModalProg.slug) ? `/loantypes/${applyModalProg.slug}` : `/industries/${applyModalProg.slug}`}
                 onClick={() => setApplyModalProg(null)}
                 className="font-bold text-[#0070C0] hover:underline inline-flex items-center gap-1"
               >

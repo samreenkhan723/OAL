@@ -6,7 +6,7 @@ export const Footer = () => {
   return (
     <footer className="bg-[#001744] text-slate-300 pt-12 pb-10 border-t border-[#00B0F0]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Top Brand & Nationwide Summary Bar */}
         <div className="pb-10 mb-10 border-b border-slate-800 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
           <div className="flex items-center gap-3">
@@ -42,7 +42,7 @@ export const Footer = () => {
 
         {/* 4 Exact Blueprint Columns strictly matching Client Image */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
-          
+
           {/* Column 1: Help Center */}
           <div className="space-y-3">
             <h4 className="text-[#FFD200] font-extrabold text-sm uppercase tracking-wider mb-2 underline decoration-[#FFD200] underline-offset-4">
@@ -82,10 +82,10 @@ export const Footer = () => {
               <li><Link to="/tools?tab=calculators" className="hover:text-[#FFD200] transition-colors">Financial Calculators</Link></li>
               <li><Link to="/tools?tab=videos" className="hover:text-[#FFD200] transition-colors">Videos</Link></li>
               <li><Link to="/company?tab=press" className="hover:text-[#FFD200] transition-colors">Press Room</Link></li>
-              <li><Link to="/loan-programs" className="hover:text-[#FFD200] transition-colors">Small Business Loans</Link></li>
-              <li><Link to="/loan-programs/startup-loans" className="hover:text-[#FFD200] transition-colors">Startup Loans</Link></li>
-              <li><Link to="/loan-programs/working-capital" className="hover:text-[#FFD200] transition-colors">Inventory Loans</Link></li>
-              <li><Link to="/loan-programs/working-capital" className="hover:text-[#FFD200] transition-colors">Payroll Loans</Link></li>
+              <li><Link to="/loantypes" className="hover:text-[#FFD200] transition-colors">Small Business Loans</Link></li>
+              <li><Link to="/loantypes/startup-loans" className="hover:text-[#FFD200] transition-colors">Startup Loans</Link></li>
+              <li><Link to="/loantypes/working-capital" className="hover:text-[#FFD200] transition-colors">Inventory Loans</Link></li>
+              <li><Link to="/loantypes/working-capital" className="hover:text-[#FFD200] transition-colors">Payroll Loans</Link></li>
               <li><Link to="/tools?tab=partners" className="hover:text-[#FFD200] transition-colors">CRM nErgy Events</Link></li>
               <li><Link to="/tools?tab=reviews" className="hover:text-[#FFD200] transition-colors">Reviews</Link></li>
               <li><Link to="/tools?tab=reviews" className="hover:text-[#FFD200] transition-colors">Testimonials</Link></li>
@@ -98,18 +98,18 @@ export const Footer = () => {
               Product
             </h4>
             <ul className="space-y-2 text-xs sm:text-[13px] text-slate-300">
-              <li><Link to="/loan-programs" className="hover:text-[#00B0F0] transition-colors">Loan Types</Link></li>
+              <li><Link to="/loantypes" className="hover:text-[#00B0F0] transition-colors">Loan Types</Link></li>
               <li><Link to="/industries" className="hover:text-[#00B0F0] transition-colors font-semibold">Loans by Industry</Link></li>
               <li><Link to="/tools" className="hover:text-[#00B0F0] transition-colors">Marketing Genius</Link></li>
-              <li><Link to="/loan-programs" className="hover:text-[#00B0F0] transition-colors">Financing</Link></li>
-              <li><Link to="/loan-programs/restaurant" className="hover:text-[#00B0F0] transition-colors">Restaurant Loans</Link></li>
-              <li><Link to="/loan-programs/food-truck" className="hover:text-[#00B0F0] transition-colors">Food Trucks Loans</Link></li>
-              <li><Link to="/loan-programs/franchise" className="hover:text-[#00B0F0] transition-colors">Buy A Franchise</Link></li>
-              <li><Link to="/loan-programs/dental-practice" className="hover:text-[#00B0F0] transition-colors">Dental Practice</Link></li>
-              <li><Link to="/loan-programs/fleet-truck" className="hover:text-[#00B0F0] transition-colors">Truck Loans</Link></li>
-              <li><Link to="/loan-programs/hotel-motel-airbnb" className="hover:text-[#00B0F0] transition-colors">Hotel / Motel Loans</Link></li>
-              <li><Link to="/loan-programs/church-facility" className="hover:text-[#00B0F0] transition-colors">Church Loans</Link></li>
-              <li><Link to="/loan-programs/fix-and-flip" className="hover:text-[#00B0F0] transition-colors">Fix and Flip Loans</Link></li>
+              <li><Link to="/loantypes" className="hover:text-[#00B0F0] transition-colors">Financing</Link></li>
+              <li><Link to="/loantypes/restaurant" className="hover:text-[#00B0F0] transition-colors">Restaurant Loans</Link></li>
+              <li><Link to="/loantypes/food-truck" className="hover:text-[#00B0F0] transition-colors">Food Trucks Loans</Link></li>
+              <li><Link to="/loantypes/franchise" className="hover:text-[#00B0F0] transition-colors">Buy A Franchise</Link></li>
+              <li><Link to="/loantypes/dental-practice" className="hover:text-[#00B0F0] transition-colors">Dental Practice</Link></li>
+              <li><Link to="/loantypes/fleet-truck" className="hover:text-[#00B0F0] transition-colors">Truck Loans</Link></li>
+              <li><Link to="/loantypes/hotel-motel-airbnb" className="hover:text-[#00B0F0] transition-colors">Hotel / Motel Loans</Link></li>
+              <li><Link to="/loantypes/church-facility" className="hover:text-[#00B0F0] transition-colors">Church Loans</Link></li>
+              <li><Link to="/loantypes/fix-and-flip" className="hover:text-[#00B0F0] transition-colors">Fix and Flip Loans</Link></li>
             </ul>
           </div>
 
@@ -124,12 +124,11 @@ export const Footer = () => {
               <li><Link to="/company?tab=values" className="hover:text-[#FFD200] transition-colors">OAL Values</Link></li>
               <li><Link to="/company?tab=leadership" className="hover:text-[#FFD200] transition-colors">Management Team</Link></li>
               <li><Link to="/tools?tab=partners" className="hover:text-[#FFD200] transition-colors">Affiliates</Link></li>
-              <li><Link to="/company?tab=careers" className="hover:text-[#FFD200] transition-colors">Carrers</Link></li>
+              <li><Link to="/company?tab=careers" className="hover:text-[#FFD200] transition-colors">Careers</Link></li>
               <li><Link to="/company?tab=press" className="hover:text-[#FFD200] transition-colors">Blog</Link></li>
-              <li><Link to="/company?tab=leadership" className="hover:text-[#FFD200] transition-colors">Management Team</Link></li>
               <li><Link to="/company?tab=contact" className="hover:text-[#FFD200] transition-colors">Contact</Link></li>
               <li><Link to="/referral-program" className="hover:text-[#FFD200] transition-colors">Referral program</Link></li>
-              <li className="pt-2"><Link to="/iso-program" className="hover:text-[#FFD200] transition-colors">Partners</Link></li>
+              <li><Link to="/iso-program" className="hover:text-[#FFD200] transition-colors">Partners</Link></li>
             </ul>
           </div>
 
@@ -137,8 +136,8 @@ export const Footer = () => {
 
         {/* Bottom Bar: Copyright & Compliance */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© {new Date().getFullYear()} OAL Network Inc. (OPM ASAP Loans NetWORK). Servicing All 50 States.</p>
-          <div className="flex items-center gap-6">
+          <p className="text-center md:text-left">© {new Date().getFullYear()} OAL Network Inc. (OPM ASAP Loans NetWORK). Servicing All 50 States.</p>
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-2">
             <Link to="/help?tab=privacy" className="hover:text-slate-300">Privacy Policy</Link>
             <Link to="/help?tab=terms" className="hover:text-slate-300">Terms of Service</Link>
             <Link to="/help?tab=privacy" className="hover:text-slate-300">Patriot Act Notice</Link>

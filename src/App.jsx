@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { AppProvider, useApp } from './context/AppContext';
 
 // Layouts & Route Protection
@@ -118,6 +118,11 @@ function LegacySupportRedirect() {
   return <Navigate to="/auth/login" replace />;
 }
 
+function LegacyLoanDetailRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/loantypes/${slug}`} replace />;
+}
+
 export function App() {
   return (
     <AppProvider>
@@ -128,12 +133,15 @@ export function App() {
           <Route element={<PublicLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/apply" element={<PublicApplyPage />} />
-            <Route path="/loan-programs" element={<LoanProgramsPage />} />
-            <Route path="/loan-types" element={<Navigate to="/loan-programs" replace />} />
+            <Route path="/loantypes" element={<LoanProgramsPage />} />
+            <Route path="/loan-types" element={<Navigate to="/loantypes" replace />} />
+            <Route path="/loan-programs" element={<Navigate to="/loantypes" replace />} />
             <Route path="/industries" element={<IndustryDirectoryPage />} />
             <Route path="/loans-by-industry" element={<IndustryDirectoryPage />} />
             <Route path="/industries/:slug" element={<IndustryDetailPage />} />
-            <Route path="/loan-programs/:slug" element={<LoanProgramDetailPage />} />
+            <Route path="/loantypes/:slug" element={<LoanProgramDetailPage />} />
+            <Route path="/loan-types/:slug" element={<LegacyLoanDetailRedirect />} />
+            <Route path="/loan-programs/:slug" element={<LegacyLoanDetailRedirect />} />
             <Route path="/how-it-works" element={<HowItWorksPage />} />
             <Route path="/investment-iq" element={<InvestmentIQExplainerPage />} />
             <Route path="/investment-club" element={<InvestmentClubPage />} />
